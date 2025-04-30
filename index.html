@@ -1,1 +1,813 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dwaipyan Mandal | Web Designer & Developer</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background Container -->
+    <div class="animated-background">
+        <div id="particles-js"></div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loader-wrapper">
+        <div class="loader">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="loader-text">Loading Portfolio...</div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <h2><a href="#home">Dwaipyan<span>.</span></a></h2>
+                </div>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="#home" class="active">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#education">Education</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="hamburger">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text" data-aos="fade-right" data-aos-delay="200">
+                    <div class="hero-greeting">
+                        <span class="tag">WELCOME TO MY PORTFOLIO</span>
+                    </div>
+                    <h1>Hi, I'm <span class="highlight-text">Dwaipyan Mandal</span></h1>
+                    <h2 class="typewriter">I'm a <span id="typing"></span></h2>
+                    <p>Specializing in <strong>WordPress</strong> & <strong>Shopify</strong> with 6+ years of experience</p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn primary-btn"><span>View My Work</span></a>
+                        <a href="#contact" class="btn secondary-btn"><span>Contact Me</span></a>
+                    </div>
+                    <div class="social-icons">
+                        <a href="https://github.com/rajdwaipyan" target="_blank" class="social-icon">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/dwaipyan-mandal-cyber-sec" target="_blank" class="social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="mailto:rajdwaipayan@gmail.com" class="social-icon">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image" data-aos="fade-left" data-aos-delay="400">
+                    <div class="profile-image">
+                        <img src="assets/img/profile.jpg" alt="Dwaipyan Mandal">
+                        <div class="floating-card">
+                            <div class="card-icon"><i class="fas fa-code"></i></div>
+                            <div class="card-text">WordPress & Shopify Expert</div>
+                        </div>
+                        <div class="floating-card">
+                            <div class="card-icon"><i class="fas fa-laptop-code"></i></div>
+                            <div class="card-text">6+ Years Experience</div>
+                        </div>
+                        <div class="floating-card">
+                            <div class="card-icon"><i class="fas fa-check-circle"></i></div>
+                            <div class="card-text">40+ Projects Completed</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-down">
+                <a href="#about"><i class="fas fa-chevron-down"></i></a>
+            </div>
+        </div>
+    </section>
+
+ 
+
+    <!-- JS Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
+
+    <!-- About Section -->
+    <section id="about" class="about section-padding">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">ABOUT ME</span>
+                <h2>More About <span class="highlight-text">Who I Am</span></h2>
+                <div class="underline"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-image" data-aos="fade-right" data-aos-delay="200">
+                    <div class="img-box">
+                        <img src="assets/img/about.jpg" alt="About Dwaipyan Mandal">
+                        <div class="experience-badge">
+                            <span>6+</span>
+                            <p>Years of Experience</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-text" data-aos="fade-left" data-aos-delay="300">
+                    <h3>Web Designer & Developer specializing in WordPress & Shopify</h3>
+                    <p>I'm an accomplished Web Designer & Developer with 6+ years of specialized experience in WordPress and Shopify platforms. I create responsive, user-centric websites with a strong focus on e-commerce solutions. My designs combine aesthetic appeal with functional excellence to deliver exceptional user experiences.</p>
+                    <p>I constantly strive to stay updated with the latest web trends and technologies to provide cutting-edge solutions for my clients.</p>
+                    <div class="about-info">
+                        <div class="info-item">
+                            <div class="info-icon"><i class="fas fa-desktop"></i></div>
+                            <div class="info-text">
+                                <h4>25+</h4>
+                                <p>WordPress Projects</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon"><i class="fas fa-shopping-cart"></i></div>
+                            <div class="info-text">
+                                <h4>15+</h4>
+                                <p>Shopify Stores</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon"><i class="fas fa-smile"></i></div>
+                            <div class="info-text">
+                                <h4>95%</h4>
+                                <p>Client Satisfaction</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon"><i class="fas fa-rocket"></i></div>
+                            <div class="info-text">
+                                <h4>30%</h4>
+                                <p>Conversion Rate</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="btn primary-btn download-cv"><span><i class="fas fa-download"></i> Download CV</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience section-padding bg-light">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">MY JOURNEY</span>
+                <h2>Work <span class="highlight-text">Experience</span></h2>
+                <div class="underline"></div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="date">2018 - Present</span>
+                        <h3>Web Designer & Developer</h3>
+                        <h4>WordPress & Shopify Specialist | Freelance Projects</h4>
+                        <ul>
+                            <li>Designed and developed 25+ custom WordPress websites with responsive layouts, achieving a 95% client satisfaction rate</li>
+                            <li>Built and optimized 15+ Shopify e-commerce stores, increasing conversion rates by an average of 30%</li>
+                            <li>Implemented SEO best practices, resulting in 40% improved search engine rankings for client websites</li>
+                            <li>Customized themes and developed plugins to extend WordPress functionality for specific client requirements</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="date">January 2020 - Present</span>
+                        <h3>IT-Director/Executive Director</h3>
+                        <h4>Surjamukhi Sangstha (SMS)</h4>
+                        <ul>
+                            <li>Led the design and implementation of the organization's web presence using WordPress, improving online visibility by 35%</li>
+                            <li>Drove key IT initiatives that resulted in a 15% increase in operational efficiency and 10% cost savings</li>
+                            <li>Implemented a government project for the International Labor Organization (ILO) with Dhaka South City Corporation</li>
+                            <li>Managed the "Out Of School Children Education" initiative at Vanga Upazilla, Faridpur District</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="date">April - July 2020</span>
+                        <h3>Freelancer</h3>
+                        <h4>Fiverr</h4>
+                        <ul>
+                            <li>Delivered custom WordPress and Shopify solutions for international clients</li>
+                            <li>Maintained a 5-star rating for web design and development services</li>
+                            <li>Coordinated client requirements and executed tasks efficiently, ensuring timely project delivery</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills section-padding">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">MY EXPERTISE</span>
+                <h2>Professional <span class="highlight-text">Skills</span></h2>
+                <div class="underline"></div>
+            </div>
+            <div class="skills-content">
+                <div class="skills-categories">
+                    <button class="category-btn active" data-category="web">Web Development</button>
+                    <button class="category-btn" data-category="cms">CMS & E-commerce</button>
+                    <button class="category-btn" data-category="technical">Technical Skills</button>
+                </div>
+                
+                <div class="skills-container" data-aos="fade-up" data-aos-delay="200">
+                    <!-- Web Development Skills -->
+                    <div class="skills-group active" id="web-skills">
+                        <div class="skills-grid">
+                            <div class="skill-card">
+                                <div class="skill-icon"><i class="fab fa-html5"></i></div>
+                                <div class="skill-info">
+                                    <h3>HTML5</h3>
+                                    <div class="skill-bar"><span style="width:95%"></span></div>
+                                </div>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
+                                <div class="skill-info">
+                                    <h3>CSS3</h3>
+                                    <div class="skill-bar"><span style="width:90%"></span></div>
+                                </div>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon"><i class="fab fa-js"></i></div>
+                                <div class="skill-info">
+                                    <h3>JavaScript</h3>
+                                    <div class="skill-bar"><span style="width:85%"></span></div>
+                                </div>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon"><i class="fab fa-php"></i></div>
+                                <div class="skill-info">
+                                    <h3>PHP</h3>
+                                    <div class="skill-bar"><span style="width:80%"></span></div>
+                                </div>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon"><i class="fab fa-bootstrap"></i></div>
+                                <div class="skill-info">
+                                    <h3>Bootstrap</h3>
+                                    <div class="skill-bar"><span style="width:90%"></span></div>
+                                </div>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon"><i class="fab fa-sass"></i></div>
+                                <div class="skill-info">
+                                    <h3>SASS/SCSS</h3>
+                                    <div class="skill-bar"><span style="width:85%"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- CMS & E-commerce Skills -->
+                    <div class="skills-group" id="cms-skills">
+                        <div class="skills-grid">
+                            <div class="skill-card">
+                                <div class="skill-icon"><i class="fab fa-wordpress"></i></div>
+                                <div class="skill-info">
+                                    <h3>WordPress</h3>
+                                    <div class="skill-bar"><span style="width:95%"></span></div>
+                                </div>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon"><i class="fab fa-shopify"></i></div>
+                                <div class="skill-info">
+                                    <h3>Shopify</h3>
+                                    <div class="skill-bar"><span style="width:90%"></span></div>
+                                </div>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon"><i class="fas fa-shopping-cart"></i></div>
+                                <div class="skill-info">
+                                    <h3>WooCommerce</h3>
+                                    <div class="skill-bar"><span style="width:90%"></span></div>
+                                </div>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon"><i class="fas fa-plug"></i></div>
+                                <div class="skill-info">
+                                    <h3>Plugin Dev</h3>
+                                    <div class="skill-bar"><span style="width:80%"></span></div>
+                                </div>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon"><i class="fas fa-palette"></i></div>
+                                <div class="skill-info">
+                                    <h3>Theme Dev</h3>
+                                    <div class="skill-bar"><span style="width:85%"></span></div>
+                                </div>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon"><i class="fas fa-credit-card"></i></div>
+                                <div class="skill-info">
+                                    <h3>Payment Integration</h3>
+                                    <div class="skill-bar"><span style="width:85%"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Technical Skills -->
+                    <div class="skills-group" id="technical-skills">
+                        <div class="skills-grid">
+                            <div class="skill-card">
+                                <div class="skill-icon"><i class="fab fa-docker"></i></div>
+                                <div class="skill-info">
+                                    <h3>Docker</h3>
+                                    <div class="skill-bar"><span style="width:80%"></span></div>
+                                </div>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
+                                <div class="skill-info">
+                                    <h3>Git</h3>
+                                    <div class="skill-bar"><span style="width:85%"></span></div>
+                                </div>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon"><i class="fab fa-python"></i></div>
+                                <div class="skill-info">
+                                    <h3>Python</h3>
+                                    <div class="skill-bar"><span style="width:75%"></span></div>
+                                </div>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon"><i class="fas fa-server"></i></div>
+                                <div class="skill-info">
+                                    <h3>AWS</h3>
+                                    <div class="skill-bar"><span style="width:70%"></span></div>
+                                </div>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon"><i class="fab fa-cuttlefish"></i></div>
+                                <div class="skill-info">
+                                    <h3>C#</h3>
+                                    <div class="skill-bar"><span style="width:80%"></span></div>
+                                </div>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon"><i class="fas fa-terminal"></i></div>
+                                <div class="skill-info">
+                                    <h3>Bash</h3>
+                                    <div class="skill-bar"><span style="width:75%"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects section-padding bg-light">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">MY WORK</span>
+                <h2>Featured <span class="highlight-text">Projects</span></h2>
+                <div class="underline"></div>
+            </div>
+            <div class="projects-filter" data-aos="fade-up" data-aos-delay="100">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="wordpress">WordPress</button>
+                <button class="filter-btn" data-filter="shopify">Shopify</button>
+                <button class="filter-btn" data-filter="other">Other</button>
+            </div>
+            <div class="projects-grid">
+                <div class="project-item wordpress" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <img src="assets/img/project1.jpg" alt="E-commerce Platform">
+                            <div class="project-category">WordPress</div>
+                        </div>
+                        <div class="project-info">
+                            <h3>E-commerce Platform for Fashion Brand</h3>
+                            <p>Custom WordPress & WooCommerce solution with integrated payment gateways and inventory management.</p>
+                            <div class="project-stats">
+                                <div class="stat">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span>45% Sales Increase</span>
+                                </div>
+                            </div>
+                            <div class="project-tech">
+                                <span>WordPress</span>
+                                <span>WooCommerce</span>
+                                <span>PHP</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fas fa-eye"></i> View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-item wordpress" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <img src="assets/img/project2.jpg" alt="Corporate Website">
+                            <div class="project-category">WordPress</div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Corporate Website Redesign</h3>
+                            <p>Modern responsive design with custom WordPress theme development and advanced content management.</p>
+                            <div class="project-stats">
+                                <div class="stat">
+                                    <i class="fas fa-chart-bar"></i>
+                                    <span>25% Lower Bounce Rate</span>
+                                </div>
+                            </div>
+                            <div class="project-tech">
+                                <span>WordPress</span>
+                                <span>Custom Theme</span>
+                                <span>ACF</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fas fa-eye"></i> View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-item shopify" data-aos="fade-up" data-aos-delay="400">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <img src="assets/img/project3.jpg" alt="Shopify Store">
+                            <div class="project-category">Shopify</div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Shopify Store for Artisanal Products</h3>
+                            <p>Custom Shopify theme with product filtering system and optimized checkout process.</p>
+                            <div class="project-stats">
+                                <div class="stat">
+                                    <i class="fas fa-shopping-basket"></i>
+                                    <span>30% Higher Order Value</span>
+                                </div>
+                            </div>
+                            <div class="project-tech">
+                                <span>Shopify</span>
+                                <span>Liquid</span>
+                                <span>JavaScript</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fas fa-eye"></i> View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-item other" data-aos="fade-up" data-aos-delay="500">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <img src="assets/img/project4.jpg" alt="Cybersecurity Project">
+                            <div class="project-category">Research</div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Digital Shield: Bangladesh's Cyber Resilience</h3>
+                            <p>Research thesis on cybersecurity framework for Bangladesh's ISP ecosystem using advanced encryption.</p>
+                            <div class="project-stats">
+                                <div class="stat">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>85% Brute-Force Reduction</span>
+                                </div>
+                            </div>
+                            <div class="project-tech">
+                                <span>WPA3</span>
+                                <span>GAN-Based IDS</span>
+                                <span>Zero Trust</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fas fa-eye"></i> View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="education section-padding">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">MY ACADEMICS</span>
+                <h2>Education & <span class="highlight-text">Training</span></h2>
+                <div class="underline"></div>
+            </div>
+            <div class="education-content">
+                <div class="education-timeline">
+                    <div class="education-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="education-year">2024</div>
+                        <div class="education-card">
+                            <div class="education-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="education-info">
+                                <h3>M.Sc. in Information Technology</h3>
+                                <h4>Jahangirnagar University</h4>
+                                <div class="education-details">
+                                    <div class="edu-detail">
+                                        <i class="fas fa-medal"></i>
+                                        <span>CGPA: 3.25/4.00</span>
+                                    </div>
+                                    <div class="edu-detail">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span>2022 - 2024</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="education-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="education-year">2022</div>
+                        <div class="education-card">
+                            <div class="education-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="education-info">
+                                <h3>B.Sc. in Computer Science & Engineering</h3>
+                                <h4>Stamford University Bangladesh</h4>
+                                <div class="education-details">
+                                    <div class="edu-detail">
+                                        <i class="fas fa-medal"></i>
+                                        <span>CGPA: 3.34/4.00</span>
+                                    </div>
+                                    <div class="edu-detail">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span>2018 - 2022</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="certification-header" data-aos="fade-up">
+                    <h3>Professional Certifications</h3>
+                </div>
+                
+                <div class="certifications-grid">
+                    <div class="certification-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="certification-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="certification-info">
+                            <h4>Web Design & Development</h4>
+                            <p>LEDP, Kurigram</p>
+                            <span class="cert-duration">4 months</span>
+                        </div>
+                    </div>
+                    
+                    <div class="certification-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="certification-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="certification-info">
+                            <h4>C# .NET Programming</h4>
+                            <p>BITM, Dhaka</p>
+                            <span class="cert-duration">3 months</span>
+                        </div>
+                    </div>
+                    
+                    <div class="certification-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="certification-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="certification-info">
+                            <h4>Cisco Certified CyberOps Associate</h4>
+                            <p>AIUB, Dhaka</p>
+                            <span class="cert-duration">3 months</span>
+                        </div>
+                    </div>
+                    
+                    <div class="certification-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="certification-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="certification-info">
+                            <h4>Professional Cyber Security</h4>
+                            <p>DEV SKILL, Dhaka</p>
+                            <span class="cert-duration">4 months</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section-padding bg-light">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">GET IN TOUCH</span>
+                <h2>Contact <span class="highlight-text">Me</span></h2>
+                <div class="underline"></div>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info" data-aos="fade-right" data-aos-delay="200">
+                    <div class="contact-card">
+                        <h3>Let's Talk</h3>
+                        <p>Feel free to get in touch with me for any work or suggestions. I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Location</h4>
+                                    <p>22-Dilkusha, C/A, Motijheel, Dhaka-1000</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Email</h4>
+                                    <p>rajdwaipayan@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Phone</h4>
+                                    <p>+88 01863324379</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-socials">
+                            <h4>Find Me On</h4>
+                            <div class="social-links">
+                                <a href="https://github.com/rajdwaipyan" target="_blank"><i class="fab fa-github"></i></a>
+                                <a href="https://www.linkedin.com/in/dwaipyan-mandal-cyber-sec" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="mailto:rajdwaipayan@gmail.com"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form" data-aos="fade-left" data-aos-delay="300">
+                    <div class="form-card">
+                        <h3>Send Me A Message</h3>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-heading"></i>
+                                    <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <div class="input-with-icon textarea">
+                                    <i class="fas fa-comment-alt"></i>
+                                    <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn primary-btn">
+                                <span><i class="fas fa-paper-plane"></i> Send Message</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+       <!-- Footer -->
+       <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About</a></li>
+                        <li><a href="#experience"><i class="fas fa-chevron-right"></i> Experience</a></li>
+                        <li><a href="#skills"><i class="fas fa-chevron-right"></i> Skills</a></li>
+                        <li><a href="#projects"><i class="fas fa-chevron-right"></i> Projects</a></li>
+                        <li><a href="#education"><i class="fas fa-chevron-right"></i> Education</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-services">
+                    <h3>My Services</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-check-circle"></i> WordPress Development</a></li>
+                        <li><a href="#"><i class="fas fa-check-circle"></i> Shopify Store Creation</a></li>
+                        <li><a href="#"><i class="fas fa-check-circle"></i> E-commerce Solutions</a></li>
+                        <li><a href="#"><i class="fas fa-check-circle"></i> Responsive Web Design</a></li>
+                        <li><a href="#"><i class="fas fa-check-circle"></i> Custom Theme Development</a></li>
+                        <li><a href="#"><i class="fas fa-check-circle"></i> Plugin Customization</a></li>
+                        <li><a href="#"><i class="fas fa-check-circle"></i> Website Maintenance</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>22-Dilkusha, C/A, Motijheel, Dhaka-1000</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+88 01863324379</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>rajdwaipayan@gmail.com</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-globe"></i>
+                            <span>www.rajdwaipyan.github.io</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>&copy; 2025 <span>Dwaipyan Mandal</span>. All Rights Reserved.</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com/rajdwaipyan" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/dwaipyan-mandal-cyber-sec" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:rajdwaipayan@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+                <div class="back-to-top">
+                    <a href="#home"><i class="fas fa-chevron-up"></i> Back to Top</a>
+                </div>
+            </div>
+        </div>
+    </footer>
