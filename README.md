@@ -2,7 +2,7 @@
 
 A modern, animated, and professional portfolio website showcasing my skills and experience as a Web Designer & Developer specializing in WordPress and Shopify.
 
-![Portfolio Preview](assets/img/portfolio-preview.jpg)
+![Portfolio Preview](profile.jpg)
 
 ## 🌟 Features
 
