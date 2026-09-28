@@ -2,159 +2,211 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#f4f0e8">
-  <meta name="description" content="Dwaipyan Mandal — WordPress, Shopify and automation developer creating distinctive digital experiences.">
-  <meta name="author" content="Dwaipyan Mandal">
-  <title>Dwaipyan Mandal — Digital Craft</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111111">
+  <meta name="description" content="Dwaipyan Mandal — WordPress, Shopify, WooCommerce and automation developer building expressive digital experiences.">
+  <title>Dwaipyan Mandal — Digital Experiences That Move</title>
+  <link rel="icon" href="profile.jpg" type="image/jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="cursor" aria-hidden="true"><span>OPEN</span></div>
-  <canvas id="scene" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <canvas id="motion-canvas" aria-hidden="true"></canvas>
+  <div class="cursor" aria-hidden="true"><span>VIEW</span></div>
 
-  <header class="header" id="header">
-    <a class="logo magnetic" href="#top" data-cursor="">DM<span>.</span></a>
-    <div class="header-meta">
-      <span>WEB / AUTOMATION / SYSTEMS</span>
-      <span class="availability"><i></i> AVAILABLE</span>
-    </div>
-    <button class="menu-btn magnetic" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav">MENU</button>
+  <header class="topbar" id="topbar">
+    <a class="wordmark magnetic" href="#top" aria-label="Dwaipyan Mandal home">DWAIPYAN<span>®</span></a>
+    <div class="topbar-meta">BANGLADESH / WORLDWIDE</div>
+    <button class="menu-button magnetic" id="menu-button" type="button" aria-expanded="false" aria-controls="menu-overlay">
+      <span>MENU</span><i></i>
+    </button>
   </header>
 
-  <nav class="nav" id="nav" aria-label="Main navigation">
-    <a href="#work">01 — Work</a>
-    <a href="#about">02 — About</a>
-    <a href="#stack">03 — Stack</a>
-    <a href="#contact">04 — Contact</a>
-    <a href="https://github.com/rajdwaipyan" target="_blank" rel="noopener">GitHub ↗</a>
-  </nav>
+  <div class="menu-overlay" id="menu-overlay" aria-hidden="true">
+    <div class="menu-inner">
+      <div class="menu-label">NAVIGATION</div>
+      <nav>
+        <a href="#work" data-menu-link><span>01</span>WORK</a>
+        <a href="#services" data-menu-link><span>02</span>SERVICES</a>
+        <a href="#about" data-menu-link><span>03</span>ABOUT</a>
+        <a href="#contact" data-menu-link><span>04</span>CONTACT</a>
+      </nav>
+      <div class="menu-footer">
+        <span>Available for selected projects</span>
+        <a href="mailto:rajdwaipayan@gmail.com">rajdwaipayan@gmail.com</a>
+      </div>
+    </div>
+  </div>
 
   <main id="top">
-    <section class="hero" data-theme="cream">
-      <div class="hero-side mono">Dhaka, Bangladesh<br>UTC +06:00</div>
-      <div class="hero-index mono">01 / 04</div>
-      <div class="hero-copy">
-        <p class="kicker reveal">FULL-STACK WEB DEVELOPER <span>+</span> AUTOMATION</p>
-        <h1 class="hero-title reveal">I build<br><em>digital</em><br>experiences.</h1>
-        <p class="hero-intro reveal">WordPress, Shopify, WooCommerce and CRM automation — built with an eye for interaction, clarity and the details between the pixels.</p>
-        <a class="hero-link magnetic reveal" href="#work"><span>Scroll to explore</span><b>↓</b></a>
+    <section class="hero" id="hero">
+      <div class="hero-grid">
+        <div class="hero-index mono">[ 01 — INTRO ]</div>
+        <div class="hero-copy">
+          <div class="eyebrow">FULL-STACK WEB / WORDPRESS / SHOPIFY / AUTOMATION</div>
+          <h1 class="hero-title" data-split>Digital experiences<br><em>that move.</em></h1>
+          <p class="hero-text">I’m Dwaipyan Mandal — a developer focused on expressive websites, e-commerce and the systems behind them. I turn business goals into digital experiences people can actually feel.</p>
+          <a class="circle-link magnetic" href="#work" aria-label="Scroll to selected work"><span>SEE<br>WORK</span><i>↘</i></a>
+        </div>
+        <div class="hero-side">
+          <div class="hero-photo-wrap reveal">
+            <img src="profile.jpg" alt="Dwaipyan Mandal">
+            <div class="photo-caption mono">DM / 2026</div>
+          </div>
+          <div class="hero-note mono">Built with intent.<br>Not just templates.</div>
+        </div>
       </div>
-      <div class="hero-art reveal">
-        <div class="art-orbit orbit-a"></div>
-        <div class="art-orbit orbit-b"></div>
-        <div class="art-card">
-          <div class="art-label mono">DIGITAL CRAFT / 2026</div>
-          <div class="art-mark">D<span>M</span></div>
-          <div class="art-caption mono">DESIGN<br>CODE<br>SYSTEMS</div>
+      <div class="hero-ticker" aria-hidden="true">
+        <div class="ticker-track">
+          <span>WORDPRESS</span><b>✳</b><span>SHOPIFY</span><b>✳</b><span>WOOCOMMERCE</span><b>✳</b><span>GHL AUTOMATION</span><b>✳</b><span>N8N / APIS</span><b>✳</b><span>PERFORMANCE</span><b>✳</b>
+          <span>WORDPRESS</span><b>✳</b><span>SHOPIFY</span><b>✳</b><span>WOOCOMMERCE</span><b>✳</b><span>GHL AUTOMATION</span><b>✳</b><span>N8N / APIS</span><b>✳</b><span>PERFORMANCE</span><b>✳</b>
         </div>
       </div>
     </section>
 
-    <div class="ticker" aria-hidden="true">
-      <div>WORDPRESS <span>✦</span> SHOPIFY <span>✦</span> WOOCOMMERCE <span>✦</span> GHL <span>✦</span> N8N <span>✦</span> APIS <span>✦</span> WORDPRESS <span>✦</span> SHOPIFY <span>✦</span></div>
-    </div>
-
-    <section class="work section" id="work">
-      <div class="section-top">
-        <p class="kicker reveal">SELECTED WORK</p>
-        <p class="mono reveal">04 projects / live links</p>
+    <section class="statement section-pad" id="statement">
+      <div class="section-kicker mono">[ 02 — PHILOSOPHY ]</div>
+      <div class="statement-wrap">
+        <p class="statement-big" data-reveal-text>Good websites <span>look right.</span><br>Great websites <em>feel alive.</em></p>
       </div>
-      <div class="work-list">
-        <a class="project project-1 reveal" href="https://thearcaadvisory.com/" target="_blank" rel="noopener" data-project="01">
-          <div class="project-image"><img src="assets/img/project1.jpg" alt="Arca Advisory" loading="lazy"></div>
-          <div class="project-info">
-            <div><span class="project-number mono">01</span><h2>Arca Advisory</h2></div>
-            <p>Cross-border advisory / WordPress</p>
-            <span class="project-arrow">↗</span>
-          </div>
-        </a>
-
-        <a class="project project-2 reveal" href="https://essentiallivingsupport.com/" target="_blank" rel="noopener" data-project="02">
-          <div class="project-image"><img src="assets/img/project2.jpg" alt="Essential Living Support" loading="lazy"></div>
-          <div class="project-info">
-            <div><span class="project-number mono">02</span><h2>Essential Living Support</h2></div>
-            <p>Service platform / UX / WordPress</p>
-            <span class="project-arrow">↗</span>
-          </div>
-        </a>
-
-        <a class="project project-3 reveal" href="https://vtekcontrols.com/" target="_blank" rel="noopener" data-project="03">
-          <div class="project-image"><img src="assets/img/project4.jpg" alt="Vtek Controls" loading="lazy"></div>
-          <div class="project-info">
-            <div><span class="project-number mono">03</span><h2>Vtek Controls</h2></div>
-            <p>Industrial B2B / content architecture</p>
-            <span class="project-arrow">↗</span>
-          </div>
-        </a>
-
-        <a class="project project-4 reveal" href="https://www.o-seaborabora.com/" target="_blank" rel="noopener" data-project="04">
-          <div class="project-image"><img src="assets/img/project3.jpg" alt="O-Sea Bora Bora" loading="lazy"></div>
-          <div class="project-info">
-            <div><span class="project-number mono">04</span><h2>O-Sea Bora Bora</h2></div>
-            <p>Travel experience / booking flow</p>
-            <span class="project-arrow">↗</span>
-          </div>
-        </a>
+      <div class="statement-bottom">
+        <div class="mono">DESIGN × CODE × MOTION</div>
+        <p>I care about the moment someone lands on a site, the rhythm as they scroll, and the small interactions that make a digital product feel considered.</p>
       </div>
     </section>
 
-    <section class="statement section" id="about">
-      <div class="statement-aside mono reveal">02 / ABOUT</div>
-      <div class="statement-main">
-        <p class="kicker reveal">NOT JUST A WEBSITE</p>
-        <h2 class="reveal">I care about what happens <em>after</em> the click.</h2>
-        <p class="statement-body reveal">A good website should feel intentional on the surface and behave intelligently underneath. I combine front-end craft with WordPress, e-commerce, APIs, CRM workflows and automation to make digital work feel less like a brochure and more like a useful system.</p>
-        <div class="statement-sign mono reveal">DWAIPYAN<br>MANDAL</div>
+    <section class="work section-pad" id="work">
+      <div class="section-head">
+        <div class="section-kicker mono">[ 03 — SELECTED WORK ]</div>
+        <div class="section-head-right mono">REAL PROJECTS / REAL CLIENTS / OPEN TO SHOW</div>
+      </div>
+
+      <div class="project-list">
+        <a class="project project-hero" href="https://thearcaadvisory.com/" target="_blank" rel="noopener" data-label="ARCA">
+          <div class="project-media">
+            <img src="assets/img/project1.jpg" alt="Arca Advisory" loading="lazy">
+            <div class="project-hover">OPEN <span>↗</span></div>
+          </div>
+          <div class="project-meta">
+            <div class="project-number mono">01</div>
+            <div class="project-title">Arca Advisory</div>
+            <div class="project-tags mono">WORDPRESS / ADVISORY / PREMIUM UX</div>
+          </div>
+        </a>
+
+        <a class="project project-offset" href="https://essentiallivingsupport.com/" target="_blank" rel="noopener" data-label="ELS">
+          <div class="project-media">
+            <img src="assets/img/project2.jpg" alt="Essential Living Support" loading="lazy">
+            <div class="project-hover">OPEN <span>↗</span></div>
+          </div>
+          <div class="project-meta">
+            <div class="project-number mono">02</div>
+            <div class="project-title">Essential Living Support</div>
+            <div class="project-tags mono">WORDPRESS / SERVICE / UX</div>
+          </div>
+        </a>
+
+        <a class="project project-wide" href="https://vtekcontrols.com/" target="_blank" rel="noopener" data-label="VTEK">
+          <div class="project-media">
+            <img src="assets/img/project4.jpg" alt="Vtek Controls" loading="lazy">
+            <div class="project-hover">OPEN <span>↗</span></div>
+          </div>
+          <div class="project-meta">
+            <div class="project-number mono">03</div>
+            <div class="project-title">Vtek Controls</div>
+            <div class="project-tags mono">WORDPRESS / B2B / PRODUCT EXPERIENCE</div>
+          </div>
+        </a>
+
+        <a class="project project-large" href="https://www.o-seaborabora.com/" target="_blank" rel="noopener" data-label="O-SEA">
+          <div class="project-media">
+            <img src="assets/img/project3.jpg" alt="O-Sea Bora Bora" loading="lazy">
+            <div class="project-hover">OPEN <span>↗</span></div>
+          </div>
+          <div class="project-meta">
+            <div class="project-number mono">04</div>
+            <div class="project-title">O-Sea Bora Bora</div>
+            <div class="project-tags mono">WORDPRESS / TRAVEL / BOOKING EXPERIENCE</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="work-end">
+        <span class="mono">MORE WORK / MORE NICHES / MORE BUILDS</span>
+        <a href="mailto:rajdwaipayan@gmail.com?subject=Portfolio%20work%20request" class="underline-link magnetic">Request relevant case studies ↗</a>
       </div>
     </section>
 
-    <section class="stack section" id="stack">
-      <div class="section-top">
-        <p class="kicker reveal">THE TOOLBOX</p>
-        <p class="mono reveal">03 / 04</p>
+    <section class="services section-pad" id="services">
+      <div class="section-head">
+        <div class="section-kicker mono">[ 04 — WHAT I BUILD ]</div>
+        <div class="section-head-right mono">NO EMPTY BUZZWORDS</div>
       </div>
-      <div class="stack-grid">
-        <div class="stack-block reveal"><span class="stack-num mono">01</span><h3>Build</h3><p>WordPress<br>Elementor Pro<br>WooCommerce<br>Shopify</p></div>
-        <div class="stack-block reveal"><span class="stack-num mono">02</span><h3>Connect</h3><p>GoHighLevel<br>n8n<br>REST APIs<br>Webhooks</p></div>
-        <div class="stack-block reveal"><span class="stack-num mono">03</span><h3>Craft</h3><p>HTML / CSS<br>JavaScript<br>Responsive UI<br>Motion</p></div>
-        <div class="stack-block reveal"><span class="stack-num mono">04</span><h3>Protect</h3><p>Performance<br>Hardening<br>Security-minded builds<br>Maintenance</p></div>
+
+      <div class="services-list">
+        <article class="service-item reveal">
+          <div class="service-no mono">01</div>
+          <h2>Websites<br><em>with presence.</em></h2>
+          <p>WordPress builds, Elementor Pro, custom sections, responsive implementation and redesigns that look deliberate on every screen.</p>
+          <div class="service-line mono">WORDPRESS / ELEMENTOR / PHP / JS</div>
+        </article>
+        <article class="service-item reveal">
+          <div class="service-no mono">02</div>
+          <h2>Stores<br><em>that sell.</em></h2>
+          <p>WooCommerce and Shopify experiences with cleaner product journeys, thoughtful layouts and practical integrations.</p>
+          <div class="service-line mono">WOOCOMMERCE / SHOPIFY / LIQUID</div>
+        </article>
+        <article class="service-item reveal">
+          <div class="service-no mono">03</div>
+          <h2>Systems<br><em>behind the page.</em></h2>
+          <p>GoHighLevel workflows, n8n, APIs, forms, webhooks and CRM automation that turn a website into part of the business.</p>
+          <div class="service-line mono">GHL / N8N / APIS / AUTOMATION</div>
+        </article>
       </div>
     </section>
 
-    <section class="experience section">
-      <div class="section-top">
-        <p class="kicker reveal">A FEW CHAPTERS</p>
-        <p class="mono reveal">Experience / 2018—now</p>
+    <section class="about section-pad" id="about">
+      <div class="section-head">
+        <div class="section-kicker mono">[ 05 — ABOUT ]</div>
+        <div class="section-head-right mono">DEVELOPER / DESIGNER / PROBLEM SOLVER</div>
       </div>
-      <div class="experience-list">
-        <div class="experience-row reveal"><span class="mono">2026—now</span><strong>Tech Maximus</strong><span>WordPress / Shopify Developer</span></div>
-        <div class="experience-row reveal"><span class="mono">2020—2024</span><strong>Surjamukhi Sangstha</strong><span>IT Director / Project Manager</span></div>
-        <div class="experience-row reveal"><span class="mono">2018—now</span><strong>Independent</strong><span>Freelance web & digital projects</span></div>
+      <div class="about-grid">
+        <div class="about-big reveal">I build at the point where <em>design</em> meets <span>implementation.</span></div>
+        <div class="about-copy">
+          <p>I’ve spent years working across websites, e-commerce, client projects and technology operations. That range taught me to care about both sides of the screen: how an experience looks and how it actually works.</p>
+          <p>My core stack is WordPress, Elementor Pro, WooCommerce, Shopify, GoHighLevel, n8n, JavaScript, PHP and APIs — with a practical interest in security and performance.</p>
+          <div class="about-facts">
+            <div><strong>6+</strong><span>YEARS BUILDING</span></div>
+            <div><strong>20+</strong><span>RECENT WEB PROJECTS</span></div>
+            <div><strong>WP / SHOPIFY</strong><span>PRIMARY PLATFORMS</span></div>
+          </div>
+          <a class="underline-link magnetic" href="cv.pdf" target="_blank" rel="noopener">Open my CV ↗</a>
+        </div>
       </div>
     </section>
 
-    <section class="contact section" id="contact">
-      <div class="contact-top mono reveal">04 / CONTACT</div>
-      <div class="contact-body">
-        <p class="kicker reveal">HAVE SOMETHING TO BUILD?</p>
-        <h2 class="reveal">Let’s make<br><em>something</em> memorable.</h2>
-        <a class="contact-mail magnetic reveal" href="mailto:rajdwaipayan@gmail.com">rajdwaipayan@gmail.com <span>↗</span></a>
+    <section class="contact section-pad" id="contact">
+      <div class="contact-mark mono">[ 06 — LET’S TALK ]</div>
+      <div class="contact-title-wrap">
+        <h2>Have something<br><em>worth moving?</em></h2>
       </div>
       <div class="contact-bottom">
-        <a class="mono magnetic" href="https://www.linkedin.com/in/dwaipyan-cyberexpert" target="_blank" rel="noopener">LinkedIn ↗</a>
-        <a class="mono magnetic" href="https://wa.me/8801863324379" target="_blank" rel="noopener">WhatsApp ↗</a>
-        <a class="mono magnetic" href="cv.pdf" target="_blank" rel="noopener">CV ↗</a>
+        <a class="giant-link magnetic" href="mailto:rajdwaipayan@gmail.com">rajdwaipayan@gmail.com <span>↗</span></a>
+        <div class="contact-small">
+          <a href="https://www.linkedin.com/in/dwaipyan-cyberexpert" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a href="https://github.com/rajdwaipyan" target="_blank" rel="noopener">GitHub ↗</a>
+          <a href="https://wa.me/8801863324379" target="_blank" rel="noopener">WhatsApp ↗</a>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <span>© 2026 Dwaipyan Mandal</span>
-    <span class="mono">Built on curiosity.</span>
+    <span class="mono">BUILT ON THE WEB / 23.8°N, 90.4°E</span>
+    <a href="#top" class="magnetic">BACK TO TOP ↟</a>
   </footer>
 
   <script src="script.js"></script>
