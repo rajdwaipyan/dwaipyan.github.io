@@ -87,7 +87,81 @@
       });
     }
   }
+/* =========================================================
+   INTERACTIVE SERVICES
+========================================================= */
 
+const serviceItems =
+  document.querySelectorAll('.interactive-service');
+
+if (
+  serviceItems.length &&
+  finePointer &&
+  !reduced
+) {
+  serviceItems.forEach((service) => {
+
+    const art =
+      service.querySelector('.service-art');
+
+    if (!art) return;
+
+    service.addEventListener(
+      'pointermove',
+      (e) => {
+        const rect =
+          service.getBoundingClientRect();
+
+        const x =
+          ((e.clientX - rect.left) / rect.width - 0.5);
+
+        const y =
+          ((e.clientY - rect.top) / rect.height - 0.5);
+
+        art.style.setProperty(
+          '--service-x',
+          `${x * 12}px`
+        );
+
+        art.style.setProperty(
+          '--service-y',
+          `${y * 12}px`
+        );
+
+        art.style.transform =
+          `translate3d(
+            var(--service-x),
+            var(--service-y),
+            0
+          )`;
+      },
+      { passive: true }
+    );
+
+    service.addEventListener(
+      'pointerleave',
+      () => {
+        art.style.transform = '';
+        art.style.removeProperty('--service-x');
+        art.style.removeProperty('--service-y');
+      }
+    );
+
+    service.addEventListener(
+      'mouseenter',
+      () => {
+        service.classList.add('is-active');
+      }
+    );
+
+    service.addEventListener(
+      'mouseleave',
+      () => {
+        service.classList.remove('is-active');
+      }
+    );
+  });
+}
   // Subtle canvas motion field.
   if (!canvas || !ctx || reduced) return;
 
