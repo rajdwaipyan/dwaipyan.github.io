@@ -3,109 +3,50 @@
   const header = document.getElementById('header');
   const nav = document.getElementById('nav');
   const menuBtn = document.getElementById('menuBtn');
-  const themeBtn = document.getElementById('themeBtn');
-  const backTop = document.getElementById('backTop');
   const cursor = document.querySelector('.cursor');
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canvas = document.getElementById('scene');
+  const ctx = canvas?.getContext('2d');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
 
-  /* =========================
-     THEME
-  ========================= */
-  const savedTheme = localStorage.getItem('dm-theme');
-
-  if (savedTheme === 'light') {
-    body.classList.add('light');
-  }
-
-  themeBtn?.addEventListener('click', () => {
-    body.classList.toggle('light');
-
-    localStorage.setItem(
-      'dm-theme',
-      body.classList.contains('light') ? 'light' : 'dark'
-    );
-  });
-
-  /* =========================
-     MOBILE NAVIGATION
-  ========================= */
+  // Mobile menu.
   menuBtn?.addEventListener('click', () => {
     const open = nav.classList.toggle('open');
+    body.classList.toggle('nav-open', open);
     menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.textContent = open ? 'CLOSE' : 'MENU';
   });
 
-  nav?.querySelectorAll('a').forEach((a) => {
-    a.addEventListener('click', () => {
+  nav?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
       nav.classList.remove('open');
+      body.classList.remove('nav-open');
       menuBtn?.setAttribute('aria-expanded', 'false');
+
+      if (menuBtn) {
+        menuBtn.textContent = 'MENU';
+      }
     });
   });
 
-  /* =========================
-     SCROLL STATE
-  ========================= */
-  const onScroll = () => {
-    if (header) {
-      header.classList.toggle('scrolled', window.scrollY > 30);
-    }
-
-    if (backTop) {
-      backTop.classList.toggle('show', window.scrollY > 700);
-    }
-
-    let current = 'home';
-
-    document
-      .querySelectorAll('main section[id]')
-      .forEach((section) => {
-        if (window.scrollY >= section.offsetTop - 160) {
-          current = section.id;
-        }
-      });
-
-    nav?.querySelectorAll('a').forEach((a) => {
-      a.classList.toggle(
-        'active',
-        a.getAttribute('href') === `#${current}`
-      );
-    });
+  // Header state.
+  const updateScroll = () => {
+    header?.classList.toggle('scrolled', window.scrollY > 20);
   };
 
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  window.addEventListener('scroll', updateScroll, { passive: true });
+  updateScroll();
 
-  /* =========================
-     BACK TO TOP
-  ========================= */
-  backTop?.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: reducedMotion ? 'auto' : 'smooth'
-    });
-  });
+  // Reveal-on-scroll.
+  const reveals = document.querySelectorAll('.reveal');
 
-  /* =========================
-     REVEAL ON SCROLL
-  ========================= */
-  const revealEls = document.querySelectorAll('.reveal');
-
-  if (
-    'IntersectionObserver' in window &&
-    !reducedMotion
-  ) {
+  if ('IntersectionObserver' in window && !reduced) {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
 
-          const delay = Number(
-            entry.target.dataset.delay || 0
-          );
-
-          setTimeout(() => {
-            entry.target.classList.add('in');
-          }, delay);
-
+          entry.target.classList.add('in');
           observer.unobserve(entry.target);
         });
       },
@@ -114,73 +55,12 @@
       }
     );
 
-    revealEls.forEach((el) => observer.observe(el));
+    reveals.forEach((el) => observer.observe(el));
   } else {
-    revealEls.forEach((el) => el.classList.add('in'));
+    reveals.forEach((el) => el.classList.add('in'));
   }
 
-  /* =========================
-     COUNTER ANIMATION
-  ========================= */
-  if ('IntersectionObserver' in window) {
-    const counterObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-
-          const el = entry.target;
-          const target = Number(el.dataset.count || 0);
-
-          if (reducedMotion) {
-            el.textContent = target;
-            counterObserver.unobserve(el);
-            return;
-          }
-
-          const start = 0;
-          const duration = 1200;
-          const t0 = performance.now();
-
-          const tick = (now) => {
-            const progress = Math.min(
-              1,
-              (now - t0) / duration
-            );
-
-            const eased =
-              1 - Math.pow(1 - progress, 3);
-
-            el.textContent = Math.round(
-              start + (target - start) * eased
-            );
-
-            if (progress < 1) {
-              requestAnimationFrame(tick);
-            }
-          };
-
-          requestAnimationFrame(tick);
-
-          counterObserver.unobserve(el);
-        });
-      },
-      {
-        threshold: 0.8
-      }
-    );
-
-    document
-      .querySelectorAll('[data-count]')
-      .forEach((el) => counterObserver.observe(el));
-  }
-
-  /* =========================
-     CURSOR + POINTER GLOW
-  ========================= */
-  const finePointer = window.matchMedia(
-    '(hover:hover) and (pointer:fine)'
-  ).matches;
-
+  // Cursor + pointer variables.
   if (finePointer) {
     window.addEventListener(
       'pointermove',
@@ -200,11 +80,13 @@
           cursor.style.top = `${e.clientY}px`;
         }
       },
-      { passive: true }
+      {
+        passive: true
+      }
     );
 
     document
-      .querySelectorAll('a, button, .tilt-card')
+      .querySelectorAll('a,button,.project')
       .forEach((el) => {
         el.addEventListener('mouseenter', () => {
           cursor?.classList.add('active');
@@ -215,118 +97,74 @@
         });
       });
 
-    /* =========================
-       3D TILT CARDS
-    ========================= */
-    if (!reducedMotion) {
-      document
-        .querySelectorAll('.tilt-card')
-        .forEach((card) => {
-          card.addEventListener('pointermove', (e) => {
-            const rect = card.getBoundingClientRect();
+    document.querySelectorAll('.project').forEach((project) => {
+      project.addEventListener('mouseenter', () => {
+        if (cursor) {
+          const label = project.dataset.project;
 
-            const x =
-              (e.clientX - rect.left) /
-                rect.width -
-              0.5;
+          cursor.querySelector('span').textContent =
+            label ? `OPEN ${label}` : 'OPEN';
+        }
+      });
 
-            const y =
-              (e.clientY - rect.top) /
-                rect.height -
-              0.5;
+      project.addEventListener('mouseleave', () => {
+        if (cursor) {
+          cursor.querySelector('span').textContent = 'OPEN';
+        }
+      });
+    });
 
-            card.style.transform =
-              `perspective(900px) ` +
-              `rotateX(${(-y * 4).toFixed(2)}deg) ` +
-              `rotateY(${(x * 5).toFixed(2)}deg) ` +
-              `translateY(-4px)`;
-          });
+    // Gentle magnetic pull for marked links.
+    if (!reduced) {
+      document.querySelectorAll('.magnetic').forEach((el) => {
+        el.addEventListener('pointermove', (e) => {
+          const r = el.getBoundingClientRect();
 
-          card.addEventListener('pointerleave', () => {
-            card.style.transform = '';
-          });
+          const x =
+            ((e.clientX - r.left) / r.width - 0.5) * 8;
+
+          const y =
+            ((e.clientY - r.top) / r.height - 0.5) * 8;
+
+          el.style.transform =
+            `translate(${x}px,${y}px)`;
         });
+
+        el.addEventListener('pointerleave', () => {
+          el.style.transform = '';
+        });
+      });
     }
   }
 
-  /* =========================
-     CONTACT FORM
-     ========================= */
-  document
-    .getElementById('contactForm')
-    ?.addEventListener('submit', (e) => {
-      e.preventDefault();
+  // Lightweight WebGL-like ambient canvas:
+  // soft moving particles/curves rather than a generic starfield.
+  if (!canvas || !ctx || reduced) return;
 
-      const name =
-        document.getElementById('name')?.value.trim() || '';
-
-      const email =
-        document.getElementById('email')?.value.trim() || '';
-
-      const topic =
-        document.getElementById('topic')?.value || '';
-
-      const message =
-        document.getElementById('message')?.value.trim() || '';
-
-      const subject = encodeURIComponent(
-        `${topic} — project enquiry from ${name}`
-      );
-
-      const bodyText = encodeURIComponent(
-        `Hi Dwaipyan,\n\n` +
-        `Name: ${name}\n` +
-        `Email: ${email}\n` +
-        `Project: ${topic}\n\n` +
-        `${message}\n\n` +
-        `Sent from your portfolio.`
-      );
-
-      window.location.href =
-        `mailto:rajdwaipayan@gmail.com?subject=${subject}&body=${bodyText}`;
-
-      const note = document.getElementById('formNote');
-
-      if (note) {
-        note.textContent =
-          'Your email app should open with the message ready to send.';
-      }
-    });
-
-  /* =========================
-     INTERACTIVE BACKGROUND
-  ========================= */
-  const canvas = document.getElementById('scene');
-  const ctx = canvas?.getContext('2d');
-
-  if (!canvas || !ctx || reducedMotion) {
-    return;
-  }
-
-  let width = 0;
-  let height = 0;
+  let w = 0;
+  let h = 0;
   let dpr = 1;
-  let points = [];
+  let blobs = [];
 
   const mouse = {
-    x: -9999,
-    y: -9999
+    x: 0.5,
+    y: 0.5
   };
 
-  /* =========================
-     CANVAS RESIZE
-  ========================= */
   const resize = () => {
     dpr = Math.min(
       2,
       window.devicePixelRatio || 1
     );
 
-    width = window.innerWidth;
-    height = window.innerHeight;
+    w = window.innerWidth;
+    h = window.innerHeight;
 
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+
+    canvas.style.width = `${w}px`;
+    canvas.style.height = `${h}px`;
 
     ctx.setTransform(
       dpr,
@@ -337,153 +175,166 @@
       0
     );
 
-    const count = Math.min(
-      95,
-      Math.max(
-        38,
-        Math.floor(width / 14)
-      )
-    );
+    blobs = Array.from(
+      {
+        length: 5
+      },
+      (_, i) => ({
+        x:
+          w * (0.18 + i * 0.17) +
+          Math.random() * 90,
 
-    points = Array.from(
-      { length: count },
-      () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.22,
-        vy: (Math.random() - 0.5) * 0.22,
-        r: Math.random() * 1.4 + 0.35
+        y:
+          h * (0.2 + (i % 2) * 0.5),
+
+        r:
+          110 +
+          Math.random() * 170,
+
+        a:
+          Math.random() *
+          Math.PI *
+          2,
+
+        s:
+          0.00035 +
+          Math.random() * 0.0005
       })
     );
   };
 
-  /* =========================
-     CANVAS ANIMATION
-  ========================= */
-  const loop = () => {
-    ctx.clearRect(
-      0,
-      0,
-      width,
-      height
-    );
-
-    /* Points */
-    for (const p of points) {
-      p.x += p.vx;
-      p.y += p.vy;
-
-      if (
-        p.x < -20 ||
-        p.x > width + 20
-      ) {
-        p.vx *= -1;
-      }
-
-      if (
-        p.y < -20 ||
-        p.y > height + 20
-      ) {
-        p.vy *= -1;
-      }
-
-      const dx = p.x - mouse.x;
-      const dy = p.y - mouse.y;
-      const dist = Math.hypot(dx, dy);
-
-      if (
-        dist < 140 &&
-        dist > 0
-      ) {
-        p.x += (dx / dist) * 0.35;
-        p.y += (dy / dist) * 0.35;
-      }
-
-      ctx.beginPath();
-
-      ctx.arc(
-        p.x,
-        p.y,
-        p.r,
-        0,
-        Math.PI * 2
-      );
-
-      ctx.fillStyle =
-        'rgba(199,255,61,.42)';
-
-      ctx.fill();
-    }
-
-    /* Connections */
-    for (
-      let i = 0;
-      i < points.length;
-      i++
-    ) {
-      for (
-        let j = i + 1;
-        j < points.length;
-        j++
-      ) {
-        const a = points[i];
-        const b = points[j];
-
-        const dx = a.x - b.x;
-        const dy = a.y - b.y;
-
-        const dist = Math.hypot(
-          dx,
-          dy
-        );
-
-        if (dist < 105) {
-          ctx.strokeStyle =
-            `rgba(124,92,255,${(1 - dist / 105) * 0.16})`;
-
-          ctx.lineWidth = 0.7;
-
-          ctx.beginPath();
-
-          ctx.moveTo(
-            a.x,
-            a.y
-          );
-
-          ctx.lineTo(
-            b.x,
-            b.y
-          );
-
-          ctx.stroke();
-        }
-      }
-    }
-
-    requestAnimationFrame(loop);
-  };
-
-  /* =========================
-     EVENTS
-  ========================= */
   window.addEventListener(
     'resize',
     resize,
-    { passive: true }
+    {
+      passive: true
+    }
   );
 
   window.addEventListener(
     'pointermove',
     (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
+      mouse.x = e.clientX / w;
+      mouse.y = e.clientY / h;
     },
-    { passive: true }
+    {
+      passive: true
+    }
   );
 
-  /* =========================
-     START
-  ========================= */
+  const draw = (t) => {
+    ctx.clearRect(
+      0,
+      0,
+      w,
+      h
+    );
+
+    blobs.forEach((b, i) => {
+      b.a += b.s * 16;
+
+      const px =
+        b.x +
+        Math.sin(b.a + i) * 65 +
+        (mouse.x - 0.5) *
+          (i + 1) *
+          28;
+
+      const py =
+        b.y +
+        Math.cos(b.a * 1.3 + i) * 55 +
+        (mouse.y - 0.5) *
+          (i + 1) *
+          18;
+
+      const grad =
+        ctx.createRadialGradient(
+          px,
+          py,
+          0,
+          px,
+          py,
+          b.r
+        );
+
+      const hue =
+        i % 2 === 0
+          ? '216,255,62'
+          : '124,92,255';
+
+      grad.addColorStop(
+        0,
+        `rgba(${hue},.07)`
+      );
+
+      grad.addColorStop(
+        0.42,
+        `rgba(${hue},.022)`
+      );
+
+      grad.addColorStop(
+        1,
+        'rgba(255,255,255,0)'
+      );
+
+      ctx.fillStyle = grad;
+
+      ctx.beginPath();
+
+      ctx.arc(
+        px,
+        py,
+        b.r,
+        0,
+        Math.PI * 2
+      );
+
+      ctx.fill();
+    });
+
+    // Fine wave lines to add a subtle experimental feel.
+    ctx.lineWidth = 0.65;
+
+    for (
+      let band = 0;
+      band < 5;
+      band++
+    ) {
+      ctx.beginPath();
+
+      for (
+        let x = -20;
+        x <= w + 20;
+        x += 18
+      ) {
+        const y =
+          h *
+            (0.17 + band * 0.17) +
+          Math.sin(
+            x * 0.008 +
+              t * 0.00025 +
+              band
+          ) *
+            20;
+
+        if (x === -20) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+      }
+
+      ctx.strokeStyle =
+        band % 2
+          ? 'rgba(18,18,18,.028)'
+          : 'rgba(124,92,255,.022)';
+
+      ctx.stroke();
+    }
+
+    requestAnimationFrame(draw);
+  };
+
   resize();
-  loop();
+  requestAnimationFrame(draw);
 })();
