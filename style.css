@@ -18,12 +18,19 @@ html {
   scroll-behavior: smooth
 }
 
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+}
+
 body {
   margin: 0;
+  min-height: 100vh;
   background: var(--bg);
   color: var(--ink);
   font-family: Manrope, sans-serif;
-  overflow-x: hidden
+  overflow-x: hidden;
+  isolation: isolate;
 }
 
 body.nav-open {
@@ -62,7 +69,7 @@ img {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: -3
+  z-index: -1;
 }
 
 body:before {
@@ -692,14 +699,21 @@ body:before {
 }
 
 .reveal {
-  opacity: 0;
-  transform: translateY(35px);
-  transition: opacity .9s var(--ease), transform .9s var(--ease)
+  opacity: 1;
+  transform: none;
 }
 
-.reveal.in {
+.js-enabled .reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition:
+    opacity .9s var(--ease),
+    transform .9s var(--ease);
+}
+
+.js-enabled .reveal.in {
   opacity: 1;
-  transform: translateY(0)
+  transform: translateY(0);
 }
 
 @media (max-width:1000px) {
