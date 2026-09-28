@@ -1,4 +1,6 @@
 (() => {
+  document.documentElement.classList.add('js-enabled');
+  
   const body = document.body;
   const header = document.getElementById('header');
   const nav = document.getElementById('nav');
