@@ -2,173 +2,161 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#070707">
-  <meta name="description" content="Dwaipyan Mandal — Full-Stack WordPress Developer, Shopify specialist and automation builder. Websites, e-commerce and CRM systems engineered to perform.">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f4f0e8">
+  <meta name="description" content="Dwaipyan Mandal — WordPress, Shopify and automation developer creating distinctive digital experiences.">
   <meta name="author" content="Dwaipyan Mandal">
-  <meta property="og:title" content="Dwaipyan Mandal — Web, Commerce & Automation">
-  <meta property="og:description" content="Websites engineered to perform. WordPress • Shopify • WooCommerce • GoHighLevel • Automation.">
-  <meta property="og:type" content="website">
+  <title>Dwaipyan Mandal — Digital Craft</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <title>Dwaipyan Mandal — WordPress, Shopify & Automation</title>
 </head>
 <body>
-  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"><span>OPEN</span></div>
   <canvas id="scene" aria-hidden="true"></canvas>
-  <div class="cursor" aria-hidden="true"></div>
 
-  <header class="site-header" id="header">
-    <div class="container nav-shell">
-      <a class="brand" href="#home" aria-label="Dwaipyan Mandal home">
-        <span class="brand-icon">DM</span>
-        <span>Dwaipyan<span class="accent-dot">.</span></span>
-      </a>
-
-      <nav class="nav" id="nav" aria-label="Primary">
-        <a class="active" href="#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-
-      <div class="nav-actions">
-        <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
-        <a class="button mini-btn" href="#contact">Let's Talk <i class="fa-solid fa-arrow-up-right"></i></a>
-        <button class="menu-btn" id="menuBtn" type="button" aria-label="Toggle navigation" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+  <header class="header" id="header">
+    <a class="logo magnetic" href="#top" data-cursor="">DM<span>.</span></a>
+    <div class="header-meta">
+      <span>WEB / AUTOMATION / SYSTEMS</span>
+      <span class="availability"><i></i> AVAILABLE</span>
     </div>
+    <button class="menu-btn magnetic" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav">MENU</button>
   </header>
 
-  <main id="home">
-    <section class="hero section-pad">
-      <div class="container hero-grid">
-        <div class="hero-copy reveal">
-          <div class="availability"><span></span> Available for selected projects</div>
-          <div class="kicker">WORDPRESS / SHOPIFY / AUTOMATION</div>
-          <h1>Digital work with <span class="gradient-text">edge.</span><br><span class="muted-line">Built to be useful.</span></h1>
-          <p class="hero-lead">I build high-converting websites, e-commerce experiences and connected workflows for businesses that need more than a pretty homepage.</p>
-          <div class="hero-actions">
-            <a class="button primary" href="#work">View selected work <i class="fa-solid fa-arrow-down"></i></a>
-            <a class="button secondary" href="cv.pdf" target="_blank" rel="noopener">Open CV <i class="fa-solid fa-file-arrow-down"></i></a>
+  <nav class="nav" id="nav" aria-label="Main navigation">
+    <a href="#work">01 — Work</a>
+    <a href="#about">02 — About</a>
+    <a href="#stack">03 — Stack</a>
+    <a href="#contact">04 — Contact</a>
+    <a href="https://github.com/rajdwaipyan" target="_blank" rel="noopener">GitHub ↗</a>
+  </nav>
+
+  <main id="top">
+    <section class="hero" data-theme="cream">
+      <div class="hero-side mono">Dhaka, Bangladesh<br>UTC +06:00</div>
+      <div class="hero-index mono">01 / 04</div>
+      <div class="hero-copy">
+        <p class="kicker reveal">FULL-STACK WEB DEVELOPER <span>+</span> AUTOMATION</p>
+        <h1 class="hero-title reveal">I build<br><em>digital</em><br>experiences.</h1>
+        <p class="hero-intro reveal">WordPress, Shopify, WooCommerce and CRM automation — built with an eye for interaction, clarity and the details between the pixels.</p>
+        <a class="hero-link magnetic reveal" href="#work"><span>Scroll to explore</span><b>↓</b></a>
+      </div>
+      <div class="hero-art reveal">
+        <div class="art-orbit orbit-a"></div>
+        <div class="art-orbit orbit-b"></div>
+        <div class="art-card">
+          <div class="art-label mono">DIGITAL CRAFT / 2026</div>
+          <div class="art-mark">D<span>M</span></div>
+          <div class="art-caption mono">DESIGN<br>CODE<br>SYSTEMS</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div>WORDPRESS <span>✦</span> SHOPIFY <span>✦</span> WOOCOMMERCE <span>✦</span> GHL <span>✦</span> N8N <span>✦</span> APIS <span>✦</span> WORDPRESS <span>✦</span> SHOPIFY <span>✦</span></div>
+    </div>
+
+    <section class="work section" id="work">
+      <div class="section-top">
+        <p class="kicker reveal">SELECTED WORK</p>
+        <p class="mono reveal">04 projects / live links</p>
+      </div>
+      <div class="work-list">
+        <a class="project project-1 reveal" href="https://thearcaadvisory.com/" target="_blank" rel="noopener" data-project="01">
+          <div class="project-image"><img src="assets/img/project1.jpg" alt="Arca Advisory" loading="lazy"></div>
+          <div class="project-info">
+            <div><span class="project-number mono">01</span><h2>Arca Advisory</h2></div>
+            <p>Cross-border advisory / WordPress</p>
+            <span class="project-arrow">↗</span>
           </div>
-          <div class="social-row" aria-label="Social links">
-            <a href="https://github.com/rajdwaipyan" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/dwaipyan-cyberexpert" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="https://wa.me/8801863324379" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="mailto:rajdwaipayan@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        </a>
+
+        <a class="project project-2 reveal" href="https://essentiallivingsupport.com/" target="_blank" rel="noopener" data-project="02">
+          <div class="project-image"><img src="assets/img/project2.jpg" alt="Essential Living Support" loading="lazy"></div>
+          <div class="project-info">
+            <div><span class="project-number mono">02</span><h2>Essential Living Support</h2></div>
+            <p>Service platform / UX / WordPress</p>
+            <span class="project-arrow">↗</span>
           </div>
-        </div>
+        </a>
 
-        <div class="hero-art reveal" data-delay="120">
-          <div class="art-glow"></div>
-          <div class="orbit orbit-a"></div>
-          <div class="orbit orbit-b"></div>
-          <div class="scan-line"></div>
-          <div class="art-panel tilt-card">
-            <div class="art-top"><span>PORTFOLIO / 2026</span><span>01—01</span></div>
-            <div class="art-center">
-              <img src="profile.jpg" alt="Dwaipyan Mandal" width="680" height="680">
-              <div class="art-ring ring-one"></div>
-              <div class="art-ring ring-two"></div>
-              <div class="signal-chip"><span class="pulse-dot"></span> HUMAN + SYSTEMS</div>
-            </div>
-            <div class="art-bottom">
-              <div><span class="tiny-label">CURRENT FOCUS</span><strong>Web / Commerce / Automation</strong></div>
-              <div class="mono">DM_001</div>
-            </div>
+        <a class="project project-3 reveal" href="https://vtekcontrols.com/" target="_blank" rel="noopener" data-project="03">
+          <div class="project-image"><img src="assets/img/project4.jpg" alt="Vtek Controls" loading="lazy"></div>
+          <div class="project-info">
+            <div><span class="project-number mono">03</span><h2>Vtek Controls</h2></div>
+            <p>Industrial B2B / content architecture</p>
+            <span class="project-arrow">↗</span>
           </div>
-          <div class="floating-badge badge-one"><i class="fa-brands fa-wordpress"></i><span>WordPress</span></div>
-          <div class="floating-badge badge-two"><i class="fa-solid fa-diagram-project"></i><span>Automation</span></div>
-          <div class="floating-badge badge-three"><i class="fa-solid fa-bolt"></i><span>Performance</span></div>
-        </div>
-      </div>
+        </a>
 
-      <div class="container hero-metrics reveal" data-delay="180">
-        <div><strong data-count="6">0</strong><span>+ years experience</span></div>
-        <div><strong data-count="640">0</strong><span>+ client projects</span></div>
-        <div><strong>WP</strong><span>WordPress / WooCommerce</span></div>
-        <div><strong>GHL</strong><span>CRM / workflow automation</span></div>
-      </div>
-    </section>
-
-    <section class="ticker" aria-label="Core technology">
-      <div class="ticker-track">
-        <span>WORDPRESS</span><b>✦</b><span>ELEMENTOR PRO</span><b>✦</b><span>WOOCOMMERCE</span><b>✦</b><span>SHOPIFY</span><b>✦</b><span>GOHIGHLEVEL</span><b>✦</b><span>N8N</span><b>✦</b><span>REST APIS</span><b>✦</b><span>WEB SECURITY</span><b>✦</b>
-        <span>WORDPRESS</span><b>✦</b><span>ELEMENTOR PRO</span><b>✦</b><span>WOOCOMMERCE</span><b>✦</b><span>SHOPIFY</span><b>✦</b><span>GOHIGHLEVEL</span><b>✦</b><span>N8N</span><b>✦</b><span>REST APIS</span><b>✦</b><span>WEB SECURITY</span><b>✦</b>
+        <a class="project project-4 reveal" href="https://www.o-seaborabora.com/" target="_blank" rel="noopener" data-project="04">
+          <div class="project-image"><img src="assets/img/project3.jpg" alt="O-Sea Bora Bora" loading="lazy"></div>
+          <div class="project-info">
+            <div><span class="project-number mono">04</span><h2>O-Sea Bora Bora</h2></div>
+            <p>Travel experience / booking flow</p>
+            <span class="project-arrow">↗</span>
+          </div>
+        </a>
       </div>
     </section>
 
-    <section class="section-pad section-dark" id="services">
-      <div class="container">
-        <div class="section-head reveal">
-          <div><div class="kicker">CAPABILITIES</div><h2>One partner. <span class="gradient-text">Multiple layers.</span></h2></div>
-          <p>From the interface your customer sees to the workflows your team uses after the form is submitted.</p>
-        </div>
-
-        <div class="service-grid">
-          <article class="service-card reveal tilt-card"><span class="service-no">01</span><div class="service-icon"><i class="fa-brands fa-wordpress"></i></div><h3>WordPress Engineering</h3><p>Custom builds, Elementor Pro, WooCommerce, theme work, redesigns, maintenance and performance tuning.</p><div class="tags"><span>Elementor</span><span>WooCommerce</span><span>PHP</span></div></article>
-          <article class="service-card reveal tilt-card" data-delay="80"><span class="service-no">02</span><div class="service-icon"><i class="fa-solid fa-store"></i></div><h3>Shopify & Commerce</h3><p>Storefronts that balance product discovery, content, mobile UX and a smooth path to checkout.</p><div class="tags"><span>Shopify</span><span>Liquid</span><span>UX</span></div></article>
-          <article class="service-card reveal tilt-card" data-delay="160"><span class="service-no">03</span><div class="service-icon"><i class="fa-solid fa-diagram-project"></i></div><h3>CRM & Automation</h3><p>GoHighLevel, forms, webhooks, n8n and API connections that make lead handling and follow-up more automatic.</p><div class="tags"><span>GHL</span><span>n8n</span><span>APIs</span></div></article>
-          <article class="service-card reveal tilt-card" data-delay="240"><span class="service-no">04</span><div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div><h3>Security-minded Web</h3><p>Practical hardening, clean implementation and performance-conscious front-end decisions from day one.</p><div class="tags"><span>Hardening</span><span>Performance</span><span>Best practices</span></div></article>
-        </div>
+    <section class="statement section" id="about">
+      <div class="statement-aside mono reveal">02 / ABOUT</div>
+      <div class="statement-main">
+        <p class="kicker reveal">NOT JUST A WEBSITE</p>
+        <h2 class="reveal">I care about what happens <em>after</em> the click.</h2>
+        <p class="statement-body reveal">A good website should feel intentional on the surface and behave intelligently underneath. I combine front-end craft with WordPress, e-commerce, APIs, CRM workflows and automation to make digital work feel less like a brochure and more like a useful system.</p>
+        <div class="statement-sign mono reveal">DWAIPYAN<br>MANDAL</div>
       </div>
     </section>
 
-    <section class="section-pad" id="work">
-      <div class="container">
-        <div class="section-head reveal">
-          <div><div class="kicker">SELECTED WORK</div><h2>Work that <span class="gradient-text">earns attention.</span></h2></div>
-          <p>A curated set of real client work across advisory, services, B2B, travel and e-commerce.</p>
-        </div>
-
-        <div class="work-grid">
-          <article class="work-card work-large reveal tilt-card"><div class="work-img"><img src="assets/img/project1.jpg" alt="Arca Advisory project" loading="lazy"><span class="work-type">ADVISORY / BUSINESS</span><span class="work-index">01</span></div><div class="work-copy"><div><h3>Arca Advisory</h3><p>Premium business presentation with a focused, high-trust visual direction.</p></div><div class="tags"><span>WordPress</span><span>Responsive</span><span>UX</span></div></div></article>
-          <article class="work-card reveal tilt-card"><div class="work-img"><img src="assets/img/project2.jpg" alt="Essential Living Support project" loading="lazy"><span class="work-type">SERVICES</span><span class="work-index">02</span></div><div class="work-copy"><div><h3>Essential Living Support</h3><p>Clear information architecture for a service-led digital presence.</p></div><div class="tags"><span>WordPress</span><span>Forms</span><span>UX</span></div></div></article>
-          <article class="work-card reveal tilt-card"><div class="work-img"><img src="assets/img/project4.jpg" alt="Vtek Controls project" loading="lazy"><span class="work-type">B2B / INDUSTRIAL</span><span class="work-index">03</span></div><div class="work-copy"><div><h3>Vtek Controls</h3><p>Technical content presented with a clearer product-first journey.</p></div><div class="tags"><span>WordPress</span><span>B2B</span><span>Product UX</span></div></div></article>
-          <article class="work-card work-wide reveal tilt-card"><div class="work-img"><img src="assets/img/project3.jpg" alt="O-Sea Bora Bora project" loading="lazy"><span class="work-type">TRAVEL / EXPERIENCE</span><span class="work-index">04</span></div><div class="work-copy"><div><h3>O-Sea Bora Bora</h3><p>Experience-first travel presentation designed around discovery and booking intent.</p></div><div class="tags"><span>WordPress</span><span>Booking UX</span><span>Mobile-first</span></div></div></article>
-        </div>
-
-        <div class="work-foot reveal"><p><strong>Also worked across:</strong> real estate, food, service businesses, redesigns, migrations, e-commerce and CRM automation.</p><a href="#contact">Ask for relevant examples <i class="fa-solid fa-arrow-right"></i></a></div>
+    <section class="stack section" id="stack">
+      <div class="section-top">
+        <p class="kicker reveal">THE TOOLBOX</p>
+        <p class="mono reveal">03 / 04</p>
+      </div>
+      <div class="stack-grid">
+        <div class="stack-block reveal"><span class="stack-num mono">01</span><h3>Build</h3><p>WordPress<br>Elementor Pro<br>WooCommerce<br>Shopify</p></div>
+        <div class="stack-block reveal"><span class="stack-num mono">02</span><h3>Connect</h3><p>GoHighLevel<br>n8n<br>REST APIs<br>Webhooks</p></div>
+        <div class="stack-block reveal"><span class="stack-num mono">03</span><h3>Craft</h3><p>HTML / CSS<br>JavaScript<br>Responsive UI<br>Motion</p></div>
+        <div class="stack-block reveal"><span class="stack-num mono">04</span><h3>Protect</h3><p>Performance<br>Hardening<br>Security-minded builds<br>Maintenance</p></div>
       </div>
     </section>
 
-    <section class="section-pad section-dark" id="about">
-      <div class="container about-grid">
-        <div class="about-copy reveal"><div class="kicker">ABOUT THE WORK</div><h2>Design is only half the job. <span class="gradient-text">The system matters too.</span></h2><p>I work where visual execution meets practical engineering. A website should be easy to use, fast to load, clear to maintain and connected to the business processes around it.</p><p>That means I can move from page design and WordPress implementation into forms, APIs, CRM workflows, automations and security-minded improvements without treating each layer like a separate project.</p><div class="check-list"><span><i class="fa-solid fa-check"></i> Client-focused communication</span><span><i class="fa-solid fa-check"></i> Performance-conscious builds</span><span><i class="fa-solid fa-check"></i> Automation where it saves time</span><span><i class="fa-solid fa-check"></i> Security-aware development</span></div></div>
-        <div class="stack-panel reveal" data-delay="100"><div class="panel-head"><span>CORE STACK</span><i class="fa-solid fa-code"></i></div><div class="stack-cloud"><span class="featured">WordPress</span><span class="featured">Elementor Pro</span><span>WooCommerce</span><span class="featured">Shopify</span><span class="featured">GoHighLevel</span><span>n8n</span><span>JavaScript</span><span>PHP</span><span>REST APIs</span><span>Git</span><span>Docker</span><span>Web Security</span></div><div class="education"><span class="tiny-label">EDUCATION</span><strong>M.Sc. in Information Technology</strong><em>Jahangirnagar University</em><strong>B.Sc. in Computer Science & Engineering</strong><em>Stamford University Bangladesh</em></div></div>
+    <section class="experience section">
+      <div class="section-top">
+        <p class="kicker reveal">A FEW CHAPTERS</p>
+        <p class="mono reveal">Experience / 2018—now</p>
+      </div>
+      <div class="experience-list">
+        <div class="experience-row reveal"><span class="mono">2026—now</span><strong>Tech Maximus</strong><span>WordPress / Shopify Developer</span></div>
+        <div class="experience-row reveal"><span class="mono">2020—2024</span><strong>Surjamukhi Sangstha</strong><span>IT Director / Project Manager</span></div>
+        <div class="experience-row reveal"><span class="mono">2018—now</span><strong>Independent</strong><span>Freelance web & digital projects</span></div>
       </div>
     </section>
 
-    <section class="section-pad experience-section">
-      <div class="container">
-        <div class="section-head reveal"><div><div class="kicker">EXPERIENCE</div><h2>Built through <span class="gradient-text">real delivery.</span></h2></div><p>Hands-on development plus technology and project leadership.</p></div>
-        <div class="timeline">
-          <article class="timeline-item reveal"><div class="time">2026 — Present</div><div class="time-dot"></div><div><span class="kicker">CURRENT ROLE</span><h3>WordPress & Shopify Developer</h3><h4>Tech Maximus</h4><p>Client websites, e-commerce experiences, maintenance and production-ready web delivery.</p></div></article>
-          <article class="timeline-item reveal"><div class="time">2020 — 2024</div><div class="time-dot"></div><div><span class="kicker">IT / PROJECT LEADERSHIP</span><h3>IT Director / Project Manager</h3><h4>Surjamukhi Sangstha</h4><p>Organizational IT work, project coordination, stakeholder communication and technology execution.</p></div></article>
-          <article class="timeline-item reveal"><div class="time">2018 — Present</div><div class="time-dot"></div><div><span class="kicker">FREELANCE</span><h3>Web Designer & Developer</h3><h4>Independent Client Work</h4><p>WordPress, Shopify, redesigns, integrations, maintenance and digital workflow improvements.</p></div></article>
-        </div>
+    <section class="contact section" id="contact">
+      <div class="contact-top mono reveal">04 / CONTACT</div>
+      <div class="contact-body">
+        <p class="kicker reveal">HAVE SOMETHING TO BUILD?</p>
+        <h2 class="reveal">Let’s make<br><em>something</em> memorable.</h2>
+        <a class="contact-mail magnetic reveal" href="mailto:rajdwaipayan@gmail.com">rajdwaipayan@gmail.com <span>↗</span></a>
       </div>
-    </section>
-
-    <section class="section-pad cta-section" id="contact">
-      <div class="container">
-        <div class="cta-card reveal">
-          <div class="cta-copy"><div class="kicker">START A CONVERSATION</div><h2>Tell me what you want to <span class="gradient-text">build or fix.</span></h2><p>Website, store, redesign, automation or something that sits between them. Send the brief and I’ll reply with a practical next step.</p><div class="contact-links"><a href="mailto:rajdwaipayan@gmail.com"><i class="fa-solid fa-envelope"></i> rajdwaipayan@gmail.com</a><a href="https://wa.me/8801863324379" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a><a href="https://www.linkedin.com/in/dwaipyan-cyberexpert" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></div></div>
-          <form class="contact-form" id="contactForm"><div class="form-row"><label>Name<input id="name" name="name" autocomplete="name" required placeholder="Your name"></label><label>Email<input id="email" name="email" autocomplete="email" type="email" required placeholder="you@example.com"></label></div><label>Project type<select id="topic" name="topic"><option>WordPress website</option><option>WooCommerce / e-commerce</option><option>Shopify</option><option>GoHighLevel / CRM automation</option><option>Redesign / performance</option><option>Other</option></select></label><label>Message<textarea id="message" name="message" rows="5" required placeholder="A little about the project..."></textarea></label><button class="button primary full" type="submit">Create email draft <i class="fa-solid fa-paper-plane"></i></button><small id="formNote">No server required — your email app will open with the message prepared.</small></form>
-        </div>
+      <div class="contact-bottom">
+        <a class="mono magnetic" href="https://www.linkedin.com/in/dwaipyan-cyberexpert" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="mono magnetic" href="https://wa.me/8801863324379" target="_blank" rel="noopener">WhatsApp ↗</a>
+        <a class="mono magnetic" href="cv.pdf" target="_blank" rel="noopener">CV ↗</a>
       </div>
     </section>
   </main>
 
-  <footer class="footer"><div class="container footer-top"><div><a class="brand" href="#home"><span class="brand-icon">DM</span><span>Dwaipyan<span class="accent-dot">.</span></span></a><p>WordPress • Shopify • Automation • Security-minded development</p></div><div class="footer-links"><a href="#services">Services</a><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></div><div class="social-row"><a href="https://github.com/rajdwaipyan" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a><a href="https://www.linkedin.com/in/dwaipyan-cyberexpert" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a><a href="mailto:rajdwaipayan@gmail.com"><i class="fa-solid fa-envelope"></i></a></div></div><div class="container footer-bottom"><span>© 2026 Dwaipyan Mandal</span><span>Designed for clarity. Built for motion.</span></div></footer>
-  <button class="back-top" id="backTop" type="button" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+  <footer class="footer">
+    <span>© 2026 Dwaipyan Mandal</span>
+    <span class="mono">Built on curiosity.</span>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
