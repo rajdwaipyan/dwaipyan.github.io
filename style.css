@@ -937,12 +937,12 @@ img{display:block;width:100%;height:auto}
   width: min(100%, 600px);
   aspect-ratio: 0.84;
   justify-self: end;
-  transform:
-    translate3d(
-      var(--portrait-x),
-      var(--portrait-y),
-      0
-    );
+transform:
+  translate3d(
+    var(--portrait-x),
+    calc(var(--portrait-y) + var(--portrait-scroll, 0px)),
+    0
+  );
   transition: transform .18s ease-out;
 }
 
