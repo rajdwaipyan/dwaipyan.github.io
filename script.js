@@ -1,425 +1,489 @@
-/*=========== PRELOADER ===========*/
-window.addEventListener('load', () => {
-    const loader = document.querySelector('.loader-wrapper');
-    setTimeout(() => {
-        loader.style.opacity = '0';
-        setTimeout(() => {
-            loader.style.display = 'none';
-            
-            // Start animations after preloader
-            animateSkillBars();
-            AOS.refresh();
-        }, 500);
-    }, 1500);
-});
+(() => {
+  const body = document.body;
+  const header = document.getElementById('header');
+  const nav = document.getElementById('nav');
+  const menuBtn = document.getElementById('menuBtn');
+  const themeBtn = document.getElementById('themeBtn');
+  const backTop = document.getElementById('backTop');
+  const cursor = document.querySelector('.cursor');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/*=========== INITIALIZE AOS ===========*/
-AOS.init({
-    duration: 1000,
-    easing: 'ease-in-out',
-    once: true,
-    mirror: false
-});
+  /* =========================
+     THEME
+  ========================= */
+  const savedTheme = localStorage.getItem('dm-theme');
 
-/*=========== PARTICLE BACKGROUND ===========*/
-particlesJS('particles-js', {
-    particles: {
-        number: {
-            value: 80,
-            density: {
-                enable: true,
-                value_area: 800
-            }
-        },
-        color: {
-            value: '#4361ee'
-        },
-        shape: {
-            type: 'circle',
-            stroke: {
-                width: 0,
-                color: '#000000'
-            },
-            polygon: {
-                nb_sides: 5
-            }
-        },
-        opacity: {
-            value: 0.5,
-            random: false,
-            anim: {
-                enable: false,
-                speed: 1,
-                opacity_min: 0.1,
-                sync: false
-            }
-        },
-        size: {
-            value: 3,
-            random: true,
-            anim: {
-                enable: false,
-                speed: 40,
-                size_min: 0.1,
-                sync: false
-            }
-        },
-        line_linked: {
-            enable: true,
-            distance: 150,
-            color: '#4361ee',
-            opacity: 0.4,
-            width: 1
-        },
-        move: {
-            enable: true,
-            speed: 3,
-            direction: 'none',
-            random: false,
-            straight: false,
-            out_mode: 'out',
-            bounce: false,
-            attract: {
-                enable: false,
-                rotateX: 600,
-                rotateY: 1200
-            }
-        }
-    },
-    interactivity: {
-        detect_on: 'canvas',
-        events: {
-            onhover: {
-                enable: true,
-                mode: 'grab'
-            },
-            onclick: {
-                enable: true,
-                mode: 'push'
-            },
-            resize: true
-        },
-        modes: {
-            grab: {
-                distance: 140,
-                line_linked: {
-                    opacity: 1
-                }
-            },
-            bubble: {
-                distance: 400,
-                size: 40,
-                duration: 2,
-                opacity: 8,
-                speed: 3
-            },
-            repulse: {
-                distance: 200,
-                duration: 0.4
-            },
-            push: {
-                particles_nb: 4
-            },
-            remove: {
-                particles_nb: 2
-            }
-        }
-    },
-    retina_detect: true
-});
+  if (savedTheme === 'light') {
+    body.classList.add('light');
+  }
 
-/*=========== TYPED.JS TEXT ANIMATION ===========*/
-const typed = new Typed('#typing', {
-    strings: ['Web Designer', 'WordPress Developer', 'Shopify Expert', 'UI/UX Designer'],
-    typeSpeed: 100,
-    backSpeed: 60,
-    loop: true,
-    backDelay: 2000
-});
+  themeBtn?.addEventListener('click', () => {
+    body.classList.toggle('light');
 
-/*=========== DOM ELEMENTS ===========*/
-const header = document.querySelector('#header');
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
-const navLinksItems = document.querySelectorAll('.nav-links ul li a');
-const themeToggle = document.querySelector('.theme-toggle');
-const categoryBtns = document.querySelectorAll('.category-btn');
-const skillsGroups = document.querySelectorAll('.skills-group');
-const filterBtns = document.querySelectorAll('.filter-btn');
-const projectItems = document.querySelectorAll('.project-item');
-const contactForm = document.querySelector('#contactForm');
+    localStorage.setItem(
+      'dm-theme',
+      body.classList.contains('light') ? 'light' : 'dark'
+    );
+  });
 
-/*=========== STICKY HEADER ===========*/
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        header.style.padding = '1.5rem 0';
-        header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
-    } else {
-        header.style.padding = '2rem 0';
-        header.style.boxShadow = 'none';
+  /* =========================
+     MOBILE NAVIGATION
+  ========================= */
+  menuBtn?.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+
+  nav?.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => {
+      nav.classList.remove('open');
+      menuBtn?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  /* =========================
+     SCROLL STATE
+  ========================= */
+  const onScroll = () => {
+    if (header) {
+      header.classList.toggle('scrolled', window.scrollY > 30);
     }
-});
 
-/*=========== MOBILE MENU TOGGLE ===========*/
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navLinks.classList.toggle('active');
-});
-
-// Close mobile menu when clicking menu items
-navLinksItems.forEach(item => {
-    item.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navLinks.classList.remove('active');
-    });
-});
-
-/*=========== DARK MODE TOGGLE ===========*/
-// Check if dark mode is enabled in localStorage
-if (localStorage.getItem('darkMode') === 'enabled') {
-    document.body.classList.add('dark-mode');
-    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-}
-
-themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    
-    if (document.body.classList.contains('dark-mode')) {
-        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        localStorage.setItem('darkMode', 'enabled');
-    } else {
-        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-        localStorage.setItem('darkMode', null);
+    if (backTop) {
+      backTop.classList.toggle('show', window.scrollY > 700);
     }
-});
 
-/*=========== ACTIVE NAVIGATION ON SCROLL ===========*/
-window.addEventListener('scroll', () => {
-    let current = '';
-    const sections = document.querySelectorAll('section');
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        
-        if (pageYOffset >= (sectionTop - 200)) {
-            current = section.getAttribute('id');
+    let current = 'home';
+
+    document
+      .querySelectorAll('main section[id]')
+      .forEach((section) => {
+        if (window.scrollY >= section.offsetTop - 160) {
+          current = section.id;
         }
-    });
-    
-    navLinksItems.forEach(item => {
-        item.classList.remove('active');
-        if (item.getAttribute('href') === `#${current}`) {
-            item.classList.add('active');
-        }
-    });
-});
+      });
 
-/*=========== SKILLS TABS ===========*/
-categoryBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        // Remove active class from all buttons
-        categoryBtns.forEach(b => b.classList.remove('active'));
-        
-        // Add active class to clicked button
-        btn.classList.add('active');
-        
-        const category = btn.getAttribute('data-category');
-        
-        // Hide all skill groups
-        skillsGroups.forEach(group => {
-            group.classList.remove('active');
+    nav?.querySelectorAll('a').forEach((a) => {
+      a.classList.toggle(
+        'active',
+        a.getAttribute('href') === `#${current}`
+      );
+    });
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* =========================
+     BACK TO TOP
+  ========================= */
+  backTop?.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: reducedMotion ? 'auto' : 'smooth'
+    });
+  });
+
+  /* =========================
+     REVEAL ON SCROLL
+  ========================= */
+  const revealEls = document.querySelectorAll('.reveal');
+
+  if (
+    'IntersectionObserver' in window &&
+    !reducedMotion
+  ) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          const delay = Number(
+            entry.target.dataset.delay || 0
+          );
+
+          setTimeout(() => {
+            entry.target.classList.add('in');
+          }, delay);
+
+          observer.unobserve(entry.target);
         });
-        
-        // Show selected skill group
-        document.getElementById(`${category}-skills`).classList.add('active');
-        
-        // Animate skill bars for visible group
-        animateSkillBars();
-    });
-});
+      },
+      {
+        threshold: 0.12
+      }
+    );
 
-/*=========== ANIMATE SKILL BARS ===========*/
-function animateSkillBars() {
-    const activeGroup = document.querySelector('.skills-group.active');
-    if (activeGroup) {
-        const skillBars = activeGroup.querySelectorAll('.skill-bar span');
-        skillBars.forEach(bar => {
-            const width = bar.style.width;
-            bar.style.width = '0';
-            setTimeout(() => {
-                bar.style.width = width;
-            }, 200);
-        });
-    }
-}
+    revealEls.forEach((el) => observer.observe(el));
+  } else {
+    revealEls.forEach((el) => el.classList.add('in'));
+  }
 
-/*=========== PROJECTS FILTER ===========*/
-filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        // Remove active class from all buttons
-        filterBtns.forEach(b => b.classList.remove('active'));
-        
-        // Add active class to clicked button
-        btn.classList.add('active');
-        
-        const filter = btn.getAttribute('data-filter');
-        
-        projectItems.forEach(item => {
-            if (filter === 'all') {
-                item.style.display = 'block';
-            } else if (item.classList.contains(filter)) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
-        });
-    });
-});
+  /* =========================
+     COUNTER ANIMATION
+  ========================= */
+  if ('IntersectionObserver' in window) {
+    const counterObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
 
-/*=========== CONTACT FORM SUBMISSION ===========*/
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // Get form data
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const subject = document.getElementById('subject').value;
-        const message = document.getElementById('message').value;
-        
-        // Validate form data
-        if (!name || !email || !subject || !message) {
-            showAlert('Please fill in all fields', 'error');
+          const el = entry.target;
+          const target = Number(el.dataset.count || 0);
+
+          if (reducedMotion) {
+            el.textContent = target;
+            counterObserver.unobserve(el);
             return;
-        }
-        
-        // In a real application, you would send the form data to a server
-        // For demonstration, we'll just show a success message
-        
-        // Show success message
-        showAlert('Your message has been sent successfully!', 'success');
-        
-        // Reset form
-        contactForm.reset();
-    });
-}
+          }
 
-/*=========== ALERT FUNCTION ===========*/
-function showAlert(message, type) {
-    // Create alert element
-    const alertDiv = document.createElement('div');
-    alertDiv.className = `alert ${type}`;
-    alertDiv.innerHTML = `
-        <div class="alert-content">
-            <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
-            <span>${message}</span>
-        </div>
-        <button class="alert-close">
-            <i class="fas fa-times"></i>
-        </button>
-    `;
-    
-    // Append alert to body
-    document.body.appendChild(alertDiv);
-    
-    // Add show class after a small delay (for animation)
-    setTimeout(() => {
-        alertDiv.classList.add('show');
-    }, 10);
-    
-    // Close alert on click
-    const closeBtn = alertDiv.querySelector('.alert-close');
-    closeBtn.addEventListener('click', () => {
-        alertDiv.classList.remove('show');
-        setTimeout(() => {
-            alertDiv.remove();
-        }, 300);
-    });
-    
-    // Auto close after 5 seconds
-    setTimeout(() => {
-        if (document.body.contains(alertDiv)) {
-            alertDiv.classList.remove('show');
-            setTimeout(() => {
-                alertDiv.remove();
-            }, 300);
-        }
-    }, 5000);
-}
+          const start = 0;
+          const duration = 1200;
+          const t0 = performance.now();
 
-/*=========== ANIMATE ON SCROLL INITIALIZATION ===========*/
-document.addEventListener('DOMContentLoaded', () => {
-    // Refresh AOS
-    AOS.refresh();
-    
-    // Add styles for alerts
-    const style = document.createElement('style');
-    style.textContent = `
-        .alert {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            padding: 1.5rem 2.5rem;
-            border-radius: 0.5rem;
-            background-color: #fff;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            z-index: 9999;
-            transform: translateX(110%);
-            transition: transform 0.3s ease-in-out;
-            max-width: 40rem;
+          const tick = (now) => {
+            const progress = Math.min(
+              1,
+              (now - t0) / duration
+            );
+
+            const eased =
+              1 - Math.pow(1 - progress, 3);
+
+            el.textContent = Math.round(
+              start + (target - start) * eased
+            );
+
+            if (progress < 1) {
+              requestAnimationFrame(tick);
+            }
+          };
+
+          requestAnimationFrame(tick);
+
+          counterObserver.unobserve(el);
+        });
+      },
+      {
+        threshold: 0.8
+      }
+    );
+
+    document
+      .querySelectorAll('[data-count]')
+      .forEach((el) => counterObserver.observe(el));
+  }
+
+  /* =========================
+     CURSOR + POINTER GLOW
+  ========================= */
+  const finePointer = window.matchMedia(
+    '(hover:hover) and (pointer:fine)'
+  ).matches;
+
+  if (finePointer) {
+    window.addEventListener(
+      'pointermove',
+      (e) => {
+        document.documentElement.style.setProperty(
+          '--mx',
+          `${e.clientX}px`
+        );
+
+        document.documentElement.style.setProperty(
+          '--my',
+          `${e.clientY}px`
+        );
+
+        if (cursor) {
+          cursor.style.left = `${e.clientX}px`;
+          cursor.style.top = `${e.clientY}px`;
         }
-        
-        .alert.show {
-            transform: translateX(0);
+      },
+      { passive: true }
+    );
+
+    document
+      .querySelectorAll('a, button, .tilt-card')
+      .forEach((el) => {
+        el.addEventListener('mouseenter', () => {
+          cursor?.classList.add('active');
+        });
+
+        el.addEventListener('mouseleave', () => {
+          cursor?.classList.remove('active');
+        });
+      });
+
+    /* =========================
+       3D TILT CARDS
+    ========================= */
+    if (!reducedMotion) {
+      document
+        .querySelectorAll('.tilt-card')
+        .forEach((card) => {
+          card.addEventListener('pointermove', (e) => {
+            const rect = card.getBoundingClientRect();
+
+            const x =
+              (e.clientX - rect.left) /
+                rect.width -
+              0.5;
+
+            const y =
+              (e.clientY - rect.top) /
+                rect.height -
+              0.5;
+
+            card.style.transform =
+              `perspective(900px) ` +
+              `rotateX(${(-y * 4).toFixed(2)}deg) ` +
+              `rotateY(${(x * 5).toFixed(2)}deg) ` +
+              `translateY(-4px)`;
+          });
+
+          card.addEventListener('pointerleave', () => {
+            card.style.transform = '';
+          });
+        });
+    }
+  }
+
+  /* =========================
+     CONTACT FORM
+     ========================= */
+  document
+    .getElementById('contactForm')
+    ?.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name =
+        document.getElementById('name')?.value.trim() || '';
+
+      const email =
+        document.getElementById('email')?.value.trim() || '';
+
+      const topic =
+        document.getElementById('topic')?.value || '';
+
+      const message =
+        document.getElementById('message')?.value.trim() || '';
+
+      const subject = encodeURIComponent(
+        `${topic} — project enquiry from ${name}`
+      );
+
+      const bodyText = encodeURIComponent(
+        `Hi Dwaipyan,\n\n` +
+        `Name: ${name}\n` +
+        `Email: ${email}\n` +
+        `Project: ${topic}\n\n` +
+        `${message}\n\n` +
+        `Sent from your portfolio.`
+      );
+
+      window.location.href =
+        `mailto:rajdwaipayan@gmail.com?subject=${subject}&body=${bodyText}`;
+
+      const note = document.getElementById('formNote');
+
+      if (note) {
+        note.textContent =
+          'Your email app should open with the message ready to send.';
+      }
+    });
+
+  /* =========================
+     INTERACTIVE BACKGROUND
+  ========================= */
+  const canvas = document.getElementById('scene');
+  const ctx = canvas?.getContext('2d');
+
+  if (!canvas || !ctx || reducedMotion) {
+    return;
+  }
+
+  let width = 0;
+  let height = 0;
+  let dpr = 1;
+  let points = [];
+
+  const mouse = {
+    x: -9999,
+    y: -9999
+  };
+
+  /* =========================
+     CANVAS RESIZE
+  ========================= */
+  const resize = () => {
+    dpr = Math.min(
+      2,
+      window.devicePixelRatio || 1
+    );
+
+    width = window.innerWidth;
+    height = window.innerHeight;
+
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+
+    ctx.setTransform(
+      dpr,
+      0,
+      0,
+      dpr,
+      0,
+      0
+    );
+
+    const count = Math.min(
+      95,
+      Math.max(
+        38,
+        Math.floor(width / 14)
+      )
+    );
+
+    points = Array.from(
+      { length: count },
+      () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.22,
+        vy: (Math.random() - 0.5) * 0.22,
+        r: Math.random() * 1.4 + 0.35
+      })
+    );
+  };
+
+  /* =========================
+     CANVAS ANIMATION
+  ========================= */
+  const loop = () => {
+    ctx.clearRect(
+      0,
+      0,
+      width,
+      height
+    );
+
+    /* Points */
+    for (const p of points) {
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (
+        p.x < -20 ||
+        p.x > width + 20
+      ) {
+        p.vx *= -1;
+      }
+
+      if (
+        p.y < -20 ||
+        p.y > height + 20
+      ) {
+        p.vy *= -1;
+      }
+
+      const dx = p.x - mouse.x;
+      const dy = p.y - mouse.y;
+      const dist = Math.hypot(dx, dy);
+
+      if (
+        dist < 140 &&
+        dist > 0
+      ) {
+        p.x += (dx / dist) * 0.35;
+        p.y += (dy / dist) * 0.35;
+      }
+
+      ctx.beginPath();
+
+      ctx.arc(
+        p.x,
+        p.y,
+        p.r,
+        0,
+        Math.PI * 2
+      );
+
+      ctx.fillStyle =
+        'rgba(199,255,61,.42)';
+
+      ctx.fill();
+    }
+
+    /* Connections */
+    for (
+      let i = 0;
+      i < points.length;
+      i++
+    ) {
+      for (
+        let j = i + 1;
+        j < points.length;
+        j++
+      ) {
+        const a = points[i];
+        const b = points[j];
+
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+
+        const dist = Math.hypot(
+          dx,
+          dy
+        );
+
+        if (dist < 105) {
+          ctx.strokeStyle =
+            `rgba(124,92,255,${(1 - dist / 105) * 0.16})`;
+
+          ctx.lineWidth = 0.7;
+
+          ctx.beginPath();
+
+          ctx.moveTo(
+            a.x,
+            a.y
+          );
+
+          ctx.lineTo(
+            b.x,
+            b.y
+          );
+
+          ctx.stroke();
         }
-        
-        .alert.success {
-            border-left: 0.4rem solid #4caf50;
-        }
-        
-        .alert.error {
-            border-left: 0.4rem solid #f44336;
-        }
-        
-        .alert-content {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .alert-content i {
-            font-size: 2rem;
-        }
-        
-        .success .alert-content i {
-            color: #4caf50;
-        }
-        
-        .error .alert-content i {
-            color: #f44336;
-        }
-        
-        .alert-content span {
-            font-size: 1.4rem;
-            color: #333;
-        }
-        
-        .alert-close {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.4rem;
-            color: #999;
-            transition: color 0.3s ease;
-        }
-        
-        .alert-close:hover {
-            color: #333;
-        }
-    `;
-    document.head.appendChild(style);
-});
+      }
+    }
+
+    requestAnimationFrame(loop);
+  };
+
+  /* =========================
+     EVENTS
+  ========================= */
+  window.addEventListener(
+    'resize',
+    resize,
+    { passive: true }
+  );
+
+  window.addEventListener(
+    'pointermove',
+    (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    },
+    { passive: true }
+  );
+
+  /* =========================
+     START
+  ========================= */
+  resize();
+  loop();
+})();
