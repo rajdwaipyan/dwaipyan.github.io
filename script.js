@@ -12,6 +12,107 @@
   var year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
 
+  /* ---------- Hero headline: wrap each word so it can rise from behind a mask.
+     Only spaces split words, so "between&nbsp;them." stays together. Screen readers read the same text. */
+  var heroTitle = document.getElementById("hero-title");
+  if (heroTitle && !reduceMotion.matches) {
+    var wordIndex = 0;
+    var splitNode = function (node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (child) {
+        if (child.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          child.nodeValue.split(/([ \t\n\r]+)/).forEach(function (part) {
+            if (!part) return;
+            if (/^[ \t\n\r]+$/.test(part)) { frag.appendChild(document.createTextNode(" ")); return; }
+            var outer = document.createElement("span");
+            var inner = document.createElement("span");
+            outer.className = "word";
+            inner.style.setProperty("--i", String(wordIndex++));
+            inner.textContent = part;
+            outer.appendChild(inner);
+            frag.appendChild(outer);
+          });
+          node.replaceChild(frag, child);
+        } else if (child.nodeType === 1) {
+          splitNode(child);
+        }
+      });
+    };
+    splitNode(heroTitle);
+  }
+
+  /* ---------- Hero stage: pointer depth, proximity lights, service links */
+  var stage = document.getElementById("hero-stage");
+  if (stage) {
+    var signals = Array.prototype.slice.call(stage.querySelectorAll(".signal"));
+    var setActive = function (key) {
+      if (key) stage.setAttribute("data-active", key); else stage.removeAttribute("data-active");
+      signals.forEach(function (s) { s.classList.toggle("is-active", s.getAttribute("data-signal") === key); });
+    };
+
+    // Hover/focus on a stage signal or on the matching service strip item lights its orbit and draws its link.
+    var bindHighlight = function (el, key) {
+      el.addEventListener("pointerenter", function () { setActive(key); });
+      el.addEventListener("pointerleave", function () { setActive(null); });
+      el.addEventListener("focus", function () { setActive(key); });
+      el.addEventListener("blur", function () { setActive(null); });
+    };
+    signals.forEach(function (s) { bindHighlight(s, s.getAttribute("data-signal")); });
+    document.querySelectorAll("[data-signal-target]").forEach(function (a) { bindHighlight(a, a.getAttribute("data-signal-target")); });
+
+    // Pointer-driven depth: fine pointers only, motion allowed, one rAF per frame at most.
+    var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+    var hero = stage.closest(".hero") || stage;
+    var frame = 0, px = 0, py = 0;
+    var apply = function () {
+      frame = 0;
+      var r = stage.getBoundingClientRect();
+      var mx = Math.max(-1, Math.min(1, (px - (r.left + r.width / 2)) / (r.width / 2)));
+      var my = Math.max(-1, Math.min(1, (py - (r.top + r.height / 2)) / (r.height / 2)));
+      stage.style.setProperty("--mx", mx.toFixed(3));
+      stage.style.setProperty("--my", my.toFixed(3));
+      stage.style.setProperty("--gx", ((px - r.left) / r.width * 100 * 1.6 - 30).toFixed(1) + "%");
+      stage.style.setProperty("--gy", ((py - r.top) / r.height * 100 * 1.2 - 8).toFixed(1) + "%");
+      signals.forEach(function (s) {
+        var sr = s.getBoundingClientRect();
+        var d = Math.hypot(px - (sr.left + sr.width / 2), py - (sr.top + sr.height / 2));
+        s.classList.toggle("is-near", d < 90);
+      });
+    };
+    var onMove = function (e) {
+      px = e.clientX; py = e.clientY;
+      if (!frame) frame = window.requestAnimationFrame(apply);
+    };
+    var onLeave = function () {
+      stage.classList.remove("is-tracking");
+      stage.style.setProperty("--mx", "0");
+      stage.style.setProperty("--my", "0");
+      signals.forEach(function (s) { s.classList.remove("is-near"); });
+    };
+    var enableDepth = function () {
+      if (finePointer.matches && !reduceMotion.matches) {
+        hero.addEventListener("pointermove", onMove);
+        hero.addEventListener("pointerenter", function () { stage.classList.add("is-tracking"); });
+        hero.addEventListener("pointerleave", onLeave);
+      }
+    };
+    enableDepth();
+
+    // Orbit sparks (SVG SMIL): frozen under reduced motion, paused while the hero is off screen.
+    var orbitsSvg = stage.querySelector(".stage-orbits");
+    if (orbitsSvg && typeof orbitsSvg.pauseAnimations === "function") {
+      if (reduceMotion.matches) {
+        orbitsSvg.pauseAnimations();
+      } else if ("IntersectionObserver" in window) {
+        new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) orbitsSvg.unpauseAnimations(); else orbitsSvg.pauseAnimations();
+          });
+        }).observe(stage);
+      }
+    }
+  }
+
   /* ---------- Header shadow on scroll */
   var header = document.getElementById("site-header");
   function onScroll() {
