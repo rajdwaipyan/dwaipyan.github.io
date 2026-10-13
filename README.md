@@ -1,192 +1,64 @@
-# Dwaipyan Mandal - Professional Portfolio
+# Dwaipyan Mandal — portfolio
 
-A modern, animated, and professional portfolio website showcasing my skills and experience as a Web Designer & Developer specializing in WordPress and Shopify.
+Personal site for Dwaipyan Mandal: websites, web applications and CRM automation.
 
-![Portfolio Preview](profile.jpg)
+Live: https://rajdwaipyan.github.io/dwaipyan.github.io/
 
-## 🌟 Features
+## Stack
 
-- **Motion Graphics & Particles Background** - Dynamic animated background that responds to user interaction
-- **Preloader Animation** - Smooth loading experience with animated preloader
-- **Dark/Light Mode Toggle** - User preference saved in local storage
-- **Responsive Design** - Optimized for all devices (mobile, tablet, desktop)
-- **Interactive UI Elements** - Animated buttons, cards, and section transitions
-- **Skills Categorization** - Organized display of technical skills with animated progress bars
-- **Project Filtering** - Filter projects by category (WordPress, Shopify, Other)
-- **Animated Timeline** - Visual representation of work experience and education
-- **Typewriter Effect** - Dynamic text animation on the homepage
-- **Contact Form** - Fully functional contact form with validation
-- **AOS Animations** - Smooth scroll animations throughout the site
-- **SEO Optimized** - Meta tags and semantic HTML for better search engine visibility
+Plain HTML, CSS and JavaScript — no framework, no build step. GitHub Pages builds it through the
+Jekyll workflow in `.github/workflows/`; `_config.yml` only keeps repo-only files out of the published site.
 
-## 🚀 Technologies Used
-
-- HTML5
-- CSS3 (with custom animations and transitions)
-- JavaScript (ES6+)
-- [Particles.js](https://vincentgarreau.com/particles.js/) - For animated background
-- [Typed.js](https://mattboldt.com/demos/typed-js/) - For typewriter effect
-- [AOS](https://michalsnik.github.io/aos/) - Animate On Scroll library
-- [Font Awesome](https://fontawesome.com/) - For icons
-- [Google Fonts](https://fonts.google.com/) - Poppins font family
-
-## 📋 Setup & Deployment
-
-### Option 1: Quick Deploy with GitHub Pages
-
-1. **Fork this repository**
-   - Click the "Fork" button in the top-right corner of this repository
-
-2. **Rename your repository**
-   - Go to Settings > rename the repository to `yourusername.github.io`
-
-3. **Customize the content**
-   - Update the information in `index.html` to reflect your personal details
-   - Replace images in the `assets/img/` folder with your own
-   - Adjust skills, projects, and experiences in the HTML file
-
-4. **GitHub Pages will automatically deploy your site**
-   - Your portfolio will be available at `https://yourusername.github.io/`
-
-### Option 2: Manual Setup
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/portfolio.git
-   cd portfolio
-   ```
-
-2. **Create directory structure**
-   ```
-   portfolio/
-   ├── index.html
-   ├── style.css
-   ├── script.js
-   ├── assets/
-   │   └── img/
-   │       ├── profile.jpg
-   │       ├── about.jpg
-   │       ├── project1.jpg
-   │       ├── project2.jpg
-   │       ├── project3.jpg
-   │       └── project4.jpg
-   └── README.md
-   ```
-
-3. **Replace images**
-   - Add your profile photo and project images to the `assets/img/` folder
-
-4. **Customize content**
-   - Edit the `index.html` file to update personal information, skills, projects, etc.
-   - Adjust colors and styling in `style.css` if desired
-
-5. **Create a new GitHub repository**
-   - Name it `yourusername.github.io` for GitHub Pages hosting
-
-6. **Push your code to GitHub**
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial portfolio commit"
-   git remote add origin https://github.com/yourusername/yourusername.github.io.git
-   git push -u origin main
-   ```
-
-7. **Enable GitHub Pages**
-   - Go to repository Settings > Pages
-   - Set source branch to `main`
-   - Your site will be published at `https://yourusername.github.io/`
-
-## 🔧 Customization Guide
-
-### Changing Colors
-
-The color scheme can be easily modified by editing the CSS variables in the `:root` section of `style.css`:
-
-```css
-:root {
-    --primary-color: #4361ee;
-    --secondary-color: #3a0ca3;
-    --accent-color: #4cc9f0;
-    /* other variables */
-}
+```
+index.html          the page (content, SEO meta, JSON-LD)
+style.css           all styles; design tokens at the top
+script.js           progressive enhancements (menu, previews, brief → email)
+404.html            not-found page (uses absolute /dwaipyan.github.io/ paths)
+robots.txt          allows crawling, points to the sitemap
+sitemap.xml         one URL today; add a <url> per new page
+assets/fonts/       self-hosted Bricolage Grotesque, Instrument Serif, DM Mono (SIL OFL)
+assets/img/         portrait, workspace photo, social share image
+assets/icons/       favicons
 ```
 
-### Adding New Projects
+## Common edits
 
-To add a new project, copy the following HTML structure and paste it in the projects grid section:
+**Add a project.** Copy one `<li class="project">` block in the `#work` section. Keep the three facts
+(Client / The site needed to / Built with) to things you can show. To add a screenshot instead of the
+typographic cover, save a 1600×1000 WebP to `assets/img/work/<name>.webp` and replace the
+`<div class="project-cover">` with:
 
 ```html
-<div class="project-item category" data-aos="fade-up" data-aos-delay="X00">
-    <div class="project-card">
-        <div class="project-img">
-            <img src="assets/img/project-new.jpg" alt="Project Title">
-            <div class="project-category">Category</div>
-        </div>
-        <div class="project-info">
-            <h3>Project Title</h3>
-            <p>Project description here...</p>
-            <div class="project-stats">
-                <div class="stat">
-                    <i class="fas fa-icon"></i>
-                    <span>Statistic</span>
-                </div>
-            </div>
-            <div class="project-tech">
-                <span>Tech 1</span>
-                <span>Tech 2</span>
-                <span>Tech 3</span>
-            </div>
-            <div class="project-links">
-                <a href="#" class="project-link"><i class="fas fa-eye"></i> View Project</a>
-            </div>
-        </div>
-    </div>
+<div class="project-cover project-shot">
+  <img src="assets/img/work/<name>.webp" width="1600" height="1000" loading="lazy" alt="Homepage of <client> website">
 </div>
 ```
+and add to `style.css`: `.project-shot { padding: 0; } .project-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; }`
 
-Replace:
-- `category` with your project category (wordpress, shopify, or other)
-- `X00` with a delay value (e.g., 200, 300, 400)
-- `project-new.jpg` with your project image
-- Other content with your project details
+**Change contact details.** Search `index.html` and `script.js` for `rajdwaipayan@gmail.com`.
 
-### Adding New Skills
+**Move to a new address** (for example after renaming the repo to `rajdwaipyan.github.io`, or adding a
+custom domain). Replace `https://rajdwaipyan.github.io/dwaipyan.github.io/` everywhere it appears in
+`index.html`, `robots.txt` and `sitemap.xml`, and replace `/dwaipyan.github.io/` in `404.html`
+(use `/` for a root site).
 
-To add a new skill, find the appropriate skills group and add:
+**Update the "last modified" date** in `sitemap.xml` and the JSON-LD `dateModified` when content changes.
 
-```html
-<div class="skill-card">
-    <div class="skill-icon"><i class="fab fa-icon"></i></div>
-    <div class="skill-info">
-        <h3>Skill Name</h3>
-        <div class="skill-bar"><span style="width:X%"></span></div>
-    </div>
-</div>
-```
+## Licence
 
-Replace:
-- `fa-icon` with the appropriate Font Awesome icon class
-- `Skill Name` with your skill name
-- `X%` with your proficiency level (0-100)
+Code: MIT (see `LICENSE`). Fonts: SIL Open Font License (see `assets/fonts/`).
+Photos and written content © Dwaipyan Mandal.
 
-## 📱 Making it Mobile-Friendly
+## Hero stage
 
-The portfolio is already responsive, but here are some tips for ensuring the best experience on all devices:
+The hero portrait is built from layers inside `<figure class="hero-stage">`: a lime disc, a violet
+duotone echo of the same photo, an SVG of three orbits (with SMIL sparks), the arched portrait, and three
+service links. Each layer's `--d` in `style.css` sets how far it moves with the pointer; `script.js` writes
+`--mx`/`--my`. Everything is visible without JavaScript and static under reduced motion.
 
-1. **Test on multiple devices and browsers**
-2. **Optimize images** for faster loading (compress them before uploading)
-3. **Use responsive units** (rem, %, vh/vw) instead of fixed pixel values
-4. **Ensure touch targets** are at least 44px × 44px for better mobile usability
+## Publishing articles later
 
-## 📝 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 📞 Contact
-
-If you have any questions or suggestions, feel free to reach out:
-
-- Email: rajdwaipayan@gmail.com
-- LinkedIn: [linkedin.com/in/dwaipyan-mandal-cyber-sec](https://www.linkedin.com/in/dwaipyan-mandal-cyber-sec)
-- GitHub: [github.com/rajdwaipyan](https://github.com/rajdwaipyan)
+Put each article in its own folder, e.g. `notes/n8n-to-gohighlevel/index.html`, reusing `style.css`
+(`../../style.css`) and the header/footer markup. Give every page its own title, description, canonical URL and an
+`Article` JSON-LD block whose `author` is `{"@id": "https://rajdwaipyan.github.io/dwaipyan.github.io/#person"}`, link to
+it from the home page, and add it to `sitemap.xml`.
