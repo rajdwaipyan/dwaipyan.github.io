@@ -1,0 +1,10 @@
+# GitHub Pages builds this static site with Jekyll (see .github/workflows).
+# There are no Jekyll templates; this file only keeps repo-only files out of the published site.
+exclude:
+  - README.md
+  - LICENSE
+  - Profile.png
+  - assets/img/about.jpg
+  # cv.pdf contains private identity details (ID number, date of birth, family and referee contacts).
+  # It stays in the repo but is not published. Remove this line only after replacing it with a redacted CV.
+  - cv.pdf
