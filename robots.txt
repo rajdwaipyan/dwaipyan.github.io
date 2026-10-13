@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rajdwaipyan.github.io/dwaipyan.github.io/sitemap.xml
