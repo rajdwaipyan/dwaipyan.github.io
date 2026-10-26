@@ -1,0 +1,71 @@
+{%- comment -%}
+  One project "room". Expects `p` (an entry from _data/projects.yml), `n` (its number) and `total`.
+  The visual changes with p.layout; the text block is the same for every project.
+{%- endcomment -%}
+{%- assign domain = p.url | remove: 'https://' | remove: 'http://' | remove: 'www.' | remove: '/' -%}
+{%- assign img = 'assets/img/work/' -%}
+<section class="room room-{{ p.room }} layout-{{ p.layout }}" id="work-{{ p.id }}" data-room="{{ p.room }}" aria-labelledby="work-{{ p.id }}-title">
+  <div class="container room-grid">
+    <header class="room-head reveal">
+      <p class="room-index"><span>{{ n | prepend: '0' }}</span> / {{ total | prepend: '0' }}</p>
+      <p class="room-cat">{{ p.category }}</p>
+      <h3 class="room-title" id="work-{{ p.id }}-title">{{ p.title }}</h3>
+      <p class="room-summary">{{ p.summary }}</p>
+    </header>
+
+    <div class="room-visual" aria-hidden="true">
+      {%- case p.layout -%}
+
+      {%- when 'system' -%}
+      <div class="mock-browser mock-main" data-parallax="-0.04">
+        <div class="mock-bar"><i></i><i></i><i></i><span>{{ domain }}</span></div>
+        <img src="{{ img }}{{ p.images.desktop }}" width="1582" height="989" loading="lazy" decoding="async" alt="">
+      </div>
+      <figure class="mock-card mock-detail" data-parallax="0.06">
+        <img src="{{ img }}{{ p.images.detail }}" width="1076" height="892" loading="lazy" decoding="async" alt="">
+      </figure>
+      <ol class="sysflow" data-flow-run>
+        <li><span class="sys-k">Capture</span><strong>5 lead forms</strong></li>
+        <li><span class="sys-k">Organise</span><strong>GoHighLevel pipeline</strong></li>
+        <li><span class="sys-k">Follow up</span><strong>Workflows + SMS</strong></li>
+      </ol>
+
+      {%- when 'scroll' -%}
+      <div class="mock-browser mock-main mock-scroll" data-progress>
+        <div class="mock-bar"><i></i><i></i><i></i><span>{{ domain }}</span></div>
+        <div class="scroll-window"><img src="{{ img }}{{ p.images.full }}" width="1582" height="1978" loading="lazy" decoding="async" alt=""></div>
+      </div>
+      <div class="mock-phone" data-parallax="0.08"><img src="{{ img }}{{ p.images.mobile }}" width="520" height="1125" loading="lazy" decoding="async" alt=""></div>
+
+      {%- else -%}
+      <div class="mock-browser mock-main" data-parallax="-0.03">
+        <div class="mock-bar"><i></i><i></i><i></i><span>{{ domain }}</span></div>
+        <img src="{{ img }}{{ p.images.desktop }}" width="1582" height="989" loading="lazy" decoding="async" alt="">
+      </div>
+      {%- if p.images.mobile -%}
+      <div class="mock-phone" data-parallax="0.09"><img src="{{ img }}{{ p.images.mobile }}" width="520" height="1125" loading="lazy" decoding="async" alt=""></div>
+      {%- endif -%}
+
+      {%- endcase -%}
+    </div>
+
+    <div class="room-body reveal">
+      <dl class="room-facts">
+        <div><dt>The brief</dt><dd>{{ p.brief }}</dd></div>
+        {%- if p.role %}
+        <div><dt>My part</dt><dd>{{ p.role }}</dd></div>
+        {%- endif %}
+        {%- for f in p.facts %}
+        <div><dt>{{ f.label }}</dt><dd>{{ f.value }}</dd></div>
+        {%- endfor %}
+        <div><dt>Built with</dt><dd><ul class="stack-list">{% for t in p.built_with %}<li>{{ t }}</li>{% endfor %}</ul></dd></div>
+        {%- if p.outcome %}
+        <div><dt>Outcome</dt><dd>{{ p.outcome }}</dd></div>
+        {%- endif %}
+      </dl>
+      {%- if p.url %}
+      <a class="room-link" href="{{ p.url }}" target="_blank" rel="noopener">Visit {{ domain }} <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+      {%- endif %}
+    </div>
+  </div>
+</section>
