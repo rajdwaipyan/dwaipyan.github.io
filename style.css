@@ -640,6 +640,9 @@ html[data-room="violet"] .site-header .btn-ink, html[data-room="contact"] .site-
 .page-title { font-size: clamp(2.8rem, 1.4rem + 6vw, 7rem); line-height: .92; letter-spacing: -.05em; font-weight: 700; font-variation-settings: "opsz" 96; }
 .page-title em { color: var(--violet); }
 .page-lede { margin-top: 1.5rem; font-size: var(--step-1); line-height: 1.5; color: var(--ink-2); max-width: 44rem; }
+.story-photo { margin-bottom: .5rem; }
+.story-photo img { border: 1.5px solid var(--ink); aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 35%; filter: grayscale(1) contrast(1.05); }
+.story-photo figcaption { margin-top: .6rem; color: var(--muted); font-family: var(--font-mono); font-size: .76rem; }
 .page-photo img { border: 1.5px solid var(--ink); border-radius: 46% 46% 6px 6px / 30% 30% 6px 6px; box-shadow: 10px 10px 0 var(--lime), 10px 10px 0 1.5px var(--ink); aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 14%; }
 
 .chapters { display: grid; }
@@ -669,6 +672,52 @@ html[data-room="violet"] .site-header .btn-ink, html[data-room="contact"] .site-
   .page-photo { max-width: 260px; }
 }
 @media (max-width: 640px) { .plain-list li { grid-template-columns: 1fr; } .plain-list small { text-align: left; } }
+
+/* ==========================================================================
+   HERO STAGE — full-colour opening screen; the big drawn guide stands on the right
+   ========================================================================== */
+.hero-stage { background: var(--violet); color: #fff; min-height: 100vh; min-height: 100svh; display: grid; align-content: center; }
+.hero-stage::before {
+  opacity: 1;
+  background-image: linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px);
+  -webkit-mask-image: radial-gradient(ellipse 55% 75% at 82% 70%, #000 0%, transparent 72%);
+  mask-image: radial-gradient(ellipse 55% 75% at 82% 70%, #000 0%, transparent 72%);
+}
+.hero-stage::after { /* a soft lime glow where the guide stands */
+  content: ""; position: absolute; z-index: -1; right: -8vw; bottom: -18vh; width: 52vw; height: 70vh; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(212,255,58,.32), rgba(212,255,58,0));
+}
+.hero-stage .hero-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "eyebrow" "title" "copy"; }
+.hero-stage .eyebrow { color: rgba(255,255,255,.88); }
+.hero-stage .eyebrow-mark { border-color: #fff; }
+.hero-stage .kinetic .ch.is-near { color: var(--lime); }
+.hero-stage .hero-statement em { color: var(--lime); }
+.hero-stage .hero-copy { max-width: min(40rem, 56vw); }
+.hero-stage .hero-lede { color: rgba(255,255,255,.92); }
+.hero-stage .btn-line { --b-sh: var(--lime); }
+.hero-stage .btn-lime { --b-sh: var(--ink); }
+.hero-stage .hero-roles { border-top-color: rgba(255,255,255,.4); color: rgba(255,255,255,.92); }
+.hero-stage .hero-roles b { color: #fff; }
+.hero-stage .hero-roles a:hover b { color: var(--lime); }
+.hero-stage .scroll-cue { color: rgba(255,255,255,.85); left: var(--gutter); transform: none; }
+.hero-stage .scroll-cue i::after { background: var(--lime); }
+.hero-stage :focus-visible { outline-color: var(--lime); }
+html[data-room="violet"] .site-header { color: #fff; }
+@media (max-width: 960px) { .hero-stage .hero-copy { max-width: none; } .hero-stage { min-height: 0; } }
+
+/* the portrait (with its blueprint lens) now lives in About */
+.about-portrait { grid-area: auto; align-self: start; margin-top: 0; max-width: 420px; }
+@media (min-width: 961px) { .about-portrait { position: sticky; top: calc(var(--header-h) + 1.5rem); } }
+
+/* statement: one big paragraph whose words light up as you scroll */
+.statement { background: var(--cream); padding-block: clamp(5rem, 13vw, 10rem); }
+.statement-text { font-size: clamp(1.75rem, .9rem + 3.4vw, 4.1rem); line-height: 1.1; letter-spacing: -.035em; font-weight: 650; font-variation-settings: "opsz" 72; max-width: 1120px; text-wrap: pretty; }
+.statement-text em { color: var(--violet); font-size: 1.08em; }
+@media (prefers-reduced-motion: no-preference) {
+  [data-words-strong].words-ready .w { opacity: .5; }        /* large text: still 3:1 or better */
+  [data-words-strong].words-ready em .w { opacity: .75; }
+  [data-words-strong].words-ready .w.on { opacity: 1; }
+}
 
 /* ==========================================================================
    PAGE MOTION (assets/js/fx.js): words light up, halftone reveals, sand scratch card
@@ -711,6 +760,9 @@ html.xray .scratch { opacity: .25; }
 .guide-svg { display: block; width: 100%; height: auto; overflow: visible; }
 .guide.is-large .guide-figure { width: calc(var(--gw) * 1.5); }
 .guide.is-big .guide-figure { width: calc(var(--gw) * 1.45); }
+.guide.is-hero .guide-figure { width: min(34vw, 52vh, 540px); }
+.guide.is-hero .guide-bubble { font-size: 1.05rem; right: 12%; }
+.guide.is-hero .g-all { animation-duration: 5.5s; }
 .side-left .guide-svg { transform: scaleX(-1); } /* face the page when standing on the left */
 
 /* drawing */
@@ -880,7 +932,7 @@ html.xray [data-xray]::before {
 }
 html.xray .portrait-frame { --lr: 150% !important; }
 html.xray .hero[data-xray]::before { top: var(--header-h); }
-html.xray .mock-browser img, html.xray .mock-phone img, html.xray .mock-card img, html.xray .about-photo img { filter: grayscale(1) contrast(.6) brightness(1.25); opacity: .35; }
+html.xray .mock-browser img, html.xray .mock-phone img, html.xray .mock-card img, html.xray .about-portrait img { filter: grayscale(1) contrast(.6) brightness(1.25); opacity: .35; }
 html.xray .room, html.xray .machine, html.xray .contact, html.xray .build { box-shadow: inset 0 0 0 2px var(--violet); }
 
 /* ==========================================================================
