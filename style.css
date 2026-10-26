@@ -671,31 +671,56 @@ html[data-room="violet"] .site-header .btn-ink, html[data-room="contact"] .site-
 @media (max-width: 640px) { .plain-list li { grid-template-columns: 1fr; } .plain-list small { text-align: left; } }
 
 /* ==========================================================================
-   GUIDE —a drawn Dwaipyan in the corner (assets/js/guide.js)
+   PAGE MOTION (assets/js/fx.js): words light up, halftone reveals, sand scratch card
+   ========================================================================== */
+@property --dot { syntax: "<length>"; inherits: false; initial-value: 0px; }
+@media (prefers-reduced-motion: no-preference) {
+  .words-ready .w { opacity: .6; transition: opacity .3s; }   /* .6 keeps body text above 4.5:1 */
+  .words-ready .w.on { opacity: 1; }
+  .js .ht:not(.ht-done) {
+    -webkit-mask: radial-gradient(circle at center, #000 var(--dot), transparent calc(var(--dot) + .6px)) 0 0 / 12px 12px;
+    mask: radial-gradient(circle at center, #000 var(--dot), transparent calc(var(--dot) + .6px)) 0 0 / 12px 12px;
+  }
+  .js .ht.ht-in { animation: dots 1.3s cubic-bezier(.55, 0, .25, 1) forwards; }
+}
+@keyframes dots { to { --dot: 9px; } }
+.scratch { position: absolute; left: 0; width: 100%; z-index: 2; cursor: crosshair; touch-action: pan-y; transition: opacity .8s var(--ease), filter .8s; }
+.scratch.is-done { opacity: 0; filter: blur(6px); pointer-events: none; }
+html.xray .scratch { opacity: .25; }
+
+/* ==========================================================================
+   GUIDE — a drawn Dwaipyan who follows you down the page (assets/js/guide.js)
    ========================================================================== */
 .guide {
-  --gw: clamp(84px, 10vw, 156px);
-  position: fixed; right: clamp(.5rem, 2vw, 1.75rem); bottom: 0; z-index: 45;
+  --gw: clamp(84px, 10vw, 156px); --edge: clamp(.5rem, 2vw, 1.75rem);
+  --tx: 0px; --ty: 115%;
+  position: fixed; right: var(--edge); bottom: 0; z-index: 45;
   display: grid; justify-items: end; pointer-events: none;
-  transform: translateY(110%); transition: transform .9s var(--ease-out);
+  transform: translate(var(--tx), var(--ty));
+  transition: transform 1s cubic-bezier(.65, -.25, .35, 1.25);
 }
-.guide.is-in { transform: none; }
+.guide.is-in { --ty: 0px; }
+.guide.side-left { --tx: calc(-100vw + 100% + 2 * var(--edge) + 15px); }
 .guide-figure {
-  --ex: 0px; --ey: 0px; --tilt: 0deg;
+  --ex: 0px; --ey: 0px; --fx: 0px; --fy: 0px; --tilt: 0deg;
   pointer-events: auto; display: block; width: var(--gw); padding: 0; margin: 0; background: none; border: 0; cursor: pointer;
-  transform-origin: 50% 100%; transition: width .5s var(--ease-out);
+  transform-origin: 50% 100%; transition: width .6s cubic-bezier(.34, 1.56, .64, 1);
+  -webkit-tap-highlight-color: transparent;
 }
 .guide-figure:focus-visible { outline-offset: -2px; border-radius: 12px; }
 .guide-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.guide.is-large .guide-figure { width: calc(var(--gw) * 1.5); }
 .guide.is-big .guide-figure { width: calc(var(--gw) * 1.45); }
+.side-left .guide-svg { transform: scaleX(-1); } /* face the page when standing on the left */
 
 /* drawing */
-.guide-svg path, .guide-svg ellipse, .guide-svg circle { stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+.guide-svg path, .guide-svg ellipse, .guide-svg circle, .guide-svg rect { stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
 .g-skin { fill: #b98159; }
 .g-hair, .g-curls circle { fill: #1b1714; }
-.g-curls circle { stroke-width: 0; }
+.g-curls circle { stroke-width: 0 !important; }
 .g-tee { fill: #151515; }
 .g-blazer, .g-sleeve { fill: #e3d6bf; }
+.g-shade { fill: url(#g-dots); stroke-width: 0 !important; }
 .g-pin { fill: var(--lime); }
 .g-line { fill: none; }
 .g-brow { fill: none; stroke-width: 5 !important; }
@@ -703,22 +728,71 @@ html[data-room="violet"] .site-header .btn-ink, html[data-room="contact"] .site-
 .g-pupil { fill: var(--ink); stroke-width: 0 !important; transform: translate(var(--ex), var(--ey)); transition: transform .18s ease-out; }
 .g-lid { fill: #b98159; stroke-width: 0 !important; transform-box: fill-box; transform-origin: 50% 0; transform: scaleY(0); transition: transform .07s; }
 .g-mouth { fill: #fff; }
-.g-mouth-o { fill: #4a1f1a; display: none; }
+.g-mouth-o, .g-mouth-big { fill: #4a1f1a; }
+.g-mouth-o, .g-mouth-big, .g-mouth-flat, .g-eyes-shut { display: none; }
 .guide.is-o .g-mouth-o { display: inline; }
 .guide.is-o .g-mouth-smile { display: none; }
 .guide.is-blink .g-lid { transform: scaleY(1); }
 .g-head { transform-box: view-box; transform-origin: 100px 170px; transform: rotate(var(--tilt)); transition: transform .4s var(--ease-out); }
-.g-arm { transform-box: view-box; transform-origin: 156px 230px; transform: rotate(38deg) translateY(30px); opacity: 0; transition: transform .5s var(--ease-out), opacity .2s; }
+.g-face { transform: translate(var(--fx), var(--fy)); transition: transform .3s ease-out; }
+.g-hairs { transform: translate(calc(var(--fx) * .35), calc(var(--fy) * .3)); transition: transform .3s ease-out; }
+.g-ear-l, .g-ear-r { transform: translateX(calc(var(--fx) * -.4)); transition: transform .3s ease-out; }
+.g-face-shade { transform: translateX(calc(var(--fx) * -.6)); transition: transform .3s ease-out; }
+.g-arm { opacity: 0; transform-box: view-box; transition: transform .5s var(--ease-out), opacity .2s; }
+.g-arm-r { transform-origin: 156px 230px; transform: rotate(38deg) translateY(30px); }
+.g-arm-l { transform-origin: 44px 230px; transform: rotate(-38deg) translateY(30px); }
+
+/* costumes: <aside data-prop="glasses bowtie"> */
+.g-prop { display: none; }
+.guide[data-prop~="glasses"] .p-glasses, .guide[data-prop~="shades"] .p-shades, .guide[data-prop~="hardhat"] .p-hardhat,
+.guide[data-prop~="headset"] .p-headset, .guide[data-prop~="tie"] .p-tie, .guide[data-prop~="bowtie"] .p-bowtie,
+.guide[data-prop~="lei"] .p-lei, .guide.is-asleep .p-nightcap { display: inline; }
+.guide.is-asleep .g-prop:not(.p-nightcap) { display: none; }
+.p-glasses rect { fill: rgba(255, 255, 255, .22); }
+.p-glasses path, .p-shades .arm, .p-hardhat .ridge, .p-headset .band, .p-headset .boom, .p-nightcap .stripe { fill: none; }
+.p-shades path { fill: #121212; }
+.p-shades .glint { stroke: #fff; stroke-width: 2.5; }
+.p-hardhat path { fill: #ffd23f; }
+.p-hardhat .ridge { stroke-width: 2; }
+.p-headset .band { stroke: var(--violet); stroke-width: 7; }
+.p-headset rect, .p-headset circle { fill: var(--ink); }
+.p-tie path, .p-bowtie path, .p-bowtie circle { fill: var(--violet); }
+.p-lei .f1 { fill: #ff7aa8; } .p-lei .f2 { fill: var(--lime); } .p-lei .f3 { fill: #fff; }
+.p-nightcap path { fill: var(--violet-soft); }
+.p-nightcap .stripe { stroke: #fff; stroke-width: 4; }
+.p-nightcap .pom { fill: #fff; }
+
+/* expressions */
+.guide.is-asleep .g-eyes-open, .guide.do-dance .g-eyes-open, .guide.do-sneeze .g-eyes-open { display: none; }
+.guide.is-asleep .g-eyes-shut, .guide.do-dance .g-eyes-shut, .guide.do-sneeze .g-eyes-shut { display: inline; }
+.guide.do-dance .g-mouth-smile, .guide.do-dance .g-mouth-o { display: none; }
+.guide.do-dance .g-mouth-big { display: inline; }
+.guide.is-asleep .g-mouth-smile { display: none; }
+.guide.is-asleep .g-mouth-o { display: inline; transform-box: fill-box; transform-origin: center; transform: scale(.55); }
+.guide.is-asleep .g-head { transform: rotate(7deg) translateY(4px); }
 
 /* gestures */
 @media (prefers-reduced-motion: no-preference) {
   .guide.is-in .g-all { animation: breathe 4.5s ease-in-out infinite; transform-origin: 50% 100%; transform-box: view-box; }
-  .guide.do-hop .guide-figure { animation: hop .7s var(--ease-out); }
-  .guide.do-wave .g-arm { opacity: 1; animation: wave 2.2s var(--ease) both; }
+  .guide.is-asleep .g-all { animation-duration: 6s; }
+  .guide.is-traveling .guide-figure { animation: run 1s ease-in-out; }
+  .guide.do-jump .guide-figure { animation: jump .9s cubic-bezier(.3, 0, .3, 1); }
+  .guide.do-wave .g-arm-r { opacity: 1; animation: wave 2.2s var(--ease) both; }
   .guide.do-wave .g-head { --tilt: -4deg; }
+  /* the SVG is mirrored on the left side, so the "left" arm always points toward the page */
+  .guide.do-point .g-arm-l { opacity: 1; animation: point-l 2.6s var(--ease) both; }
+  .guide.do-dance .g-all { animation: dance-body .6s ease-in-out 4; }
+  .guide.do-dance .g-arm-r { opacity: 1; animation: dance-r .6s ease-in-out 4; }
+  .guide.do-dance .g-arm-l { opacity: 1; animation: dance-l .6s ease-in-out 4; }
+  .guide.do-dance .g-head { animation: dance-head .3s ease-in-out 8; }
+  .guide.do-sneeze .g-head { animation: sneeze 1.3s var(--ease) both; }
+  .guide.do-sneeze .guide-figure { animation: sneeze-body 1.3s var(--ease) both; }
+  .guide.do-spin .guide-figure { animation: spin 1s cubic-bezier(.4, 0, .2, 1); }
+  .guide.do-poof .guide-figure { animation: poof .9s cubic-bezier(.34, 1.56, .64, 1); }
 }
 @keyframes breathe { 50% { transform: translateY(2px) scaleY(.99); } }
-@keyframes hop { 30% { transform: translateY(-14px) rotate(-2deg); } 60% { transform: translateY(0) scaleY(.96); } }
+@keyframes run { 0%, 100% { transform: none; } 15% { transform: translateY(4px) scaleY(.93); } 35%, 75% { transform: translateY(-10px) rotate(-3deg); } 55% { transform: translateY(-4px) rotate(3deg); } 90% { transform: translateY(3px) scaleY(.95); } }
+@keyframes jump { 0% { transform: none; } 20% { transform: scale(1.06, .9); } 45% { transform: translateY(-36%) scale(.96, 1.06); } 70% { transform: none; } 80% { transform: scale(1.08, .9); } 100% { transform: none; } }
 @keyframes wave {
   0% { transform: rotate(38deg) translateY(30px); }
   14%, 86% { transform: rotate(0deg); }
@@ -726,46 +800,69 @@ html[data-room="violet"] .site-header .btn-ink, html[data-room="contact"] .site-
   42%, 70% { transform: rotate(8deg); }
   100% { transform: rotate(38deg) translateY(30px); }
 }
+@keyframes point-l { 0%, 100% { transform: rotate(-38deg) translateY(30px); } 18%, 82% { transform: rotate(-62deg); } 40%, 60% { transform: rotate(-56deg); } }
+@keyframes dance-body { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-6deg) translateY(-4px); } 75% { transform: rotate(6deg) translateY(-4px); } }
+@keyframes dance-r { 0%, 100% { transform: rotate(-12deg); } 50% { transform: rotate(24deg) translateY(10px); } }
+@keyframes dance-l { 0%, 100% { transform: rotate(-24deg) translateY(10px); } 50% { transform: rotate(12deg); } }
+@keyframes dance-head { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg) translateY(-3px); } }
+@keyframes sneeze { 0% { transform: none; } 40% { transform: rotate(-9deg) translateY(-6px); } 48% { transform: rotate(-11deg) translateY(-8px); } 55% { transform: rotate(12deg) translateY(6px); } 70% { transform: rotate(4deg); } 100% { transform: none; } }
+@keyframes sneeze-body { 0%, 40% { transform: none; } 55% { transform: translateY(4px) scaleY(.94); } 70%, 100% { transform: none; } }
+@keyframes spin { 0% { transform: none; } 25% { transform: translateY(-14%) scaleX(.05); } 50% { transform: translateY(-20%) scaleX(-1); } 75% { transform: translateY(-14%) scaleX(.05); } 100% { transform: none; } }
+@keyframes poof { 0% { transform: scale(1); } 25% { transform: scale(.15) rotate(-20deg); opacity: .2; } 100% { transform: none; opacity: 1; } }
 
-/* speech bubble */
+/* speech bubble (absolutely placed: new text never moves the guide, so no layout shift) */
 .guide-bubble {
-  /* absolutely placed so new text never moves or resizes the guide (no layout shift) */
-  position: absolute; right: calc(var(--gw) * .35); bottom: calc(100% + .7rem); pointer-events: auto;
-  width: max-content; max-width: min(19rem, calc(100vw - 2rem));
-  padding: .8rem 2.2rem .85rem 1rem; background: #fff; color: var(--ink); border: 1.5px solid var(--ink); border-radius: 14px;
+  position: absolute; right: calc(var(--gw) * .3); bottom: calc(100% + .7rem); pointer-events: auto;
+  width: max-content; max-width: min(20rem, calc(100vw - 2rem));
+  padding: .8rem 4.4rem .85rem 1rem; background: #fff; color: var(--ink); border: 1.5px solid var(--ink); border-radius: 14px;
   box-shadow: 5px 5px 0 var(--ink); font-size: .95rem; line-height: 1.4; font-weight: 500;
-  opacity: 0; visibility: hidden; transform: translateY(8px) scale(.96); transform-origin: 85% 100%;
-  transition: opacity .25s, transform .35s var(--ease-out), visibility 0s .35s;
+  opacity: 0; visibility: hidden; transform: translateY(8px) scale(.94); transform-origin: 85% 100%;
+  transition: opacity .25s, transform .35s cubic-bezier(.34, 1.56, .64, 1), visibility 0s .35s;
 }
 .guide-bubble::after { /* tail */
   content: ""; position: absolute; right: 1.4rem; bottom: -9px; width: 16px; height: 16px; background: #fff;
   border-right: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); transform: rotate(45deg);
 }
-.guide.is-talking .guide-bubble { opacity: 1; visibility: visible; transform: none; transition: opacity .25s, transform .35s var(--ease-out); }
+.side-left .guide-bubble { right: auto; left: calc(var(--gw) * .3); transform-origin: 15% 100%; }
+.side-left .guide-bubble::after { right: auto; left: 1.4rem; }
+.guide.is-talking .guide-bubble { opacity: 1; visibility: visible; transform: none; transition: opacity .25s, transform .4s cubic-bezier(.34, 1.56, .64, 1); }
 .guide-actions { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .65rem; }
 .guide-btn { min-height: 36px; padding: .3rem .8rem; border: 1.5px solid var(--ink); border-radius: 99px; background: #fff; cursor: pointer; font-size: .85rem; font-weight: 600; }
 .guide-btn-go { background: var(--ink); color: var(--cream); }
 .guide-btn:hover { background: var(--lime); color: var(--ink); }
-.guide-close { position: absolute; top: .25rem; right: .25rem; width: 32px; height: 32px; display: grid; place-items: center; border: 0; background: none; cursor: pointer; font-size: 1.25rem; line-height: 1; color: var(--muted); border-radius: 50%; }
-.guide-close:hover { background: var(--cream); color: var(--ink); }
+.guide-menu { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .35rem; margin-top: .65rem; margin-right: -3.4rem; }
+.guide-menu[hidden] { display: none; }
+.guide-trick { display: grid; justify-items: center; gap: .1rem; min-height: 54px; padding: .35rem .3rem; border: 1.5px solid var(--ink); border-radius: 10px; background: var(--cream); cursor: pointer; font-size: .78rem; font-weight: 600; transition: transform .2s cubic-bezier(.34, 1.56, .64, 1), background-color .2s; }
+.guide-trick span { font-size: 1.15rem; line-height: 1; }
+.guide-trick:hover { background: var(--lime); transform: translateY(-2px) rotate(-2deg); }
+.guide-tools { position: absolute; top: .25rem; right: .25rem; display: flex; }
+.guide-tool { width: 32px; height: 32px; display: grid; place-items: center; border: 0; background: none; cursor: pointer; font-size: 1rem; line-height: 1; color: var(--muted); border-radius: 50%; }
+.guide-tool:hover { background: var(--cream); color: var(--ink); }
+[data-guide-hide] { font-size: 1.25rem; }
+.snd-off, .guide.is-muted .snd-on { display: none; }
+.guide.is-muted .snd-off { display: inline; }
 
 /* tucked away: just a small face in the corner */
 .guide.is-min .guide-figure { width: 58px; height: 58px; margin: 0 0 .75rem; overflow: hidden; border-radius: 50%; background: var(--lime); border: 1.5px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); }
-.guide.is-min .guide-svg { width: 150%; margin: -4% 0 0 -25%; }
+.guide.is-min .guide-svg { width: 150%; margin: -4% 0 0 -25%; transform: none; }
 .guide.is-min .g-all { animation: none; }
+
+/* the particle layer (sparkles, dust, puffs, Zzz) */
+.fx-canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 46; pointer-events: none; }
 
 /* stay out of the way */
 body.nav-open .guide { display: none; }
 @media (max-width: 640px) {
-  .guide { --gw: 76px; right: .25rem; }
+  .guide { --gw: 76px; --edge: .25rem; }
   .guide-bubble { font-size: .88rem; right: .5rem; }
   .guide.is-big .guide-figure { width: 96px; }
+  .guide-menu { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
-@media print { .guide { display: none !important; } }
+@media print { .guide, .fx-canvas { display: none !important; } }
 
 /* X-ray: the guide shows its wireframe too */
-html.xray .guide-svg path, html.xray .guide-svg ellipse, html.xray .guide-svg circle { fill: transparent !important; stroke: var(--violet); stroke-width: 1.5; }
-html.xray .g-curls circle { stroke-width: 1.5; }
+html.xray .guide-svg path, html.xray .guide-svg ellipse, html.xray .guide-svg circle, html.xray .guide-svg rect { fill: transparent !important; stroke: var(--violet); stroke-width: 1.5; }
+html.xray .g-curls circle, html.xray .g-shade { stroke-width: 1 !important; }
 
 /* ==========================================================================
    X-RAY MODE — the page shows its own structure (toggle in header, or press X)

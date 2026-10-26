@@ -4,7 +4,7 @@
 {%- endcomment -%}
 {%- assign domain = p.url | remove: 'https://' | remove: 'http://' | remove: 'www.' | remove: '/' -%}
 {%- assign img = 'assets/img/work/' -%}
-<section class="room room-{{ p.room }} layout-{{ p.layout }}" id="work-{{ p.id }}" data-room="{{ p.room }}" aria-labelledby="work-{{ p.id }}-title"{% if p.guide %} data-guide="{{ p.guide | escape }}"{% endif %}>
+<section class="room room-{{ p.room }} layout-{{ p.layout }}" id="work-{{ p.id }}" data-room="{{ p.room }}" aria-labelledby="work-{{ p.id }}-title"{% if p.guide %} data-guide="{{ p.guide | escape }}"{% endif %}{% if p.guide_prop %} data-guide-prop="{{ p.guide_prop }}"{% endif %}{% if p.guide_side %} data-guide-side="{{ p.guide_side }}"{% endif %} data-guide-point>
   <div class="container room-grid">
     <header class="room-head reveal">
       <p class="room-index"><span>{{ n | prepend: '0' }}</span> / {{ total | prepend: '0' }}</p>
@@ -38,7 +38,7 @@
       <div class="mock-phone" data-parallax="0.08"><img src="{{ img }}{{ p.images.mobile }}" width="520" height="1125" loading="lazy" decoding="async" alt=""></div>
 
       {%- else -%}
-      <div class="mock-browser mock-main" data-parallax="-0.03">
+      <div class="mock-browser mock-main" data-parallax="-0.03"{% if p.scratch %} data-scratch{% endif %}>
         <div class="mock-bar"><i></i><i></i><i></i><span>{{ domain }}</span></div>
         <img src="{{ img }}{{ p.images.desktop }}" width="1582" height="989" loading="lazy" decoding="async" alt="">
       </div>
