@@ -1,7 +1,9 @@
 {%- comment -%}
-  The guide: a drawn version of Dwaipyan that sits in the corner, blinks, follows the pointer
-  and comments on each section. Its lines live on the sections themselves (data-guide="…").
-  Behaviour: assets/js/guide.js. Styles: "GUIDE" in style.css. Without JavaScript it stays hidden.
+  The guide: a drawn Dwaipyan who follows you down the page. He waves, blinks, turns his head toward the
+  pointer, changes costume per section (data-guide-prop), moves left/right (data-guide-side), points at
+  projects, falls asleep when ignored, and does tricks with sounds when clicked.
+  Lines live on the sections (data-guide="…"). Behaviour: assets/js/guide.js + sound.js + particles.js.
+  Styles: "GUIDE" in style.css. Without JavaScript it stays hidden.
 {%- endcomment -%}
 <aside class="guide" id="guide" aria-label="Guide" hidden>
   <div class="guide-bubble" id="guide-bubble">
@@ -10,72 +12,115 @@
       <button class="guide-btn guide-btn-go" type="button" data-guide-tour>Show me around</button>
       <button class="guide-btn" type="button" data-guide-quiet>Not now</button>
     </div>
-    <button class="guide-close" type="button" data-guide-hide aria-label="Hide the guide">×</button>
+    <div class="guide-menu" id="guide-menu" hidden>
+      <button class="guide-trick" type="button" data-trick="wave"><span aria-hidden="true">👋</span>Wave</button>
+      <button class="guide-trick" type="button" data-trick="dance"><span aria-hidden="true">🕺</span>Dance</button>
+      <button class="guide-trick" type="button" data-trick="jump"><span aria-hidden="true">⤴</span>Jump</button>
+      <button class="guide-trick" type="button" data-trick="sneeze"><span aria-hidden="true">🤧</span>Sneeze</button>
+      <button class="guide-trick" type="button" data-trick="spin"><span aria-hidden="true">🌀</span>Spin</button>
+      <button class="guide-trick" type="button" data-trick="magic"><span aria-hidden="true">✨</span>Magic</button>
+    </div>
+    <div class="guide-tools">
+      <button class="guide-tool" type="button" data-guide-sound aria-pressed="true" title="Sound on/off"><span class="snd-on" aria-hidden="true">🔊</span><span class="snd-off" aria-hidden="true">🔇</span><span class="sr-only">Sound</span></button>
+      <button class="guide-tool" type="button" data-guide-hide aria-label="Hide the guide">×</button>
+    </div>
   </div>
 
-  <button class="guide-figure" type="button" id="guide-figure" aria-label="Talk to the guide" aria-describedby="guide-text">
+  <button class="guide-figure" type="button" id="guide-figure" aria-label="Guide: click for tricks" aria-describedby="guide-text">
     <svg class="guide-svg" viewBox="0 0 200 236" aria-hidden="true" focusable="false">
+      <defs>
+        <pattern id="g-dots" width="4.5" height="4.5" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">
+          <circle cx="2.25" cy="2.25" r="1.05" fill="#121212" fill-opacity=".38"/>
+        </pattern>
+      </defs>
       <g class="g-all">
-        <!-- waving arm (behind the body) -->
-        <g class="g-arm">
+        <!-- arms sit behind the body; hidden until a gesture raises them -->
+        <g class="g-arm g-arm-r">
           <path class="g-sleeve" d="M150 236 L150 200 Q160 172 170 150 L190 156 Q182 186 176 236 Z"/>
-          <g class="g-hand">
-            <circle class="g-skin" cx="180" cy="140" r="15"/>
-            <path class="g-line" d="M172 128 L170 118 M180 125 L180 114 M188 128 L191 119 M194 138 L203 134"/>
-          </g>
+          <path class="g-shade" d="M176 236 Q182 190 188 158 L182 156 Q176 190 168 236 Z"/>
+          <g class="g-hand"><circle class="g-skin" cx="180" cy="140" r="15"/><path class="g-line" d="M172 128 L170 118 M180 125 L180 114 M188 128 L191 119 M194 138 L203 134"/></g>
+        </g>
+        <g class="g-arm g-arm-l">
+          <path class="g-sleeve" d="M50 236 L50 200 Q40 172 30 150 L10 156 Q18 186 24 236 Z"/>
+          <path class="g-shade" d="M24 236 Q18 190 12 158 L18 156 Q24 190 32 236 Z"/>
+          <g class="g-hand"><circle class="g-skin" cx="20" cy="140" r="15"/><path class="g-line" d="M28 128 L30 118 M20 125 L20 114 M12 128 L9 119 M6 138 L-3 134"/></g>
         </g>
 
-        <!-- body: black tee under a beige blazer -->
+        <!-- body: black tee under a beige blazer, halftone shading -->
         <g class="g-body">
           <path class="g-tee" d="M64 236 L70 194 Q100 184 130 194 L136 236 Z"/>
           <path class="g-blazer" d="M8 236 Q10 202 46 192 L78 184 L94 236 Z"/>
           <path class="g-blazer" d="M192 236 Q190 202 154 192 L122 184 L106 236 Z"/>
+          <path class="g-shade" d="M8 236 Q10 206 34 196 Q24 214 26 236 Z"/>
+          <path class="g-shade" d="M192 236 Q190 206 166 196 Q176 214 174 236 Z"/>
           <path class="g-line" d="M78 184 L70 204 L84 212 L94 236 M122 184 L130 204 L116 212 L106 236"/>
           <circle class="g-pin" cx="138" cy="214" r="5"/>
         </g>
 
         <!-- neck -->
         <path class="g-skin" d="M84 160 L84 192 Q100 200 116 192 L116 160 Z"/>
+        <path class="g-shade" d="M84 162 L116 162 L116 176 Q100 186 84 176 Z"/>
 
-        <!-- head -->
+        <!-- props worn on the body -->
+          <g class="g-prop p-tie"><path d="M100 190 L92 198 L96 228 L100 236 L104 228 L108 198 Z"/><path d="M94 190 L106 190 L104 198 L96 198 Z"/></g>
+          <g class="g-prop p-bowtie"><path d="M100 192 L84 182 L84 202 Z M100 192 L116 182 L116 202 Z"/><circle cx="100" cy="192" r="4.5"/></g>
+          <g class="g-prop p-lei">
+            <circle cx="66" cy="196" r="7" class="f1"/><circle cx="78" cy="203" r="7" class="f2"/><circle cx="91" cy="207" r="7" class="f3"/>
+            <circle cx="104" cy="208" r="7" class="f1"/><circle cx="117" cy="205" r="7" class="f2"/><circle cx="129" cy="200" r="7" class="f3"/><circle cx="139" cy="193" r="7" class="f1"/>
+          </g>
+
+        <!-- head: the face layer shifts toward the pointer for a cheap 3D turn -->
         <g class="g-head">
-          <circle class="g-skin" cx="52" cy="118" r="11"/>
-          <circle class="g-skin" cx="148" cy="118" r="11"/>
+          <circle class="g-skin g-ear-l" cx="52" cy="118" r="11"/>
+          <circle class="g-skin g-ear-r" cx="148" cy="118" r="11"/>
           <ellipse class="g-skin" cx="100" cy="112" rx="48" ry="55"/>
+          <path class="g-shade g-face-shade" d="M132 70 Q162 112 130 162 Q148 112 132 70 Z"/>
 
-          <!-- curly hair -->
-          <path class="g-hair" d="M52 112 C40 84 50 56 74 48 C80 30 108 26 120 38 C142 32 162 52 156 76 C164 88 158 106 148 112 C146 96 140 86 130 80 C116 88 88 88 70 80 C60 88 54 98 52 112 Z"/>
-          <g class="g-curls">
-            <circle cx="66" cy="54" r="11"/><circle cx="86" cy="42" r="12"/><circle cx="108" cy="38" r="12"/>
-            <circle cx="130" cy="44" r="12"/><circle cx="148" cy="60" r="11"/><circle cx="56" cy="74" r="10"/><circle cx="154" cy="82" r="9"/>
+          <g class="g-hairs">
+            <path class="g-hair" d="M52 112 C40 84 50 56 74 48 C80 30 108 26 120 38 C142 32 162 52 156 76 C164 88 158 106 148 112 C146 96 140 86 130 80 C116 88 88 88 70 80 C60 88 54 98 52 112 Z"/>
+            <g class="g-curls">
+              <circle cx="66" cy="54" r="11"/><circle cx="86" cy="42" r="12"/><circle cx="108" cy="38" r="12"/>
+              <circle cx="130" cy="44" r="12"/><circle cx="148" cy="60" r="11"/><circle cx="56" cy="74" r="10"/><circle cx="154" cy="82" r="9"/>
+            </g>
           </g>
 
-          <!-- beard + moustache -->
-          <path class="g-hair" d="M54 116 C56 152 74 172 100 174 C126 172 144 152 146 116 C142 134 134 146 124 150 C116 140 84 140 76 150 C66 146 58 134 54 116 Z"/>
-          <path class="g-hair" d="M78 133 Q90 124 100 129 Q110 124 122 133 Q100 132 78 133 Z"/>
+          <g class="g-face">
+            <path class="g-hair" d="M54 116 C56 152 74 172 100 174 C126 172 144 152 146 116 C142 134 134 146 124 150 C116 140 84 140 76 150 C66 146 58 134 54 116 Z"/>
+            <path class="g-hair" d="M78 133 Q90 124 100 129 Q110 124 122 133 Q100 132 78 133 Z"/>
 
-          <!-- mouth (two shapes: smile / "o") -->
-          <path class="g-mouth g-mouth-smile" d="M84 140 Q100 160 116 140 Q100 147 84 140 Z"/>
-          <ellipse class="g-mouth g-mouth-o" cx="100" cy="146" rx="7" ry="8"/>
+            <path class="g-mouth g-mouth-smile" d="M84 140 Q100 160 116 140 Q100 147 84 140 Z"/>
+            <ellipse class="g-mouth g-mouth-o" cx="100" cy="146" rx="7" ry="8"/>
+            <path class="g-mouth g-mouth-big" d="M82 139 Q100 168 118 139 Q100 146 82 139 Z"/>
+            <path class="g-mouth-flat g-line" d="M88 144 L112 144"/>
 
-          <!-- nose -->
-          <path class="g-line" d="M101 108 Q95 122 99 125 Q104 127 108 123"/>
+            <path class="g-line" d="M101 108 Q95 122 99 125 Q104 127 108 123"/>
 
-          <!-- eyes: whites, pupils (follow the pointer), lids (blink) -->
-          <g class="g-eye">
-            <ellipse class="g-white" cx="82" cy="105" rx="8" ry="8.5"/>
-            <circle class="g-pupil" cx="82" cy="106" r="4.4"/>
-            <ellipse class="g-lid" cx="82" cy="105" rx="9.5" ry="10"/>
+            <g class="g-eyes-open">
+              <g class="g-eye">
+                <ellipse class="g-white" cx="82" cy="105" rx="8" ry="8.5"/>
+                <circle class="g-pupil" cx="82" cy="106" r="4.4"/>
+                <ellipse class="g-lid" cx="82" cy="105" rx="9.5" ry="10"/>
+              </g>
+              <g class="g-eye">
+                <ellipse class="g-white" cx="118" cy="105" rx="8" ry="8.5"/>
+                <circle class="g-pupil" cx="118" cy="106" r="4.4"/>
+                <ellipse class="g-lid" cx="118" cy="105" rx="9.5" ry="10"/>
+              </g>
+            </g>
+            <path class="g-eyes-shut g-line" d="M74 107 Q82 99 90 107 M110 107 Q118 99 126 107"/>
+
+            <path class="g-brow" d="M71 91 Q81 85 92 90"/>
+            <path class="g-brow" d="M108 90 Q119 85 129 91"/>
+
+            <!-- props worn on the face -->
+            <g class="g-prop p-glasses"><rect x="69" y="94" width="26" height="22" rx="8"/><rect x="105" y="94" width="26" height="22" rx="8"/><path d="M95 103 Q100 99 105 103 M69 102 L56 98 M131 102 L144 98"/></g>
+            <g class="g-prop p-shades"><path d="M66 95 L96 95 Q96 116 82 117 Q67 116 66 95 Z M104 95 L134 95 Q133 116 118 117 Q104 116 104 95 Z"/><path class="glint" d="M72 99 L78 99 M110 99 L116 99"/><path class="arm" d="M96 99 Q100 96 104 99 M66 97 L54 95 M134 97 L146 95"/></g>
           </g>
-          <g class="g-eye">
-            <ellipse class="g-white" cx="118" cy="105" rx="8" ry="8.5"/>
-            <circle class="g-pupil" cx="118" cy="106" r="4.4"/>
-            <ellipse class="g-lid" cx="118" cy="105" rx="9.5" ry="10"/>
-          </g>
 
-          <!-- brows -->
-          <path class="g-brow" d="M71 91 Q81 85 92 90"/>
-          <path class="g-brow" d="M108 90 Q119 85 129 91"/>
+          <!-- props worn on the head -->
+          <g class="g-prop p-hardhat"><path d="M52 72 Q54 22 100 20 Q146 22 148 72 Z"/><path class="rim" d="M40 74 Q100 60 160 74 L160 83 Q100 71 40 83 Z"/><path class="ridge" d="M100 21 L100 66 M80 26 L76 66 M120 26 L124 66"/></g>
+          <g class="g-prop p-headset"><path class="band" d="M46 106 Q46 34 100 32 Q154 34 154 106"/><rect x="38" y="100" width="16" height="28" rx="6"/><rect x="146" y="100" width="16" height="28" rx="6"/><path class="boom" d="M154 126 Q152 154 120 156"/><circle cx="117" cy="156" r="5"/></g>
+          <g class="g-prop p-nightcap"><path d="M54 74 Q80 14 146 34 Q176 52 182 104 Q166 74 146 66 Q100 58 54 74 Z"/><path class="stripe" d="M84 34 L92 66 M112 30 L118 62 M140 38 L142 66"/><circle class="pom" cx="182" cy="106" r="9"/></g>
         </g>
       </g>
     </svg>

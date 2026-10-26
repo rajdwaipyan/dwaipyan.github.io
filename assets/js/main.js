@@ -6,6 +6,7 @@ import { initMachine } from "./machine.js";
 import { initContact } from "./contact.js";
 import { initXray } from "./xray.js";
 import { initGuide } from "./guide.js";
+import { initFx } from "./fx.js";
 
 const run = (name, fn) => {
   try { fn(); } catch (err) { console.error(`[${name}]`, err); }
@@ -18,3 +19,4 @@ run("machine", initMachine);
 run("contact", initContact);
 run("xray", initXray);
 run("guide", initGuide);
+run("fx", initFx);

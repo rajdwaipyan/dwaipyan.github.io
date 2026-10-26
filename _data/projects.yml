@@ -19,6 +19,9 @@
 #   images      files in assets/img/work/ (desktop 1582×989, mobile 520×1125)
 #   facts       optional extra lines for the "system" layout
 #   guide       optional: what the cartoon guide says when this project scrolls into view
+#   guide_prop  optional costume: glasses | shades | hardhat | headset | tie | bowtie | lei (space-separated)
+#   guide_side  left or right: where the guide stands (on wide screens) — opposite the screenshot
+#   scratch     true = a sand "scratch to reveal" card over the main screenshot
 
 - id: eagle
   title: Eagle Premier Real Estate
@@ -27,6 +30,8 @@
   room: navy
   layout: system
   guide: "Five lead forms, one GoHighLevel pipeline, follow-up by text. This is my favourite kind of plumbing."
+  guide_prop: headset
+  guide_side: left
   summary: A local home-buying company that makes fair cash offers to North Carolina homeowners.
   brief: Turn visitors into qualified leads, keep each type of enquiry organised in the CRM, and follow up without anyone copying data by hand.
   role: Built the WordPress site and its five lead forms, and set up the GoHighLevel pipeline, workflows and SMS behind them.
@@ -50,6 +55,8 @@
   room: ink
   layout: split
   guide: "Four offices, two continents, one calm website."
+  guide_prop: glasses bowtie
+  guide_side: left
   summary: A boutique consultancy for market entry between Europe and Asia-Pacific, with offices in Cologne, Singapore, Hong Kong and Xiamen.
   brief: Present three advisory services with discretion, show the office network, and turn interest into consultation requests.
   role:  # TODO: confirm your role on this project
@@ -66,6 +73,8 @@
   room: paper
   layout: scroll
   guide: "Scroll slowly — the Vtek page scrolls inside the browser with you."
+  guide_prop: hardhat
+  guide_side: left
   summary: A fluid flow control supplier in Loveland, Ohio — valves, actuators and automation accessories for process industries.
   brief: Organise a technical catalogue by product and industry, host data sheets and manuals, and capture product enquiries.
   role:  # TODO: confirm your role on this project
@@ -82,6 +91,8 @@
   room: violet
   layout: stack
   guide: "Ten care services, explained in plain language for families."
+  guide_prop: glasses
+  guide_side: right
   summary: A home and community-based support provider in Cheyenne, Wyoming, for adults with intellectual and developmental disabilities.
   brief: Explain ten waiver-funded services in plain language and give families and case managers a clear route to a referral.
   role:  # TODO: confirm your role on this project
@@ -97,7 +108,10 @@
   url: https://www.o-seaborabora.com/
   room: lime
   layout: poster
-  guide: "Lagoon tours you can book before you land. Not a bad place for a client."
+  guide: "Lagoon tours you can book before you land. Scratch the sand to see the site!"
+  guide_prop: shades lei
+  guide_side: right
+  scratch: true
   summary: A boat excursion operator in Bora Bora offering private and shared lagoon tours.
   brief: Sell private and shared lagoon tours to visitors before they travel, with online booking.
   role:  # TODO: confirm your role on this project
