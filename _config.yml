@@ -1,5 +1,6 @@
 # GitHub Pages builds this static site with Jekyll (see .github/workflows).
-# There are no Jekyll templates; this file only keeps repo-only files out of the published site.
+# index.html has front matter so Jekyll fills the projects from _data/projects.yml.
+# The exclude list keeps repo-only files out of the published site.
 exclude:
   - README.md
   - LICENSE

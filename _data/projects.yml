@@ -1,0 +1,102 @@
+# Selected work — one entry per project, in the order they appear on the page.
+#
+# Edit this file on GitHub (pencil icon) and the site rebuilds itself.
+# Only write what you can show: facts below were checked against each live site
+# (platform from the page source) or stated by Dwaipyan.
+#
+# Fields
+#   id          short slug, used for the anchor (#work-<id>) and image names
+#   title       project name
+#   category    one line shown above the title
+#   url         live site (leave empty if not public)
+#   room        background of the project's full-width "room": ink | navy | paper | violet | lime
+#   layout      how it is presented: split | system | scroll | stack | poster
+#   summary     one sentence, what the client does
+#   brief       what the site had to do
+#   role        what YOU did — leave empty until confirmed; it is hidden when empty
+#   built_with  list of tools, from the page source or your own records
+#   outcome     only verified, documented results; leave empty otherwise
+#   images      files in assets/img/work/ (desktop 1582×989, mobile 520×1125)
+#   facts       optional extra lines for the "system" layout
+
+- id: eagle
+  title: Eagle Premier Real Estate
+  category: Website + CRM automation · North Carolina, US
+  url: https://epreality.com/
+  room: navy
+  layout: system
+  summary: A local home-buying company that makes fair cash offers to North Carolina homeowners.
+  brief: Turn visitors into qualified leads, keep each type of enquiry organised in the CRM, and follow up without anyone copying data by hand.
+  role: Built the WordPress site and its five lead forms, and set up the GoHighLevel pipeline, workflows and SMS behind them.
+  built_with: [WordPress, Elementor Pro, GoHighLevel, A2P 10DLC SMS]
+  outcome:
+  images:
+    desktop: eagle-desktop.webp
+    detail: eagle-form.webp
+  facts:
+    - label: Lead forms
+      value: Five forms — seller, cash buyer, private lender, commercial and contact — feeding GoHighLevel
+    - label: Follow-up
+      value: GoHighLevel pipeline and workflow automation, A2P 10DLC SMS registration and a dedicated local number
+    - label: On-site chat
+      value: GoHighLevel chat widget, with compliance fixes
+
+- id: arca
+  title: The ARCA Advisory
+  category: Advisory · Europe ↔ Asia-Pacific
+  url: https://thearcaadvisory.com/
+  room: ink
+  layout: split
+  summary: A boutique consultancy for market entry between Europe and Asia-Pacific, with offices in Cologne, Singapore, Hong Kong and Xiamen.
+  brief: Present three advisory services with discretion, show the office network, and turn interest into consultation requests.
+  role:  # TODO: confirm your role on this project
+  built_with: [WordPress, Slider Revolution, WhatsApp chat]
+  outcome:
+  images:
+    desktop: arca-desktop.webp
+    mobile: arca-mobile.webp
+
+- id: vtek
+  title: Vtek Controls
+  category: Industrial B2B · Ohio, US
+  url: https://vtekcontrols.com/
+  room: paper
+  layout: scroll
+  summary: A fluid flow control supplier in Loveland, Ohio — valves, actuators and automation accessories for process industries.
+  brief: Organise a technical catalogue by product and industry, host data sheets and manuals, and capture product enquiries.
+  role:  # TODO: confirm your role on this project
+  built_with: [WordPress, Elementor]
+  outcome:
+  images:
+    full: vtek-full.webp
+    mobile: vtek-mobile.webp
+
+- id: els
+  title: Essential Living Support
+  category: Care services · Wyoming, US
+  url: https://essentiallivingsupport.com/
+  room: violet
+  layout: stack
+  summary: A home and community-based support provider in Cheyenne, Wyoming, for adults with intellectual and developmental disabilities.
+  brief: Explain ten waiver-funded services in plain language and give families and case managers a clear route to a referral.
+  role:  # TODO: confirm your role on this project
+  built_with: [WordPress, Elementor]
+  outcome:
+  images:
+    desktop: els-desktop.webp
+    mobile: els-mobile.webp
+
+- id: osea
+  title: O-Sea Bora Bora
+  category: Tourism · French Polynesia
+  url: https://www.o-seaborabora.com/
+  room: lime
+  layout: poster
+  summary: A boat excursion operator in Bora Bora offering private and shared lagoon tours.
+  brief: Sell private and shared lagoon tours to visitors before they travel, with online booking.
+  role:  # TODO: confirm your role on this project
+  built_with: [WordPress, Elementor Pro, WooCommerce]
+  outcome:
+  images:
+    desktop: osea-desktop.webp
+    mobile: osea-mobile.webp
