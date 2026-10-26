@@ -38,7 +38,6 @@
 
   <link rel="preload" href="assets/fonts/bricolage-grotesque-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/img/dwaipyan-mandal-portrait.webp" as="image" type="image/webp" fetchpriority="high">
   <link rel="stylesheet" href="style.css">
   <script type="module" src="assets/js/main.js"></script>
 
@@ -60,7 +59,7 @@
         "url": "https://rajdwaipyan.github.io/dwaipyan.github.io/",
         "name": "Dwaipyan Mandal — Web Developer, Entrepreneur & CEO of Surjamukhi Sangstha",
         "isPartOf": { "@id": "https://rajdwaipyan.github.io/dwaipyan.github.io/#website" },
-        "dateModified": "2026-10-26",
+        "dateModified": "2026-10-27",
         "mainEntity": { "@id": "https://rajdwaipyan.github.io/dwaipyan.github.io/#person" },
         "primaryImageOfPage": { "@id": "https://rajdwaipyan.github.io/dwaipyan.github.io/#portrait" }
       },
@@ -143,7 +142,7 @@
   <main id="main">
 
     <!-- 01 · HERO -->
-    <section class="hero" id="top" aria-labelledby="hero-title" data-guide-side="right" data-guide-size="large">
+    <section class="hero hero-stage" id="top" data-room="violet" aria-labelledby="hero-title" data-guide-side="right" data-guide-size="hero">
       <div class="container hero-grid">
         <p class="eyebrow"><span class="eyebrow-mark" aria-hidden="true"></span>Web developer · Entrepreneur · NGO leader</p>
 
@@ -153,22 +152,6 @@
           <span class="hero-statement">builds websites that <em>do&nbsp;more.</em></span>
         </h1>
 
-        <figure class="hero-portrait" id="hero-portrait">
-          <div class="portrait-frame" data-lens>
-            <picture>
-              <source srcset="assets/img/dwaipyan-mandal-portrait.webp" type="image/webp">
-              <img class="portrait-photo" src="assets/img/dwaipyan-mandal-portrait.jpg" width="720" height="1080"
-                   alt="Portrait of Dwaipyan Mandal, web developer, in a beige blazer" fetchpriority="high" decoding="async">
-            </picture>
-            <img class="portrait-lineart" src="assets/img/dwaipyan-mandal-lineart.webp" width="720" height="1080" alt="" aria-hidden="true" decoding="async">
-            <span class="portrait-grid" aria-hidden="true"></span>
-          </div>
-          <figcaption class="portrait-caption">
-            <span class="cap-surface">Surface</span>
-            <span class="cap-hint" data-hint-fine>Hover to see the structure</span>
-            <button class="cap-hint cap-hint-btn" type="button" data-lens-toggle aria-pressed="false">Tap to see the structure</button>
-          </figcaption>
-        </figure>
 
         <div class="hero-copy">
           <p class="hero-lede">
@@ -176,7 +159,7 @@
             already runs on. The site gets the visit; the system behind it gets the lead, the order and the follow-up.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-ink" href="#work">See the work <span class="btn-arrow" aria-hidden="true">↓</span></a>
+            <a class="btn btn-lime" href="#work">See the work <span class="btn-arrow" aria-hidden="true">↓</span></a>
             <a class="btn btn-line" href="#contact">Start a project</a>
           </div>
           <ul class="hero-roles" aria-label="Current roles">
@@ -186,7 +169,18 @@
           </ul>
         </div>
       </div>
-      <a class="scroll-cue" href="#build"><span>Scroll — it gets built as you go</span><i aria-hidden="true"></i></a>
+      <a class="scroll-cue" href="#intro"><span>Scroll — he’ll show you around</span><i aria-hidden="true"></i></a>
+    </section>
+
+    <!-- 01b · STATEMENT — words light up as you scroll -->
+    <section class="statement" id="intro" aria-label="Introduction" data-guide="That's me in one paragraph. Keep scrolling — it gets more fun." data-guide-side="right">
+      <div class="container">
+        <p class="statement-text" data-words data-words-strong>
+          I'm a web developer and entrepreneur in Dhaka, Bangladesh, and since October 2026 the CEO of
+          Surjamukhi Sangstha, an NGO. For more than six years I've built websites — and the systems behind them —
+          for clients from North Carolina to Bora Bora. I care most about <em>the part nobody sees.</em>
+        </p>
+      </div>
     </section>
 
     <!-- 02 · WHAT I BUILD -->
@@ -413,15 +407,23 @@
     </section>
 
     <!-- 06 · ABOUT -->
-    <section class="section about" id="about" aria-labelledby="about-title" data-guide="That photo is the real me. I’m the cartoon version." data-guide-side="right" data-guide-point>
+    <section class="section about" id="about" aria-labelledby="about-title" data-guide="That’s the real me. Hover the photo to see the blueprint underneath." data-guide-side="right" data-guide-point>
       <div class="container about-grid">
-        <figure class="about-photo reveal">
-          <picture>
-            <source srcset="assets/img/dwaipyan-mandal-workspace.webp" type="image/webp">
-            <img src="assets/img/dwaipyan-mandal-workspace.jpg" width="900" height="1200" loading="lazy" decoding="async"
-                 alt="Dwaipyan Mandal at his desk with two monitors and a laptop">
-          </picture>
-          <figcaption>At the desk in Dhaka.</figcaption>
+        <figure class="hero-portrait about-portrait reveal" id="portrait">
+          <div class="portrait-frame" data-lens>
+            <picture>
+              <source srcset="assets/img/dwaipyan-mandal-portrait.webp" type="image/webp">
+              <img class="portrait-photo" src="assets/img/dwaipyan-mandal-portrait.jpg" width="720" height="1080"
+                   alt="Portrait of Dwaipyan Mandal, web developer, in a beige blazer" loading="lazy" decoding="async">
+            </picture>
+            <img class="portrait-lineart" src="assets/img/dwaipyan-mandal-lineart.webp" width="720" height="1080" alt="" aria-hidden="true" loading="lazy" decoding="async">
+            <span class="portrait-grid" aria-hidden="true"></span>
+          </div>
+          <figcaption class="portrait-caption">
+            <span class="cap-surface">Surface</span>
+            <span class="cap-hint" data-hint-fine>Hover to see the structure</span>
+            <button class="cap-hint cap-hint-btn" type="button" data-lens-toggle aria-pressed="false">Tap to see the structure</button>
+          </figcaption>
         </figure>
 
         <div class="about-copy">

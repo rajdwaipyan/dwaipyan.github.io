@@ -42,12 +42,37 @@ assets/js/main.js      entry point; imports the modules below
   machine.js           "Under the hood" automation simulation (runs in the browser only)
   contact.js           project brief → pre-filled email (no backend)
   xray.js              X-ray mode
-  guide.js             the guide: hello, per-section lines, blink, eyes, wave; quiet and hide buttons
+  guide.js             the guide: hello, per-section lines, costumes, travel, tricks menu, sleep, eyes
+  sound.js             all sounds, synthesised with the Web Audio API (no audio files)
+  particles.js         one canvas for sparkles, dust, puffs, sneeze drops and Zzz
+  fx.js                words that light up on scroll, halftone image reveal, sand scratch card
 assets/img/work/       client-site screenshots (desktop 1582×989, phone 520×1125, WebP)
 assets/img/            portrait, line-art layer, workspace photo, social image, profile crops
 404.html               not-found page (absolute /dwaipyan.github.io/ paths)
 robots.txt, sitemap.xml
 ```
+
+## How the motion works (for developers)
+
+Everything is plain HTML, CSS and ES modules — no framework, no animation library, no build step.
+
+- **The guide** is ~40 SVG shapes inlined in the page. Expressions and gestures are CSS classes on
+  `<aside id="guide">` (`do-wave`, `do-dance`, `is-asleep`…) driving `@keyframes` on SVG groups with
+  `transform-box: view-box`. The head "turns" by shifting the face layer a few pixels toward the pointer
+  while the ears and hair move less — cheap parallax that reads as 3D. On the left edge the drawing is
+  mirrored with `scaleX(-1)` so he always faces the page.
+- **Costumes** are hidden `<g class="g-prop p-…">` groups shown with `[data-prop~="glasses"]` selectors.
+- **Section awareness** is one `IntersectionObserver` watching a thin band in the middle of the viewport;
+  each section carries its own `data-guide`, `data-guide-prop`, `data-guide-side` attributes.
+- **Sound** is synthesised on the fly (oscillators + filtered noise) and only starts after a click,
+  which is also what browsers require. Mute is remembered in `localStorage`.
+- **Halftone reveal** animates a registered custom property (`@property --dot`) inside a repeating
+  `radial-gradient` mask.
+- **Scratch card** is a canvas painted with sand, erased with `destination-out`; coverage is sampled
+  every 250 ms with `getImageData`.
+- **Performance and access**: the speech bubble is absolutely positioned so it never shifts layout
+  (CLS 0); the particle loop only runs while particles exist; everything decorative is switched off
+  under `prefers-reduced-motion`; the page is complete without JavaScript.
 
 ## Common edits
 

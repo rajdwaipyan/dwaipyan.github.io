@@ -92,6 +92,7 @@ export function initGuide() {
   const setSize = (size) => {
     guide.classList.toggle("is-big", size === "big");
     guide.classList.toggle("is-large", size === "large" && wide.matches);
+    guide.classList.toggle("is-hero", size === "hero" && wide.matches);
   };
 
   /* ---------- modes */
