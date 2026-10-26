@@ -7,8 +7,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>document.documentElement.className = document.documentElement.className.replace("no-js", "js");</script>
-  <title>Dwaipyan Mandal — WordPress, Web App &amp; CRM Automation Developer</title>
-  <meta name="description" content="Dwaipyan Mandal is a web developer in Dhaka, Bangladesh. He builds WordPress and Shopify websites, custom web apps, and the GoHighLevel and n8n automations that connect them — for clients worldwide.">
+  <title>Dwaipyan Mandal — Web Developer &amp; CEO, Surjamukhi Sangstha</title>
+  <meta name="description" content="Dwaipyan Mandal is a web developer and entrepreneur in Dhaka, Bangladesh, and CEO of the NGO Surjamukhi Sangstha (SMS). He builds WordPress and Shopify websites, web apps and CRM automations for clients worldwide.">
   <link rel="canonical" href="https://rajdwaipyan.github.io/dwaipyan.github.io/">
   <meta name="author" content="Dwaipyan Mandal">
   <meta name="robots" content="index, follow, max-image-preview:large">
@@ -18,7 +18,7 @@
   <meta property="og:type" content="profile">
   <meta property="og:site_name" content="Dwaipyan Mandal">
   <meta property="og:title" content="Dwaipyan Mandal — websites that do more">
-  <meta property="og:description" content="WordPress and Shopify websites, custom web apps, and the CRM automations that connect them — for businesses and agencies worldwide.">
+  <meta property="og:description" content="Web developer, entrepreneur and CEO of Surjamukhi Sangstha (SMS). WordPress and Shopify websites, web apps and the CRM automations that connect them.">
   <meta property="og:url" content="https://rajdwaipyan.github.io/dwaipyan.github.io/">
   <meta property="og:image" content="https://rajdwaipyan.github.io/dwaipyan.github.io/assets/img/og-dwaipyan-mandal.jpg">
   <meta property="og:image:width" content="1200">
@@ -58,7 +58,7 @@
         "@type": "ProfilePage",
         "@id": "https://rajdwaipyan.github.io/dwaipyan.github.io/#profilepage",
         "url": "https://rajdwaipyan.github.io/dwaipyan.github.io/",
-        "name": "Dwaipyan Mandal — WordPress, Web App & CRM Automation Developer",
+        "name": "Dwaipyan Mandal — Web Developer, Entrepreneur & CEO of Surjamukhi Sangstha",
         "isPartOf": { "@id": "https://rajdwaipyan.github.io/dwaipyan.github.io/#website" },
         "dateModified": "2026-10-26",
         "mainEntity": { "@id": "https://rajdwaipyan.github.io/dwaipyan.github.io/#person" },
@@ -77,18 +77,21 @@
           { "@type": "ImageObject", "url": "https://rajdwaipyan.github.io/dwaipyan.github.io/assets/img/dwaipyan-mandal-4x3.jpg", "width": 1200, "height": 900, "caption": "Dwaipyan Mandal" },
           { "@type": "ImageObject", "url": "https://rajdwaipyan.github.io/dwaipyan.github.io/assets/img/dwaipyan-mandal-16x9.jpg", "width": 1200, "height": 675, "caption": "Dwaipyan Mandal" }
         ],
-        "jobTitle": "Web Developer",
-        "description": "Web developer in Dhaka, Bangladesh, building WordPress and Shopify websites, custom web applications and CRM and workflow automations for clients worldwide.",
+        "jobTitle": ["Chief Executive Officer", "Web Developer"],
+        "description": "Web developer and entrepreneur in Dhaka, Bangladesh, and Chief Executive Officer of Surjamukhi Sangstha (SMS) since 26 October 2026. Builds WordPress and Shopify websites, custom web applications and CRM and workflow automations for clients worldwide.",
         "email": "mailto:rajdwaipayan@gmail.com",
         "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressCountry": "BD" },
         "nationality": { "@type": "Country", "name": "Bangladesh" },
         "knowsLanguage": ["en", "bn"],
-        "knowsAbout": ["WordPress", "Elementor Pro", "WooCommerce", "Shopify", "Web application development", "GoHighLevel", "n8n", "CRM integration", "Workflow automation", "REST APIs", "Webhooks"],
+        "knowsAbout": ["Web development", "IT management", "Project management", "WordPress", "Elementor Pro", "WooCommerce", "Shopify", "Web application development", "GoHighLevel", "n8n", "CRM integration", "Workflow automation", "REST APIs", "Webhooks"],
         "alumniOf": [
           { "@type": "CollegeOrUniversity", "name": "Stamford University Bangladesh" },
           { "@type": "CollegeOrUniversity", "name": "Jahangirnagar University" }
         ],
-        "worksFor": { "@type": "Organization", "name": "ED Shield Solutions" },
+        "worksFor": [
+          { "@id": "https://rajdwaipyan.github.io/dwaipyan.github.io/#sms" },
+          { "@type": "Organization", "name": "ED Shield Solutions", "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressCountry": "BD" } }
+        ],
         "sameAs": [
           "https://www.linkedin.com/in/dwaipyan-cyberexpert",
           "https://github.com/rajdwaipyan",
@@ -115,6 +118,19 @@
           { "@type": "WebSite", "name": {{ p.title | jsonify }}, "url": {{ p.url | jsonify }} }{% unless forloop.last %},{% endunless %}
           {%- endfor %}
         ]
+      },
+      {
+        "@type": "NGO",
+        "@id": "https://rajdwaipyan.github.io/dwaipyan.github.io/#sms",
+        "name": "Surjamukhi Sangstha",
+        "alternateName": "SMS",
+        "address": { "@type": "PostalAddress", "addressCountry": "BD" },
+        "employee": {
+          "@type": "OrganizationRole",
+          "roleName": "Chief Executive Officer",
+          "startDate": "2026-10-26",
+          "employee": { "@id": "https://rajdwaipyan.github.io/dwaipyan.github.io/#person" }
+        }
       }
     ]
   }
@@ -122,41 +138,14 @@
 </head>
 
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <header class="site-header" id="site-header">
-    <div class="header-inner">
-      <a class="wordmark" href="#top" aria-label="Dwaipyan Mandal — back to top">
-        <span class="wordmark-name">Dwaipyan Mandal</span><span class="wordmark-dot" aria-hidden="true"></span>
-      </a>
-
-      <nav class="primary-nav" id="primary-nav" aria-label="Primary">
-        <ul>
-          <li><a href="#work">Work</a></li>
-          <li><a href="#build">What I build</a></li>
-          <li><a href="#machine">Under the hood</a></li>
-          <li><a href="#about">About</a></li>
-          <li class="nav-cta-item"><a class="btn btn-ink btn-sm" href="#contact">Start a project</a></li>
-        </ul>
-      </nav>
-
-      <button class="xray-toggle" id="xray-toggle" type="button" aria-pressed="false" title="X-ray mode — see how this page is built (shortcut: X)">
-        <span class="xray-icon" aria-hidden="true"></span><span class="xray-label">X-ray</span>
-      </button>
-
-      <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
-        <span class="menu-toggle-label">Menu</span>
-        <span class="menu-toggle-icon" aria-hidden="true"><i></i><i></i></span>
-      </button>
-    </div>
-  </header>
+  {% include site-header.html base="" %}
 
   <main id="main">
 
     <!-- 01 · HERO -->
     <section class="hero" id="top" aria-labelledby="hero-title">
       <div class="container hero-grid">
-        <p class="eyebrow"><span class="eyebrow-mark" aria-hidden="true"></span>Web developer · Dhaka → worldwide</p>
+        <p class="eyebrow"><span class="eyebrow-mark" aria-hidden="true"></span>Web developer · Entrepreneur · NGO leader</p>
 
         <h1 class="hero-title" id="hero-title">
           <span class="kinetic" data-kinetic>Dwaipyan</span>
@@ -190,13 +179,18 @@
             <a class="btn btn-ink" href="#work">See the work <span class="btn-arrow" aria-hidden="true">↓</span></a>
             <a class="btn btn-line" href="#contact">Start a project</a>
           </div>
+          <ul class="hero-roles" aria-label="Current roles">
+            <li><a href="#leadership"><span class="role-new">New</span><span><b>CEO</b>, Surjamukhi Sangstha (SMS)</span></a></li>
+            <li><b>Co-founder</b>, ED Shield Solutions</li>
+            <li>Based in <b>Dhaka</b> · working worldwide</li>
+          </ul>
         </div>
       </div>
       <a class="scroll-cue" href="#build"><span>Scroll — it gets built as you go</span><i aria-hidden="true"></i></a>
     </section>
 
     <!-- 02 · WHAT I BUILD -->
-    <section class="section build" id="build" aria-labelledby="build-title">
+    <section class="section build" id="build" aria-labelledby="build-title" data-guide="Watch the demo on the right: one site becomes a store, then a portal, then a whole system.">
       <div class="container">
         <header class="section-head reveal">
           <p class="kicker"><span>01</span> What I build</p>
@@ -284,7 +278,7 @@
     </section>
 
     <!-- 03 · SELECTED WORK -->
-    <section class="work" id="work" aria-labelledby="work-title">
+    <section class="work" id="work" aria-labelledby="work-title" data-guide="These are real client sites. Every project has a link to the live one.">
       <div class="container work-intro">
         <header class="section-head reveal">
           <p class="kicker"><span>02</span> Selected work</p>
@@ -306,7 +300,7 @@
     </section>
 
     <!-- 04 · UNDER THE HOOD -->
-    <section class="section machine" id="machine" data-room="machine" aria-labelledby="machine-title">
+    <section class="section machine" id="machine" data-room="machine" aria-labelledby="machine-title" data-guide="Type your name and press Run. Nothing leaves your browser — promise.">
       <div class="container">
         <header class="section-head reveal">
           <p class="kicker kicker-light"><span>03</span> Under the hood</p>
@@ -371,8 +365,55 @@
       </div>
     </section>
 
-    <!-- 05 · ABOUT -->
-    <section class="section about" id="about" aria-labelledby="about-title">
+    <!-- 05 · LEADERSHIP + JOURNEY -->
+    <section class="section leadership" id="leadership" aria-labelledby="leadership-title" data-guide="Big week: I became CEO of Surjamukhi Sangstha on 26 October 2026.">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="kicker"><span>04</span> Leadership</p>
+          <h2 class="section-title" id="leadership-title">CEO of Surjamukhi Sangstha. <em>Since 26&nbsp;October&nbsp;2026.</em></h2>
+          <p class="section-intro">
+            Surjamukhi Sangstha (SMS) is a non-governmental organisation in Bangladesh. I've worked there since
+            January 2020, leading its IT and managing projects. On 26 October 2026 I became its Chief Executive Officer.
+          </p>
+        </header>
+
+        <div class="lead-grid">
+          <article class="lead-card lead-now reveal">
+            <p class="lead-k">Now · from 26 Oct 2026</p>
+            <h3>Chief Executive Officer</h3>
+            <p>
+              A new chapter at an organisation I have worked inside for almost seven years. The initiatives, partners
+              and results of this role will be recorded here once they are confirmed and public — not before.
+            </p>
+          </article>
+          <article class="lead-card reveal">
+            <p class="lead-k">Since Jan 2020</p>
+            <h3>IT &amp; projects</h3>
+            <p>
+              Led IT and managed projects for the organisation, including programme work with the
+              International Labour Organization (ILO) and Dhaka South City Corporation.
+            </p>
+          </article>
+          <article class="lead-card reveal">
+            <p class="lead-k">Why it fits</p>
+            <h3>Same habits, bigger table</h3>
+            <p>
+              Client projects and NGO programmes reward the same things: clear scope, honest reporting and systems that
+              keep working when nobody is watching. That is the through-line of everything on this site.
+            </p>
+          </article>
+        </div>
+
+        <div class="journey">
+          <h2 class="journey-title reveal">The road so far</h2>
+          {% include timeline.html %}
+          <p class="journey-more reveal"><a class="room-link" href="about/">The full story, education and what I'm learning now →</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 · ABOUT -->
+    <section class="section about" id="about" aria-labelledby="about-title" data-guide="That photo is the real me. I’m the cartoon version.">
       <div class="container about-grid">
         <figure class="about-photo reveal">
           <picture>
@@ -384,7 +425,7 @@
         </figure>
 
         <div class="about-copy">
-          <p class="kicker"><span>04</span> The human behind the code</p>
+          <p class="kicker"><span>05</span> The human behind the code</p>
           <h2 class="section-title" id="about-title">I like the part <em>nobody sees.</em></h2>
           <p>
             I'm Dwaipyan Mandal (sometimes written Dwaipayan), a web developer in Dhaka, Bangladesh. I build the
@@ -393,10 +434,11 @@
           </p>
           <p>
             I studied Computer Science &amp; Engineering at Stamford University Bangladesh and Information Technology at
-            Jahangirnagar University, then led IT for a Bangladeshi NGO on programmes with the ILO and Dhaka South City
-            Corporation. Today I'm co-founder of ED Shield Solutions, a web design and development company in Dhaka,
-            where we also build our own WordPress tools for attendance and expense tracking.
+            Jahangirnagar University. Since 2020 I've led IT and projects at Surjamukhi Sangstha (SMS), a Bangladeshi
+            NGO, and in October 2026 I became its CEO. I'm also co-founder of ED Shield Solutions, a web design and
+            development company in Dhaka, where we build our own WordPress tools for attendance and expense tracking.
           </p>
+          <p><a class="room-link" href="about/">Read the full story →</a></p>
 
           <ul class="principles">
             <li><b>Scope in plain English.</b> You see what's included, what isn't and what it costs before any code.</li>
@@ -407,6 +449,7 @@
 
           <ul class="about-facts">
             <li><span>Based in</span>Dhaka, Bangladesh · GMT+6 · works with clients worldwide</li>
+            <li><span>Leadership</span>CEO, Surjamukhi Sangstha (SMS) — since 26 October 2026</li>
             <li><span>Company</span>Co-founder, ED Shield Solutions</li>
             <li><span>Education</span>BSc CSE, Stamford University Bangladesh · MSc IT, Jahangirnagar University</li>
             <li><span>Languages</span>English, Bangla</li>
@@ -415,11 +458,11 @@
       </div>
     </section>
 
-    <!-- 06 · CONTACT -->
-    <section class="contact" id="contact" data-room="contact" aria-labelledby="contact-title">
+    <!-- 07 · CONTACT -->
+    <section class="contact" id="contact" data-room="contact" aria-labelledby="contact-title" data-guide="Got a project? Tell me what you’re building and I’ll reply with honest next steps." data-guide-mood="wave">
       <div class="container contact-grid">
         <div class="contact-intro">
-          <p class="kicker kicker-light"><span>05</span> Start a project</p>
+          <p class="kicker kicker-light"><span>06</span> Start a project</p>
           <h2 class="contact-title" id="contact-title">Let's build <em>something that works.</em></h2>
           <p>Pick what you need, add a few lines, and I'll reply with questions, an honest view on fit, and next steps.</p>
 
@@ -516,18 +559,7 @@
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p class="footer-name">Dwaipyan Mandal</p>
-      <p class="footer-role">Websites, web apps and CRM automation · Dhaka, Bangladesh</p>
-      <ul class="footer-links">
-        <li><a href="https://www.linkedin.com/in/dwaipyan-cyberexpert" target="_blank" rel="noopener me">LinkedIn</a></li>
-        <li><a href="https://github.com/rajdwaipyan" target="_blank" rel="noopener me">GitHub</a></li>
-        <li><a href="https://www.fiverr.com/dwaipyan" target="_blank" rel="noopener me">Fiverr</a></li>
-        <li><a href="mailto:rajdwaipayan@gmail.com">Email</a></li>
-      </ul>
-      <p class="footer-copy">© <span id="year">2026</span> Dwaipyan Mandal · Hand-built with HTML, CSS and a little JavaScript · Press <kbd>X</kbd> for x-ray · <a href="#top">Back to top ↑</a></p>
-    </div>
-  </footer>
+  {% include site-footer.html base="" %}
+  {% include guide.html %}
 </body>
 </html>

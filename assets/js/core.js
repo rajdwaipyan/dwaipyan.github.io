@@ -63,7 +63,8 @@ function initScrollWork() {
 
     // Which section sits under the header? Its colours restyle the header.
     const probe = document.elementFromPoint(window.innerWidth / 2, (header?.offsetHeight || 68) + 4);
-    const room = probe?.closest("[data-room]")?.dataset.room || "cream";
+    // "body [data-room]": never match <html>, which carries data-room itself.
+    const room = probe?.closest("body [data-room]")?.dataset.room || "cream";
     if (room !== lastRoom) { root.dataset.room = room; lastRoom = room; }
 
     for (const el of progressEls) {

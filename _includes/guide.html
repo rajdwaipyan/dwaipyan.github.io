@@ -1,0 +1,83 @@
+{%- comment -%}
+  The guide: a drawn version of Dwaipyan that sits in the corner, blinks, follows the pointer
+  and comments on each section. Its lines live on the sections themselves (data-guide="…").
+  Behaviour: assets/js/guide.js. Styles: "GUIDE" in style.css. Without JavaScript it stays hidden.
+{%- endcomment -%}
+<aside class="guide" id="guide" aria-label="Guide" hidden>
+  <div class="guide-bubble" id="guide-bubble">
+    <p class="guide-text" id="guide-text"></p>
+    <div class="guide-actions" id="guide-actions" hidden>
+      <button class="guide-btn guide-btn-go" type="button" data-guide-tour>Show me around</button>
+      <button class="guide-btn" type="button" data-guide-quiet>Not now</button>
+    </div>
+    <button class="guide-close" type="button" data-guide-hide aria-label="Hide the guide">×</button>
+  </div>
+
+  <button class="guide-figure" type="button" id="guide-figure" aria-label="Talk to the guide" aria-describedby="guide-text">
+    <svg class="guide-svg" viewBox="0 0 200 236" aria-hidden="true" focusable="false">
+      <g class="g-all">
+        <!-- waving arm (behind the body) -->
+        <g class="g-arm">
+          <path class="g-sleeve" d="M150 236 L150 200 Q160 172 170 150 L190 156 Q182 186 176 236 Z"/>
+          <g class="g-hand">
+            <circle class="g-skin" cx="180" cy="140" r="15"/>
+            <path class="g-line" d="M172 128 L170 118 M180 125 L180 114 M188 128 L191 119 M194 138 L203 134"/>
+          </g>
+        </g>
+
+        <!-- body: black tee under a beige blazer -->
+        <g class="g-body">
+          <path class="g-tee" d="M64 236 L70 194 Q100 184 130 194 L136 236 Z"/>
+          <path class="g-blazer" d="M8 236 Q10 202 46 192 L78 184 L94 236 Z"/>
+          <path class="g-blazer" d="M192 236 Q190 202 154 192 L122 184 L106 236 Z"/>
+          <path class="g-line" d="M78 184 L70 204 L84 212 L94 236 M122 184 L130 204 L116 212 L106 236"/>
+          <circle class="g-pin" cx="138" cy="214" r="5"/>
+        </g>
+
+        <!-- neck -->
+        <path class="g-skin" d="M84 160 L84 192 Q100 200 116 192 L116 160 Z"/>
+
+        <!-- head -->
+        <g class="g-head">
+          <circle class="g-skin" cx="52" cy="118" r="11"/>
+          <circle class="g-skin" cx="148" cy="118" r="11"/>
+          <ellipse class="g-skin" cx="100" cy="112" rx="48" ry="55"/>
+
+          <!-- curly hair -->
+          <path class="g-hair" d="M52 112 C40 84 50 56 74 48 C80 30 108 26 120 38 C142 32 162 52 156 76 C164 88 158 106 148 112 C146 96 140 86 130 80 C116 88 88 88 70 80 C60 88 54 98 52 112 Z"/>
+          <g class="g-curls">
+            <circle cx="66" cy="54" r="11"/><circle cx="86" cy="42" r="12"/><circle cx="108" cy="38" r="12"/>
+            <circle cx="130" cy="44" r="12"/><circle cx="148" cy="60" r="11"/><circle cx="56" cy="74" r="10"/><circle cx="154" cy="82" r="9"/>
+          </g>
+
+          <!-- beard + moustache -->
+          <path class="g-hair" d="M54 116 C56 152 74 172 100 174 C126 172 144 152 146 116 C142 134 134 146 124 150 C116 140 84 140 76 150 C66 146 58 134 54 116 Z"/>
+          <path class="g-hair" d="M78 133 Q90 124 100 129 Q110 124 122 133 Q100 132 78 133 Z"/>
+
+          <!-- mouth (two shapes: smile / "o") -->
+          <path class="g-mouth g-mouth-smile" d="M84 140 Q100 160 116 140 Q100 147 84 140 Z"/>
+          <ellipse class="g-mouth g-mouth-o" cx="100" cy="146" rx="7" ry="8"/>
+
+          <!-- nose -->
+          <path class="g-line" d="M101 108 Q95 122 99 125 Q104 127 108 123"/>
+
+          <!-- eyes: whites, pupils (follow the pointer), lids (blink) -->
+          <g class="g-eye">
+            <ellipse class="g-white" cx="82" cy="105" rx="8" ry="8.5"/>
+            <circle class="g-pupil" cx="82" cy="106" r="4.4"/>
+            <ellipse class="g-lid" cx="82" cy="105" rx="9.5" ry="10"/>
+          </g>
+          <g class="g-eye">
+            <ellipse class="g-white" cx="118" cy="105" rx="8" ry="8.5"/>
+            <circle class="g-pupil" cx="118" cy="106" r="4.4"/>
+            <ellipse class="g-lid" cx="118" cy="105" rx="9.5" ry="10"/>
+          </g>
+
+          <!-- brows -->
+          <path class="g-brow" d="M71 91 Q81 85 92 90"/>
+          <path class="g-brow" d="M108 90 Q119 85 129 91"/>
+        </g>
+      </g>
+    </svg>
+  </button>
+</aside>

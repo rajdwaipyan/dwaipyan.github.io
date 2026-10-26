@@ -15,6 +15,7 @@ Every section shows what a client sees and what is built underneath it:
 | Selected work | Live client sites (screenshots) | Brief, role, stack and what was connected |
 | Under the hood | A contact form | A working simulation: webhook → n8n → GoHighLevel → follow-up |
 | X-ray mode | The whole page | Press **X** (or the header button) and the page labels its own HTML |
+| The guide | A drawn Dwaipyan in the corner | He waves, blinks, watches the pointer and says one line per section |
 
 ## Stack
 
@@ -25,9 +26,14 @@ Static site on GitHub Pages. No framework, no npm, no animation library.
 - **JavaScript** as small ES modules in `assets/js/`, loaded by `main.js`. The page is complete without it.
 
 ```
-index.html             the page (content, SEO meta, JSON-LD); front matter lets Jekyll process it
+index.html             the home page (content, SEO meta, JSON-LD); front matter lets Jekyll process it
+about/index.html       the About page (full bio, leadership, education, research, learning, media)
 _data/projects.yml     the projects — edit this to add, change or reorder work
+_data/timeline.yml     career milestones — shown on the home page and the About page
 _includes/project.html how one project "room" is rendered (layouts: system, split, scroll, stack, poster)
+_includes/site-header.html, site-footer.html   shared by both pages (pass base="" or base="../")
+_includes/timeline.html  renders _data/timeline.yml
+_includes/guide.html   the guide's drawing (inline SVG) and speech bubble
 style.css              all styles
 assets/js/main.js      entry point; imports the modules below
   core.js              header, mobile menu, section colours, reveals, scroll progress, copy buttons
@@ -36,6 +42,7 @@ assets/js/main.js      entry point; imports the modules below
   machine.js           "Under the hood" automation simulation (runs in the browser only)
   contact.js           project brief → pre-filled email (no backend)
   xray.js              X-ray mode
+  guide.js             the guide: hello, per-section lines, blink, eyes, wave; quiet and hide buttons
 assets/img/work/       client-site screenshots (desktop 1582×989, phone 520×1125, WebP)
 assets/img/            portrait, line-art layer, workspace photo, social image, profile crops
 404.html               not-found page (absolute /dwaipyan.github.io/ paths)
@@ -55,10 +62,17 @@ existing entry. Put screenshots in `assets/img/work/`. Choose a `layout`:
 
 Leave `role` and `outcome` empty until you can back them up — empty fields are hidden.
 
+**Add a milestone.** Open `_data/timeline.yml` and add an entry at the top (newest first). Use
+`published: false` to keep a draft entry out of the site until it can be confirmed.
+
+**Change what the guide says.** Each section's line is its `data-guide="…"` attribute in the HTML; project
+lines are the `guide:` field in `_data/projects.yml`. On phones he only speaks when tapped, plus hello and
+the contact section.
+
 **Change contact details.** Search `index.html` and `assets/js/contact.js` for `rajdwaipayan@gmail.com`.
 
 **Move to a new address** (repo renamed to `rajdwaipyan.github.io`, or a custom domain): replace
-`https://rajdwaipyan.github.io/dwaipyan.github.io/` in `index.html`, `robots.txt` and `sitemap.xml`, and
+`https://rajdwaipyan.github.io/dwaipyan.github.io/` in `index.html`, `about/index.html`, `robots.txt` and `sitemap.xml`, and
 `/dwaipyan.github.io/` in `404.html` (use `/` for a root site).
 
 **When content changes**, update `<lastmod>` in `sitemap.xml` and `dateModified` in the JSON-LD.
