@@ -1,0 +1,15 @@
+{%- comment -%} The career timeline from _data/timeline.yml (entries with published: false are skipped). {%- endcomment -%}
+<ol class="timeline">
+  {%- for t in site.data.timeline %}
+  {%- unless t.published == false %}
+  <li class="tl-item tl-{{ t.kind }} reveal">
+    <p class="tl-date">{% if t.iso %}<time datetime="{{ t.iso }}">{{ t.date }}</time>{% else %}{{ t.date }}{% endif %}</p>
+    <div class="tl-body">
+      <h3 class="tl-title">{{ t.title | escape }}</h3>
+      {%- if t.org %}<p class="tl-org">{{ t.org | escape }}</p>{% endif %}
+      {%- if t.text %}<p class="tl-text">{{ t.text | escape }}</p>{% endif %}
+    </div>
+  </li>
+  {%- endunless %}
+  {%- endfor %}
+</ol>

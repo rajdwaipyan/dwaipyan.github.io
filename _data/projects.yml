@@ -18,6 +18,7 @@
 #   outcome     only verified, documented results; leave empty otherwise
 #   images      files in assets/img/work/ (desktop 1582×989, mobile 520×1125)
 #   facts       optional extra lines for the "system" layout
+#   guide       optional: what the cartoon guide says when this project scrolls into view
 
 - id: eagle
   title: Eagle Premier Real Estate
@@ -25,6 +26,7 @@
   url: https://epreality.com/
   room: navy
   layout: system
+  guide: "Five lead forms, one GoHighLevel pipeline, follow-up by text. This is my favourite kind of plumbing."
   summary: A local home-buying company that makes fair cash offers to North Carolina homeowners.
   brief: Turn visitors into qualified leads, keep each type of enquiry organised in the CRM, and follow up without anyone copying data by hand.
   role: Built the WordPress site and its five lead forms, and set up the GoHighLevel pipeline, workflows and SMS behind them.
@@ -47,6 +49,7 @@
   url: https://thearcaadvisory.com/
   room: ink
   layout: split
+  guide: "Four offices, two continents, one calm website."
   summary: A boutique consultancy for market entry between Europe and Asia-Pacific, with offices in Cologne, Singapore, Hong Kong and Xiamen.
   brief: Present three advisory services with discretion, show the office network, and turn interest into consultation requests.
   role:  # TODO: confirm your role on this project
@@ -62,6 +65,7 @@
   url: https://vtekcontrols.com/
   room: paper
   layout: scroll
+  guide: "Scroll slowly — the Vtek page scrolls inside the browser with you."
   summary: A fluid flow control supplier in Loveland, Ohio — valves, actuators and automation accessories for process industries.
   brief: Organise a technical catalogue by product and industry, host data sheets and manuals, and capture product enquiries.
   role:  # TODO: confirm your role on this project
@@ -77,6 +81,7 @@
   url: https://essentiallivingsupport.com/
   room: violet
   layout: stack
+  guide: "Ten care services, explained in plain language for families."
   summary: A home and community-based support provider in Cheyenne, Wyoming, for adults with intellectual and developmental disabilities.
   brief: Explain ten waiver-funded services in plain language and give families and case managers a clear route to a referral.
   role:  # TODO: confirm your role on this project
@@ -92,6 +97,7 @@
   url: https://www.o-seaborabora.com/
   room: lime
   layout: poster
+  guide: "Lagoon tours you can book before you land. Not a bad place for a client."
   summary: A boat excursion operator in Bora Bora offering private and shared lagoon tours.
   brief: Sell private and shared lagoon tours to visitors before they travel, with online booking.
   role:  # TODO: confirm your role on this project

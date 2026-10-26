@@ -4,7 +4,7 @@
 {%- endcomment -%}
 {%- assign domain = p.url | remove: 'https://' | remove: 'http://' | remove: 'www.' | remove: '/' -%}
 {%- assign img = 'assets/img/work/' -%}
-<section class="room room-{{ p.room }} layout-{{ p.layout }}" id="work-{{ p.id }}" data-room="{{ p.room }}" aria-labelledby="work-{{ p.id }}-title">
+<section class="room room-{{ p.room }} layout-{{ p.layout }}" id="work-{{ p.id }}" data-room="{{ p.room }}" aria-labelledby="work-{{ p.id }}-title"{% if p.guide %} data-guide="{{ p.guide | escape }}"{% endif %}>
   <div class="container room-grid">
     <header class="room-head reveal">
       <p class="room-index"><span>{{ n | prepend: '0' }}</span> / {{ total | prepend: '0' }}</p>

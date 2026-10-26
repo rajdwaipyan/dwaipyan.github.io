@@ -5,6 +5,7 @@ import { initBuilder } from "./builder.js";
 import { initMachine } from "./machine.js";
 import { initContact } from "./contact.js";
 import { initXray } from "./xray.js";
+import { initGuide } from "./guide.js";
 
 const run = (name, fn) => {
   try { fn(); } catch (err) { console.error(`[${name}]`, err); }
@@ -16,3 +17,4 @@ run("builder", initBuilder);
 run("machine", initMachine);
 run("contact", initContact);
 run("xray", initXray);
+run("guide", initGuide);

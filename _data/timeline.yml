@@ -1,0 +1,56 @@
+# Career timeline — newest first. Shown on the home page ("The road so far") and the About page.
+#
+# Only publish what is true and checkable. Set `published: false` to keep an entry in the
+# file (so you remember it) without showing it on the site.
+#
+# Fields
+#   date        what visitors see, e.g. "Oct 2026", "2022", "Jan 2020"
+#   iso         machine-readable date (YYYY, YYYY-MM or YYYY-MM-DD) for search engines
+#   kind        leadership | venture | work | education
+#   title       one line
+#   org         organisation (optional)
+#   text        one or two sentences (optional)
+#   published   false to hide
+
+- date: 26 Oct 2026
+  iso: 2026-10-26
+  kind: leadership
+  title: Appointed Chief Executive Officer
+  org: Surjamukhi Sangstha (SMS)
+  text: Took on the CEO role at the organisation where I have led IT and projects since 2020.
+
+- date: TBC
+  iso:
+  kind: venture
+  title: Co-founded ED Shield Solutions
+  org: ED Shield Solutions, Dhaka
+  text: A web design and development company. I'm co-founder and operational CEO.
+  published: false   # waiting for the founding year
+
+- date: TBC
+  iso:
+  kind: work
+  title: Web Developer
+  org: Tech Maximus
+  text:
+  published: false   # waiting for dates and whether this role is current
+
+- date: 2022
+  iso: 2022
+  kind: education
+  title: B.Sc. in Computer Science & Engineering
+  org: Stamford University Bangladesh
+
+- date: Apr 2020
+  iso: 2020-04
+  kind: work
+  title: Started freelancing on Fiverr
+  org: Fiverr
+  text: Website work for clients abroad — the start of building for an international market.
+
+- date: Jan 2020
+  iso: 2020-01
+  kind: leadership
+  title: Joined Surjamukhi Sangstha — IT & projects
+  org: Surjamukhi Sangstha (SMS)
+  text: Led IT and managed projects, including programme work with the International Labour Organization (ILO) and Dhaka South City Corporation.
