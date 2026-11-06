@@ -26,12 +26,12 @@ export function initContact() {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const problems = [];
-    if (!form.elements.kind.value) { problems.push("what you need"); kindSet.setAttribute("aria-invalid", "true"); }
+    if (!form.elements.kind.value) { problems.push("what it is about"); kindSet.setAttribute("aria-invalid", "true"); }
     for (const name of ["name", "message"]) {
       const el = form.elements[name];
       const empty = !el.value.trim();
       el.setAttribute("aria-invalid", String(empty));
-      if (empty) problems.push(name === "name" ? "your name" : "a few lines about the project");
+      if (empty) problems.push(name === "name" ? "your name" : "a short message");
     }
     if (problems.length) {
       errorBox.hidden = false;
@@ -50,13 +50,13 @@ export function initContact() {
       "",
       val("message"),
       "",
-      `— Project: ${kind}`,
+      `— Topic: ${kind}`,
       extraField && extraField.value.trim() ? `— ${extraLabel}: ${extraField.value.trim()}` : "",
       val("timeline") ? `— Timeline: ${val("timeline")}` : "",
       `— Name: ${val("name")}`,
     ].filter((l, i) => l !== "" || i === 1 || i === 3);
     lastBrief = lines.join("\n");
-    const subject = `Project enquiry: ${kind} — ${val("name")}`;
+    const subject = `Enquiry: ${kind} — ${val("name")}`;
 
     done.hidden = false;
     window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lastBrief)}`;

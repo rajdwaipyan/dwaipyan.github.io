@@ -1,5 +1,6 @@
 // Entry point (loaded as a module, so it runs after the HTML is parsed).
 import { initCore } from "./core.js";
+import { initNav } from "./nav.js";
 import { initHero } from "./hero.js";
 import { initBuilder } from "./builder.js";
 import { initMachine } from "./machine.js";
@@ -13,6 +14,7 @@ const run = (name, fn) => {
 };
 
 run("core", initCore);
+run("nav", initNav);
 run("hero", initHero);
 run("builder", initBuilder);
 run("machine", initMachine);

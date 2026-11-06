@@ -1,16 +1,47 @@
-{%- comment -%} Shared footer. Pass base="" or base="../" like the header. {%- endcomment -%}
+{%- comment -%} Shared footer. Uses `root` from the layout. X-ray mode and the drawn guide live here as optional extras. {%- endcomment -%}
 <footer class="site-footer">
-  <div class="container footer-inner">
-    <p class="footer-name">Dwaipyan Mandal</p>
-    <p class="footer-role">Web developer &amp; entrepreneur · CEO, Surjamukhi Sangstha (SMS) · Dhaka, Bangladesh</p>
-    <ul class="footer-links">
-      <li><a href="{{ include.base }}about/">About</a></li>
-      <li><a href="https://www.linkedin.com/in/dwaipyan-cyberexpert" target="_blank" rel="noopener me">LinkedIn</a></li>
-      <li><a href="https://github.com/rajdwaipyan" target="_blank" rel="noopener me">GitHub</a></li>
-      <li><a href="https://medium.com/@rajdwaipyan" target="_blank" rel="noopener me">Medium</a></li>
-      <li><a href="https://www.fiverr.com/dwaipyan" target="_blank" rel="noopener me">Fiverr</a></li>
-      <li><a href="mailto:rajdwaipayan@gmail.com">Email</a></li>
-    </ul>
-    <p class="footer-copy">© <span id="year">2026</span> Dwaipyan Mandal · Hand-built with HTML, CSS and a little JavaScript — <a href="https://github.com/rajdwaipyan/dwaipyan.github.io" target="_blank" rel="noopener">read the source</a> · Press <kbd>X</kbd> for x-ray · <a href="#top">Back to top ↑</a></p>
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <p class="footer-name">Dwaipyan Mandal</p>
+      <p class="footer-role">Technology professional, entrepreneur and NGO executive · Dhaka, Bangladesh</p>
+      <a class="footer-mail" href="mailto:rajdwaipayan@gmail.com">rajdwaipayan@gmail.com</a>
+    </div>
+    <nav class="footer-cols" aria-label="Footer">
+      <div>
+        <p class="footer-h">Profile</p>
+        <ul>
+          <li><a href="{{ root }}experience/">Experience</a></li>
+          <li><a href="{{ root }}leadership/">Leadership</a></li>
+          <li><a href="{{ root }}education/">Education</a></li>
+          <li><a href="{{ root }}about/">About</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-h">Work</p>
+        <ul>
+          <li><a href="{{ root }}portfolio/">Portfolio</a></li>
+          <li><a href="{{ root }}cv/">CV</a></li>
+          <li><a href="{{ root }}#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-h">Elsewhere</p>
+        <ul>
+          <li><a href="https://www.linkedin.com/in/dwaipyan-cyberexpert" target="_blank" rel="noopener me">LinkedIn</a></li>
+          <li><a href="https://github.com/rajdwaipyan" target="_blank" rel="noopener me">GitHub</a></li>
+          <li><a href="https://medium.com/@rajdwaipyan" target="_blank" rel="noopener me">Medium</a></li>
+          <li><a href="https://www.fiverr.com/dwaipyan" target="_blank" rel="noopener me">Fiverr</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div class="container footer-base">
+    <p>© <span id="year">2026</span> Dwaipyan Mandal · Hand-built with HTML, CSS and JavaScript — <a href="https://github.com/rajdwaipyan/dwaipyan.github.io" target="_blank" rel="noopener">read the source</a></p>
+    <div class="footer-extras">
+      <button class="extra-btn" id="xray-toggle" type="button" aria-pressed="false" title="See how this page is built (shortcut: X)"><span class="xray-icon" aria-hidden="true"></span>X-ray mode</button>
+      {%- unless page.guide == false %}
+      <button class="extra-btn" type="button" data-guide-open>Meet the drawn me</button>
+      {%- endunless %}
+    </div>
   </div>
 </footer>

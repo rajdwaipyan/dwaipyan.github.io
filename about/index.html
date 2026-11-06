@@ -1,285 +1,174 @@
 ---
-# Jekyll front matter: lets GitHub Pages fill the shared header, footer and timeline.
+layout: default
+title: About Dwaipyan Mandal — Biography
+og_title: About Dwaipyan Mandal
+description: Biography of Dwaipyan Mandal (also written Dwaipayan Mandal) — technology professional in Dhaka, CEO of Surjamukhi Sangstha (SMS), co-founder of ED Shield Solutions — his journey, education, work, values and direction.
+root: "../"
+nav: about
+crumb: About
+schema: about
 ---
-<!DOCTYPE html>
-<html lang="en" class="no-js">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script>document.documentElement.className = document.documentElement.className.replace("no-js", "js");</script>
-  <title>About Dwaipyan Mandal — Web Developer, Entrepreneur &amp; NGO Leader</title>
-  <meta name="description" content="The story of Dwaipyan Mandal: web developer in Dhaka, co-founder of ED Shield Solutions and CEO of Surjamukhi Sangstha (SMS) — his work, education, research interests and what he is learning now.">
-  <link rel="canonical" href="https://rajdwaipyan.github.io/dwaipyan.github.io/about/">
-  <meta name="author" content="Dwaipyan Mandal">
-  <meta name="robots" content="index, follow, max-image-preview:large">
-  <meta name="theme-color" content="#f3f0e8">
-  <meta name="color-scheme" content="light">
-
-  <meta property="og:type" content="profile">
-  <meta property="og:site_name" content="Dwaipyan Mandal">
-  <meta property="og:title" content="About Dwaipyan Mandal">
-  <meta property="og:description" content="Web developer, entrepreneur and CEO of Surjamukhi Sangstha (SMS), based in Dhaka, Bangladesh.">
-  <meta property="og:url" content="https://rajdwaipyan.github.io/dwaipyan.github.io/about/">
-  <meta property="og:image" content="https://rajdwaipyan.github.io/dwaipyan.github.io/assets/img/og-dwaipyan-mandal.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Dwaipyan Mandal">
-  <meta property="profile:first_name" content="Dwaipyan">
-  <meta property="profile:last_name" content="Mandal">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="About Dwaipyan Mandal">
-  <meta name="twitter:description" content="Web developer, entrepreneur and CEO of Surjamukhi Sangstha (SMS), based in Dhaka, Bangladesh.">
-  <meta name="twitter:image" content="https://rajdwaipyan.github.io/dwaipyan.github.io/assets/img/og-dwaipyan-mandal.jpg">
-
-  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="../assets/icons/icon-32.png" sizes="32x32" type="image/png">
-  <link rel="apple-touch-icon" href="../assets/icons/icon-180.png">
-
-  <link rel="preload" href="../assets/fonts/bricolage-grotesque-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="../assets/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../style.css">
-  <script type="module" src="../assets/js/main.js"></script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "ProfilePage",
-        "@id": "https://rajdwaipyan.github.io/dwaipyan.github.io/about/#profilepage",
-        "url": "https://rajdwaipyan.github.io/dwaipyan.github.io/about/",
-        "name": "About Dwaipyan Mandal",
-        "isPartOf": { "@id": "https://rajdwaipyan.github.io/dwaipyan.github.io/#website" },
-        "dateModified": "2026-10-26",
-        "mainEntity": { "@id": "https://rajdwaipyan.github.io/dwaipyan.github.io/#person" },
-        "breadcrumb": { "@id": "https://rajdwaipyan.github.io/dwaipyan.github.io/about/#breadcrumb" }
-      },
-      {
-        "@type": "BreadcrumbList",
-        "@id": "https://rajdwaipyan.github.io/dwaipyan.github.io/about/#breadcrumb",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://rajdwaipyan.github.io/dwaipyan.github.io/" },
-          { "@type": "ListItem", "position": 2, "name": "About", "item": "https://rajdwaipyan.github.io/dwaipyan.github.io/about/" }
-        ]
-      },
-      {
-        "@type": "Person",
-        "@id": "https://rajdwaipyan.github.io/dwaipyan.github.io/#person",
-        "name": "Dwaipyan Mandal",
-        "alternateName": ["Dwaipayan Mandal"],
-        "url": "https://rajdwaipyan.github.io/dwaipyan.github.io/",
-        "image": "https://rajdwaipyan.github.io/dwaipyan.github.io/assets/img/dwaipyan-mandal-1x1.jpg",
-        "jobTitle": ["Chief Executive Officer", "Web Developer"],
-        "worksFor": [
-          { "@type": "NGO", "@id": "https://rajdwaipyan.github.io/dwaipyan.github.io/#sms", "name": "Surjamukhi Sangstha", "alternateName": "SMS" },
-          { "@type": "Organization", "name": "ED Shield Solutions" }
-        ],
-        "alumniOf": [
-          { "@type": "CollegeOrUniversity", "name": "Stamford University Bangladesh" },
-          { "@type": "CollegeOrUniversity", "name": "Jahangirnagar University" }
-        ],
-        "sameAs": [
-          "https://www.linkedin.com/in/dwaipyan-cyberexpert",
-          "https://github.com/rajdwaipyan",
-          "https://www.fiverr.com/dwaipyan",
-          "https://medium.com/@rajdwaipyan"
-        ]
-      }
-    ]
-  }
-  </script>
-</head>
-
-<body class="page-about">
-  {% include site-header.html base="../" current="about" %}
-
-  <main id="main">
-    <section class="page-hero" id="top" aria-labelledby="about-title" data-guide-side="right" data-guide-size="large">
-      <div class="container">
-        <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Home</a><span aria-hidden="true">/</span><span aria-current="page">About</span></nav>
-        <div class="page-hero-grid">
-          <div>
-            <h1 class="page-title" id="about-title">About Dwaipyan <em>Mandal</em></h1>
-            <p class="page-lede">
-              Dwaipyan Mandal (also written Dwaipayan) is a web developer and entrepreneur in Dhaka, Bangladesh. He
-              builds WordPress and Shopify websites, web applications and CRM automations for businesses and agencies
-              abroad, co-founded the web company ED Shield Solutions, and since 26 October 2026 has been Chief Executive
-              Officer of Surjamukhi Sangstha (SMS), a Bangladeshi NGO where he has led IT and projects since 2020.
-            </p>
-          </div>
-          <figure class="page-photo">
-            <picture>
-              <source srcset="../assets/img/dwaipyan-mandal-portrait.webp" type="image/webp">
-              <img src="../assets/img/dwaipyan-mandal-portrait.jpg" width="720" height="1080" alt="Portrait of Dwaipyan Mandal" fetchpriority="high">
-            </picture>
-          </figure>
+    <section class="page-hero" id="top" aria-labelledby="page-title">
+      <div class="container page-hero-grid about-hero">
+        <div>
+          <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Home</a><span aria-hidden="true">/</span><span aria-current="page">About</span></nav>
+          <h1 class="page-title" id="page-title">About Dwaipyan <em>Mandal</em></h1>
+          <p class="page-lede">
+            Dwaipyan Mandal (also written Dwaipayan) is a technology professional, entrepreneur and NGO executive based in
+            Dhaka, Bangladesh. He is Chief Executive Officer of Surjamukhi Sangstha (SMS), a non-governmental organisation
+            where he has worked since 2020; co-founder of ED Shield Solutions; and a web developer who has built websites,
+            web applications and CRM automations for international clients for more than six years.
+          </p>
         </div>
+        <figure class="page-photo reveal">
+          <picture>
+            <source srcset="../assets/img/dwaipyan-mandal-workspace.webp" type="image/webp">
+            <img src="../assets/img/dwaipyan-mandal-workspace.jpg" width="900" height="1200" alt="Dwaipyan Mandal at his desk with two monitors and a laptop" fetchpriority="high">
+          </picture>
+          <figcaption>At the desk in Dhaka.</figcaption>
+        </figure>
       </div>
     </section>
 
     <div class="container chapters">
-
-      <section class="chapter" id="story" aria-labelledby="story-title" data-guide="This is the long version. Grab a tea.">
+      <section class="chapter" id="journey-story" aria-labelledby="c1">
         <header class="chapter-head reveal">
-          <p class="kicker"><span>01</span> The longer version</p>
-          <h2 id="story-title">From a CSE lab <em>to the CEO’s chair.</em></h2>
+          <p class="kicker"><span>01</span> The journey</p>
+          <h2 id="c1">From a CSE lab <em>to leading an organisation.</em></h2>
         </header>
         <div class="chapter-body">
-          <figure class="story-photo">
-            <picture>
-              <source srcset="../assets/img/dwaipyan-mandal-workspace.webp" type="image/webp">
-              <img src="../assets/img/dwaipyan-mandal-workspace.jpg" width="900" height="1200" loading="lazy" decoding="async" alt="Dwaipyan Mandal at his desk with two monitors and a laptop">
-            </picture>
-            <figcaption>At the desk in Dhaka.</figcaption>
-          </figure>
           <p>
-            I studied Computer Science &amp; Engineering at Stamford University Bangladesh, graduating in 2022. The
-            projects from those years were practical ones: a small-business management system and a university attendance
-            system in ASP.NET MVC, and a driver-drowsiness detector that used a convolutional neural network in Python.
-            Alongside the degree I took hands-on courses in web design, C#/.NET programming and cybersecurity.
+            I studied Computer Science &amp; Engineering at Stamford University Bangladesh, graduating in 2022 with a CGPA
+            of 3.34. The projects from those years were practical ones — a small-business management system and a
+            university attendance system in ASP.NET MVC, and a driver-drowsiness detector built on a convolutional
+            neural network.
           </p>
           <p>
-            While still studying, in January 2020, I joined Surjamukhi Sangstha (SMS), a non-governmental organisation in Bangladesh, to run
-            its IT and manage projects — including programme work with the International Labour Organization (ILO) and
-            Dhaka South City Corporation. That is where I learned that a project is mostly people, deadlines and reporting,
-            and only partly technology.
+            While still studying, in January 2020, I joined Surjamukhi Sangstha to run its IT and manage projects. That
+            is where I learned that a project is mostly people, deadlines and honest reporting, and only partly technology.
+            The same year I began building websites for clients outside Bangladesh, and that work grew into my second career.
           </p>
           <p>
-            The same year I started freelancing on Fiverr, building websites for clients in other countries. That work
-            grew into what I do now: WordPress, Elementor Pro, WooCommerce and Shopify builds, custom web applications,
-            and the GoHighLevel and n8n automations that make a website capture leads and follow up on its own. You can
-            see live examples on the <a href="../#work">home page</a>.
-          </p>
-          <p>
-            I went on to a master's in Information Technology at the Institute of Information Technology, Jahangirnagar
-            University, and co-founded ED Shield Solutions, a web design and development company in Dhaka. On
-            26 October 2026 I became Chief Executive Officer of Surjamukhi Sangstha.
+            I completed a Professional Masters in Information Technology at the Institute of Information Technology,
+            Jahangirnagar University, where my project report examined cyber resilience in Bangladesh's ISP ecosystem.
+            On 26 October 2026 Surjamukhi Sangstha appointed me its Chief Executive Officer.
           </p>
         </div>
       </section>
 
-      <section class="chapter" id="leadership-story" data-guide-prop="tie" aria-labelledby="lead-title" data-guide="The CEO title is brand new. What I do with it will be written down here as it happens.">
+      <section class="chapter" id="technology" aria-labelledby="c2">
         <header class="chapter-head reveal">
-          <p class="kicker"><span>02</span> Leadership</p>
-          <h2 id="lead-title">CEO, Surjamukhi <em>Sangstha (SMS).</em></h2>
+          <p class="kicker"><span>02</span> Technology career</p>
+          <h2 id="c2">Building the visible <em>and the invisible.</em></h2>
         </header>
         <div class="chapter-body">
-          <ul class="plain-list">
-            <li><span><b>Chief Executive Officer</b> <span class="status status-now">Current</span></span><small>From 26 Oct 2026</small></li>
-            <li><span><b>IT and project management</b> — including programme work with the ILO and Dhaka South City Corporation</span><small>Since Jan 2020</small></li>
-          </ul>
           <p>
-            This page records what is confirmed and public. The organisation's programmes are the work of a whole team;
-            where I mention them, I'm describing my part in them, not claiming the results as mine.
-          </p>
-          <p class="note-box">
-            Initiatives, partnerships and results from my time as CEO will be added here once they are confirmed and can be
-            shared.
+            Most of my client work is for businesses abroad: WordPress, Elementor Pro, WooCommerce and Shopify sites, custom
+            web applications, and the GoHighLevel and n8n automations that make a website capture a lead and follow up on
+            its own. Live examples — from a North Carolina real-estate company to a tour operator in Bora Bora — are in the
+            <a href="../portfolio/">portfolio</a>.
           </p>
         </div>
       </section>
 
-      <section class="chapter" id="ventures" data-guide-prop="hardhat" data-guide-side="left" aria-labelledby="ventures-title" data-guide="Two hats: the NGO, and the web company.">
+      <section class="chapter" id="ngo" aria-labelledby="c3">
         <header class="chapter-head reveal">
-          <p class="kicker"><span>03</span> Entrepreneurship</p>
-          <h2 id="ventures-title">ED Shield <em>Solutions.</em></h2>
+          <p class="kicker"><span>03</span> NGO leadership</p>
+          <h2 id="c3">Six years inside, <em>now at the front.</em></h2>
         </header>
         <div class="chapter-body">
           <p>
-            ED Shield Solutions is a web design and development company in Dhaka. I'm its co-founder and operational CEO.
-            We build WordPress websites and online stores, do white-label development for agencies, and set up CRM and
-            workflow automation. We also build our own WordPress tools — for attendance and for expense tracking — and
-            use them ourselves.
-          </p>
-          <p>
-            The client projects on this site are listed with the part I played in each. Where that role is still being
-            confirmed, the project page says nothing about it rather than guess.
-          </p>
-          <h3>What I build</h3>
-          <ul class="plain-list">
-            <li><span><b>Websites and stores</b> — WordPress, Elementor Pro, Crocoblock, WooCommerce, Shopify</span></li>
-            <li><span><b>Web applications</b> — dashboards, client portals, custom WordPress plugins, REST APIs</span></li>
-            <li><span><b>CRM and automation</b> — GoHighLevel, n8n, webhooks, API integrations, AI-assisted workflows</span></li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="chapter" id="education" data-guide-prop="glasses" aria-labelledby="edu-title" data-guide="Degrees first, then the courses that actually taught me the job.">
-        <header class="chapter-head reveal">
-          <p class="kicker"><span>04</span> Education &amp; training</p>
-          <h2 id="edu-title">Two degrees, <em>four courses.</em></h2>
-        </header>
-        <div class="chapter-body">
-          <ul class="plain-list">
-            <li><span><b>Master's in Information Technology</b> — Institute of Information Technology, Jahangirnagar University</span></li>
-            <li><span><b>B.Sc. in Computer Science &amp; Engineering</b> — Stamford University Bangladesh</span><small>2022</small></li>
-          </ul>
-          <h3>Courses</h3>
-          <ul class="plain-list">
-            <li><span><b>Professional Cyber Security</b> — DEV SKILL, Dhaka</span><small>4 months</small></li>
-            <li><span><b>CyberOps Associate course</b> (Cisco curriculum) — AIUB, Dhaka</span><small>3 months</small></li>
-            <li><span><b>C# .NET Programming</b> — BITM, Dhaka</span><small>3 months</small></li>
-            <li><span><b>Web Design &amp; Development</b> — LEDP, Kurigram</span><small>4 months</small></li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="chapter" id="security" data-guide-prop="headset" data-guide-side="left" aria-labelledby="sec-title" data-guide="Security is something I study and build with — not a badge I'm claiming.">
-        <header class="chapter-head reveal">
-          <p class="kicker"><span>05</span> Cybersecurity</p>
-          <h2 id="sec-title">Learning it, <em>building with it.</em></h2>
-        </header>
-        <div class="chapter-body">
-          <p>
-            Security shapes how I build: updates, backups, sensible access and hardened WordPress set-ups come with every
-            project. Beyond client work, I'm studying the field properly through the courses above and through research.
-          </p>
-          <ul class="plain-list">
-            <li><span><b>Research: ISP and home Wi-Fi security in Bangladesh</b> <span class="status status-now">In progress</span><br>Routers, ISP-supplied equipment and common misconfigurations, with responsible-disclosure and ethics guardrails. Not yet published.</span></li>
-            <li><span><b>Writing on security</b> — articles on Zero Trust and on AI in cybersecurity, on <a href="https://medium.com/@rajdwaipyan" target="_blank" rel="noopener me">Medium</a></span></li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="chapter" id="learning" data-guide-prop="glasses" aria-labelledby="learn-title" data-guide="Targets aren't results. This section only gets a score once there is one.">
-        <header class="chapter-head reveal">
-          <p class="kicker"><span>06</span> Learning now</p>
-          <h2 id="learn-title">Still a <em>student.</em></h2>
-        </header>
-        <div class="chapter-body">
-          <ul class="plain-list">
-            <li><span><b>IELTS preparation</b> <span class="status status-now">Ongoing</span><br>Working on speaking, writing, listening and reading. Results will appear here when there is an official one.</span></li>
-            <li><span><b>Graduate study and scholarships</b> <span class="status status-next">Next</span><br>Researching graduate programmes and funding abroad, and writing statements of purpose.</span></li>
-          </ul>
-          <p>
-            I'll write up what I learn along the way — honestly, including what didn't work — so it can help the next
-            person applying from Bangladesh. It's my own experience, not an admissions service.
+            At Surjamukhi Sangstha I ran IT and managed projects, including programme activities involving the International
+            Labour Organization and Dhaka South City Corporation. Programme results belong to the whole team and our
+            partners; I describe my part, not theirs. The <a href="../leadership/">leadership page</a> records the CEO role
+            as its responsibilities and initiatives are confirmed.
           </p>
         </div>
       </section>
 
-      <section class="chapter" id="writing" data-guide-side="left" aria-labelledby="writing-title" data-guide="My own writing on one side, other people's coverage on the other. The second list is empty for now.">
+      <section class="chapter" id="entrepreneurship" aria-labelledby="c4">
         <header class="chapter-head reveal">
-          <p class="kicker"><span>07</span> Writing &amp; media</p>
-          <h2 id="writing-title">Publications <em>&amp; media.</em></h2>
+          <p class="kicker"><span>04</span> Entrepreneurship</p>
+          <h2 id="c4">ED Shield <em>Solutions.</em></h2>
+        </header>
+        <div class="chapter-body">
+          <p>
+            ED Shield Solutions is a web design and development company in Dhaka that I co-founded and run day to day. We
+            build WordPress websites and online stores, take on white-label development for agencies, and set up CRM and
+            workflow automation. We also build our own WordPress tools — for attendance and expense tracking — and use them
+            ourselves.
+          </p>
+        </div>
+      </section>
+
+      <section class="chapter" id="interests" aria-labelledby="c5">
+        <header class="chapter-head reveal">
+          <p class="kicker"><span>05</span> Interests &amp; learning</p>
+          <h2 id="c5">Still <em>a student.</em></h2>
+        </header>
+        <div class="chapter-body">
+          <ul class="plain-list">
+            <li><span><b>Network security research</b> <span class="status status-now">Ongoing</span><br>ISP and home Wi-Fi security in Bangladesh, continuing the question from my master's report.</span></li>
+            <li><span><b>IELTS preparation</b> <span class="status status-now">Ongoing</span><br>Results will appear here only when there is an official one.</span></li>
+            <li><span><b>Graduate study in cybersecurity</b> <span class="status status-next">Next</span><br>Researching programmes and funding abroad. No admission or scholarship yet.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="chapter" id="philosophy" aria-labelledby="c6">
+        <header class="chapter-head reveal">
+          <p class="kicker"><span>06</span> Professional philosophy</p>
+          <h2 id="c6">I like the part <em>nobody sees.</em></h2>
+        </header>
+        <div class="chapter-body">
+          <ul class="principles">
+            <li><b>Scope in plain language.</b> People should know what's included, what isn't and what it costs before work starts.</li>
+            <li><b>Build for whoever comes next.</b> Sensible structure and documented hand-over, nothing locked away.</li>
+            <li><b>Report what is real.</b> Numbers are published when they're documented — on this site too.</li>
+            <li><b>Security by default.</b> Updates, backups and sensible access come with the build.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="chapter" id="direction" aria-labelledby="c7">
+        <header class="chapter-head reveal">
+          <p class="kicker"><span>07</span> Direction</p>
+          <h2 id="c7">Where this <em>is heading.</em></h2>
+        </header>
+        <div class="chapter-body">
+          <p>
+            Three threads, carried together: leading Surjamukhi Sangstha well, growing ED Shield Solutions into a reliable
+            partner for agencies and businesses abroad, and deepening my cybersecurity research through graduate study.
+            This site will record each step as it happens — with dates, and only once it has happened.
+          </p>
+        </div>
+      </section>
+
+      <section class="chapter" id="media" aria-labelledby="c8">
+        <header class="chapter-head reveal">
+          <p class="kicker"><span>08</span> Writing &amp; media</p>
+          <h2 id="c8">Publications <em>&amp; coverage.</em></h2>
         </header>
         <div class="chapter-body">
           <h3>My own writing</h3>
           <ul class="plain-list">
-            <li><span><b>Medium</b> — technology and cybersecurity articles</span><small><a href="https://medium.com/@rajdwaipyan" target="_blank" rel="noopener me">medium.com/@rajdwaipyan ↗</a></small></li>
+            {%- for w in site.data.publications.own_writing %}
+            <li><span><b>{{ w.title }}</b> — {{ w.note }}</span><small><a href="{{ w.url }}" target="_blank" rel="noopener me">{{ w.venue }} ↗</a></small></li>
+            {%- endfor %}
           </ul>
           <h3>Coverage by others</h3>
-          <p class="note-box">
-            None listed yet. When an independent publication writes about this work, it will be listed here with the
-            outlet, author, date and a link.
-          </p>
+          {%- if site.data.publications.coverage.size > 0 %}
+          <ul class="plain-list">{% for c in site.data.publications.coverage %}<li><span><b>{{ c.title }}</b> — {{ c.outlet }}, {{ c.author }}</span><small>{{ c.date }}</small></li>{% endfor %}</ul>
+          {%- else %}
+          <p class="note-box">None listed yet. Independent coverage will be listed here with the outlet, author, date and a link.</p>
+          {%- endif %}
         </div>
       </section>
 
-      <section class="chapter" id="journey" aria-labelledby="journey-title" data-guide="Every date here is one I can back up.">
+      <section class="chapter" id="timeline" aria-labelledby="c9">
         <header class="chapter-head reveal">
-          <p class="kicker"><span>08</span> Timeline</p>
-          <h2 id="journey-title">The road <em>so far.</em></h2>
+          <p class="kicker"><span>09</span> Timeline</p>
+          <h2 id="c9">The road <em>so far.</em></h2>
         </header>
         <div class="chapter-body">
           {% include timeline.html %}
@@ -287,15 +176,9 @@
       </section>
     </div>
 
-    <section class="cta-band" id="contact-cta" aria-labelledby="cta-title" data-guide="Got a project, or something to collaborate on? You know where to find me." data-guide-mood="wave" data-guide-side="left">
+    <section class="cta-band" aria-labelledby="cta-title">
       <div class="container">
-        <h2 id="cta-title">Working on something? <em>Let's talk.</em></h2>
-        <a class="btn btn-lime" href="../#contact">Start a project <span class="btn-arrow" aria-hidden="true">→</span></a>
+        <h2 id="cta-title">Want to work together? <em>Let's talk.</em></h2>
+        <a class="btn btn-lime" href="../#contact">Get in touch <span class="btn-arrow" aria-hidden="true">→</span></a>
       </div>
     </section>
-  </main>
-
-  {% include site-footer.html base="../" %}
-  {% include guide.html %}
-</body>
-</html>

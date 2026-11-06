@@ -1,8 +1,9 @@
 # GitHub Pages builds this static site with Jekyll (see .github/workflows).
-# index.html has front matter so Jekyll fills the projects from _data/projects.yml.
+# Pages use _layouts/default.html and read their content from _data/*.yml.
 # The exclude list keeps repo-only files out of the published site.
 exclude:
   - README.md
+  - CONTENT_REVIEW.md
   - LICENSE
   - Profile.png
   - assets/img/about.jpg

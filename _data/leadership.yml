@@ -1,0 +1,59 @@
+# Leadership and development-sector work — shown on /leadership/ and the home page.
+# Describe your own part. Programme results belong to the whole team; say so.
+# Never publish beneficiary data, internal documents or unpublished figures.
+
+organisation:
+  name: Surjamukhi Sangstha
+  short: SMS
+  type: Non-governmental organisation
+  country: Bangladesh
+  website:          # add if the organisation has one
+  mission:          # one sentence, in the organisation's own words — see CONTENT_REVIEW.md
+
+current_role:
+  title: Chief Executive Officer
+  since: 26 October 2026
+  since_iso: 2026-10-26
+  statement: >-
+    I joined Surjamukhi Sangstha in January 2020 to run its technology and manage projects. In October 2026 the
+    organisation appointed me its Chief Executive Officer. The specific initiatives, partnerships and results of this
+    role will be recorded here as they are confirmed and can be made public.
+
+responsibilities:   # leave empty until confirmed; the page then shows a short note instead
+  []
+
+previous_roles:
+  - title: IT & project management
+    period: Jan 2020 – Oct 2026
+    points:
+      - Ran the organisation's IT.
+      - Managed projects across the organisation's programme work.
+      - Worked with government and development-sector partners.
+
+programmes:
+  - id: ilo-dscc
+    title: Programme activities with the ILO and Dhaka South City Corporation
+    partners: [International Labour Organization (ILO), Dhaka South City Corporation (DSCC)]
+    sector: Development sector · Government collaboration
+    place: Dhaka
+    period:            # TBC
+    my_part: IT and project management for the organisation's part of the programme.
+    team_note: Programme delivery was the work of the organisation and its partners; this describes my part only.
+    detail_pending: true
+  - id: oosc
+    title: Out-of-School Children education programme
+    partners: []
+    sector: Education · Government programme
+    place: Bhanga, Faridpur
+    period:
+    my_part:
+    detail_pending: true
+    published: false   # confirm before naming publicly (CONTENT_REVIEW.md)
+
+principles:
+  - title: Own your part, credit the team
+    text: Programme results belong to everyone who delivered them. I describe what I did, not what we all achieved.
+  - title: Systems that outlast the meeting
+    text: Good technology in an NGO is the kind that still works when the person who set it up is in the field.
+  - title: Report what is real
+    text: Numbers are published when they are documented — not before.

@@ -4,53 +4,43 @@ Personal site for Dwaipyan Mandal: websites, web applications and CRM automation
 
 Live: https://rajdwaipyan.github.io/dwaipyan.github.io/
 
-## Concept: Surface & Structure
+## What the site is
 
-Every section shows what a client sees and what is built underneath it:
+A professional identity site for three audiences — organisations and development partners, universities, and
+clients — built on the "Surface & Structure" idea: every section shows what people see and what sits underneath.
 
-| Section | Surface | Structure |
+| Page | URL | Content comes from |
 | --- | --- | --- |
-| Hero | Portrait and name | Hover the portrait for a line-drawing "lens"; the name reacts to the pointer |
-| What I build | A demo site | Scrolling turns it into a store, a client portal, then a connected CRM system |
-| Selected work | Live client sites (screenshots) | Brief, role, stack and what was connected |
-| Under the hood | A contact form | A working simulation: webhook → n8n → GoHighLevel → follow-up |
-| X-ray mode | The whole page | Press **X** (or the header button) and the page labels its own HTML |
-| The guide | A drawn Dwaipyan in the corner | He waves, blinks, watches the pointer and says one line per section |
+| Home | `/` | hero, pathways, snapshots — `index.html` + all data files |
+| Experience | `/experience/` | `_data/experience.yml`, `_data/skills.yml` |
+| Leadership | `/leadership/` | `_data/leadership.yml` |
+| Education | `/education/` | `_data/education.yml`, `_data/publications.yml` |
+| Portfolio | `/portfolio/` | `_data/projects.yml` (+ the "What I build" and automation demos) |
+| About | `/about/` | `about/index.html`, `_data/timeline.yml`, `_data/publications.yml` |
+| CV | `/cv/` | generated from the data files; printable / Save as PDF |
+
+Facts still to confirm are listed in `CONTENT_REVIEW.md` (not published).
 
 ## Stack
 
 Static site on GitHub Pages. No framework, no npm, no animation library.
 
-- **Jekyll** (built in to GitHub Pages) fills the project section from `_data/projects.yml`.
-- **CSS** in one file, `style.css`, design tokens at the top.
-- **JavaScript** as small ES modules in `assets/js/`, loaded by `main.js`. The page is complete without it.
+```
+_layouts/default.html  the page shell: <head> (SEO, social cards), header, footer, guide, scripts
+_includes/
+  jsonld.html          structured data (Person, NGO, page, breadcrumbs) built from the data files
+  site-header.html     monogram, navigation capsule, CV + Contact, phone menu
+  site-footer.html     links, X-ray mode and "Meet the drawn me" (both optional extras)
+  project.html         one portfolio case study ("room")
+  exp-track.html       one career track on /experience/
+  timeline.html        milestones list
+  guide.html           the optional drawn guide (inline SVG)
+_data/                 experience, education, leadership, skills, projects, publications, timeline
+style.css              all styles, design tokens at the top
+assets/js/             ES modules loaded by main.js (core, nav, hero, builder, machine, contact, xray, guide, sound, particles, fx)
+```
 
-```
-index.html             the home page (content, SEO meta, JSON-LD); front matter lets Jekyll process it
-about/index.html       the About page (full bio, leadership, education, research, learning, media)
-_data/projects.yml     the projects — edit this to add, change or reorder work
-_data/timeline.yml     career milestones — shown on the home page and the About page
-_includes/project.html how one project "room" is rendered (layouts: system, split, scroll, stack, poster)
-_includes/site-header.html, site-footer.html   shared by both pages (pass base="" or base="../")
-_includes/timeline.html  renders _data/timeline.yml
-_includes/guide.html   the guide's drawing (inline SVG) and speech bubble
-style.css              all styles
-assets/js/main.js      entry point; imports the modules below
-  core.js              header, mobile menu, section colours, reveals, scroll progress, copy buttons
-  hero.js              kinetic name + portrait lens
-  builder.js           "What I build" demo states
-  machine.js           "Under the hood" automation simulation (runs in the browser only)
-  contact.js           project brief → pre-filled email (no backend)
-  xray.js              X-ray mode
-  guide.js             the guide: hello, per-section lines, costumes, travel, tricks menu, sleep, eyes
-  sound.js             all sounds, synthesised with the Web Audio API (no audio files)
-  particles.js         one canvas for sparkles, dust, puffs, sneeze drops and Zzz
-  fx.js                words that light up on scroll, halftone image reveal, sand scratch card
-assets/img/work/       client-site screenshots (desktop 1582×989, phone 520×1125, WebP)
-assets/img/            portrait, line-art layer, workspace photo, social image, profile crops
-404.html               not-found page (absolute /dwaipyan.github.io/ paths)
-robots.txt, sitemap.xml
-```
+Each page sets `title`, `description`, `root` ("" or "../") and `nav` in its front matter.
 
 ## How the motion works (for developers)
 
@@ -75,6 +65,10 @@ Everything is plain HTML, CSS and ES modules — no framework, no animation libr
   under `prefers-reduced-motion`; the page is complete without JavaScript.
 
 ## Common edits
+
+**Update your career.** Edit `_data/experience.yml` (roles), `_data/education.yml` (degrees, training),
+`_data/leadership.yml` (CEO role, programmes) or `_data/timeline.yml` (milestones). Every page and the CV update
+from these files.
 
 **Add or change a project.** Open `_data/projects.yml` on GitHub, press the pencil icon, and copy an
 existing entry. Put screenshots in `assets/img/work/`. Choose a `layout`:

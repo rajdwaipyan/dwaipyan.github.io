@@ -1,0 +1,82 @@
+# Professional experience — shown on /experience/, the CV (/cv/) and the home page.
+#
+# Two separate tracks, so employment is never mixed with client work:
+#   organisations  roles held inside an organisation (NGO, employers)
+#   independent    your own business and freelance work
+#
+# Rules: only publish what is true and you are happy to show. `published: false` keeps an entry
+# in this file without showing it. Leave `points` empty rather than guess.
+#
+# Fields per entry
+#   org, org_note, location, url (optional)
+#   roles: list of { title, start, end, start_label, end_label, current, summary, points }
+#   skills: list shown as tags
+#   published: false to hide
+
+organisations:
+  - org: Surjamukhi Sangstha (SMS)
+    org_note: Non-governmental organisation
+    location: Bangladesh
+    roles:
+      - title: Chief Executive Officer
+        start: 2026-10-26
+        start_label: Oct 2026
+        end_label: Present
+        current: true
+        summary: Appointed Chief Executive Officer with effect from 26 October 2026.
+        points:
+          - Leads the organisation as its chief executive.
+      - title: IT & project management
+        start: 2020-01
+        start_label: Jan 2020
+        end_label: Oct 2026
+        summary: Led the organisation's IT and managed projects in the development sector.
+        points:
+          - Led information technology for the organisation.
+          - Managed projects, including programme activities involving the International Labour Organization (ILO) and Dhaka South City Corporation.
+          - Worked on government and development-sector projects.
+    skills: [Leadership, Project management, IT management, Programme coordination, Stakeholder communication, Reporting]
+
+  - org: Tech Maximus
+    org_note: Employer
+    location: Bangladesh
+    roles:
+      - title: Web Developer
+        start_label: TBC
+        end_label: TBC
+        points: []
+    skills: [WordPress]
+    published: false   # waiting for dates (see CONTENT_REVIEW.md)
+
+independent:
+  - org: ED Shield Solutions
+    org_note: Web design and development company · Dhaka
+    location: Dhaka, Bangladesh
+    roles:
+      - title: Co-founder & Operational CEO
+        start_label:        # founding year — see CONTENT_REVIEW.md
+        end_label: Present
+        current: true
+        summary: Co-founded a web design and development company and runs its day-to-day operations.
+        points:
+          - WordPress websites and online stores for businesses.
+          - White-label development for digital agencies.
+          - CRM and workflow automation.
+          - In-house WordPress tools for attendance and expense tracking, used by the company itself.
+    skills: [Operations, WordPress, White-label delivery, CRM automation]
+
+  - org: Freelance web developer
+    org_note: Fiverr and direct international clients
+    location: Remote
+    roles:
+      - title: Web developer — websites, stores and automation
+        start: 2020-04
+        start_label: Apr 2020
+        end_label: Present
+        current: true
+        summary: More than six years building websites, online stores and automations for clients outside Bangladesh.
+        points:
+          - Business websites on WordPress and Elementor Pro, and online stores on WooCommerce and Shopify.
+          - GoHighLevel CRM set-up, n8n workflows, webhooks and API integrations.
+          - Client sites live in the United States, French Polynesia and a Europe–Asia-Pacific consultancy (see the portfolio).
+    skills: [WordPress, Elementor Pro, WooCommerce, Shopify, GoHighLevel, n8n, REST APIs]

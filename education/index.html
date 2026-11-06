@@ -1,0 +1,146 @@
+---
+layout: default
+title: Education & Academic Profile — Dwaipyan Mandal
+og_title: Dwaipyan Mandal — academic profile
+description: Academic profile of Dwaipyan Mandal — Professional Masters in Information Technology (IIT, Jahangirnagar University, CGPA 3.02), B.Sc. in Computer Science & Engineering (Stamford University Bangladesh, 2022, CGPA 3.34), research on ISP cyber resilience in Bangladesh.
+root: "../"
+nav: education
+crumb: Education
+---
+{%- assign E = site.data.education -%}
+{%- assign M = E.degrees[0] -%}
+    <section class="page-hero" id="top" aria-labelledby="page-title">
+      <div class="container page-hero-grid">
+        <div>
+          <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Home</a><span aria-hidden="true">/</span><span aria-current="page">Education</span></nav>
+          <h1 class="page-title" id="page-title">Academic <em>profile.</em></h1>
+          <p class="page-lede">
+            Computer Science &amp; Engineering, then Information Technology — and a research question about how secure
+            Bangladesh's internet providers are. Written so an admissions committee can read it in a few minutes.
+          </p>
+          <ul class="page-jump">
+            <li><a href="#degrees">Degrees</a></li>
+            <li><a href="#report">Research report</a></li>
+            <li><a href="#research">Research interests</a></li>
+            <li><a href="#training">Training</a></li>
+            <li><a href="../cv/">Academic CV</a></li>
+          </ul>
+        </div>
+        <aside class="page-aside quick-facts reveal" aria-label="Quick facts for reviewers">
+          <p class="aside-k">Quick facts for reviewers</p>
+          <dl class="aside-facts">
+            {%- for d in E.degrees %}
+            <div><dt>{{ d.short }}</dt><dd>{{ d.institution }} · {{ d.result }}</dd></div>
+            {%- endfor %}
+            <div><dt>Research</dt><dd>Cyber resilience of Bangladesh's ISP ecosystem</dd></div>
+            <div><dt>Next</dt><dd>{{ E.graduate_plans }}</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="degrees" aria-labelledby="deg-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="kicker"><span>01</span> Degrees</p>
+          <h2 class="section-title" id="deg-title">Two degrees, <em>one direction.</em></h2>
+        </header>
+        <ol class="edu-line" data-draw>
+          {%- for d in E.degrees %}
+          <li class="edu-card reveal" id="{{ d.id }}">
+            <div class="edu-top">
+              <p class="edu-when">{{ d.year_label }}</p>
+              <p class="edu-cgpa"><span>CGPA</span>{{ d.result | remove: "CGPA " }}</p>
+            </div>
+            <h3>{{ d.degree }}</h3>
+            <p class="edu-inst"><b>{{ d.institution }}</b>{% if d.unit %} · {{ d.unit }}{% endif %}{% if d.location %} · {{ d.location }}{% endif %}</p>
+            {%- if d.mode %}<p class="edu-mode">{{ d.mode }}</p>{% endif %}
+            {%- if d.projects %}
+            <h4 class="edu-sub">Academic projects</h4>
+            <ul class="edu-projects">
+              {%- for pr in d.projects %}
+              <li><b>{{ pr.title }}</b> — {{ pr.detail }} <span class="edu-tools">{{ pr.tools | join: " · " }}</span></li>
+              {%- endfor %}
+            </ul>
+            {%- endif %}
+          </li>
+          {%- endfor %}
+        </ol>
+      </div>
+    </section>
+
+    <section class="section report-section" id="report" data-room="ink" aria-labelledby="report-title">
+      <div class="container two-col">
+        <header class="reveal">
+          <p class="kicker kicker-light"><span>02</span> Master's research</p>
+          <h2 class="section-title" id="report-title">“{{ M.report.title }}”</h2>
+        </header>
+        <div class="prose reveal">
+          <p>{{ M.report.summary }}</p>
+          <dl class="report-facts">
+            <div><dt>Type</dt><dd>{{ M.report.kind }}, {{ M.degree }}</dd></div>
+            <div><dt>Institution</dt><dd>{{ M.unit }}, {{ M.institution }}</dd></div>
+            <div><dt>Supervisor</dt><dd>{{ M.report.supervisor }}</dd></div>
+            <div><dt>Accepted</dt><dd>{{ M.report.accepted }}</dd></div>
+            <div><dt>Availability</dt><dd>Not publicly available. A summary can be shared on request.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="research" aria-labelledby="research-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="kicker"><span>03</span> Research interests</p>
+          <h2 class="section-title" id="research-title">Questions <em>I keep working on.</em></h2>
+        </header>
+        <ol class="interest-grid">
+          {%- for r in E.research_interests %}
+          <li class="interest reveal" style="--d:{{ forloop.index0 }}"><span class="princ-no">0{{ forloop.index }}</span><h3>{{ r.title }}</h3><p>{{ r.detail }}</p></li>
+          {%- endfor %}
+        </ol>
+        <p class="note-box reveal">{{ E.graduate_plans }}</p>
+      </div>
+    </section>
+
+    <section class="section xp-alt" id="training" aria-labelledby="training-title">
+      <div class="container two-col">
+        <header class="reveal">
+          <p class="kicker"><span>04</span> Training &amp; writing</p>
+          <h2 class="section-title" id="training-title">Courses <em>and publications.</em></h2>
+        </header>
+        <div class="reveal">
+          <h3 class="list-h">Technical training</h3>
+          <ul class="plain-list">
+            {%- for t in E.training %}
+            <li><span><b>{{ t.title }}</b> — {{ t.provider }}</span><small>{{ t.length }}</small></li>
+            {%- endfor %}
+          </ul>
+          <h3 class="list-h">Academic writing</h3>
+          <ul class="plain-list">
+            {%- for a in site.data.publications.academic %}
+            <li><span><b>{{ a.title }}</b> — {{ a.kind }}</span><small>{{ a.year }}</small></li>
+            {%- endfor %}
+          </ul>
+          <h3 class="list-h">Peer-reviewed publications</h3>
+          {%- if site.data.publications.peer_reviewed.size > 0 %}
+          <ul class="plain-list">{% for a in site.data.publications.peer_reviewed %}<li><span><b>{{ a.title }}</b> — {{ a.venue }}</span><small>{{ a.year }}</small></li>{% endfor %}</ul>
+          {%- else %}
+          <p class="note-box">None yet. Papers will be listed here once they are published.</p>
+          {%- endif %}
+          <h3 class="list-h">Other writing</h3>
+          <ul class="plain-list">
+            {%- for w in site.data.publications.own_writing %}
+            <li><span><b>{{ w.title }}</b> — {{ w.note }}</span><small><a href="{{ w.url }}" target="_blank" rel="noopener me">{{ w.venue }} ↗</a></small></li>
+            {%- endfor %}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band" aria-labelledby="cta-title">
+      <div class="container">
+        <h2 id="cta-title">Reviewing an application? <em>The CV has it all on one page.</em></h2>
+        <a class="btn btn-lime" href="../cv/">View CV <span class="btn-arrow" aria-hidden="true">→</span></a>
+      </div>
+    </section>

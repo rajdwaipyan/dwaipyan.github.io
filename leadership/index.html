@@ -1,0 +1,131 @@
+---
+layout: default
+title: Leadership — Dwaipyan Mandal, CEO of Surjamukhi Sangstha
+og_title: Dwaipyan Mandal — leadership and development-sector experience
+description: Dwaipyan Mandal has been Chief Executive Officer of Surjamukhi Sangstha (SMS), a non-governmental organisation in Bangladesh, since 26 October 2026, after leading its IT and projects from January 2020.
+root: "../"
+nav: leadership
+crumb: Leadership
+---
+{%- assign L = site.data.leadership -%}
+    <section class="page-hero page-hero-navy" id="top" data-room="navy" aria-labelledby="page-title">
+      <div class="container page-hero-grid">
+        <div>
+          <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Home</a><span aria-hidden="true">/</span><span aria-current="page">Leadership</span></nav>
+          <p class="eyebrow"><span class="eyebrow-mark" aria-hidden="true"></span>Executive profile</p>
+          <h1 class="page-title" id="page-title">{{ L.current_role.title }}, <em>{{ L.organisation.name }}.</em></h1>
+          <p class="page-lede">{{ L.current_role.statement }}</p>
+          <ul class="page-jump">
+            <li><a href="#role">The role</a></li>
+            <li><a href="#journey">Path to CEO</a></li>
+            <li><a href="#programmes">Programmes</a></li>
+            <li><a href="#principles">Principles</a></li>
+          </ul>
+        </div>
+        <aside class="exec-card reveal" aria-label="Executive summary">
+          <p class="exec-k">Executive summary</p>
+          <dl>
+            <div><dt>Organisation</dt><dd>{{ L.organisation.name }} ({{ L.organisation.short }})</dd></div>
+            <div><dt>Type</dt><dd>{{ L.organisation.type }} · {{ L.organisation.country }}</dd></div>
+            <div><dt>Role</dt><dd>{{ L.current_role.title }}</dd></div>
+            <div><dt>Since</dt><dd><time datetime="{{ L.current_role.since_iso }}">{{ L.current_role.since }}</time></dd></div>
+            <div><dt>With SMS since</dt><dd>January 2020</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="role" aria-labelledby="role-title">
+      <div class="container two-col">
+        <header class="reveal">
+          <p class="kicker"><span>01</span> The role</p>
+          <h2 class="section-title" id="role-title">What the CEO role <em>covers.</em></h2>
+        </header>
+        <div class="prose reveal">
+          {%- if L.responsibilities.size > 0 %}
+          <ul class="check-list">{% for r in L.responsibilities %}<li>{{ r }}</li>{% endfor %}</ul>
+          {%- else %}
+          <p>
+            The appointment took effect on 26 October 2026. The responsibilities, initiatives and partnerships of the
+            role are being set with the organisation and will be listed here once they are formally confirmed — this page
+            only records what is confirmed and public.
+          </p>
+          {%- endif %}
+          {%- if L.organisation.mission %}<p><b>The organisation's mission:</b> {{ L.organisation.mission }}</p>{% endif %}
+          <p class="note-box">
+            Programme results belong to the whole organisation and its partners. Where this page describes programme
+            work, it describes my part in it.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section rise-section" id="journey" data-room="ink" aria-labelledby="journey-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="kicker kicker-light"><span>02</span> Path to CEO</p>
+          <h2 class="section-title" id="journey-title">Six years inside <em>before leading it.</em></h2>
+        </header>
+        <ol class="rise-steps" data-draw>
+          <li class="reveal" style="--d:0"><span class="rs-date">Jan 2020</span><h3>Joined Surjamukhi Sangstha</h3><p>To run IT and manage projects.</p></li>
+          {%- for r in L.previous_roles %}
+          <li class="reveal" style="--d:1"><span class="rs-date">{{ r.period }}</span><h3>{{ r.title }}</h3><ul>{% for p in r.points %}<li>{{ p }}</li>{% endfor %}</ul></li>
+          {%- endfor %}
+          <li class="reveal rs-now" style="--d:2"><span class="rs-date">{{ L.current_role.since }}</span><h3>{{ L.current_role.title }}</h3><p>Current role.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="programmes" aria-labelledby="prog-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="kicker"><span>03</span> Programmes</p>
+          <h2 class="section-title" id="prog-title">Development-sector <em>programme work.</em></h2>
+          <p class="section-intro">Case studies are added as details are confirmed and cleared for publication. No beneficiary information or internal documents are published here.</p>
+        </header>
+        <div class="prog-grid">
+          {%- for g in L.programmes %}
+          {%- unless g.published == false %}
+          <article class="prog-card reveal" id="prog-{{ g.id }}">
+            <p class="prog-k">{{ g.sector }}{% if g.place %} · {{ g.place }}{% endif %}</p>
+            <h3>{{ g.title }}</h3>
+            <dl class="prog-facts">
+              {%- if g.partners.size > 0 %}<div><dt>Partners</dt><dd>{{ g.partners | join: " · " }}</dd></div>{% endif %}
+              {%- if g.period %}<div><dt>Period</dt><dd>{{ g.period }}</dd></div>{% endif %}
+              {%- if g.my_part %}<div><dt>My part</dt><dd>{{ g.my_part }}</dd></div>{% endif %}
+            </dl>
+            {%- if g.team_note %}<p class="prog-note">{{ g.team_note }}</p>{% endif %}
+            {%- if g.detail_pending %}<p class="prog-pending">A fuller case study will follow once the organisation clears the details.</p>{% endif %}
+          </article>
+          {%- endunless %}
+          {%- endfor %}
+          <article class="prog-card prog-cta reveal">
+            <p class="prog-k">For partners</p>
+            <h3>Considering working with Surjamukhi Sangstha?</h3>
+            <p>I'm happy to share more about the organisation's work directly.</p>
+            <a class="btn btn-ink btn-sm" href="../#contact">Get in touch</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section principles-section" id="principles" aria-labelledby="princ-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="kicker"><span>04</span> How I lead</p>
+          <h2 class="section-title" id="princ-title">Three <em>working principles.</em></h2>
+        </header>
+        <ol class="princ-grid">
+          {%- for x in L.principles %}
+          <li class="reveal" style="--d:{{ forloop.index0 }}"><span class="princ-no">0{{ forloop.index }}</span><h3>{{ x.title }}</h3><p>{{ x.text }}</p></li>
+          {%- endfor %}
+        </ol>
+      </div>
+    </section>
+
+    <section class="cta-band" aria-labelledby="cta-title">
+      <div class="container">
+        <h2 id="cta-title">The full record is <em>in the CV.</em></h2>
+        <a class="btn btn-lime" href="../cv/">View CV <span class="btn-arrow" aria-hidden="true">→</span></a>
+      </div>
+    </section>

@@ -12,28 +12,32 @@ export function initCore() {
   initMenu();
   initScrollWork();
   initReveals();
-  initNavCurrent();
+  initCounters();
+  initPrint();
   initRunWhenVisible();
   initCopyButtons(document);
 }
 
-/* ---------- Mobile menu */
+/* ---------- Phone menu: a separate sheet (#mobile-nav) opened by #menu-toggle */
 function initMenu() {
   const toggle = document.getElementById("menu-toggle");
-  const nav = document.getElementById("primary-nav");
+  const nav = document.getElementById("mobile-nav");
   if (!toggle || !nav) return;
   const mobile = window.matchMedia("(max-width: 960px)");
   const label = toggle.querySelector(".menu-toggle-label");
+  nav.querySelectorAll(".mnav-list li").forEach((li, i) => li.style.setProperty("--i", String(i)));
+  nav.inert = true;
 
   const setOpen = (open) => {
     toggle.setAttribute("aria-expanded", String(open));
     if (label) label.textContent = open ? "Close" : "Menu";
     nav.classList.toggle("is-open", open);
+    nav.inert = !open;
     document.body.classList.toggle("nav-open", open);
-    if (open) nav.querySelector("a")?.focus();
+    if (open) nav.querySelector("a")?.focus({ preventScroll: true });
   };
   toggle.addEventListener("click", () => setOpen(toggle.getAttribute("aria-expanded") !== "true"));
-  nav.addEventListener("click", (e) => { if (e.target.closest("a") && mobile.matches) setOpen(false); });
+  nav.addEventListener("click", (e) => { if (e.target.closest("a")) setOpen(false); });
   document.addEventListener("keydown", (e) => {
     if (toggle.getAttribute("aria-expanded") !== "true") return;
     if (e.key === "Escape") { setOpen(false); toggle.focus(); }
@@ -53,6 +57,8 @@ function initScrollWork() {
   const root = document.documentElement;
   const progressEls = [...document.querySelectorAll("[data-progress]")];
   const parallaxEls = [...document.querySelectorAll("[data-parallax]")];
+  const drawEls = [...document.querySelectorAll("[data-draw]")];
+  const bar = document.querySelector(".scroll-progress span");
   let ticking = false;
   let lastRoom = "";
 
@@ -60,6 +66,16 @@ function initScrollWork() {
     ticking = false;
     const vh = window.innerHeight;
     header?.classList.toggle("is-scrolled", window.scrollY > 8);
+    const max = document.documentElement.scrollHeight - vh;
+    bar?.style.setProperty("--sp", max > 0 ? (window.scrollY / max).toFixed(4) : "0");
+    // lines that draw themselves: 0 when the element's top reaches 85% of the screen, 1 when its bottom reaches 60%
+    if (!reduceMotion.matches) {
+      for (const el of drawEls) {
+        const r = el.getBoundingClientRect();
+        const p = Math.min(1, Math.max(0, (vh * 0.85 - r.top) / Math.max(1, r.height + vh * 0.25)));
+        el.style.setProperty("--draw", p.toFixed(3));
+      }
+    }
 
     // Which section sits under the header? Its colours restyle the header.
     const probe = document.elementFromPoint(window.innerWidth / 2, (header?.offsetHeight || 68) + 4);
@@ -104,19 +120,34 @@ function initReveals() {
   items.forEach((el) => io.observe(el));
 }
 
-/* ---------- Highlight the nav link for the section in view */
-function initNavCurrent() {
-  const links = [...document.querySelectorAll('.primary-nav a[href^="#"]:not(.btn)')];
-  if (!links.length || !("IntersectionObserver" in window)) return;
-  const byId = new Map(links.map((a) => [a.getAttribute("href").slice(1), a]));
+/* ---------- Numbers that count up once when they appear */
+function initCounters() {
+  const els = [...document.querySelectorAll("[data-count]")];
+  if (!els.length || reduceMotion.matches || !("IntersectionObserver" in window)) return;
   const io = new IntersectionObserver((entries) => {
-    for (const entry of entries) {
-      if (!entry.isIntersecting) continue;
-      links.forEach((l) => l.removeAttribute("aria-current"));
-      byId.get(entry.target.id)?.setAttribute("aria-current", "true");
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      io.unobserve(e.target);
+      const el = e.target, to = Number(el.dataset.count);
+      const from = to > 1000 ? to - 12 : 0, start = performance.now(), dur = 1300;
+      const tick = (now) => {
+        const t = Math.min(1, (now - start) / dur), eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = String(Math.round(from + (to - from) * eased));
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
     }
-  }, { rootMargin: "-45% 0px -50% 0px" });
-  byId.forEach((_, id) => { const el = document.getElementById(id); if (el) io.observe(el); });
+  }, { threshold: 0.6 });
+  els.forEach((el) => {
+    const to = Number(el.dataset.count);
+    el.textContent = String(to > 1000 ? to - 12 : 0);
+    io.observe(el);
+  });
+}
+
+/* ---------- Print buttons (the CV page) */
+function initPrint() {
+  document.querySelectorAll("[data-print]").forEach((b) => b.addEventListener("click", () => window.print()));
 }
 
 /* ---------- Small looping animations run only while on screen */

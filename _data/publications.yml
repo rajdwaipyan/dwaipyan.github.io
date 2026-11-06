@@ -1,0 +1,19 @@
+# Publications, writing and media — shown on /education/ and /about/.
+# Keep the three kinds apart: academic work, your own writing, and coverage written by others.
+
+academic:
+  - title: "Digital Shield: Bangladesh's Transformative Roadmap to Cyber Resilience in the ISP Ecosystem"
+    kind: Master's project report (PMIT, IIT, Jahangirnagar University)
+    year: 2025
+    status: Accepted 5 April 2025 · not publicly available
+    url:
+
+own_writing:
+  - title: Technology and cybersecurity articles
+    venue: Medium
+    url: https://medium.com/@rajdwaipyan
+    note: Including pieces on Zero Trust and AI in cybersecurity.
+
+peer_reviewed: []     # journal or conference papers, once published
+
+coverage: []          # articles about you by independent outlets: { title, outlet, author, date, url }

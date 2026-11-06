@@ -1,32 +1,66 @@
 {%- comment -%}
-  Shared header. Pass base="" on the home page and base="../" on pages one folder deep,
-  plus current="about" (etc.) to mark the current page.
+  Header: DM monogram + name, a floating navigation capsule with a sliding marker, CV and Contact.
+  On scroll it tightens into a floating bar (assets/js/nav.js + "HEADER" in style.css).
+  The phone menu is a separate sheet (#mobile-nav) so the header's blur can't trap it.
+  Uses `root` ("" or "../") and page.nav from the layout.
 {%- endcomment -%}
 <a class="skip-link" href="#main">Skip to content</a>
+<div class="scroll-progress" aria-hidden="true"><span></span></div>
 
 <header class="site-header" id="site-header">
   <div class="header-inner">
-    <a class="wordmark" href="{% if include.base == '' %}#top{% else %}{{ include.base }}{% endif %}" aria-label="Dwaipyan Mandal — home">
-      <span class="wordmark-name">Dwaipyan Mandal</span><span class="wordmark-dot" aria-hidden="true"></span>
+    <a class="brand" href="{% if root == '' %}#top{% else %}{{ root }}{% endif %}">
+      <svg class="brand-mark" viewBox="0 0 44 44" aria-hidden="true" focusable="false">
+        <rect class="bm-bg" x="1" y="1" width="42" height="42" rx="13"/>
+        <path class="bm-d" d="M10 12.5h5.5a9.5 9.5 0 0 1 0 19H10z"/>
+        <path class="bm-m" d="M21.5 31.5v-19l5.25 9 5.25-9v19"/>
+        <circle class="bm-dot" cx="35.5" cy="31.5" r="1.9"/>
+      </svg>
+      <span class="brand-text">
+        <span class="brand-name">Dwaipyan Mandal</span>
+        <span class="brand-role">Technology · Leadership · Development</span>
+      </span>
     </a>
 
-    <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+    <nav class="nav-capsule" aria-label="Primary">
+      <span class="nav-pill" aria-hidden="true"></span>
       <ul>
-        <li><a href="{{ include.base }}#work">Work</a></li>
-        <li><a href="{{ include.base }}#build">What I build</a></li>
-        <li><a href="{{ include.base }}#leadership">Leadership</a></li>
-        <li><a href="{{ include.base }}about/"{% if include.current == 'about' %} aria-current="page"{% endif %}>About</a></li>
-        <li class="nav-cta-item"><a class="btn btn-ink btn-sm" href="{{ include.base }}#contact">Start a project</a></li>
+        <li><a href="{{ root }}experience/"{% if page.nav == 'experience' %} aria-current="page"{% endif %}>Experience</a></li>
+        <li><a href="{{ root }}leadership/"{% if page.nav == 'leadership' %} aria-current="page"{% endif %}>Leadership</a></li>
+        <li><a href="{{ root }}education/"{% if page.nav == 'education' %} aria-current="page"{% endif %}>Education</a></li>
+        <li><a href="{{ root }}portfolio/"{% if page.nav == 'portfolio' %} aria-current="page"{% endif %}>Portfolio</a></li>
+        <li><a href="{{ root }}about/"{% if page.nav == 'about' %} aria-current="page"{% endif %}>About</a></li>
       </ul>
     </nav>
 
-    <button class="xray-toggle" id="xray-toggle" type="button" aria-pressed="false" title="X-ray mode — see how this page is built (shortcut: X)">
-      <span class="xray-icon" aria-hidden="true"></span><span class="xray-label">X-ray</span>
-    </button>
-
-    <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
-      <span class="menu-toggle-label">Menu</span>
-      <span class="menu-toggle-icon" aria-hidden="true"><i></i><i></i></span>
-    </button>
+    <div class="header-actions">
+      <a class="btn-cv" href="{{ root }}cv/"{% if page.nav == 'cv' %} aria-current="page"{% endif %}>
+        <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M5 2.5h7l3.5 3.5v11.5H5z M12 2.5V6h3.5 M8 10.5h5 M8 13.5h5"/></svg>
+        <span>CV</span>
+      </a>
+      <a class="btn btn-sm header-contact" href="{{ root }}#contact">Contact</a>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Menu">
+        <span class="menu-toggle-label">Menu</span>
+        <span class="menu-toggle-icon" aria-hidden="true"><i></i><i></i></span>
+      </button>
+    </div>
   </div>
 </header>
+
+<div class="mobile-nav" id="mobile-nav">
+  <nav aria-label="Menu">
+    <ol class="mnav-list">
+      <li><a href="{% if root == '' %}#top{% else %}{{ root }}{% endif %}"{% if page.nav == nil or page.nav == 'home' %} aria-current="page"{% endif %}><span>00</span>Home</a></li>
+      <li><a href="{{ root }}experience/"{% if page.nav == 'experience' %} aria-current="page"{% endif %}><span>01</span>Experience</a></li>
+      <li><a href="{{ root }}leadership/"{% if page.nav == 'leadership' %} aria-current="page"{% endif %}><span>02</span>Leadership</a></li>
+      <li><a href="{{ root }}education/"{% if page.nav == 'education' %} aria-current="page"{% endif %}><span>03</span>Education</a></li>
+      <li><a href="{{ root }}portfolio/"{% if page.nav == 'portfolio' %} aria-current="page"{% endif %}><span>04</span>Portfolio</a></li>
+      <li><a href="{{ root }}about/"{% if page.nav == 'about' %} aria-current="page"{% endif %}><span>05</span>About</a></li>
+    </ol>
+    <div class="mnav-actions">
+      <a class="btn btn-lime" href="{{ root }}cv/">View CV</a>
+      <a class="btn btn-line" href="{{ root }}#contact">Contact</a>
+    </div>
+    <p class="mnav-meta">Dhaka, Bangladesh · <a href="mailto:rajdwaipayan@gmail.com">rajdwaipayan@gmail.com</a></p>
+  </nav>
+</div>

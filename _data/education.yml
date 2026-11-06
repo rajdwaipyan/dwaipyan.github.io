@@ -1,0 +1,73 @@
+# Education, academic work, training and research interests — shown on /education/, /cv/ and the home page.
+# Only confirmed facts. Anything still to confirm is listed in CONTENT_REVIEW.md.
+
+degrees:
+  - id: pmit
+    degree: Professional Masters in Information Technology (PMIT)
+    short: PMIT
+    institution: Jahangirnagar University
+    unit: Institute of Information Technology (IIT)
+    location: Savar, Dhaka
+    year_label: Project report accepted Apr 2025
+    cv_year: 2025          # year shown on the CV — confirm the official completion year (CONTENT_REVIEW.md)
+    result: CGPA 3.02 / 4.00
+    mode: Coursework and a research project report
+    report:
+      title: "Digital Shield: Bangladesh's Transformative Roadmap to Cyber Resilience in the ISP Ecosystem"
+      kind: Project report
+      accepted: 5 April 2025
+      supervisor: Prof. Dr. Fahima Tabassum
+      summary: >-
+        Looks at cyber resilience across Bangladesh's internet service providers and proposes a security and
+        policy roadmap. Because ISPs would not share raw operational data, the analysis used a public dataset; the
+        work continues as an independent research interest.
+
+  - id: bsc
+    degree: B.Sc. in Computer Science & Engineering
+    short: BSc CSE
+    institution: Stamford University Bangladesh
+    unit: Department of Computer Science & Engineering
+    location: Dhaka
+    year: 2022
+    year_label: Graduated 2022
+    result: CGPA 3.34 / 4.00
+    projects:
+      - title: Driver drowsiness detection
+        detail: A convolutional neural network that flags signs of drowsiness from a camera feed.
+        tools: [Python, OpenCV, Keras]
+      - title: University attendance management system
+        detail: Attendance records and reports for classes.
+        tools: [ASP.NET MVC]
+      - title: Small business management system
+        detail: Sales, stock and records for a small business.
+        tools: [ASP.NET MVC]
+
+training:
+  - title: Professional Cyber Security
+    provider: DEV SKILL, Dhaka
+    length: 4 months
+  - title: CyberOps Associate course (Cisco curriculum)
+    provider: American International University-Bangladesh (AIUB)
+    length: 3 months
+  - title: C# .NET Programming
+    provider: BITM, Dhaka
+    length: 3 months
+  - title: Web Design & Development
+    provider: LEDP, Kurigram
+    length: 4 months
+
+research_interests:
+  - title: ISP and home-network security in Bangladesh
+    detail: Consumer routers, ISP-supplied equipment, Wi-Fi security (WPA2/WPA3, WPS, UPnP), management interfaces and common misconfigurations.
+  - title: Cyber-resilience policy
+    detail: Practical security baselines and policy proposals for Bangladesh's ISP ecosystem.
+  - title: Responsible disclosure and research ethics
+    detail: Studying networks in ways that protect the people and providers involved.
+
+graduate_plans: Planning graduate study in cybersecurity. No admission or scholarship has been received yet.
+
+languages:
+  - name: Bengali
+    level: Native
+  - name: English
+    level: Working language · IELTS preparation in progress
