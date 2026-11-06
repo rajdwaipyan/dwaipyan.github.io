@@ -1,0 +1,75 @@
+---
+# Shared page shell: <head> (SEO + social + structured data), header, footer, guide, scripts.
+# Each page sets in its front matter:
+#   title, description      search-result title and snippet
+#   root                    "" on the home page, "../" on pages one folder deep (asset and link prefix)
+#   nav                     experience | leadership | education | portfolio | about | cv | home (marks the menu)
+#   og_title (optional)     social-card title
+#   schema (optional)       profile | about | page  — the page's type in the structured data
+#   crumb (optional)        breadcrumb name (defaults to the nav label)
+#   guide: false            leave the drawn guide off this page
+#   preload_portrait: true  preload the hero portrait (home only)
+---
+{%- assign base = "https://rajdwaipyan.github.io/dwaipyan.github.io" -%}
+{%- assign root = page.root | default: "" -%}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>document.documentElement.className = document.documentElement.className.replace("no-js", "js");</script>
+  <title>{{ page.title | escape }}</title>
+  <meta name="description" content="{{ page.description | escape }}">
+  <link rel="canonical" href="{{ base }}{{ page.url }}">
+  <meta name="author" content="Dwaipyan Mandal">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  {%- if page.url == "/" %}
+  <meta name="google-site-verification" content="_IQN1f_RiHQQ7PEjutis155a5uZ2Fwysa49_05e4FhA">
+  {%- endif %}
+  <meta name="theme-color" content="#0e1120">
+  <meta name="color-scheme" content="light">
+
+  <meta property="og:type" content="profile">
+  <meta property="og:site_name" content="Dwaipyan Mandal">
+  <meta property="og:title" content="{{ page.og_title | default: page.title | escape }}">
+  <meta property="og:description" content="{{ page.description | escape }}">
+  <meta property="og:url" content="{{ base }}{{ page.url }}">
+  <meta property="og:image" content="{{ base }}/assets/img/og-dwaipyan-mandal.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Dwaipyan Mandal">
+  <meta property="profile:first_name" content="Dwaipyan">
+  <meta property="profile:last_name" content="Mandal">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page.og_title | default: page.title | escape }}">
+  <meta name="twitter:description" content="{{ page.description | escape }}">
+  <meta name="twitter:image" content="{{ base }}/assets/img/og-dwaipyan-mandal.jpg">
+
+  <link rel="icon" href="{{ root }}assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="{{ root }}assets/icons/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="{{ root }}assets/icons/icon-180.png">
+
+  <link rel="preload" href="{{ root }}assets/fonts/bricolage-grotesque-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ root }}assets/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
+  {%- if page.preload_portrait %}
+  <link rel="preload" href="{{ root }}assets/img/dwaipyan-mandal-portrait.webp" as="image" type="image/webp" fetchpriority="high">
+  {%- endif %}
+  <link rel="stylesheet" href="{{ root }}style.css">
+  <script type="module" src="{{ root }}assets/js/main.js"></script>
+
+  {% include jsonld.html %}
+</head>
+
+<body class="page-{{ page.nav | default: 'home' }}">
+  {% include site-header.html %}
+
+  <main id="main">
+{{ content }}
+  </main>
+
+  {% include site-footer.html %}
+  {%- unless page.guide == false %}
+  {% include guide.html %}
+  {%- endunless %}
+</body>
+</html>

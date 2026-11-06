@@ -3,7 +3,7 @@
   The visual changes with p.layout; the text block is the same for every project.
 {%- endcomment -%}
 {%- assign domain = p.url | remove: 'https://' | remove: 'http://' | remove: 'www.' | remove: '/' -%}
-{%- assign img = 'assets/img/work/' -%}
+{%- assign img = page.root | append: 'assets/img/work/' -%}
 <section class="room room-{{ p.room }} layout-{{ p.layout }}" id="work-{{ p.id }}" data-room="{{ p.room }}" aria-labelledby="work-{{ p.id }}-title"{% if p.guide %} data-guide="{{ p.guide | escape }}"{% endif %}{% if p.guide_prop %} data-guide-prop="{{ p.guide_prop }}"{% endif %}{% if p.guide_side %} data-guide-side="{{ p.guide_side }}"{% endif %} data-guide-point>
   <div class="container room-grid">
     <header class="room-head reveal">
@@ -50,10 +50,20 @@
     </div>
 
     <div class="room-body reveal">
+      <dl class="room-meta">
+        <div><dt>Industry</dt><dd>{{ p.industry }}</dd></div>
+        <div><dt>Country</dt><dd>{{ p.country }}</dd></div>
+      </dl>
       <dl class="room-facts">
-        <div><dt>The brief</dt><dd>{{ p.brief }}</dd></div>
+        <div><dt>Objective</dt><dd>{{ p.brief }}</dd></div>
         {%- if p.role %}
-        <div><dt>My part</dt><dd>{{ p.role }}</dd></div>
+        <div><dt>My role</dt><dd>{{ p.role }}</dd></div>
+        {%- endif %}
+        {%- if p.challenge %}
+        <div><dt>Challenge</dt><dd>{{ p.challenge }}</dd></div>
+        {%- endif %}
+        {%- if p.solution %}
+        <div><dt>Solution</dt><dd>{{ p.solution }}</dd></div>
         {%- endif %}
         {%- for f in p.facts %}
         <div><dt>{{ f.label }}</dt><dd>{{ f.value }}</dd></div>

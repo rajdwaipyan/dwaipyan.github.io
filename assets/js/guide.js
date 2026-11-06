@@ -26,7 +26,8 @@ export function initGuide() {
   const compact = window.matchMedia("(max-width: 640px)");
   const wide = window.matchMedia("(min-width: 961px)");
 
-  let mode = read();
+  // Optional by default: he starts tucked away as a small face until a visitor opens him.
+  let mode = read() || "min";
   let hideTimer = 0, talkTimer = 0, busy = false, asleep = false, helloOpen = false, magicProp = "";
   let lastSection = null;
   const said = new Set();
@@ -227,13 +228,22 @@ export function initGuide() {
     if (e.key === "Escape" && guide.classList.contains("is-talking")) { quietBubble(); figure.focus({ preventScroll: true }); }
   });
 
+  /* ---------- the footer's "Meet the drawn me" button */
+  document.querySelectorAll("[data-guide-open]").forEach((b) => b.addEventListener("click", () => {
+    unlock();
+    if (mode === "min") setMode("quiet");
+    gesture("wave", 2200); sfx.pop();
+    say("Hi! I'm the drawn version. Click me for tricks.", { voice: true });
+    figure.focus({ preventScroll: true });
+  }));
+
   /* ---------- enter, then say hello */
   guide.hidden = false;
   setMode(mode);
   requestAnimationFrame(() => guide.classList.add("is-in"));
   setTimeout(() => {
-    if (!still) { const h = head(); burst(h.x, h.y, "sparkle", 20); }
     if (mode) return;
+    if (!still) { const h = head(); burst(h.x, h.y, "sparkle", 20); }
     gesture("wave", 2200);
     say(guide.dataset.hello || "Hi, I'm Dwaipyan — the drawn version. Want a quick tour? (Or click me for tricks.)",
       { sticky: !compact.matches, withActions: true, ms: 9000 });

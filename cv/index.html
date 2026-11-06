@@ -1,0 +1,144 @@
+---
+layout: default
+title: CV — Dwaipyan Mandal
+og_title: Dwaipyan Mandal — curriculum vitae
+description: Public CV of Dwaipyan Mandal — CEO of Surjamukhi Sangstha (SMS), co-founder of ED Shield Solutions, web developer; PMIT (Jahangirnagar University) and B.Sc. CSE (Stamford University Bangladesh). Printable and saveable as PDF.
+root: "../"
+nav: cv
+crumb: CV
+guide: false
+---
+{%- assign X = site.data.experience -%}
+{%- assign E = site.data.education -%}
+    <section class="cv-shell" id="top" aria-labelledby="cv-name">
+      <div class="container cv-toolbar">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Home</a><span aria-hidden="true">/</span><span aria-current="page">CV</span></nav>
+        <div class="cv-actions">
+          <button class="btn btn-ink" type="button" data-print>Print / Save as PDF</button>
+          <p class="cv-hint">In the print window, choose <b>Save as PDF</b> as the destination. This public CV leaves out personal identity details on purpose.</p>
+        </div>
+      </div>
+
+      <article class="cv-paper">
+        <header class="cv-head">
+          <div>
+            <h1 class="cv-name" id="cv-name">Dwaipyan Mandal</h1>
+            <p class="cv-role">Technology professional · Entrepreneur · NGO executive</p>
+          </div>
+          <ul class="cv-contact">
+            <li>Dhaka, Bangladesh</li>
+            <li><a href="mailto:rajdwaipayan@gmail.com">rajdwaipayan@gmail.com</a></li>
+            <li><a href="https://rajdwaipyan.github.io/dwaipyan.github.io/">rajdwaipyan.github.io/dwaipyan.github.io</a></li>
+            <li><a href="https://www.linkedin.com/in/dwaipyan-cyberexpert">linkedin.com/in/dwaipyan-cyberexpert</a></li>
+            <li><a href="https://github.com/rajdwaipyan">github.com/rajdwaipyan</a></li>
+          </ul>
+        </header>
+
+        <section class="cv-sec" aria-labelledby="cv-summary">
+          <h2 id="cv-summary">Professional summary</h2>
+          <p>
+            Technology professional and NGO executive based in Dhaka. Chief Executive Officer of Surjamukhi Sangstha (SMS)
+            since 26 October 2026, after leading the organisation's IT and projects from January 2020, including programme
+            activities involving the International Labour Organization and Dhaka South City Corporation. Co-founder and
+            operational CEO of ED Shield Solutions. More than six years of web development for international clients —
+            WordPress, WooCommerce, Shopify, web applications and CRM automation with GoHighLevel and n8n. Professional
+            Masters in Information Technology (Jahangirnagar University) and B.Sc. in Computer Science &amp; Engineering
+            (Stamford University Bangladesh).
+          </p>
+        </section>
+
+        <section class="cv-sec" aria-labelledby="cv-exp">
+          <h2 id="cv-exp">Experience — organisations</h2>
+          {%- for e in X.organisations %}{% unless e.published == false %}
+          {%- for r in e.roles %}
+          <div class="cv-item">
+            <p class="cv-when">{% if r.start_label %}{{ r.start_label }} – {{ r.end_label }}{% else %}{{ r.end_label }}{% endif %}</p>
+            <div>
+              <h3>{{ r.title }} <span>· {{ e.org }}</span></h3>
+              {%- if r.points.size > 0 %}<ul>{% for pt in r.points %}<li>{{ pt }}</li>{% endfor %}</ul>{% endif %}
+            </div>
+          </div>
+          {%- endfor %}
+          {%- endunless %}{% endfor %}
+        </section>
+
+        <section class="cv-sec" aria-labelledby="cv-ind">
+          <h2 id="cv-ind">Experience — business &amp; freelance</h2>
+          {%- for e in X.independent %}{% unless e.published == false %}
+          {%- for r in e.roles %}
+          <div class="cv-item">
+            <p class="cv-when">{% if r.start_label %}{{ r.start_label }} – {{ r.end_label }}{% else %}{{ r.end_label }}{% endif %}</p>
+            <div>
+              <h3>{{ r.title }} <span>· {{ e.org }}</span></h3>
+              {%- if r.points.size > 0 %}<ul>{% for pt in r.points %}<li>{{ pt }}</li>{% endfor %}</ul>{% endif %}
+            </div>
+          </div>
+          {%- endfor %}
+          {%- endunless %}{% endfor %}
+        </section>
+
+        <section class="cv-sec" aria-labelledby="cv-edu">
+          <h2 id="cv-edu">Education</h2>
+          {%- for d in E.degrees %}
+          <div class="cv-item">
+            <p class="cv-when">{{ d.year | default: d.cv_year }}</p>
+            <div>
+              <h3>{{ d.degree }} <span>· {{ d.institution }}</span></h3>
+              <p>{% if d.unit %}{{ d.unit }} · {% endif %}{{ d.result }}</p>
+              {%- if d.report %}<p>Project report: “{{ d.report.title }}” (accepted {{ d.report.accepted }}; supervisor {{ d.report.supervisor }}).</p>{% endif %}
+            </div>
+          </div>
+          {%- endfor %}
+        </section>
+
+        <section class="cv-sec" aria-labelledby="cv-lead">
+          <h2 id="cv-lead">Leadership</h2>
+          <ul class="cv-bullets">
+            <li><b>Chief Executive Officer</b>, Surjamukhi Sangstha (SMS), a non-governmental organisation in Bangladesh — from 26 October 2026.</li>
+            <li><b>Co-founder &amp; operational CEO</b>, ED Shield Solutions, a web design and development company in Dhaka.</li>
+            <li>Project management in the development sector since 2020, including government and ILO-related programme work.</li>
+          </ul>
+        </section>
+
+        <section class="cv-sec" aria-labelledby="cv-proj">
+          <h2 id="cv-proj">Selected projects</h2>
+          <ul class="cv-bullets">
+            {%- for p in site.data.projects %}
+            <li><b>{{ p.title }}</b> ({{ p.industry }}, {{ p.country }}) — {{ p.built_with | join: ", " }}.{% if p.role %} {{ p.role }}{% endif %}</li>
+            {%- endfor %}
+          </ul>
+        </section>
+
+        <section class="cv-sec cv-two" aria-labelledby="cv-skills">
+          <h2 id="cv-skills">Technical &amp; management skills</h2>
+          <dl class="cv-skills">
+            {%- for g in site.data.skills %}
+            <div><dt>{{ g.group }}</dt><dd>{{ g.items | join: ", " }}</dd></div>
+            {%- endfor %}
+          </dl>
+        </section>
+
+        <section class="cv-sec" aria-labelledby="cv-research">
+          <h2 id="cv-research">Research interests</h2>
+          <ul class="cv-bullets">
+            {%- for r in E.research_interests %}<li><b>{{ r.title }}</b> — {{ r.detail }}</li>{% endfor %}
+          </ul>
+        </section>
+
+        <section class="cv-sec" aria-labelledby="cv-train">
+          <h2 id="cv-train">Training</h2>
+          <ul class="cv-bullets">
+            {%- for t in E.training %}<li><b>{{ t.title }}</b> — {{ t.provider }} ({{ t.length }})</li>{% endfor %}
+          </ul>
+        </section>
+
+        <section class="cv-sec" aria-labelledby="cv-lang">
+          <h2 id="cv-lang">Languages</h2>
+          <p>{% for l in E.languages %}<b>{{ l.name }}</b> — {{ l.level }}{% unless forloop.last %} · {% endunless %}{% endfor %}</p>
+        </section>
+
+        <footer class="cv-foot">
+          <p>References available on request. Online version: rajdwaipyan.github.io/dwaipyan.github.io/cv/</p>
+        </footer>
+      </article>
+    </section>

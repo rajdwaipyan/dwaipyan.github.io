@@ -1,0 +1,15 @@
+# Skills — shown on /experience/, /cv/ and the home page (expertise).
+# Group them the way a reader scans: what you build, what you connect, how you lead.
+
+- group: Websites & e-commerce
+  items: [WordPress, Elementor Pro, Crocoblock, WooCommerce, Shopify, Custom themes, Speed & responsive optimisation]
+- group: Web applications & integration
+  items: [Custom WordPress plugins, Dashboards & client portals, REST APIs, Webhooks, Databases]
+- group: CRM & automation
+  items: [GoHighLevel, n8n, A2P 10DLC SMS set-up, Workflow automation, AI-assisted workflows]
+- group: Leadership & management
+  items: [Organisational leadership, Project management, IT management, Programme coordination, Stakeholder reporting]
+- group: Security & research
+  items: [WordPress hardening, Network & Wi-Fi security (studying), Research design, Technical writing]
+- group: Programming
+  items: [PHP, JavaScript, HTML & CSS, Python, C# / ASP.NET MVC]

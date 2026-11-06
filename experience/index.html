@@ -1,0 +1,82 @@
+---
+layout: default
+title: Professional Experience — Dwaipyan Mandal
+og_title: Dwaipyan Mandal — professional experience
+description: Career history of Dwaipyan Mandal — CEO of Surjamukhi Sangstha (SMS), IT and project management in the NGO sector since 2020, co-founder of ED Shield Solutions, and six years of international web development.
+root: "../"
+nav: experience
+crumb: Experience
+---
+    <section class="page-hero" id="top" aria-labelledby="page-title">
+      <div class="container page-hero-grid">
+        <div>
+          <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Home</a><span aria-hidden="true">/</span><span aria-current="page">Experience</span></nav>
+          <h1 class="page-title" id="page-title">Professional <em>experience.</em></h1>
+          <p class="page-lede">
+            Two tracks, kept separate on purpose: the organisation I have worked inside since 2020 and now lead, and
+            the business and freelance work I have built alongside it.
+          </p>
+          <ul class="page-jump">
+            <li><a href="#organisations">Organisations &amp; NGO</a></li>
+            <li><a href="#independent">Business &amp; freelance</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="../cv/">Full CV</a></li>
+          </ul>
+        </div>
+        <aside class="page-aside reveal" aria-label="Summary">
+          <p class="aside-k">In short</p>
+          <dl class="aside-facts">
+            <div><dt>Now</dt><dd>CEO, Surjamukhi Sangstha (SMS)</dd></div>
+            <div><dt>Since 2020</dt><dd>NGO IT &amp; project management</dd></div>
+            <div><dt>Also</dt><dd>Co-founder &amp; operational CEO, ED Shield Solutions</dd></div>
+            <div><dt>6+ years</dt><dd>Web development for international clients</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section xp-section" id="organisations" aria-labelledby="org-title">
+      <div class="container xp-layout">
+        <header class="xp-side reveal">
+          <p class="kicker"><span>01</span> Track one</p>
+          <h2 class="section-title" id="org-title">Organisations <em>&amp; NGO.</em></h2>
+          <p class="section-intro">Employment and leadership roles inside organisations.</p>
+        </header>
+        {% include exp-track.html track=site.data.experience.organisations %}
+      </div>
+    </section>
+
+    <section class="section xp-section xp-alt" id="independent" aria-labelledby="ind-title">
+      <div class="container xp-layout">
+        <header class="xp-side reveal">
+          <p class="kicker"><span>02</span> Track two</p>
+          <h2 class="section-title" id="ind-title">Business <em>&amp; freelance.</em></h2>
+          <p class="section-intro">My own company and client work. Live examples are in the <a href="../portfolio/">portfolio</a>.</p>
+        </header>
+        {% include exp-track.html track=site.data.experience.independent %}
+      </div>
+    </section>
+
+    <section class="section skills-section" id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="kicker"><span>03</span> Skills</p>
+          <h2 class="section-title" id="skills-title">Technology <em>and management.</em></h2>
+        </header>
+        <div class="skill-grid">
+          {%- for g in site.data.skills %}
+          <article class="skill-card reveal" style="--d:{{ forloop.index0 }}">
+            <h3>{{ g.group }}</h3>
+            <ul class="tags">{% for i in g.items %}<li>{{ i }}</li>{% endfor %}</ul>
+          </article>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band" aria-labelledby="cta-title">
+      <div class="container">
+        <h2 id="cta-title">Need the one-page version? <em>Read the CV.</em></h2>
+        <a class="btn btn-lime" href="../cv/">View CV <span class="btn-arrow" aria-hidden="true">→</span></a>
+      </div>
+    </section>

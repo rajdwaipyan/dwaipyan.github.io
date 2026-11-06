@@ -1,10 +1,49 @@
-// Hero: the name reacts to the pointer (variable-font weight), and the portrait
-// has a lens that shows the line-drawing "structure" under the photograph.
+// Hero: the name reacts to the pointer (variable-font weight), the portrait has a lens that shows
+// the line-drawing "structure" under the photograph, and the whole stage has gentle depth.
 import { reduceMotion, finePointer } from "./core.js";
 
 export function initHero() {
   initKineticName();
   initPortraitLens();
+  initDepth();
+  initCardTilt();
+}
+
+/* ---------- Hero depth: the portrait tilts a few degrees toward the pointer, the identity
+   cards drift by their own depth and the light on the photo follows. Fine pointers only. */
+function initDepth() {
+  const stage = document.querySelector("[data-tilt]");
+  const hero = stage?.closest(".hero");
+  if (!stage || !hero || reduceMotion.matches || !finePointer.matches) return;
+  let frame = 0, nx = 0, ny = 0;
+  const apply = () => {
+    frame = 0;
+    stage.style.setProperty("--ry", (nx * 7).toFixed(2) + "deg");
+    stage.style.setProperty("--rx", (-ny * 5).toFixed(2) + "deg");
+    stage.style.setProperty("--px", nx.toFixed(3));
+    stage.style.setProperty("--py", ny.toFixed(3));
+  };
+  hero.addEventListener("pointermove", (e) => {
+    const r = stage.getBoundingClientRect();
+    nx = Math.max(-1, Math.min(1, (e.clientX - (r.left + r.width / 2)) / (window.innerWidth / 2)));
+    ny = Math.max(-1, Math.min(1, (e.clientY - (r.top + r.height / 2)) / (window.innerHeight / 2)));
+    if (!frame) frame = requestAnimationFrame(apply);
+  });
+  hero.addEventListener("pointerleave", () => { nx = 0; ny = 0; if (!frame) frame = requestAnimationFrame(apply); });
+}
+
+/* ---------- Project cards lean slightly toward the pointer */
+function initCardTilt() {
+  if (reduceMotion.matches || !finePointer.matches) return;
+  document.querySelectorAll("[data-tilt-card]").forEach((card) => {
+    card.addEventListener("pointermove", (e) => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.setProperty("--ty", (x * 8).toFixed(2) + "deg");
+      card.style.setProperty("--tx", (-y * 6).toFixed(2) + "deg");
+    });
+    card.addEventListener("pointerleave", () => { card.style.setProperty("--ty", "0deg"); card.style.setProperty("--tx", "0deg"); });
+  });
 }
 
 /* ---------- Kinetic name */

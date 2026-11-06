@@ -1,0 +1,33 @@
+{%- comment -%}
+  One career track (organisations or independent) from _data/experience.yml, as a vertical timeline
+  whose line draws itself as you scroll (data-draw). Pass track=site.data.experience.organisations.
+{%- endcomment -%}
+<ol class="xp" data-draw>
+  {%- for e in include.track %}
+  {%- unless e.published == false %}
+  <li class="xp-org reveal">
+    <div class="xp-head">
+      <h3 class="xp-name">{{ e.org }}</h3>
+      <p class="xp-note">{{ e.org_note }}{% if e.location %} · {{ e.location }}{% endif %}</p>
+    </div>
+    <ol class="xp-roles">
+      {%- for r in e.roles %}
+      <li class="xp-role{% if r.current %} is-current{% endif %}">
+        <p class="xp-date">{% if r.start_label %}{{ r.start_label }} – {{ r.end_label }}{% else %}{{ r.end_label }}{% endif %}{% if r.current %}<span class="xp-now">Current</span>{% endif %}</p>
+        <h4 class="xp-title">{{ r.title }}</h4>
+        {%- if r.summary %}<p class="xp-sum">{{ r.summary }}</p>{% endif %}
+        {%- if r.points.size > 0 %}
+        <ul class="xp-points">
+          {%- for pt in r.points %}<li>{{ pt }}</li>{% endfor %}
+        </ul>
+        {%- endif %}
+      </li>
+      {%- endfor %}
+    </ol>
+    {%- if e.skills %}
+    <ul class="tags">{% for s in e.skills %}<li>{{ s }}</li>{% endfor %}</ul>
+    {%- endif %}
+  </li>
+  {%- endunless %}
+  {%- endfor %}
+</ol>

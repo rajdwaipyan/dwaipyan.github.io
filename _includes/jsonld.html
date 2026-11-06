@@ -1,0 +1,115 @@
+{%- comment -%}
+  Structured data for search engines. One consistent Person on every page (same @id), the organisations,
+  this page, and a breadcrumb on inner pages. Built from _data so it always matches what the page shows.
+{%- endcomment -%}
+{%- assign base = "https://rajdwaipyan.github.io/dwaipyan.github.io" -%}
+{%- assign pid = base | append: "/#person" -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "{{ base }}/#website",
+      "url": "{{ base }}/",
+      "name": "Dwaipyan Mandal",
+      "alternateName": "Dwaipayan Mandal",
+      "inLanguage": "en",
+      "publisher": { "@id": "{{ pid }}" }
+    },
+    {
+      "@type": {% if page.schema == "about" %}"AboutPage"{% elsif page.schema == "profile" %}"ProfilePage"{% else %}"WebPage"{% endif %},
+      "@id": "{{ base }}{{ page.url }}#webpage",
+      "url": "{{ base }}{{ page.url }}",
+      "name": {{ page.title | jsonify }},
+      "description": {{ page.description | jsonify }},
+      "isPartOf": { "@id": "{{ base }}/#website" },
+      "about": { "@id": "{{ pid }}" },
+      {%- if page.schema == "profile" or page.schema == "about" %}
+      "mainEntity": { "@id": "{{ pid }}" },
+      {%- endif %}
+      {%- if page.url != "/" %}
+      "breadcrumb": { "@id": "{{ base }}{{ page.url }}#breadcrumb" },
+      {%- endif %}
+      "dateModified": "2026-11-07",
+      "inLanguage": "en"
+    },
+    {%- if page.url != "/" %}
+    {
+      "@type": "BreadcrumbList",
+      "@id": "{{ base }}{{ page.url }}#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ base }}/" },
+        { "@type": "ListItem", "position": 2, "name": {{ page.crumb | jsonify }}, "item": "{{ base }}{{ page.url }}" }
+      ]
+    },
+    {%- endif %}
+    {
+      "@type": "Person",
+      "@id": "{{ pid }}",
+      "name": "Dwaipyan Mandal",
+      "alternateName": ["Dwaipayan Mandal"],
+      "givenName": "Dwaipyan",
+      "familyName": "Mandal",
+      "url": "{{ base }}/",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "{{ base }}/#portrait",
+        "url": "{{ base }}/assets/img/dwaipyan-mandal-1x1.jpg",
+        "width": 1200, "height": 1200,
+        "caption": "Dwaipyan Mandal"
+      },
+      "jobTitle": ["Chief Executive Officer", "Web Developer"],
+      "description": "Technology professional, entrepreneur and NGO executive in Dhaka, Bangladesh. Chief Executive Officer of Surjamukhi Sangstha (SMS) since 26 October 2026, co-founder of ED Shield Solutions, and a web developer building websites, web applications and CRM automations for international clients.",
+      "email": "mailto:rajdwaipayan@gmail.com",
+      "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressCountry": "BD" },
+      "nationality": { "@type": "Country", "name": "Bangladesh" },
+      "knowsLanguage": ["bn", "en"],
+      "knowsAbout": ["Web development", "WordPress", "WooCommerce", "Shopify", "GoHighLevel", "n8n", "Workflow automation", "REST APIs", "IT management", "Project management", "NGO leadership", "Cybersecurity", "ISP network security"],
+      "worksFor": [
+        { "@id": "{{ base }}/#sms" },
+        { "@type": "Organization", "name": "ED Shield Solutions", "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressCountry": "BD" } }
+      ],
+      "alumniOf": [
+        {%- for d in site.data.education.degrees %}
+        { "@type": "CollegeOrUniversity", "name": {{ d.institution | jsonify }} }{% unless forloop.last %},{% endunless %}
+        {%- endfor %}
+      ],
+      "hasCredential": [
+        {%- for d in site.data.education.degrees %}
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": {{ d.degree | jsonify }},
+          "recognizedBy": { "@type": "CollegeOrUniversity", "name": {{ d.institution | jsonify }} }
+        }{% unless forloop.last %},{% endunless %}
+        {%- endfor %}
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/in/dwaipyan-cyberexpert",
+        "https://github.com/rajdwaipyan",
+        "https://www.fiverr.com/dwaipyan",
+        "https://medium.com/@rajdwaipyan"
+      ],
+      "workExample": [
+        {%- for p in site.data.projects %}
+        { "@type": "WebSite", "name": {{ p.title | jsonify }}, "url": {{ p.url | jsonify }} }{% unless forloop.last %},{% endunless %}
+        {%- endfor %}
+      ]
+    },
+    {
+      "@type": "NGO",
+      "@id": "{{ base }}/#sms",
+      "name": "Surjamukhi Sangstha",
+      "alternateName": "SMS",
+      "address": { "@type": "PostalAddress", "addressCountry": "BD" },
+      "employee": {
+        "@type": "OrganizationRole",
+        "roleName": "Chief Executive Officer",
+        "startDate": "2026-10-26",
+        "employee": { "@id": "{{ pid }}" }
+      }
+    }
+  ]
+}
+</script>

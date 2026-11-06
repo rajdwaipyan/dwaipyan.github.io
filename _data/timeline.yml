@@ -35,6 +35,15 @@
   text:
   published: false   # waiting for dates and whether this role is current
 
+- date: Apr 2025
+  iso: 2025-04-05
+  kind: education
+  title: Master's project report accepted
+  org: Institute of Information Technology, Jahangirnagar University
+  text: >-
+    Professional Masters in Information Technology (PMIT) project report, “Digital Shield: Bangladesh’s
+    Transformative Roadmap to Cyber Resilience in the ISP Ecosystem”.
+
 - date: 2022
   iso: 2022
   kind: education

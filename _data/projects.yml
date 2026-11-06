@@ -11,10 +11,14 @@
 #   url         live site (leave empty if not public)
 #   room        background of the project's full-width "room": ink | navy | paper | violet | lime
 #   layout      how it is presented: split | system | scroll | stack | poster
+#   industry    sector, one or two words
+#   country     where the client is
 #   summary     one sentence, what the client does
 #   brief       what the site had to do
 #   role        what YOU did — leave empty until confirmed; it is hidden when empty
 #   built_with  list of tools, from the page source or your own records
+#   challenge   what made the job hard (only if you know it)
+#   solution    how it was solved (only if you know it)
 #   outcome     only verified, documented results; leave empty otherwise
 #   images      files in assets/img/work/ (desktop 1582×989, mobile 520×1125)
 #   facts       optional extra lines for the "system" layout
@@ -32,9 +36,13 @@
   guide: "Five lead forms, one GoHighLevel pipeline, follow-up by text. This is my favourite kind of plumbing."
   guide_prop: headset
   guide_side: left
+  industry: Real estate
+  country: United States · North Carolina
   summary: A local home-buying company that makes fair cash offers to North Carolina homeowners.
   brief: Turn visitors into qualified leads, keep each type of enquiry organised in the CRM, and follow up without anyone copying data by hand.
   role: Built the WordPress site and its five lead forms, and set up the GoHighLevel pipeline, workflows and SMS behind them.
+  challenge: Five different kinds of enquiry arrived through one site and each needed its own route in the CRM; automated texts to US numbers also needed A2P 10DLC registration before they could be sent.
+  solution: A dedicated form for each enquiry type feeding GoHighLevel, a pipeline and workflows that tag, route and follow up automatically, plus A2P 10DLC registration and a local number for SMS.
   built_with: [WordPress, Elementor Pro, GoHighLevel, A2P 10DLC SMS]
   outcome:
   images:
@@ -57,6 +65,8 @@
   guide: "Four offices, two continents, one calm website."
   guide_prop: glasses bowtie
   guide_side: left
+  industry: Business advisory
+  country: Germany · Singapore · Hong Kong · China
   summary: A boutique consultancy for market entry between Europe and Asia-Pacific, with offices in Cologne, Singapore, Hong Kong and Xiamen.
   brief: Present three advisory services with discretion, show the office network, and turn interest into consultation requests.
   role:  # TODO: confirm your role on this project
@@ -75,6 +85,8 @@
   guide: "Scroll slowly — the Vtek page scrolls inside the browser with you."
   guide_prop: hardhat
   guide_side: left
+  industry: Industrial B2B
+  country: United States · Ohio
   summary: A fluid flow control supplier in Loveland, Ohio — valves, actuators and automation accessories for process industries.
   brief: Organise a technical catalogue by product and industry, host data sheets and manuals, and capture product enquiries.
   role:  # TODO: confirm your role on this project
@@ -93,6 +105,8 @@
   guide: "Ten care services, explained in plain language for families."
   guide_prop: glasses
   guide_side: right
+  industry: Disability & care services
+  country: United States · Wyoming
   summary: A home and community-based support provider in Cheyenne, Wyoming, for adults with intellectual and developmental disabilities.
   brief: Explain ten waiver-funded services in plain language and give families and case managers a clear route to a referral.
   role:  # TODO: confirm your role on this project
@@ -112,6 +126,8 @@
   guide_prop: shades lei
   guide_side: right
   scratch: true
+  industry: Tourism
+  country: French Polynesia
   summary: A boat excursion operator in Bora Bora offering private and shared lagoon tours.
   brief: Sell private and shared lagoon tours to visitors before they travel, with online booking.
   role:  # TODO: confirm your role on this project
