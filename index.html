@@ -6,76 +6,45 @@ description: Dwaipyan Mandal (Dwaipayan Mandal) is a technology professional in 
 root: ""
 nav: home
 schema: profile
-preload_portrait: true
+preload_portrait: cutout
 ---
-    <!-- HERO — portrait-led, cinematic -->
-    <section class="hero" id="top" data-room="ink" aria-labelledby="hero-title">
-      <div class="hero-bg" aria-hidden="true"><span class="hb-grid"></span><span class="hb-glow hb-g1"></span><span class="hb-glow hb-g2"></span></div>
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow"><span class="eyebrow-mark" aria-hidden="true"></span>Dhaka, Bangladesh · Working internationally</p>
-          <h1 class="hero-title" id="hero-title">
-            <span class="kinetic" data-kinetic>Dwaipyan</span>
-            <span class="kinetic" data-kinetic>Mandal</span>
-            <span class="sr-only"> — </span>
-            <span class="hero-role">Technology leader <i aria-hidden="true">/</i> Entrepreneur <i aria-hidden="true">/</i> NGO executive</span>
-          </h1>
-          <p class="hero-tagline"><em>Building digital systems, leading technology initiatives and serving mission-driven development.</em></p>
+    <!-- HERO — an editorial cover: the name as a masthead, the portrait in front of it, a low sun behind.
+         (Surjamukhi means "facing the sun".) -->
+    <section class="hero" id="top" data-room="cream" aria-labelledby="hero-title">
+      <div class="hero-cover">
+        <h1 class="hero-mast" id="hero-title" data-parallax="-0.06">
+          <span class="mast-line"><span class="mast-word">Dwaipyan</span></span>
+          <span class="mast-line"><span class="mast-word">Mandal</span></span>
+          <span class="sr-only"> — technology leader, entrepreneur and NGO executive</span>
+        </h1>
+
+        <div class="hero-sun" aria-hidden="true" data-parallax="0.1"></div>
+
+        <figure class="hero-figure" data-parallax="0.035">
+          <img src="assets/img/dwaipyan-mandal-cutout-720.webp"
+               srcset="assets/img/dwaipyan-mandal-cutout-720.webp 720w, assets/img/dwaipyan-mandal-cutout-1100.webp 1100w"
+               sizes="(max-width: 960px) 88vw, 44vh" width="1100" height="1650"
+               alt="Dwaipyan Mandal, smiling, in a beige blazer" fetchpriority="high">
+        </figure>
+
+        <div class="hero-deck">
+          <p class="hero-kicker">Technology&nbsp;leader <span aria-hidden="true">·</span> Entrepreneur <span aria-hidden="true">·</span> NGO&nbsp;executive</p>
           <p class="hero-lede">
-            I lead Surjamukhi Sangstha, a non-governmental organisation in Bangladesh, co-founded the web company
-            ED Shield Solutions, and have spent more than six years building websites and automation for clients abroad.
+            I build websites and the systems behind them for businesses abroad, and lead Surjamukhi Sangstha,
+            a development organisation in Bangladesh.
           </p>
-          <div class="hero-actions">
-            <a class="btn btn-lime" href="cv/">View CV <span class="btn-arrow" aria-hidden="true">→</span></a>
-            <a class="btn btn-line" href="experience/">Explore my journey</a>
-            <a class="hero-link" href="#contact">Contact</a>
+          <div class="hero-cta">
+            <a class="cta-solid" href="cv/">View CV <span aria-hidden="true">→</span></a>
+            <a class="cta-line" href="experience/">Explore my journey</a>
           </div>
-          <ul class="hero-creds" aria-label="Current roles and qualifications">
-            <li><span>CEO</span><b>Surjamukhi Sangstha (SMS)</b><small>Since 26 Oct 2026</small></li>
-            <li><span>Co-founder</span><b>ED Shield Solutions</b><small>Web &amp; automation · Dhaka</small></li>
-            <li><span>PMIT</span><b>Jahangirnagar University</b><small>Institute of Information Technology</small></li>
-            <li><span>BSc CSE</span><b>Stamford University Bangladesh</b><small>Graduated 2022</small></li>
-          </ul>
         </div>
 
-        <div class="hero-visual" data-tilt>
-          <div class="orbit orbit-back" aria-hidden="true"><span class="orbit-ring"><i></i><i></i></span></div>
-          <figure class="hero-portrait" id="portrait">
-            <div class="portrait-frame" data-lens>
-              <picture>
-                <source srcset="assets/img/dwaipyan-mandal-portrait.webp" type="image/webp">
-                <img class="portrait-photo" src="assets/img/dwaipyan-mandal-portrait.jpg" width="720" height="1080"
-                     alt="Portrait of Dwaipyan Mandal in a beige blazer" fetchpriority="high">
-              </picture>
-              <img class="portrait-lineart" src="assets/img/dwaipyan-mandal-lineart.webp" width="720" height="1080" alt="" aria-hidden="true" decoding="async">
-              <span class="portrait-grid" aria-hidden="true"></span>
-              <span class="portrait-sheen" aria-hidden="true"></span>
-            </div>
-          </figure>
-          <div class="orbit orbit-front" aria-hidden="true"><span class="orbit-ring"><i></i></span></div>
-
-          <div class="id-card idc-1" data-depth="26" aria-hidden="true">
-            <span class="idc-k">Chief Executive Officer</span>
-            <b>Surjamukhi Sangstha</b>
-            <small><i class="live-dot"></i>Since 26 October 2026</small>
-          </div>
-          <div class="id-card idc-2" data-depth="40" aria-hidden="true">
-            <span class="idc-big">6+</span>
-            <small>years building<br>for the web</small>
-          </div>
-          <div class="id-card idc-3" data-depth="18" aria-hidden="true">
-            <span class="idc-k">Client sites live in</span>
-            <b>US · French Polynesia · Europe–Asia</b>
-          </div>
-
-          <p class="portrait-caption">
-            <span class="cap-surface">Surface</span>
-            <span class="cap-hint" data-hint-fine>Hover the portrait to see the structure</span>
-            <button class="cap-hint cap-hint-btn" type="button" data-lens-toggle aria-pressed="false">Tap to see the structure</button>
-          </p>
-        </div>
+        <dl class="hero-ledger">
+          <div><dt>Chief Executive Officer</dt><dd>Surjamukhi Sangstha (SMS) · since October 2026</dd></div>
+          <div><dt>Co-founder</dt><dd>ED Shield Solutions · Dhaka</dd></div>
+          <div><dt>Web &amp; automation</dt><dd>Six years building for international clients</dd></div>
+        </dl>
       </div>
-      <a class="scroll-cue" href="#paths"><span>Scroll</span><i aria-hidden="true"></i></a>
     </section>
 
     <!-- PATHWAYS — three audiences -->

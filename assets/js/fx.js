@@ -109,9 +109,9 @@ function initScratch() {
       }
       cx.fillStyle = "#121212";
       cx.textAlign = "center"; cx.textBaseline = "middle";
-      cx.font = `700 ${Math.max(18, w / 16)}px Bricolage, sans-serif`;
+      cx.font = `700 ${Math.max(18, w / 16)}px "Avenir Next", Avenir, "Helvetica Neue", Arial, sans-serif`;
       cx.fillText(finePointer.matches ? "Scratch the sand" : "Tap the sand", w / 2, h / 2 - w / 40);
-      cx.font = `400 ${Math.max(12, w / 46)}px "DM Mono", monospace`;
+      cx.font = `400 ${Math.max(12, w / 46)}px Roboto, Arial, sans-serif`;
       cx.fillText("there's a website under here", w / 2, h / 2 + w / 28);
       cx.globalCompositeOperation = "destination-out";
     };

@@ -21,6 +21,16 @@ clients — built on the "Surface & Structure" idea: every section shows what pe
 
 Facts still to confirm are listed in `CONTENT_REVIEW.md` (not published).
 
+## Design system
+
+- **Type:** two families only. Display — `"Avenir Next", Avenir, "Helvetica Neue", Arial, sans-serif` (Avenir is a
+  system font on Apple devices and is not redistributable, so it is not self-hosted; other systems use the fallbacks).
+  Text — Roboto, self-hosted variable font (`assets/fonts`, SIL Open Font License). Set centrally at the top of `style.css`.
+- **Colour:** paper, ink and two sunflower tones — Surjamukhi means "facing the sun". Sienna `#9e3f0a` for text accents,
+  sunflower `#eba83a` for fills.
+- **Hero:** an editorial cover — the name as a masthead, the cut-out portrait in front of it, a flat sun behind.
+  The cut-out (`assets/img/dwaipyan-mandal-cutout-*.webp`) was made from the original `Profile.png`.
+
 ## Stack
 
 Static site on GitHub Pages. No framework, no npm, no animation library.

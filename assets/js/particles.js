@@ -20,7 +20,7 @@ function ensure() {
   return true;
 }
 
-const COLORS = { sparkle: ["#d4ff3a", "#5b3df5", "#ffffff", "#b4a6ff"], dust: ["#e8d3a0", "#d9bf82", "#c9a96a"], puff: ["#ffffff", "#ece7da"], drop: ["#9fd3ff", "#d4f0ff"], z: ["#5b3df5"] };
+const COLORS = { sparkle: ["#eba83a", "#9e3f0a", "#ffffff", "#f1c98c"], dust: ["#e8d3a0", "#d9bf82", "#c9a96a"], puff: ["#ffffff", "#ece7da"], drop: ["#9fd3ff", "#d4f0ff"], z: ["#9e3f0a"] };
 
 /** Burst of `n` particles of `type` at viewport point (x, y). */
 export function burst(x, y, type = "sparkle", n = 18, spread = 1) {
@@ -64,7 +64,7 @@ function step() {
     cx.translate(p.x, p.y); cx.rotate(p.rot);
     cx.fillStyle = p.color;
     if (p.type === "sparkle") star(p.size * (0.6 + k));
-    else if (p.type === "z") { cx.rotate(-p.rot); cx.font = `700 ${p.size}px Bricolage, sans-serif`; cx.fillText("z", 0, 0); }
+    else if (p.type === "z") { cx.rotate(-p.rot); cx.font = `700 ${p.size}px "Avenir Next", Avenir, "Helvetica Neue", Arial, sans-serif`; cx.fillText("z", 0, 0); }
     else { cx.beginPath(); cx.arc(0, 0, p.size, 0, Math.PI * 2); cx.fill(); }
     cx.restore();
   }
