@@ -1,0 +1,96 @@
+# Website portfolio — sites Dwaipyan designed or built (list supplied and confirmed by him, November 2026).
+# Screenshots: assets/img/sites/<slug>.webp, captured from the live sites on 12 November 2026 (1440×900 → 800×500).
+# shot: false = the site blocked automated screenshots, so the card shows the name only.
+# Categories: property | architecture | automotive | trades | food | brands | health
+# Addresses left out because they no longer show the site are listed in CONTENT_REVIEW.md.
+categories:
+  - { id: property, label: Real estate & property }
+  - { id: architecture, label: Architecture & interiors }
+  - { id: automotive, label: Automotive }
+  - { id: trades, label: Electrical, HVAC & trades }
+  - { id: food, label: Food & drink }
+  - { id: brands, label: Brands & e-commerce }
+  - { id: health, label: Health & dental }
+sites:
+  - { slug: camilincowski-com, name: "Cami Lincowski", url: "https://camilincowski.com/", domain: "camilincowski.com", cat: property }
+  - { slug: foresglobal-in, name: "Fores Global", url: "https://foresglobal.in/", domain: "foresglobal.in", cat: property }
+  - { slug: jaxhomeswithstephanie-com, name: "Jax Homes with Stephanie", url: "https://jaxhomeswithstephanie.com/", domain: "jaxhomeswithstephanie.com", cat: property }
+  - { slug: dgsdubai-com, name: "DGS Real Estate Dubai", url: "https://dgsdubai.com/", domain: "dgsdubai.com", cat: property }
+  - { slug: al-tumi-ly, name: "Al-Tumi", url: "https://al-tumi.ly/", domain: "al-tumi.ly", cat: food }
+  - { slug: agrouprealestate-com, name: "A Group Real Estate", url: "https://www.agrouprealestate.com/", domain: "agrouprealestate.com", cat: property }
+  - { slug: workco-com, name: "Workco", url: "https://workco.com/", domain: "workco.com", cat: property }
+  - { slug: workclubglobal-com, name: "Work Club Global", url: "https://workclubglobal.com/", domain: "workclubglobal.com", cat: property }
+  - { slug: myobligo-com, name: "Obligo", url: "https://myobligo.com/", domain: "myobligo.com", cat: property }
+  - { slug: thehoolyteam-com-au, name: "The Hooly Team", url: "https://thehoolyteam.com.au/", domain: "thehoolyteam.com.au", cat: property }
+  - { slug: shakeac-com, name: "Shake Architecture + Construction", url: "https://www.shakeac.com/", domain: "shakeac.com", cat: architecture }
+  - { slug: studio-fv-com, name: "Studio FV", url: "https://studio-fv.com/", domain: "studio-fv.com", cat: architecture }
+  - { slug: wynwood25-com, name: "Wynwood25", url: "https://wynwood25.com/", domain: "wynwood25.com", cat: property }
+  - { slug: whi-co-uk, name: "WHI Interiors", url: "https://whi.co.uk/", domain: "whi.co.uk", cat: architecture }
+  - { slug: a-tract-be, name: "A-tract Architecture", url: "https://a-tract.be/", domain: "a-tract.be", cat: architecture }
+  - { slug: mazdaoman-com, name: "Mazda Oman", url: "https://mazdaoman.com/", domain: "mazdaoman.com", cat: automotive }
+  - { slug: paaco-com, name: "PAACO — Public Auto Group", url: "https://paaco.com/", domain: "paaco.com", cat: automotive }
+  - { slug: auto-reuvers-nl, name: "Auto Reuvers", url: "https://www.auto-reuvers.nl/", domain: "auto-reuvers.nl", cat: automotive }
+  - { slug: forestlakechrysler-com, name: "Forest Lake Chrysler", url: "https://www.forestlakechrysler.com/", domain: "forestlakechrysler.com", cat: automotive }
+  - { slug: carsolutionsfl-com, name: "Car Solutions FL", url: "https://www.carsolutionsfl.com/", domain: "carsolutionsfl.com", cat: automotive, shot: false }
+  - { slug: sherry4x4-com, name: "Sherry 4x4", url: "https://www.sherry4x4.com/", domain: "sherry4x4.com", cat: automotive }
+  - { slug: jerseyautolease-com, name: "Jersey Auto Lease", url: "https://jerseyautolease.com/", domain: "jerseyautolease.com", cat: automotive }
+  - { slug: constructable-pro, name: "Constructable", url: "https://constructable.pro/", domain: "constructable.pro", cat: architecture }
+  - { slug: texaschampionservices-com, name: "Texas Champion Services", url: "https://texaschampionservices.com/", domain: "texaschampionservices.com", cat: trades }
+  - { slug: tech-on-deck-com, name: "Tech on Deck", url: "https://tech-on-deck.com/", domain: "tech-on-deck.com", cat: trades, shot: false }
+  - { slug: ilelectrician-com, name: "Scott Nelson Electric", url: "https://ilelectrician.com/", domain: "ilelectrician.com", cat: trades }
+  - { slug: martinc10-com, name: "Martin Electric", url: "https://www.martinc10.com/", domain: "martinc10.com", cat: trades }
+  - { slug: sunnydayselectrical-com-au, name: "Sunny Days Electrical", url: "https://sunnydayselectrical.com.au/", domain: "sunnydayselectrical.com.au", cat: trades }
+  - { slug: getbrightwire-com, name: "Brightwire Electric", url: "https://getbrightwire.com/", domain: "getbrightwire.com", cat: trades }
+  - { slug: haleelectricalcontractors-co-uk, name: "Hale Electrical Contractors", url: "https://haleelectricalcontractors.co.uk/", domain: "haleelectricalcontractors.co.uk", cat: trades }
+  - { slug: expertelectricalservices-com-au, name: "Expert Electrical Services", url: "https://expertelectricalservices.com.au/", domain: "expertelectricalservices.com.au", cat: trades }
+  - { slug: gecorelectrical-co-uk, name: "Gecor Electrical", url: "https://gecorelectrical.co.uk/", domain: "gecorelectrical.co.uk", cat: trades }
+  - { slug: junctionelectricllc-com, name: "Junction Electric", url: "https://junctionelectricllc.com/", domain: "junctionelectricllc.com", cat: trades }
+  - { slug: dbenergy-group, name: "DB Energy", url: "https://dbenergy.group/", domain: "dbenergy.group", cat: trades }
+  - { slug: intownrenovations-com, name: "Intown Renovations", url: "https://intownrenovations.com/", domain: "intownrenovations.com", cat: architecture }
+  - { slug: acdoctorga-com, name: "AC Doctor", url: "https://www.acdoctorga.com/", domain: "acdoctorga.com", cat: trades }
+  - { slug: copelandairtexas-com, name: "Copeland Home Services", url: "https://copelandairtexas.com/", domain: "copelandairtexas.com", cat: trades }
+  - { slug: cryptoworldcoffee-com, name: "Crypto World Coffee", url: "https://cryptoworldcoffee.com/", domain: "cryptoworldcoffee.com", cat: food }
+  - { slug: caffeina-ca, name: "Caffeina", url: "https://caffeina.ca/", domain: "caffeina.ca", cat: food, shot: false }
+  - { slug: shebaa-it, name: "Shebaa Brasserie", url: "https://shebaa.it/", domain: "shebaa.it", cat: food }
+  - { slug: bunsen-ie, name: "Bunsen", url: "https://bunsen.ie/", domain: "bunsen.ie", cat: food }
+  - { slug: fairlife-com, name: "fairlife", url: "https://fairlife.com/", domain: "fairlife.com", cat: food }
+  - { slug: russianriverbrewing-com, name: "Russian River Brewing", url: "https://www.russianriverbrewing.com/", domain: "russianriverbrewing.com", cat: food }
+  - { slug: medallionfoods-com, name: "Medallion Foods", url: "https://www.medallionfoods.com/", domain: "medallionfoods.com", cat: food }
+  - { slug: eatnaya-com, name: "NAYA", url: "https://www.eatnaya.com/", domain: "eatnaya.com", cat: food }
+  - { slug: nypizzeria-com, name: "NY Pizzeria", url: "https://www.nypizzeria.com/", domain: "nypizzeria.com", cat: food }
+  - { slug: kettlebrand-com, name: "Kettle Brand", url: "https://www.kettlebrand.com/", domain: "kettlebrand.com", cat: food }
+  - { slug: horizon-com, name: "Horizon Organic", url: "https://horizon.com/", domain: "horizon.com", cat: food }
+  - { slug: americanomexicano-com, name: "Americano Mexicano", url: "https://americanomexicano.com/", domain: "americanomexicano.com", cat: food }
+  - { slug: chanterellecateringcompany-com, name: "Chanterelle Catering", url: "https://www.chanterellecateringcompany.com/", domain: "chanterellecateringcompany.com", cat: food }
+  - { slug: lunascateringcorp-com, name: "Luna's Catering", url: "https://lunascateringcorp.com/", domain: "lunascateringcorp.com", cat: food }
+  - { slug: taika-co, name: "Taika", url: "https://taika.co/", domain: "taika.co", cat: brands }
+  - { slug: novoslabs-com, name: "NOVOS", url: "https://novoslabs.com/", domain: "novoslabs.com", cat: brands }
+  - { slug: brodo-com, name: "Brodo", url: "https://brodo.com/", domain: "brodo.com", cat: food }
+  - { slug: helloyumi-com, name: "Yumi", url: "https://helloyumi.com/", domain: "helloyumi.com", cat: brands }
+  - { slug: diablaoutdoor-com, name: "Diabla Outdoor", url: "https://www.diablaoutdoor.com/", domain: "diablaoutdoor.com", cat: architecture }
+  - { slug: shop-arredodalpozzo-it, name: "AD Dal Pozzo", url: "https://shop.arredodalpozzo.it/", domain: "shop.arredodalpozzo.it", cat: architecture }
+  - { slug: caesarstoneus-com, name: "Caesarstone US", url: "https://www.caesarstoneus.com/", domain: "caesarstoneus.com", cat: architecture, shot: false }
+  - { slug: migaeyewear-com, name: "Miga Studio", url: "https://migaeyewear.com/", domain: "migaeyewear.com", cat: brands }
+  - { slug: holzweileroslo-com, name: "Holzweiler", url: "https://holzweileroslo.com/", domain: "holzweileroslo.com", cat: brands }
+  - { slug: jimmynelson-com, name: "Jimmy Nelson", url: "https://jimmynelson.com/", domain: "jimmynelson.com", cat: brands }
+  - { slug: additionals-polestar-com, name: "Polestar Additionals", url: "https://additionals.polestar.com/", domain: "additionals.polestar.com", cat: automotive }
+  - { slug: cipherskincare-com, name: "Cipher Skincare", url: "https://cipherskincare.com/", domain: "cipherskincare.com", cat: brands, shot: false }
+  - { slug: greenmountaingrills-com, name: "Green Mountain Grills", url: "https://www.greenmountaingrills.com/", domain: "greenmountaingrills.com", cat: brands, shot: false }
+  - { slug: bianchi-com, name: "Bianchi", url: "https://www.bianchi.com/", domain: "bianchi.com", cat: brands }
+  - { slug: good-drills-com, name: "Good Drills", url: "https://good-drills.com/", domain: "good-drills.com", cat: brands }
+  - { slug: gruum-com, name: "Gruum", url: "https://www.gruum.com/", domain: "gruum.com", cat: brands, shot: false }
+  - { slug: landyachtz-com, name: "Landyachtz", url: "https://landyachtz.com/", domain: "landyachtz.com", cat: brands }
+  - { slug: chania-honey-gr, name: "Chania Honey (Melopoieion)", url: "https://chania-honey.gr/", domain: "chania-honey.gr", cat: food }
+  - { slug: haybcoffee-eu, name: "HAYB Coffee", url: "https://haybcoffee.eu/", domain: "haybcoffee.eu", cat: food }
+  - { slug: offermanwoodshop-com, name: "Offerman Woodshop", url: "https://offermanwoodshop.com/", domain: "offermanwoodshop.com", cat: brands }
+  - { slug: mandarinstone-com, name: "Mandarin Stone", url: "https://mandarinstone.com/", domain: "mandarinstone.com", cat: architecture }
+  - { slug: nutribullet-com, name: "nutribullet", url: "https://nutribullet.com/", domain: "nutribullet.com", cat: brands }
+  - { slug: balanceblissreiki-com, name: "Balance & Bliss Reiki", url: "https://balanceblissreiki.com/", domain: "balanceblissreiki.com", cat: health }
+  - { slug: aj-health-com-au, name: "AJ Health", url: "https://aj-health.com.au/", domain: "aj-health.com.au", cat: health }
+  - { slug: pdnyc-com, name: "Pediatric Dentists NYC", url: "https://pdnyc.com/", domain: "pdnyc.com", cat: health }
+  - { slug: fireflydentistry-com, name: "Firefly Dentistry", url: "https://fireflydentistry.com/", domain: "fireflydentistry.com", cat: health }
+  - { slug: drvictormendoza-com, name: "Dr. Víctor Mendoza", url: "https://drvictormendoza.com/", domain: "drvictormendoza.com", cat: health }
+  - { slug: ddgflorhampark-com, name: "DDG Florham Park", url: "https://ddgflorhampark.com/", domain: "ddgflorhampark.com", cat: health }
+  - { slug: dentistonmadison-com, name: "Dentist on Madison", url: "https://dentistonmadison.com/", domain: "dentistonmadison.com", cat: health }
+  - { slug: brushseattle-com, name: "Brush Dental Seattle", url: "https://www.brushseattle.com/", domain: "brushseattle.com", cat: health }
+  - { slug: youly-com-au, name: "Youly", url: "https://youly.com.au/", domain: "youly.com.au", cat: health }
