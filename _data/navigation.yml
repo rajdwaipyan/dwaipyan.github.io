@@ -1,0 +1,66 @@
+# Main navigation — the desktop mega menu, the phone menu and the footer all read this file.
+# Every url must point at a page or anchor that exists. Urls are relative to the site root
+# (the layout adds "../" on inner pages). `nav` marks the link as current on that page.
+
+groups:
+  - id: profile
+    label: Profile
+    title: The record behind the work
+    blurb: Career, leadership and education — dated, specific and checkable.
+    links:
+      - { label: Experience, sub: "Organisations, business and freelance work", url: experience/, nav: experience }
+      - { label: Leadership, sub: "CEO of Surjamukhi Sangstha and its programmes", url: leadership/, nav: leadership }
+      - { label: Education, sub: "BSc in CSE, Professional Masters in IT", url: education/, nav: education }
+      - { label: About, sub: "The story, the values, the direction", url: about/, nav: about }
+    feature:
+      kind: image
+      src: assets/img/dwaipyan-mandal-4x3.jpg
+      width: 1200
+      height: 900
+      k: Now
+      caption: "Chief Executive Officer, Surjamukhi Sangstha"
+      url: leadership/
+
+  - id: work
+    label: Work
+    title: Built, launched, live
+    blurb: Websites, stores and the CRM automations behind them — for clients on four continents.
+    links:
+      - { label: Portfolio, sub: "What I build and how, with a live demo", url: portfolio/, nav: portfolio }
+      - { label: Projects, sub: "Case studies, filterable by region and type", url: "portfolio/#projects" }
+      - { label: CV, sub: "One page, printable, always current", url: cv/, nav: cv }
+    feature:
+      kind: image
+      src: assets/img/wall/eagle-desktop.webp
+      width: 560
+      height: 350
+      k: Case study
+      caption: "Eagle Premier Real Estate — website and CRM automation"
+      url: portfolio/eagle/
+
+  - id: insights
+    label: Insights
+    title: Writing and research
+    blurb: Essays, articles and the questions I study.
+    links:
+      - { label: Journal, sub: "Essays and notes, published here", url: journal/, nav: journal }
+      - { label: Articles, sub: "Technology and cybersecurity writing on Medium", url: "journal/#articles" }
+      - { label: Research, sub: "Interests and the master's project report", url: "education/#research" }
+    feature:
+      kind: text
+      k: "Master's project report · 2025"
+      caption: "Digital Shield: Bangladesh's Transformative Roadmap to Cyber Resilience in the ISP Ecosystem"
+      url: "education/#report"
+
+  - id: contact
+    label: Contact
+    title: Start a conversation
+    blurb: Partnerships, academic enquiries and projects.
+    links:
+      - { label: Contact, sub: "Write a short brief — it opens in your email app", url: "#contact" }
+      - { label: "Let's connect", sub: "LinkedIn, GitHub, Medium and Fiverr", url: "#connect" }
+    feature:
+      kind: mail
+      k: Write directly
+      caption: rajdwaipayan@gmail.com
+      url: "mailto:rajdwaipayan@gmail.com"

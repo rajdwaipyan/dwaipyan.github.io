@@ -1,6 +1,9 @@
 // Entry point (loaded as a module, so it runs after the HTML is parsed).
 import { initCore } from "./core.js";
-import { initNav } from "./nav.js";
+import { initMotion } from "./motion.js";
+import { initMenu } from "./menu.js";
+import { initCases } from "./cases.js";
+import { initJournal } from "./journal.js";
 import { initHero } from "./hero.js";
 import { initBuilder } from "./builder.js";
 import { initMachine } from "./machine.js";
@@ -14,8 +17,11 @@ const run = (name, fn) => {
 };
 
 run("core", initCore);
-run("nav", initNav);
-run("hero", initHero);
+run("menu", initMenu);
+run("hero", initHero);      // before motion: the hero splits its own letters
+run("motion", initMotion);
+run("cases", initCases);
+run("journal", initJournal);
 run("builder", initBuilder);
 run("machine", initMachine);
 run("contact", initContact);

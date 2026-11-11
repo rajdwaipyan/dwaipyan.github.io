@@ -73,9 +73,12 @@
         <div><dt>Outcome</dt><dd>{{ p.outcome }}</dd></div>
         {%- endif %}
       </dl>
-      {%- if p.url %}
-      <a class="room-link" href="{{ p.url }}" target="_blank" rel="noopener">Visit {{ domain }} <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
-      {%- endif %}
+      <p class="room-links">
+        <a class="room-link room-link-case" href="{{ p.id }}/">Read the case study <span aria-hidden="true">→</span></a>
+        {%- if p.url %}
+        <a class="room-link" href="{{ p.url }}" target="_blank" rel="noopener">Visit {{ domain }} <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+        {%- endif %}
+      </p>
     </div>
   </div>
 </section>

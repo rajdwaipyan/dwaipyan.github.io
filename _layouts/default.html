@@ -3,10 +3,11 @@
 # Each page sets in its front matter:
 #   title, description      search-result title and snippet
 #   root                    "" on the home page, "../" on pages one folder deep (asset and link prefix)
-#   nav                     experience | leadership | education | portfolio | about | cv | home (marks the menu)
+#   nav                     experience | leadership | education | portfolio | about | cv | journal | home (marks the menu)
 #   og_title (optional)     social-card title
 #   schema (optional)       profile | about | page  — the page's type in the structured data
 #   crumb (optional)        breadcrumb name (defaults to the nav label)
+#   crumb_parent / crumb_parent_url (optional)  a middle breadcrumb, e.g. Portfolio › Eagle Premier
 #   guide: false            leave the drawn guide off this page
 #   preload_portrait: true  preload the hero portrait (home only)
 ---
@@ -18,7 +19,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>document.documentElement.className = document.documentElement.className.replace("no-js", "js");</script>
-  <title>{{ page.title | escape }}</title>
+  <title>{% if page.schema == "article" %}{{ page.title | escape }} — Journal | Dwaipyan Mandal{% else %}{{ page.title | escape }}{% endif %}</title>
   <meta name="description" content="{{ page.description | escape }}">
   <link rel="canonical" href="{{ base }}{{ page.url }}">
   <meta name="author" content="Dwaipyan Mandal">
@@ -55,6 +56,10 @@
         imagesrcset="{{ root }}assets/img/dwaipyan-mandal-cutout-720.webp 720w, {{ root }}assets/img/dwaipyan-mandal-cutout-1100.webp 1100w" imagesizes="(max-width: 960px) 88vw, 44vh">
   {%- endif %}
   <link rel="stylesheet" href="{{ root }}style.css">
+  <!-- motion: GSAP 3.13.0 + ScrollTrigger and Lenis 1.3.23, self-hosted (assets/vendor/README.md) -->
+  <script src="{{ root }}assets/vendor/gsap.min.js" defer></script>
+  <script src="{{ root }}assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="{{ root }}assets/vendor/lenis.min.js" defer></script>
   <script type="module" src="{{ root }}assets/js/main.js"></script>
 
   {% include jsonld.html %}

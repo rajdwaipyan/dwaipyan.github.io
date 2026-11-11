@@ -1,5 +1,13 @@
-{%- comment -%} Shared footer. Uses `root` from the layout. X-ray mode and the drawn guide live here as optional extras. {%- endcomment -%}
-<footer class="site-footer">
+{%- comment -%}
+  Shared footer: a closing call to action, the navigation groups from _data/navigation.yml, profiles,
+  the small print, and the name set large at the very bottom with a low sun behind its last letter.
+  Uses `root` from the layout. X-ray mode and the drawn guide live here as optional extras.
+{%- endcomment -%}
+<footer class="site-footer" data-room="night">
+  <div class="container footer-cta">
+    <p class="footer-k">Available for partnerships, academic collaboration and selected projects</p>
+    <p class="footer-big"><a href="{{ root }}#contact" data-cursor="Write">Tell me what <em>you're building.</em> <span aria-hidden="true">→</span></a></p>
+  </div>
   <div class="container footer-grid">
     <div class="footer-brand">
       <p class="footer-name">Dwaipyan Mandal</p>
@@ -7,23 +15,16 @@
       <a class="footer-mail" href="mailto:rajdwaipayan@gmail.com">rajdwaipayan@gmail.com</a>
     </div>
     <nav class="footer-cols" aria-label="Footer">
+      {%- for g in site.data.navigation.groups %}
       <div>
-        <p class="footer-h">Profile</p>
+        <p class="footer-h">{{ g.label }}</p>
         <ul>
-          <li><a href="{{ root }}experience/">Experience</a></li>
-          <li><a href="{{ root }}leadership/">Leadership</a></li>
-          <li><a href="{{ root }}education/">Education</a></li>
-          <li><a href="{{ root }}about/">About</a></li>
+          {%- for l in g.links %}
+          <li><a href="{% if l.url contains ':' %}{{ l.url }}{% else %}{{ root }}{{ l.url }}{% endif %}">{{ l.label }}</a></li>
+          {%- endfor %}
         </ul>
       </div>
-      <div>
-        <p class="footer-h">Work</p>
-        <ul>
-          <li><a href="{{ root }}portfolio/">Portfolio</a></li>
-          <li><a href="{{ root }}cv/">CV</a></li>
-          <li><a href="{{ root }}#contact">Contact</a></li>
-        </ul>
-      </div>
+      {%- endfor %}
       <div>
         <p class="footer-h">Elsewhere</p>
         <ul>
@@ -36,12 +37,15 @@
     </nav>
   </div>
   <div class="container footer-base">
-    <p>© <span id="year">2026</span> Dwaipyan Mandal · Hand-built with HTML, CSS and JavaScript — <a href="https://github.com/rajdwaipyan/dwaipyan.github.io" target="_blank" rel="noopener">read the source</a></p>
+    <p>© <span id="year">2026</span> Dwaipyan Mandal · Hand-built with HTML, CSS and JavaScript on Jekyll — <a href="https://github.com/rajdwaipyan/dwaipyan.github.io" target="_blank" rel="noopener">read the source</a></p>
     <div class="footer-extras">
       <button class="extra-btn" id="xray-toggle" type="button" aria-pressed="false" title="See how this page is built (shortcut: X)"><span class="xray-icon" aria-hidden="true"></span>X-ray mode</button>
       {%- unless page.guide == false %}
       <button class="extra-btn" type="button" data-guide-open>Meet the drawn me</button>
       {%- endunless %}
     </div>
+  </div>
+  <div class="footer-mark" data-wordmark aria-hidden="true">
+    <span class="wm-word">Dwaipyan</span><span class="wm-sun"></span>
   </div>
 </footer>

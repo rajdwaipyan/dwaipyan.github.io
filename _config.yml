@@ -10,3 +10,18 @@ exclude:
   # cv.pdf contains private identity details (ID number, date of birth, family and referee contacts).
   # It stays in the repo but is not published. Remove this line only after replacing it with a redacted CV.
   - cv.pdf
+
+# Journal posts: write Markdown files in _posts/ named YYYY-MM-DD-title.md
+# (start from _templates/journal-post.md). Each post is published at /journal/<title>/.
+permalink: /journal/:title/
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      root: "../../"
+      nav: journal
+      schema: article
+      crumb_parent: Journal
+      crumb_parent_url: journal/

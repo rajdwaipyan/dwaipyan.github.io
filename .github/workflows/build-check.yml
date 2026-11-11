@@ -1,0 +1,37 @@
+# Builds the site on every pull request (the same Jekyll action that deploys main) so a branch
+# can be checked before it is merged. It does not deploy anything.
+name: Build check (pull requests)
+
+on:
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+      - name: Check the build output
+        run: |
+          set -e
+          for f in index.html journal/index.html portfolio/index.html portfolio/eagle/index.html sitemap.xml assets/vendor/gsap.min.js; do
+            test -s "_site/$f" || { echo "missing $f"; exit 1; }
+          done
+          test ! -e _site/cv.pdf || { echo "cv.pdf must not be published"; exit 1; }
+          test ! -e _site/_templates || { echo "_templates must not be published"; exit 1; }
+          echo "build output OK"
+      - name: Keep the built site for inspection
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-preview
+          path: _site
+          retention-days: 5

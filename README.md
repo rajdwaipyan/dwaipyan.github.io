@@ -33,28 +33,48 @@ Facts still to confirm are listed in `CONTENT_REVIEW.md` (not published).
 
 ## Stack
 
-Static site on GitHub Pages. No framework, no npm, no animation library.
+Static site on GitHub Pages, built by Jekyll. No framework and no build step; the motion layer uses
+GSAP 3.13 + ScrollTrigger and Lenis 1.3.23, self-hosted in `assets/vendor/` (see its README).
 
 ```
 _layouts/default.html  the page shell: <head> (SEO, social cards), header, footer, guide, scripts
+_layouts/case.html     one case-study page, built from its entry in _data/projects.yml
+_layouts/post.html     one journal article (reading progress, related entries)
+_templates/            journal-post.md — copy into _posts/ to publish (never published itself)
 _includes/
   jsonld.html          structured data (Person, NGO, page, breadcrumbs) built from the data files
-  site-header.html     monogram, navigation capsule, CV + Contact, phone menu
-  site-footer.html     links, X-ray mode and "Meet the drawn me" (both optional extras)
+  site-header.html     monogram, mega menu (from _data/navigation.yml), CV, phone menu
+  site-footer.html     closing call to action, link groups, the big name, X-ray mode and the drawn guide
   project.html         one portfolio case study ("room")
   exp-track.html       one career track on /experience/
   timeline.html        milestones list
   guide.html           the optional drawn guide (inline SVG)
-_data/                 experience, education, leadership, skills, projects, publications, timeline
+_data/                 navigation, experience, education, leadership, skills, projects, publications, timeline
 style.css              all styles, design tokens at the top
-assets/js/             ES modules loaded by main.js (core, nav, hero, builder, machine, contact, xray, guide, sound, particles, fx)
+assets/js/             ES modules loaded by main.js (core, menu, hero, motion, cases, journal, builder, machine, contact, xray, guide, sound, particles, fx)
+assets/vendor/         gsap.min.js, ScrollTrigger.min.js, lenis.min.js (unmodified, with licences)
+portfolio/<id>/        one short file per case study (front matter only)
+journal/               the journal landing page
 ```
 
 Each page sets `title`, `description`, `root` ("" or "../") and `nav` in its front matter.
 
 ## How the motion works (for developers)
 
-Everything is plain HTML, CSS and ES modules — no framework, no animation library, no build step.
+Plain HTML, CSS and ES modules with GSAP, ScrollTrigger and Lenis — no framework, no build step.
+
+- **One clock.** `assets/js/motion.js` drives Lenis from `gsap.ticker` (no second requestAnimationFrame
+  loop) and calls `ScrollTrigger.update` on every Lenis scroll. Lenis also handles same-page `#anchor` links.
+- **Attributes, not per-page scripts.** Headings (`.section-title`, `.page-title`, `[data-split]`) rise word
+  by word; `[data-clip]` unmasks an image; `[data-stagger]` brings a group in one by one; `[data-speed]` is
+  parallax; `[data-count]` counts a number up (only verified numbers are used); `[data-hscroll]` is the
+  pinned sideways showcase (a swipeable row under 960px); `[data-dims]` is the sticky picture panel;
+  `[data-magnetic]` makes a button lean toward the pointer; `data-cursor="View"` labels the cursor ring.
+- **The hero** (`hero.js`) runs one GSAP timeline: sun rises, letters lift, portrait unmasks, wall and deck
+  arrive. On phones the name and portrait are painted immediately (they are the largest content) and
+  only settle. The wall of client screenshots is CSS animation, paused on hover.
+- **Fallbacks.** With `prefers-reduced-motion`, Lenis and all GSAP motion stay off and every element is
+  shown in place. If the vendor scripts fail to load, the page works exactly as before (`html.no-gsap`).
 
 - **The guide** is ~40 SVG shapes inlined in the page. Expressions and gestures are CSS classes on
   `<aside id="guide">` (`do-wave`, `do-dance`, `is-asleep`…) driving `@keyframes` on SVG groups with
@@ -112,12 +132,19 @@ There is no server. "Write the email" opens the visitor's own email app with the
 page says so. To receive submissions directly instead, connect a form service (for example Formspree or
 Web3Forms): it gives you an endpoint URL to use as the form's `action`. No secret key is needed in the page.
 
-## Publishing articles later
+## Publishing a journal entry
 
-Put each article in its own folder, e.g. `notes/n8n-to-gohighlevel/index.html`, with front matter (`---` lines)
-so Jekyll processes it, reuse `../../style.css`, and give it its own title, description, canonical URL and an
-`Article` JSON-LD block whose `author` is `{"@id": "https://rajdwaipyan.github.io/dwaipyan.github.io/#person"}`.
-Link it from the home page and add it to `sitemap.xml`.
+1. Copy `_templates/journal-post.md` into `_posts/` (create the folder the first time).
+2. Rename it `YYYY-MM-DD-short-title.md`; it will be published at `/journal/short-title/`.
+3. Fill in `title`, `description`, `category` (Technology, Leadership, Development or Research) and write in Markdown.
+4. Commit to `main`. The entry appears on `/journal/` (newest is featured), on the home page, in the sitemap,
+   with `BlogPosting` structured data, a reading-progress bar and related entries — nothing else to edit.
+
+## Adding a case study
+
+Add the project to `_data/projects.yml` (including `place`, `region`, `work` and `filters`), add screenshots to
+`assets/img/work/`, then create `portfolio/<id>/index.html` containing only front matter — copy
+`portfolio/eagle/index.html` and change `project`, `title`, `description` and `crumb`.
 
 ## Licence
 

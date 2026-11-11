@@ -18,7 +18,7 @@
       "publisher": { "@id": "{{ pid }}" }
     },
     {
-      "@type": {% if page.schema == "about" %}"AboutPage"{% elsif page.schema == "profile" %}"ProfilePage"{% else %}"WebPage"{% endif %},
+      "@type": {% if page.schema == "about" %}"AboutPage"{% elsif page.schema == "profile" %}"ProfilePage"{% elsif page.schema == "article" %}"BlogPosting"{% elsif page.schema == "blog" %}["WebPage", "CollectionPage"]{% else %}"WebPage"{% endif %},
       "@id": "{{ base }}{{ page.url }}#webpage",
       "url": "{{ base }}{{ page.url }}",
       "name": {{ page.title | jsonify }},
@@ -31,7 +31,15 @@
       {%- if page.url != "/" %}
       "breadcrumb": { "@id": "{{ base }}{{ page.url }}#breadcrumb" },
       {%- endif %}
-      "dateModified": "2026-11-07",
+      {%- if page.schema == "article" %}
+      "headline": {{ page.title | jsonify }},
+      "author": { "@id": "{{ pid }}" },
+      "datePublished": "{{ page.date | date: '%Y-%m-%d' }}",
+      "dateModified": "{{ page.last_modified_at | default: page.date | date: '%Y-%m-%d' }}",
+      {%- if page.image %}"image": "{{ base }}/{{ page.image }}",{% endif %}
+      {%- else %}
+      "dateModified": "2026-11-12",
+      {%- endif %}
       "inLanguage": "en"
     },
     {%- if page.url != "/" %}
@@ -40,7 +48,12 @@
       "@id": "{{ base }}{{ page.url }}#breadcrumb",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ base }}/" },
-        { "@type": "ListItem", "position": 2, "name": {{ page.crumb | jsonify }}, "item": "{{ base }}{{ page.url }}" }
+        {%- if page.crumb_parent %}
+        { "@type": "ListItem", "position": 2, "name": {{ page.crumb_parent | jsonify }}, "item": "{{ base }}/{{ page.crumb_parent_url }}" },
+        { "@type": "ListItem", "position": 3, "name": {{ page.crumb | default: page.title | jsonify }}, "item": "{{ base }}{{ page.url }}" }
+        {%- else %}
+        { "@type": "ListItem", "position": 2, "name": {{ page.crumb | default: page.title | jsonify }}, "item": "{{ base }}{{ page.url }}" }
+        {%- endif %}
       ]
     },
     {%- endif %}

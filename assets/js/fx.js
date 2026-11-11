@@ -8,7 +8,7 @@ import { sfx } from "./sound.js";
 
 export function initFx() {
   if (reduceMotion.matches) return;
-  initWords();
+  if (!(window.gsap && window.ScrollTrigger)) initWords();   // otherwise motion.js scrubs them
   initHalftone();
   initScratch();
 }

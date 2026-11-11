@@ -1,8 +1,7 @@
 {%- comment -%}
-  Header: DM monogram + name, a floating navigation capsule with a sliding marker, CV and Contact.
-  On scroll it tightens into a floating bar (assets/js/nav.js + "HEADER" in style.css).
-  The phone menu is a separate sheet (#mobile-nav) so the header's blur can't trap it.
-  Uses `root` ("" or "../") and page.nav from the layout.
+  Header: DM monogram + name, the mega menu (four groups from _data/navigation.yml), CV and the phone menu.
+  Each group is a disclosure: a button that opens a panel of ordinary links (assets/js/menu.js).
+  Without JavaScript a panel opens on hover or keyboard focus. Uses `root` and page.nav from the layout.
 {%- endcomment -%}
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="scroll-progress" aria-hidden="true"><span></span></div>
@@ -22,41 +21,75 @@
       </span>
     </a>
 
-    <nav class="nav-capsule" aria-label="Primary">
-      <span class="nav-pill" aria-hidden="true"></span>
-      <ul>
-        <li><a href="{{ root }}experience/"{% if page.nav == 'experience' %} aria-current="page"{% endif %}>Experience</a></li>
-        <li><a href="{{ root }}leadership/"{% if page.nav == 'leadership' %} aria-current="page"{% endif %}>Leadership</a></li>
-        <li><a href="{{ root }}education/"{% if page.nav == 'education' %} aria-current="page"{% endif %}>Education</a></li>
-        <li><a href="{{ root }}portfolio/"{% if page.nav == 'portfolio' %} aria-current="page"{% endif %}>Portfolio</a></li>
-        <li><a href="{{ root }}about/"{% if page.nav == 'about' %} aria-current="page"{% endif %}>About</a></li>
+    <nav class="mega-nav" aria-label="Primary">
+      <ul class="mega-bar">
+        {%- for g in site.data.navigation.groups %}
+        {%- assign here = false %}
+        {%- for l in g.links %}{% if l.nav and l.nav == page.nav %}{% assign here = true %}{% endif %}{% endfor %}
+        <li class="mega-item">
+          <button class="mega-trigger" type="button" aria-expanded="false" aria-controls="mega-{{ g.id }}"{% if here %} data-current{% endif %}>
+            <span>{{ g.label }}</span>
+            <svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg>
+          </button>
+          <div class="mega-panel" id="mega-{{ g.id }}" data-group="{{ g.id }}">
+            <div class="mega-grid">
+              <div class="mega-intro">
+                <p class="mega-k">{{ g.label }}</p>
+                <p class="mega-title">{{ g.title }}</p>
+                <p class="mega-blurb">{{ g.blurb }}</p>
+              </div>
+              <ul class="mega-links">
+                {%- for l in g.links %}
+                <li><a href="{% if l.url contains ':' %}{{ l.url }}{% else %}{{ root }}{{ l.url }}{% endif %}"{% if l.nav and l.nav == page.nav %} aria-current="page"{% endif %}>
+                  <span class="ml-no" aria-hidden="true">0{{ forloop.index }}</span>
+                  <span class="ml-label">{{ l.label }}</span>
+                  <span class="ml-sub">{{ l.sub }}</span>
+                  <svg class="ml-arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+                </a></li>
+                {%- endfor %}
+              </ul>
+              {%- assign f = g.feature %}
+              <a class="mega-feature mf-{{ f.kind }}" href="{% if f.url contains ':' %}{{ f.url }}{% else %}{{ root }}{{ f.url }}{% endif %}" tabindex="-1" aria-hidden="true">
+                {%- if f.kind == 'image' %}
+                <span class="mf-img"><img src="{{ root }}{{ f.src }}" width="{{ f.width }}" height="{{ f.height }}" alt="" loading="lazy" decoding="async"></span>
+                {%- endif %}
+                <span class="mf-k">{{ f.k }}</span>
+                <span class="mf-cap">{{ f.caption }}</span>
+              </a>
+            </div>
+          </div>
+        </li>
+        {%- endfor %}
       </ul>
     </nav>
 
     <div class="header-actions">
-      <a class="btn-cv" href="{{ root }}cv/"{% if page.nav == 'cv' %} aria-current="page"{% endif %}>
+      <a class="btn-cv" href="{{ root }}cv/"{% if page.nav == 'cv' %} aria-current="page"{% endif %} data-magnetic="0.25">
         <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M5 2.5h7l3.5 3.5v11.5H5z M12 2.5V6h3.5 M8 10.5h5 M8 13.5h5"/></svg>
-        <span>CV</span>
+        <span>View CV</span>
       </a>
-      <a class="btn btn-sm header-contact" href="{{ root }}#contact">Contact</a>
       <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Menu">
         <span class="menu-toggle-label">Menu</span>
         <span class="menu-toggle-icon" aria-hidden="true"><i></i><i></i></span>
       </button>
     </div>
   </div>
+  <div class="mega-shade" aria-hidden="true"></div>
 </header>
 
-<div class="mobile-nav" id="mobile-nav">
+<div class="mobile-nav" id="mobile-nav" data-lenis-prevent>
   <nav aria-label="Menu">
-    <ol class="mnav-list">
-      <li><a href="{% if root == '' %}#top{% else %}{{ root }}{% endif %}"{% if page.nav == nil or page.nav == 'home' %} aria-current="page"{% endif %}><span>00</span>Home</a></li>
-      <li><a href="{{ root }}experience/"{% if page.nav == 'experience' %} aria-current="page"{% endif %}><span>01</span>Experience</a></li>
-      <li><a href="{{ root }}leadership/"{% if page.nav == 'leadership' %} aria-current="page"{% endif %}><span>02</span>Leadership</a></li>
-      <li><a href="{{ root }}education/"{% if page.nav == 'education' %} aria-current="page"{% endif %}><span>03</span>Education</a></li>
-      <li><a href="{{ root }}portfolio/"{% if page.nav == 'portfolio' %} aria-current="page"{% endif %}><span>04</span>Portfolio</a></li>
-      <li><a href="{{ root }}about/"{% if page.nav == 'about' %} aria-current="page"{% endif %}><span>05</span>About</a></li>
-    </ol>
+    <p class="mnav-home"><a href="{% if root == '' %}#top{% else %}{{ root }}{% endif %}"{% if page.nav == nil or page.nav == 'home' %} aria-current="page"{% endif %}>Home</a></p>
+    {%- for g in site.data.navigation.groups %}
+    <div class="mnav-group">
+      <p class="mnav-k"><span>0{{ forloop.index }}</span>{{ g.label }}</p>
+      <ul class="mnav-list">
+        {%- for l in g.links %}
+        <li><a href="{% if l.url contains ':' %}{{ l.url }}{% else %}{{ root }}{{ l.url }}{% endif %}"{% if l.nav and l.nav == page.nav %} aria-current="page"{% endif %}>{{ l.label }}</a></li>
+        {%- endfor %}
+      </ul>
+    </div>
+    {%- endfor %}
     <div class="mnav-actions">
       <a class="btn btn-lime" href="{{ root }}cv/">View CV</a>
       <a class="btn btn-line" href="{{ root }}#contact">Contact</a>

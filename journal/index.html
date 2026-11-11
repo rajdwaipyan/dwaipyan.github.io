@@ -1,0 +1,109 @@
+---
+layout: default
+title: Journal — Technology, Leadership & Development | Dwaipyan Mandal
+og_title: Dwaipyan Mandal — journal
+description: The journal of Dwaipyan Mandal — essays and notes on technology, NGO leadership and development work, plus his articles on technology and cybersecurity and his research.
+root: "../"
+nav: journal
+crumb: Journal
+schema: blog
+---
+{%- assign posts = site.posts -%}
+    <section class="journal-hero" id="top" aria-labelledby="page-title">
+      <div class="container">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Home</a><span aria-hidden="true">/</span><span aria-current="page">Journal</span></nav>
+        <h1 class="journal-mast" id="page-title" data-split>Journal<em>.</em></h1>
+        <div class="journal-intro">
+          <p>Essays and notes on technology, leadership and development work — written here first. Earlier articles live on Medium; the research is on the education page.</p>
+          <ul class="page-jump">
+            <li><a href="#all">Entries</a></li>
+            <li><a href="#articles">Articles</a></li>
+            <li><a href="../education/#research">Research</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section journal-list" id="all" aria-labelledby="entries-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="kicker"><span>01</span> Entries</p>
+          <h2 class="section-title" id="entries-title">From the <em>journal.</em></h2>
+        </header>
+        {%- if posts.size > 0 %}
+        {%- assign featured = posts.first %}
+        <article class="journal-feature">
+          <a href="../{{ featured.url | remove_first: '/' }}" data-cursor="Read">
+            {%- if featured.image %}
+            <span class="jf-media" data-clip><img src="../{{ featured.image }}" alt="" width="1600" height="1200" loading="lazy" decoding="async"></span>
+            {%- else %}
+            <span class="jf-media jf-type" aria-hidden="true"><span>{{ featured.category | default: "Essay" }}</span></span>
+            {%- endif %}
+            <span class="jf-text">
+              <span class="note-k">Latest · {{ featured.category | default: "Essay" }} · <time datetime="{{ featured.date | date: '%Y-%m-%d' }}">{{ featured.date | date: "%-d %B %Y" }}</time></span>
+              <span class="jf-t">{{ featured.title }}</span>
+              <span class="jf-x">{{ featured.description }}</span>
+            </span>
+          </a>
+        </article>
+        {%- if posts.size > 1 %}
+        <div class="filter-bar journal-filters" role="group" aria-label="Filter entries" data-filters="#post-grid" data-filters-status="#post-status">
+          <button type="button" data-filter="all" aria-pressed="true">All</button>
+          {%- for c in site.categories %}
+          <button type="button" data-filter="{{ c[0] | slugify }}" aria-pressed="false">{{ c[0] }}<span>{{ c[1].size }}</span></button>
+          {%- endfor %}
+        </div>
+        <p class="filter-status" id="post-status" role="status" aria-live="polite"></p>
+        <ul class="note-grid" id="post-grid" data-stagger>
+          {%- for post in posts offset: 1 %}
+          <li class="note-card" data-tags="{{ post.category | slugify }}">
+            <a href="../{{ post.url | remove_first: '/' }}">
+              <span class="note-k">{{ post.category | default: "Essay" }} · <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%-d %B %Y" }}</time></span>
+              <span class="note-t">{{ post.title }}</span>
+              <span class="note-x">{{ post.description }}</span>
+              <span class="note-go">Read <span aria-hidden="true">→</span></span>
+            </a>
+          </li>
+          {%- endfor %}
+        </ul>
+        {%- endif %}
+        {%- else %}
+        <div class="journal-empty">
+          <div>
+            <h2>No entries published yet.</h2>
+            <p>When the first one is published it will appear here and on the home page. Until then, this is the writing that exists.</p>
+          </div>
+          <ul>
+            <li><a href="#articles">Technology and cybersecurity articles on Medium</a></li>
+            <li><a href="../education/#report">The master's project report on cyber resilience in Bangladesh's ISP ecosystem</a></li>
+            <li><a href="../education/#research">Research interests</a></li>
+          </ul>
+        </div>
+        {%- endif %}
+      </div>
+    </section>
+
+    <section class="section notes" id="articles" aria-labelledby="articles-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="kicker"><span>02</span> Articles</p>
+          <h2 class="section-title" id="articles-title">Published <em>elsewhere.</em></h2>
+        </header>
+        <ul class="articles-list" data-stagger>
+          {%- for w in site.data.publications.own_writing %}
+          <li><a href="{{ w.url }}" target="_blank" rel="noopener me">
+            <span class="al-t">{{ w.title }}</span>
+            <span class="al-x">{{ w.venue }} · {{ w.note }}</span>
+            <span class="al-go">Read on {{ w.venue }} <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></span>
+          </a></li>
+          {%- endfor %}
+          {%- for a in site.data.publications.academic %}
+          <li><a href="../education/#report">
+            <span class="al-t">{{ a.title }}</span>
+            <span class="al-x">{{ a.kind }} · {{ a.status }}</span>
+            <span class="al-go">Read the summary <span aria-hidden="true">→</span></span>
+          </a></li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </section>

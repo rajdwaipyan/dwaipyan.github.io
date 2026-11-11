@@ -1,27 +1,31 @@
+---
+# Built by Jekyll so new case studies and journal entries are listed automatically.
+layout: null
+---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://rajdwaipyan.github.io/dwaipyan.github.io/</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <image:image><image:loc>https://rajdwaipyan.github.io/dwaipyan.github.io/assets/img/dwaipyan-mandal-1x1.jpg</image:loc></image:image>
     <image:image><image:loc>https://rajdwaipyan.github.io/dwaipyan.github.io/assets/img/dwaipyan-mandal-portrait.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://rajdwaipyan.github.io/dwaipyan.github.io/experience/</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-12</lastmod>
   </url>
   <url>
     <loc>https://rajdwaipyan.github.io/dwaipyan.github.io/leadership/</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-12</lastmod>
   </url>
   <url>
     <loc>https://rajdwaipyan.github.io/dwaipyan.github.io/education/</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-12</lastmod>
   </url>
   <url>
     <loc>https://rajdwaipyan.github.io/dwaipyan.github.io/portfolio/</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <image:image><image:loc>https://rajdwaipyan.github.io/dwaipyan.github.io/assets/img/work/eagle-desktop.webp</image:loc></image:image>
     <image:image><image:loc>https://rajdwaipyan.github.io/dwaipyan.github.io/assets/img/work/arca-desktop.webp</image:loc></image:image>
     <image:image><image:loc>https://rajdwaipyan.github.io/dwaipyan.github.io/assets/img/work/vtek-full.webp</image:loc></image:image>
@@ -30,11 +34,28 @@
   </url>
   <url>
     <loc>https://rajdwaipyan.github.io/dwaipyan.github.io/about/</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <image:image><image:loc>https://rajdwaipyan.github.io/dwaipyan.github.io/assets/img/dwaipyan-mandal-workspace.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://rajdwaipyan.github.io/dwaipyan.github.io/cv/</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-12</lastmod>
   </url>
+  <url>
+    <loc>https://rajdwaipyan.github.io/dwaipyan.github.io/journal/</loc>
+    <lastmod>2026-11-12</lastmod>
+  </url>
+  {%- for p in site.data.projects %}
+  <url>
+    <loc>https://rajdwaipyan.github.io/dwaipyan.github.io/portfolio/{{ p.id }}/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <image:image><image:loc>https://rajdwaipyan.github.io/dwaipyan.github.io/assets/img/work/{% if p.images.desktop %}{{ p.images.desktop }}{% else %}{{ p.images.full }}{% endif %}</image:loc></image:image>
+  </url>
+  {%- endfor %}
+  {%- for post in site.posts %}
+  <url>
+    <loc>https://rajdwaipyan.github.io/dwaipyan.github.io{{ post.url }}</loc>
+    <lastmod>{{ post.last_modified_at | default: post.date | date: "%Y-%m-%d" }}</lastmod>
+  </url>
+  {%- endfor %}
 </urlset>

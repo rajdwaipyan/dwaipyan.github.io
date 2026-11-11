@@ -9,46 +9,12 @@ export function initCore() {
   const year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
 
-  initMenu();
   initScrollWork();
   initReveals();
   initCounters();
   initPrint();
   initRunWhenVisible();
   initCopyButtons(document);
-}
-
-/* ---------- Phone menu: a separate sheet (#mobile-nav) opened by #menu-toggle */
-function initMenu() {
-  const toggle = document.getElementById("menu-toggle");
-  const nav = document.getElementById("mobile-nav");
-  if (!toggle || !nav) return;
-  const mobile = window.matchMedia("(max-width: 960px)");
-  const label = toggle.querySelector(".menu-toggle-label");
-  nav.querySelectorAll(".mnav-list li").forEach((li, i) => li.style.setProperty("--i", String(i)));
-  nav.inert = true;
-
-  const setOpen = (open) => {
-    toggle.setAttribute("aria-expanded", String(open));
-    if (label) label.textContent = open ? "Close" : "Menu";
-    nav.classList.toggle("is-open", open);
-    nav.inert = !open;
-    document.body.classList.toggle("nav-open", open);
-    if (open) nav.querySelector("a")?.focus({ preventScroll: true });
-  };
-  toggle.addEventListener("click", () => setOpen(toggle.getAttribute("aria-expanded") !== "true"));
-  nav.addEventListener("click", (e) => { if (e.target.closest("a")) setOpen(false); });
-  document.addEventListener("keydown", (e) => {
-    if (toggle.getAttribute("aria-expanded") !== "true") return;
-    if (e.key === "Escape") { setOpen(false); toggle.focus(); }
-    if (e.key === "Tab") {
-      const items = [toggle, ...nav.querySelectorAll("a")];
-      const first = items[0], last = items[items.length - 1];
-      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-    }
-  });
-  mobile.addEventListener?.("change", () => { if (!mobile.matches) setOpen(false); });
 }
 
 /* ---------- One rAF loop for everything tied to scroll position */
@@ -122,6 +88,7 @@ function initReveals() {
 
 /* ---------- Numbers that count up once when they appear */
 function initCounters() {
+  if (window.gsap && window.ScrollTrigger) return;   // motion.js counts them
   const els = [...document.querySelectorAll("[data-count]")];
   if (!els.length || reduceMotion.matches || !("IntersectionObserver" in window)) return;
   const io = new IntersectionObserver((entries) => {

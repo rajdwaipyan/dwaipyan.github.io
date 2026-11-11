@@ -1,0 +1,120 @@
+---
+# One case study, built from its entry in _data/projects.yml.
+# The page itself is a short file in portfolio/<id>/index.html that sets `project: <id>`.
+layout: default
+---
+{%- assign root = page.root -%}
+{%- assign total = site.data.projects | size -%}
+{%- for x in site.data.projects -%}
+  {%- if x.id == page.project -%}{%- assign p = x -%}{%- assign idx = forloop.index0 -%}{%- endif -%}
+{%- endfor -%}
+{%- assign next_i = idx | plus: 1 -%}
+{%- if next_i >= total -%}{%- assign next_i = 0 -%}{%- endif -%}
+{%- assign nx = site.data.projects[next_i] -%}
+{%- assign domain = p.url | remove: 'https://' | remove: 'http://' | remove: 'www.' | remove: '/' -%}
+{%- assign img = root | append: 'assets/img/work/' -%}
+    <section class="case-hero" id="top" data-room="night" aria-labelledby="page-title">
+      <div class="container">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="{{ root }}">Home</a><span aria-hidden="true">/</span><a href="{{ root }}portfolio/#projects">Portfolio</a><span aria-hidden="true">/</span><span aria-current="page">{{ p.title }}</span></nav>
+        <header class="case-head">
+          <p class="case-kicker">Case study {{ idx | plus: 1 | prepend: '0' }} / {{ total | prepend: '0' }} · {{ p.industry }}</p>
+          <h1 class="case-h1" id="page-title" data-split>{{ p.title }}</h1>
+          <p class="case-lede">{{ p.summary }}</p>
+        </header>
+        <dl class="case-facts" data-stagger>
+          <div><dt>Where</dt><dd>{{ p.country }}</dd></div>
+          <div><dt>What was built</dt><dd>{{ p.work }}</dd></div>
+          <div><dt>Platform</dt><dd>{{ p.built_with | first }}</dd></div>
+          <div><dt>Live site</dt><dd>{% if p.url %}<a href="{{ p.url }}" target="_blank" rel="noopener">{{ domain }} <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>{% else %}Not public{% endif %}</dd></div>
+        </dl>
+        <figure class="case-shot">
+          <div class="case-shot-frame{% unless p.images.desktop %} case-shot-tall{% endunless %}" data-clip>
+            <div class="case-shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>{{ domain }}</span></div>
+            {%- if p.images.desktop %}
+            <img src="{{ img }}{{ p.images.desktop }}" width="1582" height="989" alt="{{ p.title }} — home page of the live site" fetchpriority="high">
+            {%- else %}
+            <img src="{{ img }}{{ p.images.full }}" width="1582" height="1978" alt="{{ p.title }} — home page of the live site" fetchpriority="high">
+            {%- endif %}
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section case-body-sec" aria-labelledby="brief-title">
+      <div class="container">
+        <div class="case-grid">
+          <aside class="case-side" aria-labelledby="brief-title">
+            <p class="kicker"><span>01</span> The brief</p>
+            <h2 id="brief-title">{{ p.brief }}</h2>
+            <ul class="case-stack" aria-label="Built with">{% for t in p.built_with %}<li>{{ t }}</li>{% endfor %}</ul>
+            {%- if p.url %}
+            <a class="btn btn-ink" href="{{ p.url }}" target="_blank" rel="noopener" data-magnetic>Visit {{ domain }} <span class="btn-arrow" aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+            {%- endif %}
+          </aside>
+          <div class="case-blocks" data-stagger>
+            <div class="case-block">
+              <h3>The client</h3>
+              <p>{{ p.summary }} Based in {{ p.country }}.</p>
+            </div>
+            {%- if p.role %}
+            <div class="case-block">
+              <h3>My role</h3>
+              <p>{{ p.role }}</p>
+            </div>
+            {%- endif %}
+            {%- if p.challenge %}
+            <div class="case-block">
+              <h3>The challenge</h3>
+              <p>{{ p.challenge }}</p>
+            </div>
+            {%- endif %}
+            {%- if p.solution %}
+            <div class="case-block">
+              <h3>The solution</h3>
+              <p>{{ p.solution }}</p>
+            </div>
+            {%- endif %}
+            {%- if p.facts %}
+            <div class="case-block">
+              <h3>Inside the system</h3>
+              <dl>
+                {%- for f in p.facts %}
+                <div><dt>{{ f.label }}</dt><dd>{{ f.value }}</dd></div>
+                {%- endfor %}
+              </dl>
+            </div>
+            {%- endif %}
+            {%- if p.outcome %}
+            <div class="case-block">
+              <h3>Outcome</h3>
+              <p>{{ p.outcome }}</p>
+            </div>
+            {%- endif %}
+            <p class="case-note">Screenshots were taken from the live site in October 2026. Results are only listed where they are documented.</p>
+          </div>
+        </div>
+
+        <div class="case-gallery">
+          {%- if p.images.mobile %}
+          {%- if p.images.desktop %}
+          <figure class="cg-wide" data-clip><img src="{{ img }}{{ p.images.desktop }}" width="1582" height="989" alt="{{ p.title }} on a desktop screen" loading="lazy" decoding="async"></figure>
+          {%- else %}
+          <figure class="cg-wide" data-clip><img src="{{ img }}{{ p.images.full }}" width="1582" height="1978" alt="{{ p.title }}, the full home page" loading="lazy" decoding="async"></figure>
+          {%- endif %}
+          <figure class="cg-phone" data-clip><img src="{{ img }}{{ p.images.mobile }}" width="520" height="1125" alt="{{ p.title }} on a phone" loading="lazy" decoding="async"></figure>
+          {%- endif %}
+          {%- if p.images.detail %}
+          <figure class="cg-full" data-clip><img src="{{ img }}{{ p.images.detail }}" width="1076" height="892" alt="{{ p.title }} — detail of the site" loading="lazy" decoding="async"></figure>
+          {%- endif %}
+        </div>
+      </div>
+    </section>
+
+    <section class="case-next" aria-label="Next case study">
+      <div class="container">
+        <a href="{{ root }}portfolio/{{ nx.id }}/" data-cursor="Next">
+          <span class="case-next-k">Next case study · {{ nx.industry }}</span>
+          <span class="case-next-t">{{ nx.title }} <span aria-hidden="true">→</span></span>
+        </a>
+      </div>
+    </section>
