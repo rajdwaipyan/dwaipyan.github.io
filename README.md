@@ -140,6 +140,16 @@ Web3Forms): it gives you an endpoint URL to use as the form's `action`. No secre
 4. Commit to `main`. The entry appears on `/journal/` (newest is featured), on the home page, in the sitemap,
    with `BlogPosting` structured data, a reading-progress bar and related entries — nothing else to edit.
 
+## Adding a website to the portfolio
+
+Add a line to `_data/sites.yml` (`slug`, `name`, `url`, `domain`, `cat`) and save a 800 × 500 screenshot of its home
+page as `assets/img/sites/<slug>.webp`. No screenshot? Add `shot: false` and the card shows the name instead.
+
+## Social links and WhatsApp
+
+`_data/social.yml` holds the profile links (hero, contact, footer) and the WhatsApp number and greeting used by
+the sticky chat button (`_includes/whatsapp.html`).
+
 ## Adding a case study
 
 Add the project to `_data/projects.yml` (including `place`, `region`, `work` and `filters`), add screenshots to

@@ -1,0 +1,13 @@
+# Social and contact links — used by the hero, the contact section, the footer and the structured data (sameAs).
+# `icon` picks the drawing in _includes/social.html. Only add profiles that are yours and live.
+whatsapp:
+  number: "8801863324379"          # international format, digits only (used for wa.me links)
+  display: "+880 1863-324379"
+  message: "Hello Dwaipyan, I found your website and would like to talk about"
+links:
+  - { name: LinkedIn, url: "https://www.linkedin.com/in/dwaipyan-cyberexpert", icon: linkedin }
+  - { name: GitHub, url: "https://github.com/rajdwaipyan", icon: github }
+  - { name: Medium, url: "https://medium.com/@rajdwaipyan", icon: medium }
+  - { name: Fiverr, url: "https://www.fiverr.com/dwaipyan", icon: fiverr }
+  - { name: WhatsApp, url: "https://wa.me/8801863324379", icon: whatsapp }
+  - { name: Email, url: "mailto:rajdwaipayan@gmail.com", icon: mail }

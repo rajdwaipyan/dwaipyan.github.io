@@ -14,6 +14,7 @@ crumb: Portfolio
         <p class="page-lede">Websites, online stores, web applications and the CRM automations behind them — built for clients in the United States, Europe, Asia-Pacific and French Polynesia. Every case study links to the live site.</p>
         <ul class="page-jump">
           <li><a href="#projects">Case studies</a></li>
+          <li><a href="#websites">Website portfolio</a></li>
           <li><a href="#build">What I build</a></li>
           <li><a href="#cases">Project by project</a></li>
           <li><a href="#machine">Automation demo</a></li>
@@ -71,11 +72,54 @@ crumb: Portfolio
       </div>
     </section>
 
-    <!-- 02 · WHAT I BUILD -->
+    <!-- 02 · WEBSITE PORTFOLIO — the wider body of work, from _data/sites.yml -->
+    {%- assign sites = site.data.sites.sites %}
+    <section class="section sites-sec" id="websites" aria-labelledby="websites-title">
+      <div class="container">
+        <header class="section-head section-head-row">
+          <div>
+            <p class="kicker"><span>02</span> Website portfolio</p>
+            <h2 class="section-title" id="websites-title">{{ sites | size }} websites, <em>seven industries.</em></h2>
+            <p class="section-intro">Websites I designed and built for clients in real estate, architecture, automotive, trades, food, retail and healthcare. Every card opens the live site.</p>
+          </div>
+        </header>
+        <div class="filter-bar" role="group" aria-label="Filter websites by industry" data-filters="#site-grid" data-filters-status="#site-status">
+          <button type="button" data-filter="all" aria-pressed="true">All<span>{{ sites | size }}</span></button>
+          {%- for c in site.data.sites.categories %}
+          {%- assign n = 0 %}{% for x in sites %}{% if x.cat == c.id %}{% assign n = n | plus: 1 %}{% endif %}{% endfor %}
+          <button type="button" data-filter="{{ c.id }}" aria-pressed="false">{{ c.label }}<span>{{ n }}</span></button>
+          {%- endfor %}
+        </div>
+        <p class="filter-status" id="site-status" role="status" aria-live="polite"></p>
+        <ul class="site-grid" id="site-grid" data-limit="18">
+          {%- for x in sites %}
+          {%- assign label = "" %}{% for c in site.data.sites.categories %}{% if c.id == x.cat %}{% assign label = c.label %}{% endif %}{% endfor %}
+          <li class="site-card" data-tags="{{ x.cat }}">
+            <a href="{{ x.url }}" target="_blank" rel="noopener" data-cursor="Visit">
+              <span class="sc-frame">
+                <span class="sc-bar" aria-hidden="true"><i></i><i></i><i></i><span>{{ x.domain }}</span></span>
+                {%- if x.shot == false %}
+                <span class="sc-type" aria-hidden="true">{{ x.name }}</span>
+                {%- else %}
+                <img src="../assets/img/sites/{{ x.slug }}.webp" width="800" height="500" alt="" loading="lazy" decoding="async">
+                {%- endif %}
+              </span>
+              <span class="sc-meta"><span class="sc-name">{{ x.name }}</span><span class="sc-cat">{{ label }}</span></span>
+              <span class="sr-only"> — {{ x.domain }} (opens in a new tab)</span>
+            </a>
+          </li>
+          {%- endfor %}
+        </ul>
+        <div class="sites-more"><button class="btn btn-ink" type="button" data-more="#site-grid">Show all {{ sites | size }} websites <span class="btn-arrow" aria-hidden="true">↓</span></button></div>
+        <p class="sites-note">Screenshots taken from the live sites in November 2026. Sites change after hand-over, so what you see today may differ.</p>
+      </div>
+    </section>
+
+    <!-- 03 · WHAT I BUILD -->
     <section class="section build" id="build" aria-labelledby="build-title" data-guide="Watch the demo on the right: one site becomes a store, then a portal, then a whole system." data-guide-prop="hardhat" data-guide-side="left" data-guide-point>
       <div class="container">
         <header class="section-head reveal">
-          <p class="kicker"><span>02</span> What I build</p>
+          <p class="kicker"><span>03</span> What I build</p>
           <h2 class="section-title" id="build-title">One site. <em>Four layers deep.</em></h2>
           <p class="section-intro">Most projects start as a website and grow into something that sells, serves clients and follows up on its own. Scroll through how one site gets there.</p>
         </header>
@@ -163,7 +207,7 @@ crumb: Portfolio
     <section class="work" id="cases" aria-labelledby="cases-title" data-guide="These are real client sites. Every project has a link to the live one.">
       <div class="container work-intro">
         <header class="section-head reveal">
-          <p class="kicker"><span>03</span> Project by project</p>
+          <p class="kicker"><span>04</span> Project by project</p>
           <h2 class="section-title" id="cases-title">Live sites, <em>from Raleigh to Bora&nbsp;Bora.</em></h2>
           <p class="section-intro">Every project below is a real client site you can open. Screenshots were taken from the live sites in October 2026.</p>
         </header>

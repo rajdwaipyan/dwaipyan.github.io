@@ -85,3 +85,24 @@ Status key: **Hidden** = in the data file but not shown · **Cautious** = shown 
   `_includes/site-footer.html` if your availability changes.
 - **Home numbers** reuse figures already on the site (6+ years, joined 2020, CEO 2026, 5 live client sites,
   2 degrees). Update them in `index.html` if any change.
+
+## Website portfolio (added 12 November 2026)
+
+- `_data/sites.yml` lists the websites you confirmed you designed or built. They appear on `/portfolio/#websites`
+  (filterable, with screenshots) and as two moving rows on the home page. The home "Client websites" number counts them.
+- **Left out — the address no longer shows the site** (check, and send the current address if the site moved):
+  - 59rosestreet.au — did not load when checked
+  - carsinjamaica.com — did not load when checked
+  - mevamekitchenexpress.ca — did not load when checked
+  - ccandcautosales.co.uk — shows a domain-parking page
+  - danielcarsales.com — redirects to a domain-for-sale page
+  - toyotaduri.com — now shows an unrelated gardening blog
+  - hauslending.com — now redirects to facolending.com (FACo Lending)
+  - beckandco.com — now redirects to pioneeraustin.com (Pioneer Real Estate Services)
+- **Shown without a screenshot** (the site blocked automated screenshots): carsolutionsfl.com, tech-on-deck.com,
+  caffeina.ca, caesarstoneus.com, greenmountaingrills.com, gruum.com, cipherskincare.com. Send a screenshot
+  (800 × 500) for any of these and save it as `assets/img/sites/<slug>.webp`, then delete `shot: false` for it.
+- **Categories** were assigned from each site's home page — move any that are wrong (`cat:` in `_data/sites.yml`).
+- Several are well-known brands (for example fairlife, Horizon Organic, nutribullet, Bianchi, Polestar). If anyone asks,
+  be ready to show what you did on each; if your role was partial, consider a note per site.
+- **WhatsApp**: +880 1863-324379 is now public on every page (sticky button, contact section, social icons).

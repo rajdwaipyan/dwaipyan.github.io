@@ -8,34 +8,15 @@ nav: home
 schema: profile
 preload_portrait: cutout
 ---
-    <!-- HERO — night cover. The name as a masthead; the portrait stands in front of a low sun
-         (Surjamukhi means "facing the sun") and a slow wall of live client work. -->
-    <section class="hero hero-night" id="top" data-room="night" aria-labelledby="hero-title">
+    <!-- HERO — an editorial cover: the name as a masthead, the portrait in the middle in front of a low sun
+         (Surjamukhi means "facing the sun"), the deck on the left and the roles that matter most on the right. -->
+    <section class="hero hero-classic" id="top" data-room="cream" aria-labelledby="hero-title">
       <div class="hero-cover">
         <h1 class="hero-mast" id="hero-title">
           <span class="mast-line"><span class="mast-word">Dwaipyan</span></span>
           <span class="mast-line"><span class="mast-word">Mandal</span></span>
           <span class="sr-only"> — technology leader, entrepreneur and NGO executive</span>
         </h1>
-
-        <div class="hero-wall" aria-hidden="true">
-          <div class="wall-col">
-            <div class="wall-track">
-              {%- assign wall_a = "eagle-desktop,osea-mobile,arca-desktop,vtek-full,els-desktop" | split: "," %}
-              {%- for k in (1..2) %}{% for w in wall_a %}
-              <span class="wall-tile wt-{{ w | split: '-' | last }}"><img src="assets/img/wall/{{ w }}.webp" alt="" loading="lazy" decoding="async" width="{% if w contains 'mobile' %}320{% else %}560{% endif %}" height="{% if w contains 'mobile' %}692{% elsif w contains 'full' %}700{% else %}350{% endif %}"></span>
-              {%- endfor %}{% endfor %}
-            </div>
-          </div>
-          <div class="wall-col wall-col-b">
-            <div class="wall-track">
-              {%- assign wall_b = "vtek-mobile,osea-desktop,eagle-form,els-mobile,arca-mobile" | split: "," %}
-              {%- for k in (1..2) %}{% for w in wall_b %}
-              <span class="wall-tile wt-{{ w | split: '-' | last }}"><img src="assets/img/wall/{{ w }}.webp" alt="" loading="lazy" decoding="async" width="{% if w contains 'mobile' %}320{% else %}560{% endif %}" height="{% if w contains 'mobile' %}692{% elsif w contains 'form' %}464{% else %}350{% endif %}"></span>
-              {%- endfor %}{% endfor %}
-            </div>
-          </div>
-        </div>
 
         <div class="hero-sun" aria-hidden="true">
           <svg class="sun-ring" viewBox="0 0 800 800" focusable="false">
@@ -62,20 +43,19 @@ preload_portrait: cutout
           </p>
           <div class="hero-cta">
             <a class="cta-solid" href="cv/" data-magnetic="0.3">View CV <span aria-hidden="true">→</span></a>
-            <a class="cta-line" href="#work">See the work</a>
-            <a class="cta-line" href="about/">Read the profile</a>
+            <a class="cta-line" href="experience/">Explore my journey</a>
           </div>
+          {% include social.html label="Profiles and contact" %}
         </div>
 
-        <a class="wall-cap" href="#work"><span class="wall-dot" aria-hidden="true"></span>Live client work <span aria-hidden="true">↓</span></a>
+        <dl class="hero-ledger">
+          <div><dt>Chief Executive Officer</dt><dd>Surjamukhi Sangstha (SMS) · since October 2026</dd></div>
+          <div><dt>Co-founder</dt><dd>ED Shield Solutions · Dhaka</dd></div>
+          <div><dt>Web &amp; automation</dt><dd>Six years building for international clients</dd></div>
+        </dl>
       </div>
 
       <div class="hero-credits">
-        <dl class="hero-ledger">
-          <div class="ledger-item"><dt>Chief Executive Officer</dt><dd>Surjamukhi Sangstha (SMS) · since October 2026</dd></div>
-          <div class="ledger-item"><dt>Co-founder</dt><dd>ED Shield Solutions · Dhaka</dd></div>
-          <div class="ledger-item"><dt>Web &amp; automation</dt><dd>Six years building for international clients</dd></div>
-        </dl>
         <div class="marquee">
           <p class="marquee-k" id="marquee-k">Organisations &amp; clients</p>
           <div class="marquee-view">
@@ -224,7 +204,8 @@ preload_portrait: cutout
           <div class="g-wide"><dt>Years building for the web</dt><dd><span data-count="6">6</span>+</dd><dd class="g-note">Websites, stores and automations for clients abroad.</dd></div>
           <div><dt>Joined Surjamukhi Sangstha</dt><dd><span data-count="2020">2020</span></dd><dd class="g-note">IT &amp; project management.</dd></div>
           <div><dt>Appointed CEO</dt><dd><span data-count="2026">2026</span></dd><dd class="g-note">Effective 26 October 2026.</dd></div>
-          <div><dt>Live client sites in this portfolio</dt><dd><span data-count="5">5</span></dd><dd class="g-note">United States, Europe ↔ Asia, French Polynesia.</dd></div>
+          {%- assign n_sites = site.data.sites.sites | size | plus: site.data.projects.size %}
+          <div><dt>Client websites in this portfolio</dt><dd><span data-count="{{ n_sites }}">{{ n_sites }}</span></dd><dd class="g-note">{{ site.data.projects.size }} in-depth case studies and {{ site.data.sites.sites.size }} more live sites.</dd></div>
           <div><dt>Degrees · CSE and IT</dt><dd><span data-count="2">2</span></dd><dd class="g-note">BSc (Stamford) and PMIT (Jahangirnagar).</dd></div>
         </dl>
       </div>
@@ -319,11 +300,46 @@ preload_portrait: cutout
       </div>
     </section>
 
+    <!-- MORE WEBSITES — two slow rows of live client sites from _data/sites.yml -->
+    {%- assign sites = site.data.sites.sites %}
+    <section class="more-sites" id="more-websites" data-room="night" aria-labelledby="more-sites-title">
+      <div class="container">
+        <header class="section-head section-head-row">
+          <div>
+            <p class="kicker"><span>07</span> Website portfolio</p>
+            <h2 class="section-title" id="more-sites-title">And {{ sites | size }} more websites, <em>live today.</em></h2>
+          </div>
+          <a class="btn btn-lime" href="portfolio/#websites" data-magnetic>Browse all {{ sites | size }} <span class="btn-arrow" aria-hidden="true">→</span></a>
+        </header>
+      </div>
+      <div class="ms-rows">
+        {%- assign half = sites.size | divided_by: 2 %}
+        {%- for row in (1..2) %}
+        <div class="ms-row{% if row == 2 %} ms-row-b{% endif %}">
+          {%- for copy in (1..2) %}
+          <ul class="ms-strip"{% if copy == 2 %} aria-hidden="true"{% endif %}>
+            {%- for x in sites %}
+            {%- assign i = forloop.index0 %}
+            {%- if x.shot != false %}
+            {%- assign inrow = false %}
+            {%- if row == 1 %}{% if i < half %}{% assign inrow = true %}{% endif %}{% else %}{% if i >= half %}{% assign inrow = true %}{% endif %}{% endif %}
+            {%- if inrow %}
+            <li><a href="{{ x.url }}" target="_blank" rel="noopener"{% if copy == 2 %} tabindex="-1"{% endif %} title="{{ x.name }}"><img src="assets/img/sites/{{ x.slug }}.webp" width="800" height="500" alt="{% if copy == 1 %}{{ x.name }} website{% endif %}" loading="lazy" decoding="async"></a></li>
+            {%- endif %}
+            {%- endif %}
+            {%- endfor %}
+          </ul>
+          {%- endfor %}
+        </div>
+        {%- endfor %}
+      </div>
+    </section>
+
     <!-- MILESTONES -->
     <section class="section milestones" id="milestones" aria-labelledby="ms-title">
       <div class="container">
         <header class="section-head">
-          <p class="kicker"><span>07</span> Milestones</p>
+          <p class="kicker"><span>08</span> Milestones</p>
           <h2 class="section-title" id="ms-title">The road so far, <em>dated and checkable.</em></h2>
         </header>
       </div>
@@ -347,7 +363,7 @@ preload_portrait: cutout
       <div class="container">
         <header class="section-head section-head-row">
           <div>
-            <p class="kicker"><span>08</span> Journal</p>
+            <p class="kicker"><span>09</span> Journal</p>
             <h2 class="section-title" id="notes-title">Notes from <em>the desk.</em></h2>
           </div>
           <a class="btn btn-ink" href="journal/" data-magnetic>Open the journal <span class="btn-arrow" aria-hidden="true">→</span></a>
@@ -400,7 +416,7 @@ preload_portrait: cutout
     <section class="contact" id="contact" data-room="contact" aria-labelledby="contact-title">
       <div class="container contact-grid">
         <div class="contact-intro">
-          <p class="kicker kicker-light"><span>09</span> Contact</p>
+          <p class="kicker kicker-light"><span>10</span> Contact</p>
           <h2 class="contact-title" id="contact-title">Let's work <em>together.</em></h2>
           <p>Whether it's a partnership, an academic enquiry or a project, add a few lines and I'll reply with questions and honest next steps.</p>
 
@@ -409,6 +425,7 @@ preload_portrait: cutout
             <a class="contact-email" href="mailto:rajdwaipayan@gmail.com">rajdwaipayan@gmail.com</a>
             <button class="copy-btn" type="button" data-copy="rajdwaipayan@gmail.com">Copy address</button>
             <span class="copy-status" role="status" aria-live="polite"></span>
+            <a class="contact-wa" href="https://wa.me/{{ site.data.social.whatsapp.number }}" target="_blank" rel="noopener">WhatsApp {{ site.data.social.whatsapp.display }} <span aria-hidden="true">↗</span></a>
           </div>
           <ul class="contact-profiles" id="connect" aria-label="Let's connect">
             <li><a href="https://www.linkedin.com/in/dwaipyan-cyberexpert" target="_blank" rel="noopener me">LinkedIn <span aria-hidden="true">↗</span></a></li>

@@ -24,7 +24,7 @@ function initCardTilt() {
 
 /* ---------- The cover: entrance, letters, pointer depth, scroll, the rotating line */
 function initCover() {
-  const hero = document.querySelector(".hero-night");
+  const hero = document.querySelector(".hero-classic");
   const cover = hero?.querySelector(".hero-cover");
   if (!cover) return;
   const still = reduceMotion.matches;
@@ -76,17 +76,18 @@ function initCover() {
       .fromTo(q(".hero-figure"), { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.5, ease: "expo.inOut", clearProps: "clipPath" }, 0.05);
   }
   tl.from(q(".hero-figure img"), { yPercent: wide ? 8 : 3, scale: wide ? 1.08 : 1.03, duration: 1.8 }, 0.15)
-    .from(q(".wall-col"), { yPercent: 14, opacity: 0, duration: 1.6, stagger: 0.12 }, 0.35)
     .from(q(".sun-ring"), { opacity: 0, scale: 0.9, duration: 1.6 }, 0.7)
     .from(q(".hero-deck > *"), { y: 26, opacity: 0, duration: 1.1, stagger: 0.08, clearProps: "transform,opacity" }, 0.6)
-    .from(q(".hero-credits .ledger-item, .hero-credits .marquee"), { y: 20, opacity: 0, duration: 1, stagger: 0.07, clearProps: "transform,opacity" }, 0.9);
+    .from(q(".hero-ledger > div"), { y: 20, opacity: 0, duration: 1, stagger: 0.1, clearProps: "transform,opacity" }, 0.8)
+    .from(q(".marquee"), { opacity: 0, duration: 1.2, clearProps: "opacity" }, 1);
+  const rule = hero.querySelector(".hero-ledger");
+  if (rule) tl.fromTo(rule, { "--rule": 0 }, { "--rule": 1, duration: 1.1, ease: "power3.inOut" }, 0.6);
 
   // 4. scroll: the name drifts up, the sun sets, the wall slides, the figure barely moves
   const st = { trigger: cover, start: "top top", end: "bottom top", scrub: true };
   G.to(mast, { yPercent: -28, ease: "none", scrollTrigger: st });
   G.to(q(".hero-sun"), { yPercent: 34, scale: 0.86, ease: "none", scrollTrigger: st });
   G.to(q(".hero-figure"), { yPercent: 6, ease: "none", scrollTrigger: st });
-  G.to(q(".hero-wall"), { yPercent: -12, ease: "none", scrollTrigger: st });
 
   // 5. pointer: layers at three depths, and the letters near the pointer lean up
   if (!finePointer.matches) return;
