@@ -3,6 +3,7 @@
 import { reduceMotion, finePointer } from "./core.js";
 
 export function initHero() {
+  initCover();
   initKineticName();
   initPortraitLens();
   initDepth();
@@ -43,6 +44,91 @@ function initCardTilt() {
       card.style.setProperty("--tx", (-y * 6).toFixed(2) + "deg");
     });
     card.addEventListener("pointerleave", () => { card.style.setProperty("--ty", "0deg"); card.style.setProperty("--tx", "0deg"); });
+  });
+}
+
+/* ---------- The cover: letters, pointer depth, scroll, the rotating line */
+function initCover() {
+  const cover = document.querySelector(".hero-cover");
+  if (!cover) return;
+  const still = reduceMotion.matches;
+  const mast = cover.querySelector(".hero-mast");
+
+  // 1. split the name into letters (the h1 keeps its text; letters are presentation only)
+  const letters = [];
+  if (!still) {
+    let i = 0;
+    mast.querySelectorAll(".mast-word").forEach((w) => {
+      const word = w.textContent;
+      w.textContent = "";
+      for (const ch of word) {
+        const s = document.createElement("span");
+        s.className = "ml"; s.textContent = ch; s.style.setProperty("--i", String(i++));
+        w.appendChild(s); letters.push(s);
+      }
+    });
+    mast.classList.add("is-split");
+  }
+
+  // 2. "Building …" — swap the object every few seconds; pause when the tab or hero is out of view
+  const items = [...cover.querySelectorAll(".rot-item")];
+  if (items.length > 1 && !still) {
+    let k = 0, visible = true;
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(cover);
+    setInterval(() => {
+      if (!visible || document.hidden) return;
+      const cur = items[k], next = items[(k + 1) % items.length];
+      cur.classList.remove("is-on"); cur.classList.add("is-out");
+      next.classList.remove("is-out"); next.classList.add("is-on");
+      setTimeout(() => cur.classList.remove("is-out"), 800);
+      k = (k + 1) % items.length;
+    }, 2800);
+  }
+  if (still) return;
+
+  // 3. scroll: 0 at the top of the page, 1 once the hero has scrolled away
+  let ticking = false;
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      const p = Math.min(1, Math.max(0, window.scrollY / cover.offsetHeight));
+      cover.style.setProperty("--sp", p.toFixed(3));
+    });
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  // 4. pointer: layers at three depths, and the letters near the pointer lean up
+  if (!finePointer.matches) return;
+  let centres = [], size = 100;
+  const measure = () => {
+    size = parseFloat(getComputedStyle(mast).fontSize) || 100;
+    centres = letters.map((l) => { const r = l.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; });
+  };
+  setTimeout(measure, 1500);
+  window.addEventListener("resize", measure, { passive: true });
+  window.addEventListener("scroll", () => { centres = []; }, { passive: true });
+  let frame = 0, px = 0, py = 0;
+  const apply = () => {
+    frame = 0;
+    const r = cover.getBoundingClientRect();
+    cover.style.setProperty("--mx", (((px - r.left) / r.width) * 2 - 1).toFixed(3));
+    cover.style.setProperty("--my", (((py - r.top) / r.height) * 2 - 1).toFixed(3));
+    if (!centres.length) measure();
+    const R = size * 1.6;
+    letters.forEach((l, j) => {
+      const c = centres[j]; if (!c) return;
+      const d = Math.hypot(px - c.x, py - c.y), f = Math.max(0, 1 - d / R), e = f * f * (3 - 2 * f);
+      l.style.setProperty("--ly", (-e * size * 0.13).toFixed(1) + "px");
+      l.classList.toggle("is-near", e > 0.55);
+    });
+  };
+  cover.addEventListener("pointermove", (e) => { px = e.clientX; py = e.clientY; if (!frame) frame = requestAnimationFrame(apply); });
+  cover.addEventListener("pointerleave", () => {
+    cover.style.setProperty("--mx", "0"); cover.style.setProperty("--my", "0");
+    letters.forEach((l) => { l.style.setProperty("--ly", "0px"); l.classList.remove("is-near"); });
   });
 }
 

@@ -12,15 +12,20 @@ preload_portrait: cutout
          (Surjamukhi means "facing the sun".) -->
     <section class="hero" id="top" data-room="cream" aria-labelledby="hero-title">
       <div class="hero-cover">
-        <h1 class="hero-mast" id="hero-title" data-parallax="-0.06">
+        <h1 class="hero-mast" id="hero-title">
           <span class="mast-line"><span class="mast-word">Dwaipyan</span></span>
           <span class="mast-line"><span class="mast-word">Mandal</span></span>
           <span class="sr-only"> — technology leader, entrepreneur and NGO executive</span>
         </h1>
 
-        <div class="hero-sun" aria-hidden="true" data-parallax="0.1"></div>
+        <div class="hero-sun" aria-hidden="true">
+          <svg class="sun-ring" viewBox="0 0 400 400" focusable="false">
+            <defs><path id="sun-ring-path" d="M200,200 m-184,0 a184,184 0 1,1 368,0 a184,184 0 1,1 -368,0"/></defs>
+            <text><textPath href="#sun-ring-path" textLength="1150" lengthAdjust="spacing">Surjamukhi — facing the sun · Dhaka, Bangladesh · Technology · Leadership · Development ·</textPath></text>
+          </svg>
+        </div>
 
-        <figure class="hero-figure" data-parallax="0.035">
+        <figure class="hero-figure">
           <img src="assets/img/dwaipyan-mandal-cutout-720.webp"
                srcset="assets/img/dwaipyan-mandal-cutout-720.webp 720w, assets/img/dwaipyan-mandal-cutout-1100.webp 1100w"
                sizes="(max-width: 960px) 88vw, 44vh" width="1100" height="1650"
@@ -29,6 +34,9 @@ preload_portrait: cutout
 
         <div class="hero-deck">
           <p class="hero-kicker">Technology&nbsp;leader <span aria-hidden="true">·</span> Entrepreneur <span aria-hidden="true">·</span> NGO&nbsp;executive</p>
+          <p class="hero-rotator" aria-hidden="true">Building
+            <span class="rot"><span class="rot-item is-on">websites that sell.</span><span class="rot-item">CRMs that follow up.</span><span class="rot-item">systems that last.</span><span class="rot-item">an NGO that serves.</span></span>
+          </p>
           <p class="hero-lede">
             I build websites and the systems behind them for businesses abroad, and lead Surjamukhi Sangstha,
             a development organisation in Bangladesh.
