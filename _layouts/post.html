@@ -1,0 +1,71 @@
+---
+# A journal article. Posts live in _posts/ as Markdown (see _templates/journal-post.md).
+# Front matter: title, description, category, tags (optional list), image (optional, under assets/img/journal/).
+layout: default
+---
+{%- assign root = page.root -%}
+{%- assign words = content | number_of_words -%}
+{%- assign minutes = words | divided_by: 220 | at_least: 1 -%}
+<div class="read-progress" aria-hidden="true"><span></span></div>
+<article data-article aria-labelledby="page-title">
+  <header class="post-hero" id="top">
+    <div class="container post-wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="{{ root }}">Home</a><span aria-hidden="true">/</span><a href="{{ root }}journal/">Journal</a><span aria-hidden="true">/</span><span aria-current="page">{{ page.title }}</span></nav>
+      <p class="post-meta">
+        {%- if page.category %}<a href="{{ root }}journal/#all">{{ page.category }}</a>{% endif %}
+        <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: "%-d %B %Y" }}</time>
+        <span>{{ minutes }} min read</span>
+      </p>
+      <h1 class="post-title" id="page-title" data-split>{{ page.title }}</h1>
+      {%- if page.description %}<p class="post-dek">{{ page.description }}</p>{% endif %}
+    </div>
+    {%- if page.image %}
+    <figure class="post-cover container" data-clip><img src="{{ root }}{{ page.image }}" alt="{{ page.image_alt }}" width="{{ page.image_width | default: 1600 }}" height="{{ page.image_height | default: 900 }}" fetchpriority="high"></figure>
+    {%- endif %}
+  </header>
+  <div class="post-body">
+    <div class="container post-wrap">
+      <div class="prose">
+{{ content }}
+      </div>
+      <footer class="post-foot">
+        {%- if page.tags.size > 0 %}
+        <ul class="post-tags" aria-label="Tags">{% for t in page.tags %}<li>{{ t }}</li>{% endfor %}</ul>
+        {%- endif %}
+        <a href="{{ root }}journal/">← All journal entries</a>
+      </footer>
+    </div>
+  </div>
+</article>
+
+{%- assign related = "" | split: "" -%}
+{%- for post in site.posts -%}
+  {%- if post.url != page.url and post.category == page.category and related.size < 3 -%}{%- assign related = related | push: post -%}{%- endif -%}
+{%- endfor -%}
+{%- for post in site.posts -%}
+  {%- if post.url != page.url and related.size < 3 -%}
+    {%- unless related contains post -%}{%- assign related = related | push: post -%}{%- endunless -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if related.size > 0 %}
+<section class="section related" aria-labelledby="related-title">
+  <div class="container">
+    <header class="section-head">
+      <p class="kicker"><span>→</span> Keep reading</p>
+      <h2 class="section-title" id="related-title">Related <em>entries.</em></h2>
+    </header>
+    <ul class="note-grid" data-stagger>
+      {%- for post in related %}
+      <li class="note-card">
+        <a href="{{ root }}{{ post.url | remove_first: '/' }}">
+          <span class="note-k">{{ post.category | default: "Essay" }} · <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%-d %B %Y" }}</time></span>
+          <span class="note-t">{{ post.title }}</span>
+          <span class="note-x">{{ post.description }}</span>
+          <span class="note-go">Read <span aria-hidden="true">→</span></span>
+        </a>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+{%- endif %}

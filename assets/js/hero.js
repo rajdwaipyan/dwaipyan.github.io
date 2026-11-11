@@ -1,35 +1,11 @@
-// Hero: the name reacts to the pointer (variable-font weight), the portrait has a lens that shows
-// the line-drawing "structure" under the photograph, and the whole stage has gentle depth.
+// Hero: the night cover (entrance timeline, letters, rotating line, depth), the portrait lens
+// on the About page and the project-card tilt.
 import { reduceMotion, finePointer } from "./core.js";
 
 export function initHero() {
-  initKineticName();
+  initCover();
   initPortraitLens();
-  initDepth();
   initCardTilt();
-}
-
-/* ---------- Hero depth: the portrait tilts a few degrees toward the pointer, the identity
-   cards drift by their own depth and the light on the photo follows. Fine pointers only. */
-function initDepth() {
-  const stage = document.querySelector("[data-tilt]");
-  const hero = stage?.closest(".hero");
-  if (!stage || !hero || reduceMotion.matches || !finePointer.matches) return;
-  let frame = 0, nx = 0, ny = 0;
-  const apply = () => {
-    frame = 0;
-    stage.style.setProperty("--ry", (nx * 7).toFixed(2) + "deg");
-    stage.style.setProperty("--rx", (-ny * 5).toFixed(2) + "deg");
-    stage.style.setProperty("--px", nx.toFixed(3));
-    stage.style.setProperty("--py", ny.toFixed(3));
-  };
-  hero.addEventListener("pointermove", (e) => {
-    const r = stage.getBoundingClientRect();
-    nx = Math.max(-1, Math.min(1, (e.clientX - (r.left + r.width / 2)) / (window.innerWidth / 2)));
-    ny = Math.max(-1, Math.min(1, (e.clientY - (r.top + r.height / 2)) / (window.innerHeight / 2)));
-    if (!frame) frame = requestAnimationFrame(apply);
-  });
-  hero.addEventListener("pointerleave", () => { nx = 0; ny = 0; if (!frame) frame = requestAnimationFrame(apply); });
 }
 
 /* ---------- Project cards lean slightly toward the pointer */
@@ -46,80 +22,102 @@ function initCardTilt() {
   });
 }
 
-/* ---------- Kinetic name */
-function initKineticName() {
-  const lines = [...document.querySelectorAll("[data-kinetic]")];
-  if (!lines.length) return;
+/* ---------- The cover: entrance, letters, pointer depth, scroll, the rotating line */
+function initCover() {
+  const hero = document.querySelector(".hero-night");
+  const cover = hero?.querySelector(".hero-cover");
+  if (!cover) return;
+  const still = reduceMotion.matches;
+  const mast = cover.querySelector(".hero-mast");
+  const G = window.gsap;
 
-  // Wrap every letter. The text stays one word for screen readers (no spaces added).
-  let i = 0;
-  const chars = [];
-  for (const line of lines) {
-    const word = line.textContent;
-    line.textContent = "";
-    for (const letter of word) {
-      const span = document.createElement("span");
-      span.className = "ch";
-      span.textContent = letter;
-      span.style.setProperty("--i", String(i++));
-      line.appendChild(span);
-      chars.push(span);
-    }
+  // 1. split the name into letters (the h1 keeps its text; letters are presentation only)
+  const letters = [];
+  if (!still) {
+    let i = 0;
+    mast.querySelectorAll(".mast-word").forEach((w) => {
+      const word = w.textContent;
+      w.textContent = "";
+      for (const ch of word) {
+        const s = document.createElement("span");
+        s.className = "ml"; s.textContent = ch; s.style.setProperty("--i", String(i++));
+        w.appendChild(s); letters.push(s);
+      }
+    });
+    mast.classList.add("is-split");
   }
-  if (reduceMotion.matches) return;
 
-  const BASE = 720, MIN = 300, RADIUS = 260;
-  // Letter centres are measured once (and again on resize/scroll), not every frame:
-  // reading layout inside the animation loop would force a reflow per letter.
-  let centres = [];
+  // 2. "Building …" — swap the object every few seconds; pause when the tab or hero is out of view
+  const items = [...cover.querySelectorAll(".rot-item")];
+  if (items.length > 1 && !still) {
+    let k = 0, visible = true;
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(cover);
+    setInterval(() => {
+      if (!visible || document.hidden) return;
+      const cur = items[k], next = items[(k + 1) % items.length];
+      cur.classList.remove("is-on"); cur.classList.add("is-out");
+      next.classList.remove("is-out"); next.classList.add("is-on");
+      setTimeout(() => cur.classList.remove("is-out"), 800);
+      k = (k + 1) % items.length;
+    }, 2800);
+  }
+
+  // 3. entrance — one GSAP timeline. Without GSAP (or with reduced motion) the cover is simply shown.
+  hero.classList.add("hero-go");
+  if (still || !G || !window.ScrollTrigger) return;
+  const q = (s) => hero.querySelectorAll(s);
+  const tl = G.timeline({ defaults: { ease: "expo.out" } });
+  // On phones the name and the portrait are the first thing painted (and the largest), so they are
+  // shown at once and only settle into place; on wide screens they make the full cinematic entrance.
+  const wide = window.matchMedia("(min-width: 961px)").matches;
+  tl.from(q(".hero-sun"), { yPercent: 38, scale: 0.72, duration: 2, ease: "power4.out" }, 0);
+  if (wide) {
+    tl.from(letters, { yPercent: 112, rotate: 7, duration: 1.2, stagger: 0.035 }, 0.1)
+      .fromTo(q(".hero-figure"), { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.5, ease: "expo.inOut", clearProps: "clipPath" }, 0.05);
+  }
+  tl.from(q(".hero-figure img"), { yPercent: wide ? 8 : 3, scale: wide ? 1.08 : 1.03, duration: 1.8 }, 0.15)
+    .from(q(".wall-col"), { yPercent: 14, opacity: 0, duration: 1.6, stagger: 0.12 }, 0.35)
+    .from(q(".sun-ring"), { opacity: 0, scale: 0.9, duration: 1.6 }, 0.7)
+    .from(q(".hero-deck > *"), { y: 26, opacity: 0, duration: 1.1, stagger: 0.08, clearProps: "transform,opacity" }, 0.6)
+    .from(q(".hero-credits .ledger-item, .hero-credits .marquee"), { y: 20, opacity: 0, duration: 1, stagger: 0.07, clearProps: "transform,opacity" }, 0.9);
+
+  // 4. scroll: the name drifts up, the sun sets, the wall slides, the figure barely moves
+  const st = { trigger: cover, start: "top top", end: "bottom top", scrub: true };
+  G.to(mast, { yPercent: -28, ease: "none", scrollTrigger: st });
+  G.to(q(".hero-sun"), { yPercent: 34, scale: 0.86, ease: "none", scrollTrigger: st });
+  G.to(q(".hero-figure"), { yPercent: 6, ease: "none", scrollTrigger: st });
+  G.to(q(".hero-wall"), { yPercent: -12, ease: "none", scrollTrigger: st });
+
+  // 5. pointer: layers at three depths, and the letters near the pointer lean up
+  if (!finePointer.matches) return;
+  let centres = [], size = 100;
   const measure = () => {
-    centres = chars.map((ch) => {
-      const r = ch.getBoundingClientRect();
-      return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+    size = parseFloat(getComputedStyle(mast).fontSize) || 100;
+    centres = letters.map((l) => { const r = l.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; });
+  };
+  window.addEventListener("resize", () => { centres = []; }, { passive: true });
+  window.addEventListener("scroll", () => { centres = []; }, { passive: true });
+  let frame = 0, px = 0, py = 0;
+  const apply = () => {
+    frame = 0;
+    const r = cover.getBoundingClientRect();
+    cover.style.setProperty("--mx", (((px - r.left) / r.width) * 2 - 1).toFixed(3));
+    cover.style.setProperty("--my", (((py - r.top) / r.height) * 2 - 1).toFixed(3));
+    if (tl.isActive()) return;
+    if (!centres.length) measure();
+    const R = size * 1.5;
+    letters.forEach((l, j) => {
+      const c = centres[j]; if (!c) return;
+      const d = Math.hypot(px - c.x, py - c.y), f = Math.max(0, 1 - d / R), e = f * f * (3 - 2 * f);
+      l.style.setProperty("--ly", (-e * size * 0.12).toFixed(1) + "px");
+      l.classList.toggle("is-near", e > 0.55);
     });
   };
-  measure();
-  window.addEventListener("resize", measure, { passive: true });
-  window.addEventListener("scroll", measure, { passive: true });
-
-  const setWeights = (px, py) => {
-    for (let k = 0; k < chars.length; k++) {
-      const ch = chars[k];
-      const d = Math.hypot(px - centres[k].x, py - centres[k].y);
-      const f = Math.max(0, 1 - d / RADIUS);
-      const eased = f * f * (3 - 2 * f);
-      ch.style.setProperty("--w", String(Math.round(BASE - (BASE - MIN) * eased)));
-      ch.classList.toggle("is-near", eased > 0.55);
-    }
-  };
-  const reset = () => chars.forEach((ch) => { ch.style.removeProperty("--w"); ch.classList.remove("is-near"); });
-
-  // One gentle wave after the entrance, on every device, so the name shows it is alive.
-  setTimeout(() => {
-    measure();
-    const start = performance.now(), dur = 1400;
-    const xs = centres.map((c) => c.x);
-    const left = Math.min(...xs), right = Math.max(...xs);
-    const tick = (now) => {
-      const t = Math.min(1, (now - start) / dur);
-      const x = left + (right - left + 400) * t - 200;
-      for (let k = 0; k < chars.length; k++) {
-        const f = Math.max(0, 1 - Math.abs(x - xs[k]) / 180);
-        chars[k].style.setProperty("--w", String(Math.round(BASE - (BASE - MIN) * f * f)));
-      }
-      if (t < 1) requestAnimationFrame(tick); else reset();
-    };
-    requestAnimationFrame(tick);
-  }, 1500);
-
-  if (!finePointer.matches) return;
-  const hero = document.querySelector(".hero");
-  let frame = 0, px = 0, py = 0;
-  hero?.addEventListener("pointermove", (e) => {
-    px = e.clientX; py = e.clientY;
-    if (!frame) frame = requestAnimationFrame(() => { frame = 0; setWeights(px, py); });
+  cover.addEventListener("pointermove", (e) => { px = e.clientX; py = e.clientY; if (!frame) frame = requestAnimationFrame(apply); });
+  cover.addEventListener("pointerleave", () => {
+    cover.style.setProperty("--mx", "0"); cover.style.setProperty("--my", "0");
+    letters.forEach((l) => { l.style.setProperty("--ly", "0px"); l.classList.remove("is-near"); });
   });
-  hero?.addEventListener("pointerleave", reset);
 }
 
 /* ---------- Portrait lens */

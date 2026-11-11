@@ -8,19 +8,43 @@ nav: home
 schema: profile
 preload_portrait: cutout
 ---
-    <!-- HERO — an editorial cover: the name as a masthead, the portrait in front of it, a low sun behind.
-         (Surjamukhi means "facing the sun".) -->
-    <section class="hero" id="top" data-room="cream" aria-labelledby="hero-title">
+    <!-- HERO — night cover. The name as a masthead; the portrait stands in front of a low sun
+         (Surjamukhi means "facing the sun") and a slow wall of live client work. -->
+    <section class="hero hero-night" id="top" data-room="night" aria-labelledby="hero-title">
       <div class="hero-cover">
-        <h1 class="hero-mast" id="hero-title" data-parallax="-0.06">
+        <h1 class="hero-mast" id="hero-title">
           <span class="mast-line"><span class="mast-word">Dwaipyan</span></span>
           <span class="mast-line"><span class="mast-word">Mandal</span></span>
           <span class="sr-only"> — technology leader, entrepreneur and NGO executive</span>
         </h1>
 
-        <div class="hero-sun" aria-hidden="true" data-parallax="0.1"></div>
+        <div class="hero-wall" aria-hidden="true">
+          <div class="wall-col">
+            <div class="wall-track">
+              {%- assign wall_a = "eagle-desktop,osea-mobile,arca-desktop,vtek-full,els-desktop" | split: "," %}
+              {%- for k in (1..2) %}{% for w in wall_a %}
+              <span class="wall-tile wt-{{ w | split: '-' | last }}"><img src="assets/img/wall/{{ w }}.webp" alt="" loading="lazy" decoding="async" width="{% if w contains 'mobile' %}320{% else %}560{% endif %}" height="{% if w contains 'mobile' %}692{% elsif w contains 'full' %}700{% else %}350{% endif %}"></span>
+              {%- endfor %}{% endfor %}
+            </div>
+          </div>
+          <div class="wall-col wall-col-b">
+            <div class="wall-track">
+              {%- assign wall_b = "vtek-mobile,osea-desktop,eagle-form,els-mobile,arca-mobile" | split: "," %}
+              {%- for k in (1..2) %}{% for w in wall_b %}
+              <span class="wall-tile wt-{{ w | split: '-' | last }}"><img src="assets/img/wall/{{ w }}.webp" alt="" loading="lazy" decoding="async" width="{% if w contains 'mobile' %}320{% else %}560{% endif %}" height="{% if w contains 'mobile' %}692{% elsif w contains 'form' %}464{% else %}350{% endif %}"></span>
+              {%- endfor %}{% endfor %}
+            </div>
+          </div>
+        </div>
 
-        <figure class="hero-figure" data-parallax="0.035">
+        <div class="hero-sun" aria-hidden="true">
+          <svg class="sun-ring" viewBox="0 0 800 800" focusable="false">
+            <defs><path id="sun-ring-path" d="M400,400 m-368,0 a368,368 0 1,1 736,0 a368,368 0 1,1 -736,0"/></defs>
+            <text><textPath href="#sun-ring-path" textLength="2300" lengthAdjust="spacing">Surjamukhi — facing the sun · Dhaka, Bangladesh · Technology · Leadership · Development ·</textPath></text>
+          </svg>
+        </div>
+
+        <figure class="hero-figure">
           <img src="assets/img/dwaipyan-mandal-cutout-720.webp"
                srcset="assets/img/dwaipyan-mandal-cutout-720.webp 720w, assets/img/dwaipyan-mandal-cutout-1100.webp 1100w"
                sizes="(max-width: 960px) 88vw, 44vh" width="1100" height="1650"
@@ -29,33 +53,66 @@ preload_portrait: cutout
 
         <div class="hero-deck">
           <p class="hero-kicker">Technology&nbsp;leader <span aria-hidden="true">·</span> Entrepreneur <span aria-hidden="true">·</span> NGO&nbsp;executive</p>
+          <p class="hero-rotator" aria-hidden="true">Building
+            <span class="rot"><span class="rot-item is-on">websites that sell.</span><span class="rot-item">CRMs that follow up.</span><span class="rot-item">systems that last.</span><span class="rot-item">an NGO that serves.</span></span>
+          </p>
           <p class="hero-lede">
             I build websites and the systems behind them for businesses abroad, and lead Surjamukhi Sangstha,
             a development organisation in Bangladesh.
           </p>
           <div class="hero-cta">
-            <a class="cta-solid" href="cv/">View CV <span aria-hidden="true">→</span></a>
-            <a class="cta-line" href="experience/">Explore my journey</a>
+            <a class="cta-solid" href="cv/" data-magnetic="0.3">View CV <span aria-hidden="true">→</span></a>
+            <a class="cta-line" href="#work">See the work</a>
+            <a class="cta-line" href="about/">Read the profile</a>
           </div>
         </div>
 
+        <a class="wall-cap" href="#work"><span class="wall-dot" aria-hidden="true"></span>Live client work <span aria-hidden="true">↓</span></a>
+      </div>
+
+      <div class="hero-credits">
         <dl class="hero-ledger">
-          <div><dt>Chief Executive Officer</dt><dd>Surjamukhi Sangstha (SMS) · since October 2026</dd></div>
-          <div><dt>Co-founder</dt><dd>ED Shield Solutions · Dhaka</dd></div>
-          <div><dt>Web &amp; automation</dt><dd>Six years building for international clients</dd></div>
+          <div class="ledger-item"><dt>Chief Executive Officer</dt><dd>Surjamukhi Sangstha (SMS) · since October 2026</dd></div>
+          <div class="ledger-item"><dt>Co-founder</dt><dd>ED Shield Solutions · Dhaka</dd></div>
+          <div class="ledger-item"><dt>Web &amp; automation</dt><dd>Six years building for international clients</dd></div>
         </dl>
+        <div class="marquee">
+          <p class="marquee-k" id="marquee-k">Organisations &amp; clients</p>
+          <div class="marquee-view">
+            <ul class="marquee-track" aria-labelledby="marquee-k">
+              <li>Surjamukhi Sangstha</li><li>ED Shield Solutions</li>{% for p in site.data.projects %}<li>{{ p.title }}</li>{% endfor %}
+            </ul>
+            <ul class="marquee-track" aria-hidden="true">
+              <li>Surjamukhi Sangstha</li><li>ED Shield Solutions</li>{% for p in site.data.projects %}<li>{{ p.title }}</li>{% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATEMENT — words light up as you scroll -->
+    <section class="statement" id="intro" aria-label="Introduction">
+      <div class="container">
+        <p class="statement-k">In one paragraph</p>
+        <p class="statement-text" data-words data-words-strong>
+          My work sits where technology meets responsibility: the websites and systems I build for businesses abroad,
+          and the organisation I lead at home. In both, I care most about <em>the part nobody sees</em> — the structure
+          that keeps things working.
+        </p>
       </div>
     </section>
 
     <!-- PATHWAYS — three audiences -->
     <section class="section paths" id="paths" aria-labelledby="paths-title">
       <div class="container">
-        <header class="section-head reveal">
-          <p class="kicker"><span>01</span> Start here</p>
-          <h2 class="section-title" id="paths-title">Three ways in, <em>depending on why you're here.</em></h2>
+        <header class="section-head section-head-row">
+          <div>
+            <p class="kicker"><span>01</span> Start here</p>
+            <h2 class="section-title" id="paths-title">Three ways in, <em>depending on why you're here.</em></h2>
+          </div>
         </header>
-        <div class="path-grid">
-          <article class="path path-org reveal" style="--d:0">
+        <div class="path-grid" data-stagger>
+          <article class="path path-org">
             <div class="path-top">
               <span class="path-no">01</span>
               <svg class="path-ico" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle cx="24" cy="24" r="17"/><path d="M7 24h34M24 7c5 5 7 11 7 17s-2 12-7 17c-5-5-7-11-7-17s2-12 7-17z"/></svg>
@@ -71,7 +128,7 @@ preload_portrait: cutout
             <a class="path-go" href="leadership/">Explore leadership <span aria-hidden="true">→</span></a>
           </article>
 
-          <article class="path path-acad reveal" style="--d:1">
+          <article class="path path-acad">
             <div class="path-top">
               <span class="path-no">02</span>
               <svg class="path-ico" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M4 18 24 9l20 9-20 9z"/><path d="M12 22v9c0 3 5.5 6 12 6s12-3 12-6v-9M44 18v12"/></svg>
@@ -87,7 +144,7 @@ preload_portrait: cutout
             <a class="path-go" href="education/">See the academic profile <span aria-hidden="true">→</span></a>
           </article>
 
-          <article class="path path-client reveal" style="--d:2">
+          <article class="path path-client">
             <div class="path-top">
               <span class="path-no">03</span>
               <svg class="path-ico" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="5" y="9" width="38" height="28" rx="3"/><path d="M5 16h38M17 41h14M24 37v4M15 26l4 3-4 3M23 32h9"/></svg>
@@ -95,7 +152,7 @@ preload_portrait: cutout
             <h3>Clients &amp; business partners</h3>
             <p class="path-for">For businesses, agencies and founders who need a website, a store or an automation.</p>
             <ul class="path-links">
-              <li><a href="portfolio/">Case studies</a></li>
+              <li><a href="portfolio/#projects">Case studies</a></li>
               <li><a href="portfolio/#build">WordPress, WooCommerce &amp; Shopify</a></li>
               <li><a href="portfolio/#machine">CRM &amp; GoHighLevel automation</a></li>
               <li><a href="#contact">Project enquiry</a></li>
@@ -106,59 +163,69 @@ preload_portrait: cutout
       </div>
     </section>
 
-    <!-- STATEMENT — words light up as you scroll -->
-    <section class="statement" id="intro" aria-label="Introduction">
+    <!-- EXPERTISE — three dimensions; the picture on the left follows the one you're reading -->
+    <section class="section dims-sec" id="expertise" aria-labelledby="expertise-title" data-dims>
       <div class="container">
-        <p class="statement-text" data-words data-words-strong>
-          My work sits where technology meets responsibility: the websites and systems I build for businesses abroad,
-          and the organisation I lead at home. In both, I care most about <em>the part nobody sees</em> — the structure
-          that keeps things working.
-        </p>
-      </div>
-    </section>
-
-    <!-- EXPERTISE — three dimensions -->
-    <section class="section expertise" id="expertise" aria-labelledby="expertise-title">
-      <div class="container">
-        <header class="section-head reveal">
+        <header class="section-head">
           <p class="kicker"><span>02</span> Areas of expertise</p>
           <h2 class="section-title" id="expertise-title">One profile, <em>three dimensions.</em></h2>
         </header>
-        <div class="dims">
-          <article class="dim reveal" style="--d:0">
-            <span class="dim-letter" aria-hidden="true">A</span>
-            <h3>Technology &amp; professional career</h3>
-            <p>Websites, online stores, web applications and the CRM automations behind them — for clients in the United States, Europe, Asia-Pacific and French Polynesia.</p>
-            <ul class="tags"><li>WordPress</li><li>WooCommerce</li><li>Shopify</li><li>GoHighLevel</li><li>n8n</li><li>REST APIs</li></ul>
-            <a class="dim-link" href="portfolio/">Portfolio <span aria-hidden="true">→</span></a>
-          </article>
-          <article class="dim reveal" style="--d:1">
-            <span class="dim-letter" aria-hidden="true">B</span>
-            <h3>Leadership, entrepreneurship &amp; development</h3>
-            <p>CEO of Surjamukhi Sangstha since October 2026 after six years running its IT and projects; co-founder and operational CEO of ED Shield Solutions.</p>
-            <ul class="tags"><li>NGO leadership</li><li>Project management</li><li>IT management</li><li>Government collaboration</li></ul>
-            <a class="dim-link" href="leadership/">Leadership <span aria-hidden="true">→</span></a>
-          </article>
-          <article class="dim reveal" style="--d:2">
-            <span class="dim-letter" aria-hidden="true">C</span>
-            <h3>Academic background &amp; research</h3>
-            <p>A BSc in Computer Science &amp; Engineering and a Professional Masters in Information Technology, with research on cyber resilience in Bangladesh's ISP ecosystem.</p>
-            <ul class="tags"><li>Computer science</li><li>Information technology</li><li>Network security</li><li>Policy</li></ul>
-            <a class="dim-link" href="education/">Education <span aria-hidden="true">→</span></a>
-          </article>
+        <div class="dims-layout">
+          <div class="dims-media" aria-hidden="true">
+            <div class="dims-frame">
+              <figure class="dim-pane is-on" data-dim-pane><img src="assets/img/dwaipyan-mandal-workspace.webp" width="900" height="1200" alt="" loading="lazy" decoding="async"></figure>
+              <figure class="dim-pane" data-dim-pane><img src="assets/img/dwaipyan-mandal-portrait.webp" width="720" height="1080" alt="" loading="lazy" decoding="async"></figure>
+              <figure class="dim-pane dim-pane-doc" data-dim-pane>
+                <span class="doc-k">Master's project report · {{ site.data.education.degrees[0].report.year | default: "2025" }}</span>
+                <span class="doc-title">{{ site.data.education.degrees[0].report.title }}</span>
+                <span class="doc-foot">Professional Masters in IT · Jahangirnagar University</span>
+              </figure>
+            </div>
+            <ol class="dims-ticks"><li data-dim-tick class="is-on">A</li><li data-dim-tick>B</li><li data-dim-tick>C</li></ol>
+          </div>
+          <div class="dims-steps">
+            <article class="dim" data-dim-step>
+              <span class="dim-letter" aria-hidden="true">A</span>
+              <h3>Technology &amp; professional career</h3>
+              <p>Websites, online stores, web applications and the CRM automations behind them — for clients in the United States, Europe, Asia-Pacific and French Polynesia.</p>
+              <ul class="tags"><li>WordPress</li><li>WooCommerce</li><li>Shopify</li><li>GoHighLevel</li><li>n8n</li><li>REST APIs</li></ul>
+              <a class="dim-link" href="portfolio/">Portfolio <span aria-hidden="true">→</span></a>
+            </article>
+            <article class="dim" data-dim-step>
+              <span class="dim-letter" aria-hidden="true">B</span>
+              <h3>Leadership, entrepreneurship &amp; development</h3>
+              <p>CEO of Surjamukhi Sangstha since October 2026 after six years running its IT and projects; co-founder and operational CEO of ED Shield Solutions.</p>
+              <ul class="tags"><li>NGO leadership</li><li>Project management</li><li>IT management</li><li>Government collaboration</li></ul>
+              <a class="dim-link" href="leadership/">Leadership <span aria-hidden="true">→</span></a>
+            </article>
+            <article class="dim" data-dim-step>
+              <span class="dim-letter" aria-hidden="true">C</span>
+              <h3>Academic background &amp; research</h3>
+              <p>A BSc in Computer Science &amp; Engineering and a Professional Masters in Information Technology, with research on cyber resilience in Bangladesh's ISP ecosystem.</p>
+              <ul class="tags"><li>Computer science</li><li>Information technology</li><li>Network security</li><li>Policy</li></ul>
+              <a class="dim-link" href="education/">Education <span aria-hidden="true">→</span></a>
+            </article>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- AT A GLANCE -->
-    <section class="glance" aria-label="At a glance">
+    <!-- AT A GLANCE — every figure is a fact stated elsewhere on the site -->
+    <section class="section glance" aria-labelledby="glance-title" data-room="night">
       <div class="container">
-        <dl class="glance-grid">
-          <div class="reveal" style="--d:0"><dt>Years building for the web</dt><dd><span data-count="6">6</span>+</dd></div>
-          <div class="reveal" style="--d:1"><dt>Joined Surjamukhi Sangstha</dt><dd><span data-count="2020">2020</span></dd></div>
-          <div class="reveal" style="--d:2"><dt>Appointed CEO</dt><dd><span data-count="2026">2026</span></dd></div>
-          <div class="reveal" style="--d:3"><dt>Live client sites in this portfolio</dt><dd><span data-count="5">5</span></dd></div>
-          <div class="reveal" style="--d:4"><dt>Degrees · CSE and IT</dt><dd><span data-count="2">2</span></dd></div>
+        <header class="section-head section-head-row">
+          <div>
+            <p class="kicker kicker-light"><span>03</span> At a glance</p>
+            <h2 class="section-title" id="glance-title">The record, <em>in numbers.</em></h2>
+          </div>
+          <a class="btn btn-lime" href="cv/" data-magnetic>Read the CV <span class="btn-arrow" aria-hidden="true">→</span></a>
+        </header>
+        <dl class="glance-grid" data-stagger>
+          <div class="g-wide"><dt>Years building for the web</dt><dd><span data-count="6">6</span>+</dd><dd class="g-note">Websites, stores and automations for clients abroad.</dd></div>
+          <div><dt>Joined Surjamukhi Sangstha</dt><dd><span data-count="2020">2020</span></dd><dd class="g-note">IT &amp; project management.</dd></div>
+          <div><dt>Appointed CEO</dt><dd><span data-count="2026">2026</span></dd><dd class="g-note">Effective 26 October 2026.</dd></div>
+          <div><dt>Live client sites in this portfolio</dt><dd><span data-count="5">5</span></dd><dd class="g-note">United States, Europe ↔ Asia, French Polynesia.</dd></div>
+          <div><dt>Degrees · CSE and IT</dt><dd><span data-count="2">2</span></dd><dd class="g-note">BSc (Stamford) and PMIT (Jahangirnagar).</dd></div>
         </dl>
       </div>
     </section>
@@ -166,11 +233,11 @@ preload_portrait: cutout
     <!-- LEADERSHIP SNAPSHOT -->
     <section class="section snap-lead" id="leadership-snapshot" data-room="navy" aria-labelledby="snap-lead-title">
       <div class="container snap-lead-grid">
-        <div class="reveal">
-          <p class="kicker kicker-light"><span>03</span> Leadership</p>
+        <div class="snap-lead-copy">
+          <p class="kicker kicker-light"><span>04</span> Leadership</p>
           <h2 class="section-title" id="snap-lead-title">Chief Executive Officer, <em>Surjamukhi Sangstha.</em></h2>
           <p class="snap-text">{{ site.data.leadership.current_role.statement }}</p>
-          <a class="btn btn-lime" href="leadership/">Leadership &amp; programmes <span class="btn-arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-lime" href="leadership/" data-magnetic>Leadership &amp; programmes <span class="btn-arrow" aria-hidden="true">→</span></a>
         </div>
         <ol class="rise-line reveal" aria-label="Path at Surjamukhi Sangstha">
           <li><span class="rl-date">Jan 2020</span><b>Joined</b><small>IT &amp; project management</small></li>
@@ -183,20 +250,20 @@ preload_portrait: cutout
     <!-- ACADEMIC SNAPSHOT -->
     <section class="section snap-acad" id="academic-snapshot" aria-labelledby="snap-acad-title">
       <div class="container">
-        <header class="section-head reveal">
-          <p class="kicker"><span>04</span> Academic profile</p>
+        <header class="section-head">
+          <p class="kicker"><span>05</span> Academic profile</p>
           <h2 class="section-title" id="snap-acad-title">Computer science, IT <em>and a research question.</em></h2>
         </header>
-        <div class="degree-row">
+        <div class="degree-row" data-stagger>
           {%- for d in site.data.education.degrees %}
-          <article class="degree-card reveal" style="--d:{{ forloop.index0 }}">
+          <article class="degree-card">
             <p class="dc-k">{{ d.short }} · {{ d.year_label }}</p>
             <h3>{{ d.degree }}</h3>
             <p class="dc-inst">{{ d.institution }}{% if d.unit %} · {{ d.unit }}{% endif %}</p>
             <p class="dc-result">{{ d.result }}</p>
           </article>
           {%- endfor %}
-          <article class="degree-card dc-report reveal" style="--d:2">
+          <article class="degree-card dc-report">
             <p class="dc-k">Master's project report · 2025</p>
             <h3>“{{ site.data.education.degrees[0].report.title }}”</h3>
             <p class="dc-inst">Supervised by {{ site.data.education.degrees[0].report.supervisor }}</p>
@@ -206,42 +273,57 @@ preload_portrait: cutout
       </div>
     </section>
 
-    <!-- SELECTED PROJECTS -->
-    <section class="section showcase" id="work" aria-labelledby="work-title">
-      <div class="container">
-        <header class="section-head section-head-row reveal">
+    <!-- SELECTED PROJECTS — a pinned, sideways showcase on wide screens; a swipeable row on phones -->
+    <section class="showcase" id="work" aria-labelledby="work-title" data-hscroll>
+      <div class="showcase-inner">
+        <header class="container section-head section-head-row showcase-head">
           <div>
-            <p class="kicker"><span>05</span> Selected projects</p>
+            <p class="kicker"><span>06</span> Selected projects</p>
             <h2 class="section-title" id="work-title">Live client sites, <em>from Raleigh to Bora&nbsp;Bora.</em></h2>
           </div>
-          <a class="btn btn-ink" href="portfolio/">All case studies <span class="btn-arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-ink" href="portfolio/#projects" data-magnetic>All case studies <span class="btn-arrow" aria-hidden="true">→</span></a>
         </header>
-        <ul class="project-cards">
+        <ol class="case-track" data-hscroll-track>
           {%- for p in site.data.projects %}
-          <li class="pcard reveal" style="--d:{{ forloop.index0 }}">
-            <a href="portfolio/#work-{{ p.id }}" class="pcard-link">
-              <span class="pcard-media" data-tilt-card>
+          <li class="case-card cc-{{ p.room }}">
+            <a href="portfolio/{{ p.id }}/" data-cursor="View">
+              <span class="case-media">
                 {%- if p.images.desktop %}
                 <img src="assets/img/work/{{ p.images.desktop }}" width="1582" height="989" alt="" loading="lazy" decoding="async">
                 {%- else %}
-                <img src="assets/img/work/{{ p.images.full }}" width="1582" height="1978" alt="" loading="lazy" decoding="async" class="pcard-tall">
+                <img src="assets/img/work/{{ p.images.full }}" width="1582" height="1978" alt="" loading="lazy" decoding="async">
                 {%- endif %}
               </span>
-              <span class="pcard-meta">{{ p.industry }} · {{ p.country }}</span>
-              <span class="pcard-title">{{ p.title }}</span>
-              <span class="pcard-stack">{{ p.built_with | join: " · " }}</span>
+              <span class="case-top"><span class="case-no">0{{ forloop.index }}</span><span>{{ p.industry }}</span></span>
+              <span class="case-body">
+                <span class="case-where">{{ p.place }}</span>
+                <span class="case-title">{{ p.title }}</span>
+                <span class="case-sum">{{ p.summary }}</span>
+                <span class="case-foot"><span class="case-tags">{{ p.work }}</span><span class="case-go">View case study <span aria-hidden="true">→</span></span></span>
+              </span>
             </a>
           </li>
           {%- endfor %}
-        </ul>
+          <li class="case-card case-end">
+            <a href="portfolio/" data-cursor="Open">
+              <span class="case-end-k">Portfolio</span>
+              <span class="case-end-t">How I build — the demo, the automation, every case study.</span>
+              <span class="case-go">Open the portfolio <span aria-hidden="true">→</span></span>
+            </a>
+          </li>
+        </ol>
+        <div class="container showcase-foot">
+          <div class="hs-bar" data-hscroll-bar aria-hidden="true"><span></span></div>
+          <p class="hs-hint" aria-hidden="true"><span class="hs-hint-d">Scroll</span><span class="hs-hint-m">Swipe</span> to move through the work</p>
+        </div>
       </div>
     </section>
 
     <!-- MILESTONES -->
     <section class="section milestones" id="milestones" aria-labelledby="ms-title">
       <div class="container">
-        <header class="section-head reveal">
-          <p class="kicker"><span>06</span> Milestones</p>
+        <header class="section-head">
+          <p class="kicker"><span>07</span> Milestones</p>
           <h2 class="section-title" id="ms-title">The road so far, <em>dated and checkable.</em></h2>
         </header>
       </div>
@@ -260,11 +342,65 @@ preload_portrait: cutout
       </div>
     </section>
 
+    <!-- JOURNAL — newest essays when there are some; until then, the writing and research that exist -->
+    <section class="section notes" id="notes" aria-labelledby="notes-title">
+      <div class="container">
+        <header class="section-head section-head-row">
+          <div>
+            <p class="kicker"><span>08</span> Journal</p>
+            <h2 class="section-title" id="notes-title">Notes from <em>the desk.</em></h2>
+          </div>
+          <a class="btn btn-ink" href="journal/" data-magnetic>Open the journal <span class="btn-arrow" aria-hidden="true">→</span></a>
+        </header>
+        <ul class="note-grid" data-stagger>
+          {%- if site.posts.size > 0 %}
+          {%- for post in site.posts limit: 3 %}
+          <li class="note-card">
+            <a href="{{ post.url | remove_first: '/' }}">
+              <span class="note-k">{{ post.category | default: "Essay" }} · <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%-d %B %Y" }}</time></span>
+              <span class="note-t">{{ post.title }}</span>
+              <span class="note-x">{{ post.description }}</span>
+              <span class="note-go">Read <span aria-hidden="true">→</span></span>
+            </a>
+          </li>
+          {%- endfor %}
+          {%- else %}
+          {%- for w in site.data.publications.own_writing %}
+          <li class="note-card note-ext">
+            <a href="{{ w.url }}" target="_blank" rel="noopener me">
+              <span class="note-k">Articles · {{ w.venue }}</span>
+              <span class="note-t">{{ w.title }}</span>
+              <span class="note-x">{{ w.note }}</span>
+              <span class="note-go">Read on {{ w.venue }} <span aria-hidden="true">↗</span></span>
+            </a>
+          </li>
+          {%- endfor %}
+          <li class="note-card">
+            <a href="education/#report">
+              <span class="note-k">Research · 2025</span>
+              <span class="note-t">{{ site.data.education.degrees[0].report.title }}</span>
+              <span class="note-x">Master's project report, supervised by {{ site.data.education.degrees[0].report.supervisor }}.</span>
+              <span class="note-go">Read the summary <span aria-hidden="true">→</span></span>
+            </a>
+          </li>
+          <li class="note-card note-soon">
+            <a href="journal/">
+              <span class="note-k">Journal</span>
+              <span class="note-t">Essays on technology, leadership and development work.</span>
+              <span class="note-x">No essays are published here yet. New writing will appear in the journal first.</span>
+              <span class="note-go">Visit the journal <span aria-hidden="true">→</span></span>
+            </a>
+          </li>
+          {%- endif %}
+        </ul>
+      </div>
+    </section>
+
     <!-- CONTACT -->
     <section class="contact" id="contact" data-room="contact" aria-labelledby="contact-title">
       <div class="container contact-grid">
         <div class="contact-intro">
-          <p class="kicker kicker-light"><span>07</span> Contact</p>
+          <p class="kicker kicker-light"><span>09</span> Contact</p>
           <h2 class="contact-title" id="contact-title">Let's work <em>together.</em></h2>
           <p>Whether it's a partnership, an academic enquiry or a project, add a few lines and I'll reply with questions and honest next steps.</p>
 
@@ -274,7 +410,7 @@ preload_portrait: cutout
             <button class="copy-btn" type="button" data-copy="rajdwaipayan@gmail.com">Copy address</button>
             <span class="copy-status" role="status" aria-live="polite"></span>
           </div>
-          <ul class="contact-profiles">
+          <ul class="contact-profiles" id="connect" aria-label="Let's connect">
             <li><a href="https://www.linkedin.com/in/dwaipyan-cyberexpert" target="_blank" rel="noopener me">LinkedIn <span aria-hidden="true">↗</span></a></li>
             <li><a href="https://github.com/rajdwaipyan" target="_blank" rel="noopener me">GitHub <span aria-hidden="true">↗</span></a></li>
             <li><a href="https://www.fiverr.com/dwaipyan" target="_blank" rel="noopener me">Fiverr <span aria-hidden="true">↗</span></a></li>

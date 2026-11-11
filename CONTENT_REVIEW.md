@@ -70,3 +70,18 @@ Status key: **Hidden** = in the data file but not shown · **Cautious** = shown 
 
 - Email: rajdwaipayan@gmail.com is used everywhere. Add a separate business email for ED Shield if you have one.
 - LinkedIn: the site uses `linkedin.com/in/dwaipyan-cyberexpert`. Your old CV shows `dwaipyan-mandal-cyber-sec` — confirm which is live.
+
+## Motion & navigation upgrade (November 2026)
+
+- **Journal:** the journal is live but empty — it says so. Nothing is published until you add a post
+  (see README → "Publishing a journal entry"). The "Articles" list links to your Medium profile; add
+  individual article titles and links to `_data/publications.yml` (`own_writing`) if you want each listed.
+- **Case-study pages** (`/portfolio/<id>/`) show only what is in `_data/projects.yml`. Role, challenge,
+  solution and outcome appear only where filled in — for ARCA, Vtek, ELS and O-Sea your role is still
+  unconfirmed, so those pages show the brief, platform and screenshots only.
+- **Portfolio filters** use the new `filters` field (region and type). Check that "Product catalogue"
+  (Vtek) and "Online booking" (O-Sea) describe the work fairly.
+- **Footer line** "Available for partnerships, academic collaboration and selected projects" — change it in
+  `_includes/site-footer.html` if your availability changes.
+- **Home numbers** reuse figures already on the site (6+ years, joined 2020, CEO 2026, 5 live client sites,
+  2 degrees). Update them in `index.html` if any change.

@@ -11,6 +11,10 @@
 #   url         live site (leave empty if not public)
 #   room        background of the project's full-width "room": ink | navy | paper | violet | lime
 #   layout      how it is presented: split | system | scroll | stack | poster
+#   place       the short place name shown big on the home-page showcase card
+#   region      region label (portfolio filter)
+#   work        what was built, one line
+#   filters     space-separated filter keys: us | eu-asia | pacific | crm | catalogue | booking
 #   industry    sector, one or two words
 #   country     where the client is
 #   summary     one sentence, what the client does
@@ -28,6 +32,10 @@
 #   scratch     true = a sand "scratch to reveal" card over the main screenshot
 
 - id: eagle
+  place: North Carolina
+  region: United States
+  work: Website · CRM automation
+  filters: us crm
   title: Eagle Premier Real Estate
   category: Website + CRM automation · North Carolina, US
   url: https://epreality.com/
@@ -57,6 +65,10 @@
       value: GoHighLevel chat widget, with compliance fixes
 
 - id: arca
+  place: Europe ↔ Asia-Pacific
+  region: Europe & Asia
+  work: Website
+  filters: eu-asia
   title: The ARCA Advisory
   category: Advisory · Europe ↔ Asia-Pacific
   url: https://thearcaadvisory.com/
@@ -77,6 +89,10 @@
     mobile: arca-mobile.webp
 
 - id: vtek
+  place: Ohio
+  region: United States
+  work: Website · Product catalogue
+  filters: us catalogue
   title: Vtek Controls
   category: Industrial B2B · Ohio, US
   url: https://vtekcontrols.com/
@@ -97,6 +113,10 @@
     mobile: vtek-mobile.webp
 
 - id: els
+  place: Wyoming
+  region: United States
+  work: Website
+  filters: us
   title: Essential Living Support
   category: Care services · Wyoming, US
   url: https://essentiallivingsupport.com/
@@ -117,6 +137,10 @@
     mobile: els-mobile.webp
 
 - id: osea
+  place: Bora Bora
+  region: French Polynesia
+  work: Website · Online booking
+  filters: pacific booking
   title: O-Sea Bora Bora
   category: Tourism · French Polynesia
   url: https://www.o-seaborabora.com/

@@ -13,9 +13,60 @@ crumb: Portfolio
         <h1 class="page-title" id="page-title">Technical <em>portfolio.</em></h1>
         <p class="page-lede">Websites, online stores, web applications and the CRM automations behind them — built for clients in the United States, Europe, Asia-Pacific and French Polynesia. Every case study links to the live site.</p>
         <ul class="page-jump">
+          <li><a href="#projects">Case studies</a></li>
           <li><a href="#build">What I build</a></li>
-          <li><a href="#cases">Case studies</a></li>
+          <li><a href="#cases">Project by project</a></li>
           <li><a href="#machine">Automation demo</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 01 · CASE STUDIES — filterable index; each card opens a case-study page -->
+    <section class="section projects-sec" id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <header class="section-head section-head-row">
+          <div>
+            <p class="kicker"><span>01</span> Case studies</p>
+            <h2 class="section-title" id="projects-title">Five live sites, <em>four regions.</em></h2>
+          </div>
+        </header>
+        {%- assign n_us = 0 %}{% assign n_eu = 0 %}{% assign n_pa = 0 %}{% assign n_crm = 0 %}{% assign n_book = 0 %}{% assign n_cat = 0 %}
+        {%- for p in site.data.projects %}
+          {%- assign fs = p.filters | split: " " %}
+          {%- if fs contains "us" %}{% assign n_us = n_us | plus: 1 %}{% endif %}
+          {%- if fs contains "eu-asia" %}{% assign n_eu = n_eu | plus: 1 %}{% endif %}
+          {%- if fs contains "pacific" %}{% assign n_pa = n_pa | plus: 1 %}{% endif %}
+          {%- if fs contains "crm" %}{% assign n_crm = n_crm | plus: 1 %}{% endif %}
+          {%- if fs contains "booking" %}{% assign n_book = n_book | plus: 1 %}{% endif %}
+          {%- if fs contains "catalogue" %}{% assign n_cat = n_cat | plus: 1 %}{% endif %}
+        {%- endfor %}
+        <div class="filter-bar" role="group" aria-label="Filter case studies" data-filters="#proj-grid" data-filters-status="#proj-status">
+          <button type="button" data-filter="all" aria-pressed="true">All<span>{{ site.data.projects | size }}</span></button>
+          <button type="button" data-filter="us" aria-pressed="false">United States<span>{{ n_us }}</span></button>
+          <button type="button" data-filter="eu-asia" aria-pressed="false">Europe &amp; Asia<span>{{ n_eu }}</span></button>
+          <button type="button" data-filter="pacific" aria-pressed="false">French Polynesia<span>{{ n_pa }}</span></button>
+          <button type="button" data-filter="crm" aria-pressed="false">CRM &amp; automation<span>{{ n_crm }}</span></button>
+          <button type="button" data-filter="catalogue" aria-pressed="false">Product catalogue<span>{{ n_cat }}</span></button>
+          <button type="button" data-filter="booking" aria-pressed="false">Online booking<span>{{ n_book }}</span></button>
+        </div>
+        <p class="filter-status" id="proj-status" role="status" aria-live="polite"></p>
+        <ul class="proj-grid" id="proj-grid" data-stagger>
+          {%- for p in site.data.projects %}
+          <li class="proj-card" data-tags="{{ p.filters }}">
+            <a href="{{ p.id }}/" data-cursor="View">
+              <span class="proj-media" data-clip>
+                {%- if p.images.desktop %}
+                <img src="../assets/img/work/{{ p.images.desktop }}" width="1582" height="989" alt="" loading="lazy" decoding="async">
+                {%- else %}
+                <img src="../assets/img/work/{{ p.images.full }}" width="1582" height="1978" alt="" loading="lazy" decoding="async">
+                {%- endif %}
+              </span>
+              <span class="proj-meta">{{ p.industry }} · {{ p.region }}</span>
+              <span class="proj-title">{{ p.title }}</span>
+              <span class="proj-work">{{ p.work }}</span>
+            </a>
+          </li>
+          {%- endfor %}
         </ul>
       </div>
     </section>
@@ -24,7 +75,7 @@ crumb: Portfolio
     <section class="section build" id="build" aria-labelledby="build-title" data-guide="Watch the demo on the right: one site becomes a store, then a portal, then a whole system." data-guide-prop="hardhat" data-guide-side="left" data-guide-point>
       <div class="container">
         <header class="section-head reveal">
-          <p class="kicker"><span>01</span> What I build</p>
+          <p class="kicker"><span>02</span> What I build</p>
           <h2 class="section-title" id="build-title">One site. <em>Four layers deep.</em></h2>
           <p class="section-intro">Most projects start as a website and grow into something that sells, serves clients and follows up on its own. Scroll through how one site gets there.</p>
         </header>
@@ -112,7 +163,7 @@ crumb: Portfolio
     <section class="work" id="cases" aria-labelledby="cases-title" data-guide="These are real client sites. Every project has a link to the live one.">
       <div class="container work-intro">
         <header class="section-head reveal">
-          <p class="kicker"><span>02</span> Case studies</p>
+          <p class="kicker"><span>03</span> Project by project</p>
           <h2 class="section-title" id="cases-title">Live sites, <em>from Raleigh to Bora&nbsp;Bora.</em></h2>
           <p class="section-intro">Every project below is a real client site you can open. Screenshots were taken from the live sites in October 2026.</p>
         </header>
