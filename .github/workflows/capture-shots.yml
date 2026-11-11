@@ -1,0 +1,24 @@
+# Temporary: captures screenshots of the sites in tools/sites.txt and commits them to this branch.
+name: Capture site screenshots
+on:
+  push:
+    branches: ["claude/portfolio-shots"]
+    paths: ["tools/sites.txt", "tools/capture.py", ".github/workflows/capture-shots.yml"]
+permissions:
+  contents: write
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install playwright==1.48.0 pillow && python -m playwright install --with-deps chromium
+      - run: python tools/capture.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/img/sites tools/capture-report.tsv
+          git commit -m "Site screenshots captured by Actions" || echo "nothing to commit"
+          git push
