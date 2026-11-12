@@ -1,0 +1,24 @@
+# Temporary: imports the public Flickr albums listed in tools/albums.txt and commits optimised copies to this branch.
+name: Fetch Flickr albums
+on:
+  push:
+    branches: ["claude/photo-fetch"]
+    paths: ["tools/albums.txt", "tools/fetch_photos.py", ".github/workflows/fetch-photos.yml"]
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install pillow
+      - run: python tools/fetch_photos.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/img/photos tools/photo-report.json
+          git commit -m "Flickr albums imported by Actions" || echo "nothing to commit"
+          git push
