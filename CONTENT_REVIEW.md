@@ -116,3 +116,14 @@ Status key: **Hidden** = in the data file but not shown · **Cautious** = shown 
 - No views, subscriber counts or engagement figures are shown anywhere; dates and durations appear only if you enter them.
 - Privacy: YouTube thumbnails load from i.ytimg.com (Google) when the page is viewed; the player itself
   (youtube-nocookie.com) and Facebook's player load only after a visitor presses play.
+
+## Videos and profiles (added 12 November 2026)
+
+- Two videos are listed with **placeholder titles** ("YouTube Short", "Facebook reel") and no categories, because
+  their titles could not be read automatically. Edit `title`, add `description` and `categories` in `_data/videos.yml`.
+- The Facebook reel opens on Facebook (share links don't embed reliably). Its card shows the title instead of a picture —
+  add `thumbnail: assets/img/videos/facebook-reel-1.jpg` (720 × 1280) to give it one.
+- Profiles added to `_data/social.yml`: YouTube, Facebook, Instagram, X, TikTok, Dribbble, Behance, Pinterest, Flickr, Telegram.
+  The Facebook, Pinterest and Flickr links you gave are share links / a single photo, so they are left out of the
+  search-engine profile list (sameAs). Replace them with the full profile addresses (e.g. facebook.com/yourname,
+  pinterest.com/yourname, flickr.com/photos/yourname) to include them.

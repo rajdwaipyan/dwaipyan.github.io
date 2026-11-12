@@ -45,7 +45,7 @@ preload_portrait: cutout
             <a class="cta-solid" href="cv/" data-magnetic="0.3">View CV <span aria-hidden="true">→</span></a>
             <a class="cta-line" href="experience/">Explore my journey</a>
           </div>
-          {% include social.html label="Profiles and contact" %}
+          {% include social.html only="hero" label="Profiles and contact" %}
         </div>
 
         <dl class="hero-ledger">
@@ -448,12 +448,13 @@ preload_portrait: cutout
             <span class="copy-status" role="status" aria-live="polite"></span>
             <a class="contact-wa" href="https://wa.me/{{ site.data.social.whatsapp.number }}" target="_blank" rel="noopener">WhatsApp {{ site.data.social.whatsapp.display }} <span aria-hidden="true">↗</span></a>
           </div>
-          <ul class="contact-profiles" id="connect" aria-label="Let's connect">
-            <li><a href="https://www.linkedin.com/in/dwaipyan-cyberexpert" target="_blank" rel="noopener me">LinkedIn <span aria-hidden="true">↗</span></a></li>
-            <li><a href="https://github.com/rajdwaipyan" target="_blank" rel="noopener me">GitHub <span aria-hidden="true">↗</span></a></li>
-            <li><a href="https://www.fiverr.com/dwaipyan" target="_blank" rel="noopener me">Fiverr <span aria-hidden="true">↗</span></a></li>
-            <li><a href="https://medium.com/@rajdwaipyan" target="_blank" rel="noopener me">Medium <span aria-hidden="true">↗</span></a></li>
-          </ul>
+          <div id="connect">
+            <ul class="contact-profiles" aria-label="Let's connect">
+              {%- for s in site.data.social.links %}{% unless s.profile == false %}
+              <li><a href="{{ s.url }}" target="_blank" rel="noopener me">{{ s.name }} <span aria-hidden="true">↗</span></a></li>
+              {%- endunless %}{% endfor %}
+            </ul>
+          </div>
         </div>
 
         <form class="brief" id="brief-form" action="mailto:rajdwaipayan@gmail.com" method="post" enctype="text/plain" novalidate>

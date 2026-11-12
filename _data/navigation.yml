@@ -60,7 +60,7 @@ groups:
     blurb: Partnerships, academic enquiries and projects.
     links:
       - { label: Contact, sub: "Write a short brief — it opens in your email app", url: "#contact" }
-      - { label: "Let's connect", sub: "LinkedIn, GitHub, Medium and Fiverr", url: "#connect" }
+      - { label: "Let's connect", sub: "LinkedIn, YouTube, Instagram, X and more", url: "#connect" }
     feature:
       kind: mail
       k: Write directly

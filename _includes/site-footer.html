@@ -30,10 +30,9 @@
       <div>
         <p class="footer-h">Elsewhere</p>
         <ul>
-          <li><a href="https://www.linkedin.com/in/dwaipyan-cyberexpert" target="_blank" rel="noopener me">LinkedIn</a></li>
-          <li><a href="https://github.com/rajdwaipyan" target="_blank" rel="noopener me">GitHub</a></li>
-          <li><a href="https://medium.com/@rajdwaipyan" target="_blank" rel="noopener me">Medium</a></li>
-          <li><a href="https://www.fiverr.com/dwaipyan" target="_blank" rel="noopener me">Fiverr</a></li>
+          {%- for s in site.data.social.links %}{% if s.hero and s.profile != false %}
+          <li><a href="{{ s.url }}" target="_blank" rel="noopener me">{{ s.name }}</a></li>
+          {%- endif %}{% endfor %}
         </ul>
       </div>
     </nav>

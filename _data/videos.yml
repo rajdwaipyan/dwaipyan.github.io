@@ -21,8 +21,8 @@
 
 # Your channels: the follow buttons appear only when a url is filled in.
 channels:
-  youtube: { url: "", label: "YouTube" }    # e.g. https://www.youtube.com/@yourhandle
-  facebook: { url: "", label: "Facebook" }  # e.g. https://www.facebook.com/yourpage
+  youtube: { url: "https://www.youtube.com/@dwaipo", label: "YouTube" }    # e.g. https://www.youtube.com/@yourhandle
+  facebook: { url: "https://www.facebook.com/share/19mYXwod5c/", label: "Facebook" }  # e.g. https://www.facebook.com/yourpage
 
 # Filter chips, in order. "featured", "shorts" and "facebook" are filled automatically from each video's
 # featured / type / platform fields; the others come from each video's `categories`.
@@ -37,4 +37,20 @@ categories:
   - { id: shorts, label: YouTube Shorts }
   - { id: facebook, label: Facebook Videos }
 
-videos: []
+videos:
+  # Titles below are placeholders until you write the real ones — edit `title`, add a `description`
+  # and pick `categories` from the list above.
+  - id: youtube-short-1
+    title: "YouTube Short"
+    platform: youtube
+    url: "https://www.youtube.com/shorts/1pm7VngexLI"
+    type: short
+    categories: []
+    featured: true
+
+  - id: facebook-reel-1
+    title: "Facebook reel"
+    platform: facebook
+    url: "https://www.facebook.com/share/r/1Dy2oGhX9i/"
+    type: short
+    categories: []
