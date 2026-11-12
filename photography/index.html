@@ -1,0 +1,178 @@
+---
+layout: default
+title: Photography — Wildlife, Festivals & Himalayas | Dwaipyan Mandal
+og_title: Dwaipyan Mandal — Photography
+description: Photographs by Dwaipyan Mandal — wildlife, nature, Durga Puja, the Himalayas at Kedarnath and street light in Bangladesh and India. Nine albums, every image linked to its original on Flickr.
+root: "../"
+nav: photography
+crumb: Photography
+schema: page
+guide: false
+---
+{%- assign ph = site.data.photography -%}
+{%- assign albums = ph.albums -%}
+{%- comment -%} unique photographs (a photo in two albums is shown once) {%- endcomment -%}
+{%- assign seen = "" | split: "" -%}
+{%- for a in albums -%}{%- for p in a.photos -%}{%- unless seen contains p.id -%}{%- assign seen = seen | push: p.id -%}{%- endunless -%}{%- endfor -%}{%- endfor -%}
+{%- assign nphotos = seen | size -%}
+{%- assign nalbums = albums | size -%}
+{%- comment -%} the featured photograph and two companions for the hero {%- endcomment -%}
+{%- for a in albums -%}{%- for p in a.photos -%}
+  {%- if p.id == ph.featured and feat == nil -%}{%- assign feat = p -%}{%- assign feat_album = a -%}{%- endif -%}
+{%- endfor -%}{%- endfor -%}
+{%- assign c1 = albums[1].cover -%}{%- assign c2 = albums[0].cover -%}
+    <section class="ph-hero" id="top" data-room="night" aria-labelledby="page-title">
+      <div class="container ph-hero-grid">
+        <div class="ph-intro">
+          <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Home</a><span aria-hidden="true">/</span><span aria-current="page">Photography</span></nav>
+          <p class="ph-k">Photography</p>
+          <h1 class="ph-mast" id="page-title" data-split>Through <em>the lens.</em></h1>
+          <p class="ph-lede">Wildlife, festivals, the Himalayas and the light of ordinary streets — photographs from Bangladesh and India, arranged as an exhibition.</p>
+          <dl class="ph-count">
+            <div><dt>Photographs</dt><dd>{{ nphotos }}</dd></div>
+            <div><dt>Albums</dt><dd>{{ nalbums }}</dd></div>
+          </dl>
+          <div class="ph-cta">
+            <a class="cta-solid ph-solid" href="#exhibition" data-magnetic="0.3">Enter the exhibition <span aria-hidden="true">↓</span></a>
+            <a class="cta-line" href="{{ ph.profile }}" target="_blank" rel="noopener me">Flickr profile <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <div class="ph-stage" role="group" aria-label="Featured photograph">
+          <figure class="ph-feature tilt" data-tilt>
+            <a href="{{ feat.page }}" target="_blank" rel="noopener" data-cursor="Flickr">
+              <img src="../assets/img/photos/{{ feat.id }}-1024.webp" srcset="../assets/img/photos/{{ feat.id }}-560.webp 560w, ../assets/img/photos/{{ feat.id }}-1024.webp 1024w" sizes="(max-width: 960px) 92vw, 48vw" width="{{ feat.w }}" height="{{ feat.h }}" alt="{{ feat.title }} — photograph by Dwaipyan Mandal" fetchpriority="high">
+            </a>
+            <figcaption><span>{{ feat.title }}</span><span>{{ feat_album.title }}</span></figcaption>
+          </figure>
+          {%- for a in albums limit: 2 %}{% for p in a.photos %}{% if p.id == a.cover %}
+          <figure class="ph-float ph-float-{{ forloop.parentloop.index }}" aria-hidden="true" data-speed="{% if forloop.parentloop.index == 1 %}-0.18{% else %}0.12{% endif %}">
+            <img src="../assets/img/photos/{{ p.id }}-560.webp" width="{{ p.w }}" height="{{ p.h }}" alt="" loading="lazy" decoding="async">
+          </figure>
+          {%- endif %}{% endfor %}{% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- ALBUMS — each card filters the exhibition to that album, or opens it on Flickr -->
+    <section class="section ph-albums" id="albums" aria-labelledby="albums-title">
+      <div class="container">
+        <header class="section-head section-head-row">
+          <div>
+            <p class="kicker"><span>01</span> Albums</p>
+            <h2 class="section-title" id="albums-title">{{ nalbums }} albums, <em>as they are on Flickr.</em></h2>
+          </div>
+        </header>
+      </div>
+      <ul class="album-row" data-stagger tabindex="0" aria-label="Albums — scroll sideways">
+        {%- for a in albums %}
+        {%- for p in a.photos %}{% if p.id == a.cover %}{% assign cov = p %}{% endif %}{% endfor %}
+        <li class="album-card tilt" data-tilt>
+          <div class="album-stack" aria-hidden="true">
+            {%- for p in a.photos limit: 3 %}{% if p.id != a.cover %}<img class="as-back" src="../assets/img/photos/{{ p.id }}-560.webp" alt="" loading="lazy" decoding="async" width="{{ p.w }}" height="{{ p.h }}">{% endif %}{% endfor %}
+            <img class="as-cover" src="../assets/img/photos/{{ cov.id }}-560.webp" alt="" loading="lazy" decoding="async" width="{{ cov.w }}" height="{{ cov.h }}">
+          </div>
+          <div class="album-info">
+            <p class="album-n">{{ a.photos | size }} photograph{% if a.photos.size != 1 %}s{% endif %}</p>
+            <h3 class="album-t">{{ a.title }}</h3>
+            {%- if a.description != "" %}<p class="album-d">{{ a.description }}</p>{% endif %}
+            <p class="album-actions">
+              <button type="button" class="album-view" data-album="{{ a.id }}">View album <span aria-hidden="true">↓</span></button>
+              <a href="{{ a.flickr }}" target="_blank" rel="noopener">On Flickr <span aria-hidden="true">↗</span><span class="sr-only"> — {{ a.title }} (opens in a new tab)</span></a>
+            </p>
+          </div>
+        </li>
+        {%- endfor %}
+      </ul>
+    </section>
+
+    <!-- EXHIBITION — every photograph once; filter by subject or album; opens in the lightbox -->
+    <section class="section ph-exhibit" id="exhibition" aria-labelledby="exhibit-title" data-room="night">
+      <div class="container">
+        <header class="section-head section-head-row">
+          <div>
+            <p class="kicker kicker-light"><span>02</span> The exhibition</p>
+            <h2 class="section-title" id="exhibit-title">Every photograph, <em>in one room.</em></h2>
+          </div>
+        </header>
+        <div class="filter-bar ph-filters" role="group" aria-label="Filter photographs" data-filters="#ph-grid" data-filters-status="#ph-status">
+          <button type="button" data-filter="all" aria-pressed="true">All<span>{{ nphotos }}</span></button>
+          {%- for c in ph.categories %}
+          {%- assign n = 0 %}{% assign cseen = "" | split: "" %}
+          {%- for a in albums %}{% if a.categories contains c.id %}{% for p in a.photos %}{% unless cseen contains p.id %}{% assign cseen = cseen | push: p.id %}{% endunless %}{% endfor %}{% endif %}{% endfor %}
+          {%- if cseen.size > 0 %}<button type="button" data-filter="{{ c.id }}" aria-pressed="false">{{ c.label }}<span>{{ cseen.size }}</span></button>{% endif %}
+          {%- endfor %}
+          <span class="ph-filter-sep" aria-hidden="true"></span>
+          {%- for a in albums %}<button type="button" data-filter="album-{{ a.id }}" aria-pressed="false">{{ a.title }}<span>{{ a.photos | size }}</span></button>{% endfor %}
+        </div>
+        <p class="filter-status" id="ph-status" role="status" aria-live="polite"></p>
+        <ul class="ph-grid" id="ph-grid">
+          {%- assign shown = "" | split: "" %}{% assign idx = 0 %}
+          {%- for a in albums %}{% for p in a.photos %}{% unless shown contains p.id %}
+          {%- assign shown = shown | push: p.id %}
+          {%- assign tags = "" %}{% assign alabels = "" %}
+          {%- for b in albums %}{% assign bids = b.photos | map: "id" %}{% if bids contains p.id %}
+            {%- assign bc = b.categories | join: " " %}
+            {%- assign tags = tags | append: " album-" | append: b.id | append: " " | append: bc %}
+            {%- if alabels != "" %}{% assign alabels = alabels | append: " · " %}{% endif %}{% assign alabels = alabels | append: b.title %}
+          {%- endif %}{% endfor %}
+          <li class="ph" data-tags="{{ tags | strip }}">
+            <figure>
+              <button type="button" class="ph-open tilt" data-tilt data-i="{{ idx }}" data-cursor="View" aria-label="Open photograph: {{ p.title }}">
+                <img src="../assets/img/photos/{{ p.id }}-560.webp" width="{{ p.w }}" height="{{ p.h }}" alt="{{ p.title }}" loading="lazy" decoding="async">
+              </button>
+              <figcaption><span class="ph-t">{{ p.title }}</span><span class="ph-a">{{ alabels }}</span></figcaption>
+            </figure>
+          </li>
+          {%- assign idx = idx | plus: 1 %}
+          {%- endunless %}{% endfor %}{% endfor %}
+        </ul>
+        <p class="ph-note">All photographs © Dwaipyan Mandal. Each one opens at full size on Flickr.</p>
+      </div>
+    </section>
+
+    <!-- MORE COLLECTIONS — Flickr profile and Facebook albums -->
+    <section class="section ph-more" aria-labelledby="more-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="kicker"><span>03</span> More collections</p>
+          <h2 class="section-title" id="more-title">The rest of <em>the archive.</em></h2>
+        </header>
+        <ul class="ph-more-grid" data-stagger>
+          <li><a class="more-card mc-flickr" href="{{ ph.profile }}" target="_blank" rel="noopener me">
+            <span class="mc-k">Flickr</span><span class="mc-t">The full photostream</span><span class="mc-go">Open Flickr <span aria-hidden="true">↗</span></span>
+          </a></li>
+          {%- for f in ph.facebook %}
+          <li><a class="more-card mc-fb" href="{{ f.url }}" target="_blank" rel="noopener">
+            {%- if f.cover != "" %}<img src="../{{ f.cover }}" alt="" loading="lazy" decoding="async">{% endif %}
+            <span class="mc-k">Facebook album</span><span class="mc-t">{% if f.title != "" %}{{ f.title }}{% else %}Photo album {{ forloop.index }}{% endif %}</span><span class="mc-go">Open on Facebook <span aria-hidden="true">↗</span></span>
+          </a></li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </section>
+
+    <!-- LIGHTBOX — a native dialog; arrows, swipe and Escape -->
+    <dialog class="lightbox" id="lightbox" aria-labelledby="lb-title">
+      <div class="lb-inner">
+        <div class="lb-top">
+          <p class="lb-count" aria-live="polite"></p>
+          <button class="lb-btn lb-close" type="button" data-lb="close" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+        </div>
+        <figure class="lb-fig">
+          <img class="lb-img" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="" width="1024" height="683">
+        </figure>
+        <button class="lb-btn lb-prev" type="button" data-lb="prev" aria-label="Previous photograph"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button class="lb-btn lb-next" type="button" data-lb="next" aria-label="Next photograph"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg></button>
+        <div class="lb-cap">
+          <div><h2 class="lb-title" id="lb-title">Photograph</h2><p class="lb-album"></p></div>
+          <a class="lb-flickr" href="{{ ph.profile }}" target="_blank" rel="noopener">View on Flickr <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </dialog>
+    <script type="application/json" id="photo-data">[
+      {%- assign shown = "" | split: "" %}{% assign first = true %}
+      {%- for a in albums %}{% for p in a.photos %}{% unless shown contains p.id %}{% assign shown = shown | push: p.id %}
+      {%- assign alabels = "" %}{% for b in albums %}{% assign bids = b.photos | map: "id" %}{% if bids contains p.id %}{% if alabels != "" %}{% assign alabels = alabels | append: " · " %}{% endif %}{% assign alabels = alabels | append: b.title %}{% endif %}{% endfor %}
+      {% unless first %},{% endunless %}{% assign first = false %}{"id": {{ p.id | jsonify }}, "title": {{ p.title | jsonify }}, "album": {{ alabels | jsonify }}, "page": {{ p.page | default: ph.profile | jsonify }}, "w": {{ p.w }}, "h": {{ p.h }}}
+      {%- endunless %}{% endfor %}{% endfor %}
+    ]</script>

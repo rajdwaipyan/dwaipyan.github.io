@@ -127,3 +127,18 @@ Status key: **Hidden** = in the data file but not shown · **Cautious** = shown 
   The Facebook, Pinterest and Flickr links you gave are share links / a single photo, so they are left out of the
   search-engine profile list (sameAs). Replace them with the full profile addresses (e.g. facebook.com/yourname,
   pinterest.com/yourname, flickr.com/photos/yourname) to include them.
+
+## Photography (added 13 November 2026)
+
+- Imported from your nine public Flickr albums via Flickr's public album feeds: 44 photo entries, 41 unique photographs.
+  Album titles, album descriptions and photo titles are exactly as on Flickr (emoji codes such as :sunflower: removed).
+  Albums without a description on Flickr show none.
+- **Categories** (Wildlife & creatures, Nature, Mountains & the Himalayas, Festivals & faith, People, Street & light)
+  were assigned per album from the photographs themselves — change them in `_data/photography.yml` if you prefer.
+- **Covers** were chosen from each album; the first-screen photograph is "Himalayas". Change `cover:` / `featured:`.
+- Images are 1024px copies (the largest size Flickr's public feed offers). For sharper full-screen viewing, export
+  larger versions and replace the `-1024.webp` files.
+- "Baby Store" contains photographs of children — make sure you have the parents' consent to show them publicly.
+- **Facebook albums**: both links lead to albums that Facebook only shows to signed-in visitors, so their titles and
+  covers could not be read. They appear as "Photo album 1 / 2" cards — add `title` (and a `cover`) in the data file.
+- The Flickr link in your social profiles now points to your photostream (flickr.com/photos/199494905@N04/) instead of a single photo.

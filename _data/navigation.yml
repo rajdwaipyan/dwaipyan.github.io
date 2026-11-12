@@ -30,6 +30,7 @@ groups:
       - { label: Portfolio, sub: "What I build and how, with a live demo", url: portfolio/, nav: portfolio }
       - { label: Projects, sub: "Case studies, filterable by region and type", url: "portfolio/#projects" }
       - { label: CV, sub: "One page, printable, always current", url: cv/, nav: cv }
+      - { label: Photography, sub: "Nine albums — wildlife, festivals, the Himalayas", url: photography/, nav: photography }
     feature:
       kind: image
       src: assets/img/wall/eagle-desktop.webp

@@ -1,0 +1,138 @@
+# PHOTOGRAPHY — every album and photograph on /photography/ comes from this file.
+#
+# Imported on 13 November 2026 from Dwaipyan's public Flickr albums (Flickr's public album feeds).
+# Album titles, descriptions and photo titles are exactly as on Flickr (emoji codes removed).
+# Images: assets/img/photos/<id>-1024.webp and <id>-560.webp (local copies; every photo links back to Flickr).
+#
+# ADD A PHOTO to an album: save <id>-1024.webp and <id>-560.webp in assets/img/photos/ and add
+#   - { id: "12345", title: "Title", w: 1024, h: 683, page: "https://www.flickr.com/photos/…/12345/" }
+#   (w/h = the size of the -1024 image; `page` is optional — the photo's page on Flickr or elsewhere).
+# ADD AN ALBUM: copy an album block below. `cover` is the id of one of its photos; `categories` use the ids below.
+# A photo that is in two albums is listed in both, and shown once in the gallery.
+
+profile: "https://www.flickr.com/photos/199494905@N04/"
+featured: "54182918030"          # the photograph on the first screen (Himalayas, from Mountain View)
+
+categories:
+  - { id: wildlife, label: Wildlife & creatures }
+  - { id: nature, label: Nature }
+  - { id: mountains, label: Mountains & the Himalayas }
+  - { id: festivals, label: Festivals & faith }
+  - { id: people, label: People }
+  - { id: street, label: Street & light }
+
+albums:
+  - id: creatures
+    title: "Creature’s"
+    flickr: "https://www.flickr.com/photos/199494905@N04/sets/72177720314037535/"
+    description: ""
+    categories: [wildlife]
+    cover: "53463024900"
+    photos:
+      - { id: "55019743124", title: "Peacock", w: 1024, h: 576, page: "https://www.flickr.com/photos/dwaipyan/55019743124/in/set-72177720314037535/" }
+      - { id: "54785856612", title: "Dragonfly", w: 1024, h: 576, page: "https://www.flickr.com/photos/dwaipyan/54785856612/in/set-72177720314037535/" }
+      - { id: "54746766748", title: "Antography", w: 1024, h: 576, page: "https://www.flickr.com/photos/dwaipyan/54746766748/in/set-72177720314037535/" }
+      - { id: "54182518646", title: "Dragon Fly", w: 1024, h: 576, page: "https://www.flickr.com/photos/dwaipyan/54182518646/in/set-72177720314037535/" }
+      - { id: "53657493832", title: "ant on the way of home", w: 1024, h: 683, page: "https://www.flickr.com/photos/dwaipyan/53657493832/in/set-72177720314037535/" }
+      - { id: "53463024900", title: "Butterfly", w: 1024, h: 683, page: "https://www.flickr.com/photos/dwaipyan/53463024900/in/set-72177720314037535/" }
+  - id: puja-festivals
+    title: "Puja & Festivals"
+    flickr: "https://www.flickr.com/photos/199494905@N04/sets/72177720314031248/"
+    description: "Every Puja and Festivals as well as some relevant ritual programs."
+    categories: [festivals]
+    cover: "53460934955"
+    photos:
+      - { id: "55576098392", title: "Durga Ma 2026", w: 768, h: 1024, page: "https://www.flickr.com/photos/dwaipyan/55576098392/in/set-72177720314031248/" }
+      - { id: "54827631826", title: "Durga Puja 2025 Dhaka", w: 1024, h: 518, page: "https://www.flickr.com/photos/dwaipyan/54827631826/in/set-72177720314031248/" }
+      - { id: "54823501935", title: "Durga Ma", w: 1024, h: 683, page: "https://www.flickr.com/photos/dwaipyan/54823501935/in/set-72177720314031248/" }
+      - { id: "53460934955", title: "Ma Durga", w: 1024, h: 718, page: "https://www.flickr.com/photos/dwaipyan/53460934955/in/set-72177720314031248/" }
+      - { id: "53460654673", title: "Durga Ma", w: 1024, h: 636, page: "https://www.flickr.com/photos/dwaipyan/53460654673/in/set-72177720314031248/" }
+  - id: markets
+    title: "Market And Shopping Malls"
+    flickr: "https://www.flickr.com/photos/199494905@N04/sets/72177720335974692/"
+    description: ""
+    categories: [street]
+    cover: "55570929155"
+    photos:
+      - { id: "55570929155", title: "Fish Market", w: 1024, h: 768, page: "https://www.flickr.com/photos/dwaipyan/55570929155/in/set-72177720335974692/" }
+  - id: kedarnath-temple
+    title: "Kedarnath Temple"
+    flickr: "https://www.flickr.com/photos/199494905@N04/sets/72177720322368549/"
+    description: ""
+    categories: [mountains, festivals]
+    cover: "54181593222"
+    photos:
+      - { id: "54182915885", title: "Top Of Kedarnath Temple", w: 1024, h: 576, page: "https://www.flickr.com/photos/dwaipyan/54182915885/in/set-72177720322368549/" }
+      - { id: "54182918030", title: "Himalayas", w: 1024, h: 576, page: "https://www.flickr.com/photos/dwaipyan/54182918030/in/set-72177720322368549/" }
+      - { id: "54181593222", title: "Kedarnath Temple", w: 1024, h: 683, page: "https://www.flickr.com/photos/dwaipyan/54181593222/in/set-72177720322368549/" }
+  - id: mountain-view
+    title: "Mountain View"
+    flickr: "https://www.flickr.com/photos/199494905@N04/sets/72177720322368544/"
+    description: "This shot captures the majestic Kedarnath Mountain, a towering peak in the Garhwal Himalayas of Uttarakhand. Rising to 6,940 meters, its snow-clad beauty and rugged charm make it a dream for mountain view photography enthusiasts. Framed by serene valleys and dramatic skylines, this scene embodies the raw grandeur of the Himalayas—perfectly timed to showcase the golden glow of sunrise over the peaks. A true masterpiece of nature for anyone who loves capturing the soul of the mountains."
+    categories: [mountains]
+    cover: "54182918030"
+    photos:
+      - { id: "54182918030", title: "Himalayas", w: 1024, h: 576, page: "https://www.flickr.com/photos/dwaipyan/54182918030/in/set-72177720322368544/" }
+      - { id: "54181593222", title: "Kedarnath Temple", w: 1024, h: 683, page: "https://www.flickr.com/photos/dwaipyan/54181593222/in/set-72177720322368544/" }
+  - id: baby-store
+    title: "Baby Store"
+    flickr: "https://www.flickr.com/photos/199494905@N04/sets/72177720322158582/"
+    description: "Baby Boy/Girl Photography"
+    categories: [people]
+    cover: "54162630692"
+    photos:
+      - { id: "54512249119", title: "Together, without borders — a picture of equality.", w: 1024, h: 683, page: "https://www.flickr.com/photos/dwaipyan/54512249119/in/set-72177720322158582/" }
+      - { id: "54182738709", title: "Way To Kedarnath Temple By Palki", w: 1024, h: 683, page: "https://www.flickr.com/photos/dwaipyan/54182738709/in/set-72177720322158582/" }
+      - { id: "54162630692", title: "Joyful Expressions", w: 1024, h: 683, page: "https://www.flickr.com/photos/dwaipyan/54162630692/in/set-72177720322158582/" }
+  - id: wildlife
+    title: "Wildlife"
+    flickr: "https://www.flickr.com/photos/199494905@N04/sets/72177720314016800/"
+    description: "Nature is not only all that is visible to the eye… it also includes the inner pictures of the soul."
+    categories: [wildlife]
+    cover: "55543922405"
+    photos:
+      - { id: "55543922405", title: "Mood Of Cat on air", w: 1024, h: 768, page: "https://www.flickr.com/photos/dwaipyan/55543922405/in/set-72177720314016800/" }
+      - { id: "55019743124", title: "Peacock", w: 1024, h: 576, page: "https://www.flickr.com/photos/dwaipyan/55019743124/in/set-72177720314016800/" }
+      - { id: "54230438173", title: "Mystic Veil: Spider's Web in Dew", w: 1024, h: 576, page: "https://www.flickr.com/photos/dwaipyan/54230438173/in/set-72177720314016800/" }
+      - { id: "54182518966", title: "The shalik pakhi of Bangladesh", w: 1024, h: 742, page: "https://www.flickr.com/photos/dwaipyan/54182518966/in/set-72177720314016800/" }
+      - { id: "54177270292", title: "Bangladeshi Village Dogs", w: 1024, h: 596, page: "https://www.flickr.com/photos/dwaipyan/54177270292/in/set-72177720314016800/" }
+      - { id: "53881069822", title: "Cow of Digha", w: 1024, h: 768, page: "https://www.flickr.com/photos/dwaipyan/53881069822/in/set-72177720314016800/" }
+      - { id: "53460779980", title: "spider web", w: 1024, h: 683, page: "https://www.flickr.com/photos/dwaipyan/53460779980/in/set-72177720314016800/" }
+      - { id: "53460352536", title: "Himalayan Sheep Dog", w: 1024, h: 683, page: "https://www.flickr.com/photos/dwaipyan/53460352536/in/set-72177720314016800/" }
+  - id: nature
+    title: "Nature"
+    flickr: "https://www.flickr.com/photos/199494905@N04/sets/72177720314001855/"
+    description: "Sony Alpha A6400"
+    categories: [nature]
+    cover: "54182811374"
+    photos:
+      - { id: "54258691625", title: "Winter Serenity at Ramna Park", w: 1024, h: 576, page: "https://www.flickr.com/photos/dwaipyan/54258691625/in/set-72177720314001855/" }
+      - { id: "54182811374", title: "Devprayag Meeting point", w: 1024, h: 576, page: "https://www.flickr.com/photos/dwaipyan/54182811374/in/set-72177720314001855/" }
+      - { id: "54181638747", title: "Devprayag", w: 1024, h: 576, page: "https://www.flickr.com/photos/dwaipyan/54181638747/in/set-72177720314001855/" }
+      - { id: "54181039511", title: "pumpkin plant", w: 1024, h: 683, page: "https://www.flickr.com/photos/dwaipyan/54181039511/in/set-72177720314001855/" }
+      - { id: "54178598059", title: "Pink-White stripped flower", w: 1024, h: 576, page: "https://www.flickr.com/photos/dwaipyan/54178598059/in/set-72177720314001855/" }
+      - { id: "54162028692", title: "Plants", w: 1024, h: 683, page: "https://www.flickr.com/photos/dwaipyan/54162028692/in/set-72177720314001855/" }
+      - { id: "53882208908", title: "New Digha", w: 1024, h: 683, page: "https://www.flickr.com/photos/dwaipyan/53882208908/in/set-72177720314001855/" }
+      - { id: "53666207438", title: "Sunflower", w: 768, h: 1024, page: "https://www.flickr.com/photos/dwaipyan/53666207438/in/set-72177720314001855/" }
+      - { id: "53477750259", title: "Beyond the sky", w: 1024, h: 576, page: "https://www.flickr.com/photos/dwaipyan/53477750259/in/set-72177720314001855/" }
+      - { id: "53470260580", title: "Winter Flower", w: 768, h: 1024, page: "https://www.flickr.com/photos/dwaipyan/53470260580/in/set-72177720314001855/" }
+      - { id: "53462631686", title: "Mustered tree", w: 1024, h: 576, page: "https://www.flickr.com/photos/dwaipyan/53462631686/in/set-72177720314001855/" }
+      - { id: "53458412607", title: "Mustard Flower", w: 1024, h: 683, page: "https://www.flickr.com/photos/dwaipyan/53458412607/in/set-72177720314001855/" }
+  - id: lights
+    title: "Lights"
+    flickr: "https://www.flickr.com/photos/199494905@N04/sets/72177720314043919/"
+    description: "Lighting photography"
+    categories: [street]
+    cover: "54177326042"
+    photos:
+      - { id: "54178709770", title: "street light", w: 1024, h: 424, page: "https://www.flickr.com/photos/dwaipyan/54178709770/in/set-72177720314043919/" }
+      - { id: "54178254271", title: "Street Lamp", w: 1024, h: 683, page: "https://www.flickr.com/photos/dwaipyan/54178254271/in/set-72177720314043919/" }
+      - { id: "54177326042", title: "Candles", w: 1024, h: 609, page: "https://www.flickr.com/photos/dwaipyan/54177326042/in/set-72177720314043919/" }
+      - { id: "53460433851", title: "lamppost", w: 1024, h: 683, page: "https://www.flickr.com/photos/dwaipyan/53460433851/in/set-72177720314043919/" }
+
+# Facebook albums — shown as collection cards linking to Facebook. Facebook does not expose these albums
+# without signing in, so their titles and covers could not be read: fill in `title` (and optionally save a
+# cover as assets/img/photos/facebook-<n>.webp and set `cover`).
+facebook:
+  - { title: "", url: "https://www.facebook.com/media/set/?set=a.8942630042469337&type=3", cover: "" }
+  - { title: "", url: "https://www.facebook.com/media/set/?set=a.6990074074391620&type=3", cover: "" }
