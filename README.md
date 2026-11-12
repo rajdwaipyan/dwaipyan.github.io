@@ -145,6 +145,15 @@ Web3Forms): it gives you an endpoint URL to use as the form's `action`. No secre
 Add a line to `_data/sites.yml` (`slug`, `name`, `url`, `domain`, `cat`) and save a 800 × 500 screenshot of its home
 page as `assets/img/sites/<slug>.webp`. No screenshot? Add `shot: false` and the card shows the name instead.
 
+## Adding a video (Watch & Explore)
+
+Add an entry to `videos:` in `_data/videos.yml` — the file starts with a commented example. Only `id`, `title`,
+`platform`, `url` and `categories` are required; YouTube thumbnails are taken from YouTube, Shorts are detected
+from `/shorts/` links, and `featured: true` puts a video in the large slot. Fill in `channels` to show the
+Subscribe / Follow buttons. The page (`/watch/`), its menu link, the home-page row and its sitemap entry appear
+automatically once there is at least one video. YouTube plays in a pop-up player (youtube-nocookie.com, loaded only
+when a visitor presses play); Facebook videos open on Facebook unless the entry has `embed: true`.
+
 ## Social links and WhatsApp
 
 `_data/social.yml` holds the profile links (hero, contact, footer) and the WhatsApp number and greeting used by

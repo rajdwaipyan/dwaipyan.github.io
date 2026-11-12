@@ -1,0 +1,35 @@
+{%- comment -%}
+  One video card. {% include video-card.html v=video variant="feature|card|short" %}
+  A card is a real link to the video (works without JavaScript); with JavaScript, YouTube (and Facebook
+  entries marked embed: true) open in the modal player instead — nothing is loaded from YouTube until then.
+{%- endcomment -%}
+{% include video-vars.html v=include.v %}
+{%- assign variant = include.variant | default: 'card' -%}
+{%- assign v = include.v -%}
+{%- capture vlabel -%}{%- if v.platform == 'facebook' -%}Facebook{%- elsif vtype == 'short' -%}YouTube Short{%- else -%}YouTube{%- endif -%}{%- endcapture -%}
+<article class="vcard vcard-{{ variant }} vt-{{ vtype }}" data-tags="{{ vtags | strip }}"{% if variant == "card" or variant == "short" %} id="v-{{ v.id }}"{% endif %}>
+  <a class="vcard-link" href="{{ v.url }}" target="_blank" rel="noopener"
+     data-video="{{ v.id }}" data-play="{{ vplay }}"{% if vembed %} data-embed="{{ vembed | escape }}"{% endif %} data-ratio="{% if vtype == 'short' %}9/16{% else %}16/9{% endif %}"
+     data-cursor="Play">
+    <span class="vthumb">
+      {%- if vthumb %}
+      <img src="{{ vthumb }}" alt=""{% if variant == "feature" %} fetchpriority="high"{% else %} loading="lazy" decoding="async"{% endif %} width="{% if vtype == 'short' %}720{% else %}1280{% endif %}" height="{% if vtype == 'short' %}1280{% else %}720{% endif %}">
+      {%- else %}
+      <span class="vthumb-type" aria-hidden="true">{{ v.title }}</span>
+      {%- endif %}
+      <span class="vplay" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+      <span class="vbadge vb-{{ v.platform }}">{{ vlabel }}</span>
+      {%- if v.duration %}<span class="vdur"><span class="sr-only">Duration </span>{{ v.duration }}</span>{% endif %}
+    </span>
+    <span class="vbody">
+      <span class="vmeta">
+        {%- for c in v.categories limit: 2 %}{% for cat in site.data.videos.categories %}{% if cat.id == c %}<span>{{ cat.label }}</span>{% endif %}{% endfor %}{% endfor %}
+        {%- if v.date %}<time datetime="{{ v.date | date: '%Y-%m-%d' }}">{{ v.date | date: "%-d %b %Y" }}</time>{% endif %}
+      </span>
+      <span class="vtitle">{{ v.title }}</span>
+      {%- if variant != 'short' and v.description %}<span class="vdesc">{{ v.description }}</span>{% endif %}
+      {%- if variant == 'feature' %}<span class="vcta">{% if vplay == 'modal' %}Watch video{% else %}Watch on {{ vlabel }}{% endif %} <span aria-hidden="true">→</span></span>{% endif %}
+    </span>
+    <span class="sr-only"> — {% if vplay == 'modal' %}plays here{% else %}opens {{ vlabel }} in a new tab{% endif %}</span>
+  </a>
+</article>

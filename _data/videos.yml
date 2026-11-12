@@ -1,0 +1,40 @@
+# WATCH & EXPLORE — every video on /watch/ (and the home-page row) comes from this file.
+#
+# TO ADD A VIDEO: copy the example below into `videos:` (remove the leading "# "), fill it in, commit.
+# The newest entries can go at the top — the page keeps the order you write here.
+#
+#   - id: secure-wordpress-2026            # short unique name: lowercase letters, numbers, dashes
+#     title: "How I secure a WordPress site before launch"
+#     description: "One or two sentences — what the viewer will learn."
+#     platform: youtube                    # youtube | facebook
+#     url: "https://www.youtube.com/watch?v=XXXXXXXXXXX"   # or youtu.be/…, /shorts/…, or the Facebook video link
+#     type: long                           # long | short   (short = 9:16 Shorts / Reels; YouTube /shorts/ links are detected)
+#     categories: [cybersecurity, web-development]          # ids from `categories` below — as many as fit
+#     featured: true                       # optional — the first featured video is the large one at the top
+#     duration: "12:34"                    # optional — leave out if you don't know it
+#     date: 2026-11-01                     # optional — the publication date (YYYY-MM-DD)
+#     thumbnail: ""                        # optional for YouTube (taken from YouTube); recommended for Facebook:
+#                                          #   save an image as assets/img/videos/<id>.jpg (1280×720, or 720×1280 for shorts)
+#     embed: true                          # Facebook only, optional — play inside the page instead of opening Facebook
+#
+# Only add your own videos, and never invent views, subscribers or dates — the page shows none of those.
+
+# Your channels: the follow buttons appear only when a url is filled in.
+channels:
+  youtube: { url: "", label: "YouTube" }    # e.g. https://www.youtube.com/@yourhandle
+  facebook: { url: "", label: "Facebook" }  # e.g. https://www.facebook.com/yourpage
+
+# Filter chips, in order. "featured", "shorts" and "facebook" are filled automatically from each video's
+# featured / type / platform fields; the others come from each video's `categories`.
+categories:
+  - { id: featured, label: Featured }
+  - { id: cybersecurity, label: Cybersecurity }
+  - { id: web-development, label: Web Development }
+  - { id: technology, label: Technology & Innovation }
+  - { id: automation, label: Business Automation }
+  - { id: it-leadership, label: IT Leadership }
+  - { id: education-career, label: Education & Career }
+  - { id: shorts, label: YouTube Shorts }
+  - { id: facebook, label: Facebook Videos }
+
+videos: []

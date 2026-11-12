@@ -1,6 +1,7 @@
 # Main navigation — the desktop mega menu, the phone menu and the footer all read this file.
 # Every url must point at a page or anchor that exists. Urls are relative to the site root
 # (the layout adds "../" on inner pages). `nav` marks the link as current on that page.
+# `requires: videos` hides a link until _data/videos.yml lists at least one video.
 
 groups:
   - id: profile
@@ -46,6 +47,7 @@ groups:
       - { label: Journal, sub: "Essays and notes, published here", url: journal/, nav: journal }
       - { label: Articles, sub: "Technology and cybersecurity writing on Medium", url: "journal/#articles" }
       - { label: Research, sub: "Interests and the master's project report", url: "education/#research" }
+      - { label: "Watch & Explore", sub: "Talks, tutorials and shorts on video", url: watch/, nav: watch, requires: videos }
     feature:
       kind: text
       k: "Master's project report · 2025"

@@ -106,3 +106,13 @@ Status key: **Hidden** = in the data file but not shown · **Cautious** = shown 
 - Several are well-known brands (for example fairlife, Horizon Organic, nutribullet, Bianchi, Polestar). If anyone asks,
   be ready to show what you did on each; if your role was partial, consider a note per site.
 - **WhatsApp**: +880 1863-324379 is now public on every page (sticky button, contact section, social icons).
+
+## Watch & Explore (added 12 November 2026)
+
+- The video section is built but **empty**: add your videos to `_data/videos.yml` (see README → "Adding a video").
+  Until the first video is added, the page stays out of the menu, the home page and the sitemap.
+- Add your **YouTube channel and Facebook page** links under `channels:` in the same file — the follow buttons
+  appear only when those are filled in. They are not on the site yet because no such links were configured.
+- No views, subscriber counts or engagement figures are shown anywhere; dates and durations appear only if you enter them.
+- Privacy: YouTube thumbnails load from i.ytimg.com (Google) when the page is viewed; the player itself
+  (youtube-nocookie.com) and Facebook's player load only after a visitor presses play.
