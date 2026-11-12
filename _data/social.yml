@@ -20,7 +20,7 @@ links:
   - { name: Behance, url: "https://www.behance.net/dwaipayan97", icon: behance }
   - { name: Fiverr, url: "https://www.fiverr.com/dwaipyan", icon: fiverr }
   - { name: Pinterest, url: "https://pin.it/3dw0Li5Fd", icon: pinterest, same_as: false }
-  - { name: Flickr, url: "https://flic.kr/p/2sF52NY", icon: flickr, same_as: false }
+  - { name: Flickr, url: "https://www.flickr.com/photos/199494905@N04/", icon: flickr }
   - { name: Telegram, url: "https://t.me/rajdwaipyan", icon: telegram }
   - { name: WhatsApp, url: "https://wa.me/8801863324379", icon: whatsapp, hero: true, profile: false, same_as: false }
   - { name: Email, url: "mailto:rajdwaipayan@gmail.com", icon: mail, profile: false, same_as: false }

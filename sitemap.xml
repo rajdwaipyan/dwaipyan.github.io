@@ -45,6 +45,10 @@ layout: null
     <loc>https://rajdwaipyan.github.io/dwaipyan.github.io/journal/</loc>
     <lastmod>2026-11-12</lastmod>
   </url>
+  <url>
+    <loc>https://rajdwaipyan.github.io/dwaipyan.github.io/photography/</loc>
+    <lastmod>2026-11-13</lastmod>
+  </url>
   {%- assign nvid = site.data.videos.videos | size %}
   {%- if nvid > 0 %}
   <url>

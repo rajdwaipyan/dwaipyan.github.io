@@ -154,6 +154,14 @@ Subscribe / Follow buttons. The page (`/watch/`), its menu link, the home-page r
 automatically once there is at least one video. YouTube plays in a pop-up player (youtube-nocookie.com, loaded only
 when a visitor presses play); Facebook videos open on Facebook unless the entry has `embed: true`.
 
+## Photography
+
+`/photography/` is built from `_data/photography.yml`: albums (title, Flickr link, description, categories, cover)
+and their photographs (id, title, width, height, Flickr page). Images are local copies in `assets/img/photos/`
+as `<id>-1024.webp` and `<id>-560.webp`; each one links back to its Flickr page. To add a photo, save those two
+files and add a line to the album; to add an album, copy an album block. `featured` picks the first-screen photo.
+Facebook albums are listed under `facebook:` as link cards.
+
 ## Social links and WhatsApp
 
 `_data/social.yml` holds the profile links (hero, contact, footer) and the WhatsApp number and greeting used by
