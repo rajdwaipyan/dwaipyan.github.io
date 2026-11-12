@@ -1,13 +1,26 @@
 # Social and contact links — used by the hero, the contact section, the footer and the structured data (sameAs).
 # `icon` picks the drawing in _includes/social.html. Only add profiles that are yours and live.
+#   hero: true      also shown in the hero (keep it to a handful)
+#   same_as: false  leave out of the search-engine profile list (for share links or single photos)
+#   profile: false  not a profile (WhatsApp, email) — left out of the contact section's text list
 whatsapp:
   number: "8801863324379"          # international format, digits only (used for wa.me links)
   display: "+880 1863-324379"
   message: "Hello Dwaipyan, I found your website and would like to talk about"
 links:
-  - { name: LinkedIn, url: "https://www.linkedin.com/in/dwaipyan-cyberexpert", icon: linkedin }
-  - { name: GitHub, url: "https://github.com/rajdwaipyan", icon: github }
+  - { name: LinkedIn, url: "https://www.linkedin.com/in/dwaipyan-cyberexpert", icon: linkedin, hero: true }
+  - { name: GitHub, url: "https://github.com/rajdwaipyan", icon: github, hero: true }
+  - { name: YouTube, url: "https://www.youtube.com/@dwaipo", icon: youtube, hero: true }
+  - { name: Facebook, url: "https://www.facebook.com/share/19mYXwod5c/", icon: facebook, hero: true, same_as: false }
+  - { name: Instagram, url: "https://www.instagram.com/rajdwaipayan/", icon: instagram, hero: true }
+  - { name: X, url: "https://x.com/rajdwaipayan", icon: x }
+  - { name: TikTok, url: "https://www.tiktok.com/@dwaipyan", icon: tiktok }
   - { name: Medium, url: "https://medium.com/@rajdwaipyan", icon: medium }
+  - { name: Dribbble, url: "https://dribbble.com/dwaipyan", icon: dribbble }
+  - { name: Behance, url: "https://www.behance.net/dwaipayan97", icon: behance }
   - { name: Fiverr, url: "https://www.fiverr.com/dwaipyan", icon: fiverr }
-  - { name: WhatsApp, url: "https://wa.me/8801863324379", icon: whatsapp }
-  - { name: Email, url: "mailto:rajdwaipayan@gmail.com", icon: mail }
+  - { name: Pinterest, url: "https://pin.it/3dw0Li5Fd", icon: pinterest, same_as: false }
+  - { name: Flickr, url: "https://flic.kr/p/2sF52NY", icon: flickr, same_as: false }
+  - { name: Telegram, url: "https://t.me/rajdwaipyan", icon: telegram }
+  - { name: WhatsApp, url: "https://wa.me/8801863324379", icon: whatsapp, hero: true, profile: false, same_as: false }
+  - { name: Email, url: "mailto:rajdwaipayan@gmail.com", icon: mail, profile: false, same_as: false }

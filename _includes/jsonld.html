@@ -99,10 +99,10 @@
         {%- endfor %}
       ],
       "sameAs": [
-        "https://www.linkedin.com/in/dwaipyan-cyberexpert",
-        "https://github.com/rajdwaipyan",
-        "https://www.fiverr.com/dwaipyan",
-        "https://medium.com/@rajdwaipyan"
+        {%- assign first = true %}
+        {%- for s in site.data.social.links %}{% unless s.same_as == false %}
+        {% unless first %},{% endunless %}{% assign first = false %}{{ s.url | jsonify }}
+        {%- endunless %}{% endfor %}
       ],
       "workExample": [
         {%- for p in site.data.projects %}
