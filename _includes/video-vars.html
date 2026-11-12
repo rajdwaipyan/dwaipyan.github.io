@@ -1,0 +1,34 @@
+{%- comment -%}
+  Works out everything a video card needs from one entry of _data/videos.yml.
+  Call with  {% include video-vars.html v=video %}  — sets: vid (YouTube id), vtype (long|short), vthumb, vtags, vplay (modal|link), vembed.
+{%- endcomment -%}
+{%- assign v = include.v -%}
+{%- assign vid = v.youtube_id -%}
+{%- if v.platform == 'youtube' and vid == nil -%}
+  {%- if v.url contains 'shorts/' -%}{%- assign vid = v.url | split: 'shorts/' | last | split: '?' | first | split: '/' | first -%}
+  {%- elsif v.url contains 'youtu.be/' -%}{%- assign vid = v.url | split: 'youtu.be/' | last | split: '?' | first -%}
+  {%- elsif v.url contains 'embed/' -%}{%- assign vid = v.url | split: 'embed/' | last | split: '?' | first -%}
+  {%- elsif v.url contains 'v=' -%}{%- assign vid = v.url | split: 'v=' | last | split: '&' | first -%}
+  {%- endif -%}
+{%- endif -%}
+{%- assign vtype = v.type | default: 'long' -%}
+{%- if v.url contains 'shorts/' or v.url contains '/reel' -%}{%- assign vtype = 'short' -%}{%- endif -%}
+{%- if v.thumbnail and v.thumbnail != '' -%}
+  {%- if v.thumbnail contains '://' -%}{%- assign vthumb = v.thumbnail -%}{%- else -%}{%- assign vthumb = root | append: v.thumbnail -%}{%- endif -%}
+{%- elsif vid -%}
+  {%- assign vthumb = 'https://i.ytimg.com/vi/' | append: vid | append: '/hqdefault.jpg' -%}
+{%- else -%}
+  {%- assign vthumb = nil -%}
+{%- endif -%}
+{%- assign vtags = v.categories | join: ' ' -%}
+{%- if v.featured -%}{%- assign vtags = vtags | append: ' featured' -%}{%- endif -%}
+{%- if vtype == 'short' and v.platform == 'youtube' -%}{%- assign vtags = vtags | append: ' shorts' -%}{%- endif -%}
+{%- if v.platform == 'facebook' -%}{%- assign vtags = vtags | append: ' facebook' -%}{%- endif -%}
+{%- assign vembed = nil -%}
+{%- if vid -%}
+  {%- assign vembed = 'https://www.youtube-nocookie.com/embed/' | append: vid | append: '?autoplay=1&rel=0&modestbranding=1&playsinline=1' -%}
+{%- elsif v.platform == 'facebook' and v.embed -%}
+  {%- assign venc = v.url | url_encode -%}
+  {%- assign vembed = 'https://www.facebook.com/plugins/video.php?show_text=false&autoplay=true&href=' | append: venc -%}
+{%- endif -%}
+{%- if vembed -%}{%- assign vplay = 'modal' -%}{%- else -%}{%- assign vplay = 'link' -%}{%- endif -%}

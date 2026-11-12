@@ -4,6 +4,7 @@ import { initMotion } from "./motion.js";
 import { initMenu } from "./menu.js";
 import { initCases } from "./cases.js";
 import { initJournal } from "./journal.js";
+import { initVideo } from "./video.js";
 import { initHero } from "./hero.js";
 import { initBuilder } from "./builder.js";
 import { initMachine } from "./machine.js";
@@ -22,6 +23,7 @@ run("hero", initHero);      // before motion: the hero splits its own letters
 run("motion", initMotion);
 run("cases", initCases);
 run("journal", initJournal);
+run("video", initVideo);
 run("builder", initBuilder);
 run("machine", initMachine);
 run("contact", initContact);

@@ -25,7 +25,8 @@
       <ul class="mega-bar">
         {%- for g in site.data.navigation.groups %}
         {%- assign here = false %}
-        {%- for l in g.links %}{% if l.nav and l.nav == page.nav %}{% assign here = true %}{% endif %}{% endfor %}
+        {%- for l in g.links %}
+        {%- if l.requires == 'videos' %}{% assign nv = site.data.videos.videos | size %}{% if nv == 0 %}{% continue %}{% endif %}{% endif %}{% if l.nav and l.nav == page.nav %}{% assign here = true %}{% endif %}{% endfor %}
         <li class="mega-item">
           <button class="mega-trigger" type="button" aria-expanded="false" aria-controls="mega-{{ g.id }}"{% if here %} data-current{% endif %}>
             <span>{{ g.label }}</span>
@@ -40,6 +41,7 @@
               </div>
               <ul class="mega-links">
                 {%- for l in g.links %}
+        {%- if l.requires == 'videos' %}{% assign nv = site.data.videos.videos | size %}{% if nv == 0 %}{% continue %}{% endif %}{% endif %}
                 <li><a href="{% if l.url contains ':' %}{{ l.url }}{% else %}{{ root }}{{ l.url }}{% endif %}"{% if l.nav and l.nav == page.nav %} aria-current="page"{% endif %}>
                   <span class="ml-no" aria-hidden="true">0{{ forloop.index }}</span>
                   <span class="ml-label">{{ l.label }}</span>
@@ -85,6 +87,7 @@
       <p class="mnav-k"><span>0{{ forloop.index }}</span>{{ g.label }}</p>
       <ul class="mnav-list">
         {%- for l in g.links %}
+        {%- if l.requires == 'videos' %}{% assign nv = site.data.videos.videos | size %}{% if nv == 0 %}{% continue %}{% endif %}{% endif %}
         <li><a href="{% if l.url contains ':' %}{{ l.url }}{% else %}{{ root }}{{ l.url }}{% endif %}"{% if l.nav and l.nav == page.nav %} aria-current="page"{% endif %}>{{ l.label }}</a></li>
         {%- endfor %}
       </ul>

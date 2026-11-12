@@ -412,6 +412,27 @@ preload_portrait: cutout
       </div>
     </section>
 
+    <!-- WATCH & EXPLORE — appears once _data/videos.yml has videos -->
+    {%- assign hv = site.data.videos.videos | size %}
+    {%- if hv > 0 %}
+    <section class="home-watch" id="watch" data-room="night" aria-labelledby="home-watch-title">
+      <div class="container">
+        <header class="section-head section-head-row">
+          <div>
+            <p class="kicker"><span>→</span> Watch &amp; Explore</p>
+            <h2 class="section-title" id="home-watch-title">Ideas and expertise, <em>on video.</em></h2>
+          </div>
+          <a class="btn btn-lime" href="watch/" data-magnetic>All videos <span class="btn-arrow" aria-hidden="true">→</span></a>
+        </header>
+        <div class="short-row" tabindex="0" aria-label="Recent videos — scroll sideways" data-stagger>
+          {%- for v in site.data.videos.videos limit: 8 %}
+          {% include video-card.html v=v variant="card" %}
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+    {%- endif %}
+
     <!-- CONTACT -->
     <section class="contact" id="contact" data-room="contact" aria-labelledby="contact-title">
       <div class="container contact-grid">

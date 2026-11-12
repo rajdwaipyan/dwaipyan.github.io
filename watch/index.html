@@ -1,0 +1,185 @@
+---
+layout: default
+title: Watch & Explore — Videos by Dwaipyan Mandal
+og_title: Dwaipyan Mandal — Watch & Explore
+description: Ideas, insights and expertise shared through video — Dwaipyan Mandal on cybersecurity, web development, business automation, IT leadership and careers in technology.
+root: "../"
+nav: watch
+crumb: Watch & Explore
+schema: page
+guide: false
+---
+{%- assign root = page.root -%}
+{%- assign videos = site.data.videos.videos -%}
+{%- assign nv = videos | size -%}
+{%- assign ch = site.data.videos.channels -%}
+{%- assign featured = nil -%}
+{%- for v in videos -%}{%- if featured == nil and v.featured -%}{%- assign featured = v -%}{%- endif -%}{%- endfor -%}
+{%- if featured == nil and nv > 0 -%}{%- assign featured = videos.first -%}{%- endif -%}
+    <section class="watch-hero" id="top" data-room="night" aria-labelledby="page-title">
+      <div class="container">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Home</a><span aria-hidden="true">/</span><span aria-current="page">Watch &amp; Explore</span></nav>
+        <p class="watch-k"><span class="rec-dot" aria-hidden="true"></span>Video</p>
+        <h1 class="watch-mast" id="page-title" data-split>Watch <em>&amp;</em> Explore</h1>
+        <div class="watch-intro">
+          <p>Ideas, insights and expertise — shared through video.</p>
+          {%- if ch.youtube.url != '' or ch.facebook.url != '' %}
+          <div class="watch-follow">
+            {%- if ch.youtube.url != '' %}<a class="follow-btn fb-yt" href="{{ ch.youtube.url }}" target="_blank" rel="noopener me" data-magnetic="0.2"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4L15.8 12z"/></svg>Subscribe on YouTube</a>{% endif %}
+            {%- if ch.facebook.url != '' %}<a class="follow-btn fb-fb" href="{{ ch.facebook.url }}" target="_blank" rel="noopener me" data-magnetic="0.2"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>Follow on Facebook</a>{% endif %}
+          </div>
+          {%- endif %}
+        </div>
+      </div>
+    </section>
+
+    {%- if nv > 0 %}
+    <!-- FEATURED — the first video marked `featured: true` -->
+    <section class="watch-feature-sec" aria-label="Featured video" data-room="night">
+      <div class="container watch-feature-grid">
+        {% include video-card.html v=featured variant="feature" %}
+        {%- assign others = 0 %}
+        <aside class="up-next" aria-labelledby="up-next-title">
+          <p class="up-next-k" id="up-next-title">Also featured</p>
+          <ol>
+            {%- for v in videos %}
+            {%- if v.featured and v.id != featured.id and others < 3 %}
+            {%- assign others = others | plus: 1 %}
+            <li>{% include video-card.html v=v variant="mini" %}</li>
+            {%- endif %}
+            {%- endfor %}
+            {%- if others == 0 %}
+            {%- for v in videos %}{% if v.id != featured.id and others < 3 %}{% assign others = others | plus: 1 %}<li>{% include video-card.html v=v variant="mini" %}</li>{% endif %}{% endfor %}
+            {%- endif %}
+          </ol>
+        </aside>
+      </div>
+    </section>
+
+    <!-- LIBRARY — filter by topic; long-form in a grid, shorts and reels in a sideways row -->
+    <section class="section watch-lib" id="library" aria-labelledby="library-title">
+      <div class="container">
+        <header class="section-head section-head-row">
+          <div>
+            <p class="kicker"><span>01</span> The library</p>
+            <h2 class="section-title" id="library-title">Every video, <em>by topic.</em></h2>
+          </div>
+        </header>
+        <div class="filter-bar" role="group" aria-label="Filter videos by topic" data-filters="#vid-grid, #short-grid" data-filters-status="#vid-status">
+          <button type="button" data-filter="all" aria-pressed="true">All<span>{{ nv }}</span></button>
+          {%- for c in site.data.videos.categories %}
+          {%- assign n = 0 %}
+          {%- for v in videos %}
+            {%- include video-vars.html v=v %}
+            {%- assign tl = vtags | split: ' ' %}
+            {%- if tl contains c.id %}{% assign n = n | plus: 1 %}{% endif %}
+          {%- endfor %}
+          {%- if n > 0 %}<button type="button" data-filter="{{ c.id }}" aria-pressed="false">{{ c.label }}<span>{{ n }}</span></button>{% endif %}
+          {%- endfor %}
+        </div>
+        <p class="filter-status" id="vid-status" role="status" aria-live="polite"></p>
+
+        {%- assign nlong = 0 %}{% assign nshort = 0 %}
+        {%- for v in videos %}{% include video-vars.html v=v %}{% if vtype == 'short' %}{% assign nshort = nshort | plus: 1 %}{% else %}{% assign nlong = nlong | plus: 1 %}{% endif %}{% endfor %}
+        {%- if nlong > 0 %}
+        <div class="vgroup" data-vgroup>
+          <h3 class="vgroup-h">Talks &amp; tutorials</h3>
+          <div class="vid-grid" id="vid-grid" data-stagger>
+            {%- for v in videos %}{% include video-vars.html v=v %}{% if vtype != 'short' %}
+            {% include video-card.html v=v variant="card" %}
+            {%- endif %}{% endfor %}
+          </div>
+        </div>
+        {%- endif %}
+        {%- if nshort > 0 %}
+        <div class="vgroup" data-vgroup>
+          <h3 class="vgroup-h">Shorts &amp; reels</h3>
+          <div class="short-row" id="short-grid" tabindex="0" aria-label="Shorts and reels — scroll sideways">
+            {%- for v in videos %}{% include video-vars.html v=v %}{% if vtype == 'short' %}
+            {% include video-card.html v=v variant="short" %}
+            {%- endif %}{% endfor %}
+          </div>
+        </div>
+        {%- endif %}
+        <p class="vempty" hidden>No videos in this topic yet.</p>
+      </div>
+    </section>
+    {%- else %}
+    <section class="section watch-lib" id="library" aria-labelledby="library-title">
+      <div class="container">
+        <div class="journal-empty">
+          <div>
+            <h2 id="library-title">No videos have been added yet.</h2>
+            <p>Videos will appear here once they are added. Until then, the articles and the portfolio show the work.</p>
+          </div>
+          <ul>
+            <li><a href="../journal/#articles">Read the articles</a></li>
+            <li><a href="../portfolio/">See the portfolio</a></li>
+            <li><a href="../#contact">Get in touch</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    {%- endif %}
+
+    {%- if ch.youtube.url != '' or ch.facebook.url != '' %}
+    <!-- FOLLOW -->
+    <section class="section watch-cta" aria-labelledby="follow-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="kicker"><span>02</span> Follow along</p>
+          <h2 class="section-title" id="follow-title">New videos, <em>where you already watch.</em></h2>
+        </header>
+        <div class="follow-grid" data-stagger>
+          {%- if ch.youtube.url != '' %}
+          <a class="follow-card fc-yt" href="{{ ch.youtube.url }}" target="_blank" rel="noopener me">
+            <span class="fc-k">YouTube</span><span class="fc-t">Subscribe to the channel</span><span class="fc-go">Open YouTube <span aria-hidden="true">↗</span></span>
+          </a>
+          {%- endif %}
+          {%- if ch.facebook.url != '' %}
+          <a class="follow-card fc-fb" href="{{ ch.facebook.url }}" target="_blank" rel="noopener me">
+            <span class="fc-k">Facebook</span><span class="fc-t">Follow the page</span><span class="fc-go">Open Facebook <span aria-hidden="true">↗</span></span>
+          </a>
+          {%- endif %}
+        </div>
+      </div>
+    </section>
+    {%- endif %}
+
+    {%- if nv > 0 %}
+    <!-- PLAYER — a native dialog; the video iframe is created only when a card is opened -->
+    <dialog class="vmodal" id="video-modal" aria-labelledby="vm-title">
+      <div class="vm-inner">
+        <div class="vm-top">
+          <p class="vm-k"></p>
+          <button class="vm-close" type="button" data-close aria-label="Close video"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+        </div>
+        <div class="vm-stage"><div class="vm-frame"></div></div>
+        <div class="vm-info">
+          <div>
+            <h2 class="vm-title" id="vm-title">Video</h2>
+            <p class="vm-desc"></p>
+            <a class="vm-ext" href="#library" target="_blank" rel="noopener">Watch on the platform</a>
+          </div>
+          <div class="vm-related" hidden>
+            <p class="vm-related-k">Related</p>
+            <ul></ul>
+          </div>
+        </div>
+      </div>
+    </dialog>
+    <script type="application/json" id="video-data">[
+      {%- for v in videos %}{% include video-vars.html v=v %}
+      {"id": {{ v.id | jsonify }}, "title": {{ v.title | jsonify }}, "description": {{ v.description | default: "" | jsonify }}, "url": {{ v.url | jsonify }}, "platform": {{ v.platform | jsonify }}, "type": {{ vtype | jsonify }}, "categories": {{ v.categories | default: "" | jsonify }}, "thumb": {{ vthumb | default: "" | jsonify }}, "embed": {{ vembed | default: "" | jsonify }}, "duration": {{ v.duration | default: "" | jsonify }}}{% unless forloop.last %},{% endunless %}
+      {%- endfor %}
+    ]</script>
+    <script type="application/ld+json">
+    {"@context": "https://schema.org", "@type": "ItemList", "name": "Watch & Explore — videos by Dwaipyan Mandal", "itemListElement": [
+      {%- assign first = true %}
+      {%- for v in videos %}{% include video-vars.html v=v %}{% if v.date and vthumb %}
+      {%- unless first %},{% endunless %}{% assign first = false %}
+      {"@type": "ListItem", "position": {{ forloop.index }}, "item": {"@type": "VideoObject", "name": {{ v.title | jsonify }}, "description": {{ v.description | default: v.title | jsonify }}, "thumbnailUrl": {% if vthumb contains '://' %}{{ vthumb | jsonify }}{% else %}"https://rajdwaipyan.github.io/dwaipyan.github.io/{{ vthumb | remove_first: root }}"{% endif %}, "uploadDate": "{{ v.date | date: '%Y-%m-%d' }}", "contentUrl": {{ v.url | jsonify }}{% if vid %}, "embedUrl": "https://www.youtube-nocookie.com/embed/{{ vid }}"{% endif %}, "creator": {"@id": "https://rajdwaipyan.github.io/dwaipyan.github.io/#person"}}}
+      {%- endif %}{% endfor %}
+    ]}
+    </script>
+    {%- endif %}

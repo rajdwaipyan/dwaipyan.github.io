@@ -21,6 +21,7 @@
         <p class="footer-h">{{ g.label }}</p>
         <ul>
           {%- for l in g.links %}
+        {%- if l.requires == 'videos' %}{% assign nv = site.data.videos.videos | size %}{% if nv == 0 %}{% continue %}{% endif %}{% endif %}
           <li><a href="{% if l.url contains ':' %}{{ l.url }}{% else %}{{ root }}{{ l.url }}{% endif %}">{{ l.label }}</a></li>
           {%- endfor %}
         </ul>
