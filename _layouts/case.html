@@ -27,15 +27,11 @@ layout: default
           <div><dt>Platform</dt><dd>{{ p.built_with | first }}</dd></div>
           <div><dt>Live site</dt><dd>{% if p.url %}<a href="{{ p.url }}" target="_blank" rel="noopener">{{ domain }}<span class="sr-only"> (opens in a new tab)</span></a>{% else %}Not public{% endif %}</dd></div>
         </dl>
-        <figure class="case-shot">
-          <div class="case-shot-frame{% unless p.images.desktop %} case-shot-tall{% endunless %}" data-clip>
-            <div class="case-shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>{{ domain }}</span></div>
-            {%- if p.images.desktop %}
-            <img src="{{ img }}{{ p.images.desktop }}" width="1582" height="989" alt="{{ p.title }} — home page of the live site" fetchpriority="high">
-            {%- else %}
-            <img src="{{ img }}{{ p.images.full }}" width="1582" height="1978" alt="{{ p.title }} — home page of the live site" fetchpriority="high">
-            {%- endif %}
-          </div>
+        <figure class="case-shot case-shot-pv">
+          {%- capture cslug %}case-{{ p.id }}{% endcapture %}
+          {%- capture cfb %}{{ img }}{% if p.images.desktop %}{{ p.images.desktop }}{% else %}{{ p.images.full }}{% endif %}{% endcapture %}
+          {% include browser.html slug=cslug name=p.title domain=domain url=p.url size="large" fallback=cfb %}
+          <figcaption class="sr-only">{{ p.title }} — the live site, scrolled from top to bottom</figcaption>
         </figure>
       </div>
     </section>

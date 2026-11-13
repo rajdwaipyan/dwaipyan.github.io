@@ -177,6 +177,39 @@ The marquee bands are CSS animations (paused on hover/focus and off screen, turn
 visitor prefers reduced motion). The page carries Service (offer catalogue of starting prices) and FAQPage
 structured data. Pages also cross-fade on navigation in browsers that support view transitions (`style.css`, base).
 
+## Services
+
+`/services/` and one page per practice (`services/web-development/`, `ai-automation/`, `crm-automation/`,
+`cybersecurity/`) are built from `_data/services.yml` with `_layouts/service.html`. A category page lists each
+service (description, typical situations, technologies), related case studies with live previews, related links
+and a contact block (`_includes/services-cta.html`). To add a service, add an entry under its category; to add a
+practice, add a category and a two-line page in `services/<id>/index.html` (copy an existing one). The AI Prompt
+Engineering page stays at `/ai-prompt-engineering/` and now sits under Services (navigation and breadcrumbs).
+
+## Scrolling website previews
+
+Every website in the portfolio, the case-study pages and the services pages show the site in a browser frame
+that scrolls by itself from top to bottom, pauses, glides back and repeats (`_includes/browser.html`,
+`assets/js/preview.js`). Visitors can pause, replay, change speed, or scroll the frame themselves — any scroll,
+tap or key inside it hands control to them. Previews only run while on screen; with reduced motion they wait for Play.
+
+**What scrolls is a full-page capture, not the live site.** Another website's page cannot be scrolled from this
+site (browsers forbid it across domains), and most of these sites also refuse to be framed. So each site was
+captured top to bottom by `tools/fullpage.py` (run on GitHub Actions, 1440 px desktop width) into
+`assets/img/full/<slug>-900.webp` / `-480.webp`, listed with their size and capture date in `_data/previews.yml`.
+The page always says it is a capture and links to the live site. Where a site allows framing (`embed: true`),
+the large viewer also offers **Live site**: the real page in a frame, which the visitor scrolls.
+
+To refresh captures: add the site to `tools/fullpage-sites.txt`, run `tools/fullpage.py` (Python + Playwright;
+needs normal internet access), then update `_data/previews.yml` from `tools/fullpage-report.json`.
+
+## Liquid Glass interface
+
+The interface layer — header capsule, mega menu, phone menu, buttons, filters, preview frames, dialogs, social
+icons — uses translucent "glass" surfaces (blur, a bright top edge, soft shadow): see the LIQUID GLASS block in
+`style.css` (tokens `--g-*`). Text-heavy content stays on solid backgrounds for contrast. Browsers without
+`backdrop-filter`, and visitors with "reduce transparency" switched on, get solid surfaces instead.
+
 ## Photography
 
 `/photography/` is built from `_data/photography.yml`: albums (title, Flickr link, description, categories, cover)

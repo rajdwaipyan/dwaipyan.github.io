@@ -1,0 +1,136 @@
+---
+# One services category, built from its entry in _data/services.yml.
+# The page itself is a short file in services/<id>/index.html that sets `service: <id>`.
+layout: default
+---
+{%- assign root = page.root -%}
+{%- for c in site.data.services.categories -%}{%- if c.id == page.service -%}{%- assign cat = c -%}{%- endif -%}{%- endfor -%}
+{%- assign wa = site.data.social.whatsapp -%}
+    <section class="svx-hero" id="top" data-room="night" aria-labelledby="page-title">
+      <div class="container">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="{{ root }}">Home</a><span aria-hidden="true">/</span><a href="{{ root }}services/">Services</a><span aria-hidden="true">/</span><span aria-current="page">{{ cat.title }}</span></nav>
+        <div class="svx-hero-grid">
+          <div>
+            <p class="svx-k"><span>{{ cat.n }}</span> Services</p>
+            <h1 class="svx-mast" id="page-title" data-split>{{ cat.title }}</h1>
+            <p class="svx-line">{{ cat.line }}</p>
+          </div>
+          <div class="svx-hero-side">
+            <p class="svx-intro">{{ cat.intro }}</p>
+            <ul class="svx-tools" aria-label="Technologies">{% for t in cat.tools %}<li>{{ t }}</li>{% endfor %}</ul>
+            <div class="svx-cta">
+              <a class="btn btn-lime" href="mailto:rajdwaipayan@gmail.com?subject={{ cat.title | append: ' — project enquiry' | url_encode | replace: '+', '%20' }}">Discuss a project</a>
+              <a class="btn btn-line" href="https://wa.me/{{ wa.number }}?text={{ 'Hello Dwaipyan, I would like to discuss ' | append: cat.title | append: ':' | url_encode | replace: '+', '%20' }}" target="_blank" rel="noopener">WhatsApp<span class="sr-only"> (opens in a new tab)</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="svx-index" aria-label="Services in {{ cat.title }}">
+      <div class="container">
+        <ul>{% for s in cat.services %}<li><a href="#{{ s.title | slugify }}">{{ s.title }}</a></li>{% endfor %}</ul>
+      </div>
+    </nav>
+
+    <section class="section svx-list" aria-label="{{ cat.title }} services">
+      <div class="container">
+        <ol class="svx-cards">
+          {%- for s in cat.services %}
+          <li class="svx-card" id="{{ s.title | slugify }}">
+            <p class="svx-n">{{ cat.n }}.{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</p>
+            <h2 class="svx-t">{{ s.title }}</h2>
+            <p class="svx-text">{{ s.text }}</p>
+            <div class="svx-cols">
+              <div>
+                <h3 class="svx-h">Typical situations</h3>
+                <ul class="svx-uses">{% for u in s.uses %}<li>{{ u }}</li>{% endfor %}</ul>
+              </div>
+              <div>
+                <h3 class="svx-h">Technologies</h3>
+                <ul class="svx-tech">{% for t in s.tech %}<li>{{ t }}</li>{% endfor %}</ul>
+              </div>
+            </div>
+            <div class="svx-card-foot">
+              {%- if s.link %}<a class="svx-more" href="{{ root }}{{ s.link.url }}">{{ s.link.label }}</a>{% endif %}
+              <a class="svx-ask" href="mailto:rajdwaipayan@gmail.com?subject={{ s.title | append: ' — enquiry' | url_encode | replace: '+', '%20' }}">Ask about {{ s.title }}</a>
+            </div>
+          </li>
+          {%- endfor %}
+        </ol>
+        <p class="svx-price"><span>Pricing</span>{{ cat.price }}</p>
+      </div>
+    </section>
+
+    {%- assign nrel = cat.related | size %}
+    {%- assign nlinks = cat.links | size %}
+    {%- if nrel > 0 or nlinks > 0 or cat.sites %}
+    <section class="section svx-related" aria-labelledby="rel-title">
+      <div class="container">
+        <header class="section-head section-head-row">
+          <div>
+            <p class="kicker"><span>Proof</span> Related work</p>
+            <h2 class="section-title" id="rel-title">{% if nrel > 0 %}See it <em>live.</em>{% else %}Where to <em>look next.</em>{% endif %}</h2>
+          </div>
+          {%- if nrel > 0 %}<p class="svx-rel-note">Each frame scrolls through a capture of the live site. Open the case study for the full story.</p>{% endif %}
+        </header>
+        {%- if nrel > 0 %}
+        <ul class="svx-cases">
+          {%- for id in cat.related %}
+          {%- for p in site.data.projects %}{% if p.id == id %}
+          {%- assign d = p.url | remove: 'https://' | remove: 'http://' | remove: 'www.' | remove: '/' %}
+          {%- capture cslug %}case-{{ p.id }}{% endcapture %}
+          {%- capture cfb %}{{ root }}assets/img/work/{% if p.images.desktop %}{{ p.images.desktop }}{% else %}{{ p.images.full }}{% endif %}{% endcapture %}
+          <li class="svx-case">
+            {% include browser.html slug=cslug name=p.title domain=d url=p.url size="card" fallback=cfb %}
+            <div class="svx-case-meta">
+              <p class="svx-case-k">{{ p.work }} · {{ p.region }}</p>
+              <h3><a href="{{ root }}portfolio/{{ p.id }}/">{{ p.title }}</a></h3>
+              <p class="svx-case-tech">{{ p.built_with | join: " · " }}</p>
+            </div>
+          </li>
+          {%- endif %}{% endfor %}
+          {%- endfor %}
+        </ul>
+        {%- endif %}
+        {%- if cat.sites %}
+        <p class="svx-sites"><a class="btn btn-ink" href="{{ root }}portfolio/#websites">See all {{ site.data.sites.sites | size }} websites in the portfolio</a></p>
+        {%- endif %}
+        {%- if nlinks > 0 %}
+        <ul class="svx-links">
+          {%- for l in cat.links %}
+          <li><a href="{{ root }}{{ l.url }}"><span class="svx-links-t">{{ l.label }}</span><span class="svx-links-d">{{ l.text }}</span></a></li>
+          {%- endfor %}
+        </ul>
+        {%- endif %}
+      </div>
+    </section>
+    {%- endif %}
+
+    <section class="section svx-others" aria-labelledby="others-title">
+      <div class="container">
+        <h2 class="svx-others-t" id="others-title">Other services</h2>
+        <ul class="svx-others-list">
+          {%- for c in site.data.services.categories %}{% if c.id != cat.id %}
+          <li><a href="{{ root }}services/{{ c.id }}/"><span class="svx-n">{{ c.n }}</span><span class="svx-others-name">{{ c.title }}</span><span class="svx-others-line">{{ c.line }}</span></a></li>
+          {%- endif %}{% endfor %}
+        </ul>
+      </div>
+    </section>
+
+    {% include services-cta.html %}
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": {{ cat.title | jsonify }},
+      "description": {{ cat.intro | jsonify }},
+      "url": "https://rajdwaipyan.github.io/dwaipyan.github.io{{ page.url }}",
+      "provider": { "@id": "https://rajdwaipyan.github.io/dwaipyan.github.io/#person" },
+      "areaServed": "Worldwide",
+      "hasOfferCatalog": { "@type": "OfferCatalog", "name": {{ cat.title | jsonify }}, "itemListElement": [
+        {%- for s in cat.services %}{ "@type": "Offer", "itemOffered": { "@type": "Service", "name": {{ s.title | jsonify }}, "description": {{ s.text | jsonify }} } }{% unless forloop.last %},{% endunless %}{% endfor %}
+      ] }
+    }
+    </script>

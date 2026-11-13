@@ -1,0 +1,52 @@
+{%- comment -%}
+  A browser frame that scrolls through a full-page capture of a live website (assets/js/preview.js).
+  include browser.html slug="..." name="..." domain="..." url="..." size="card|large" fallback="path/to/image.webp"
+  Captures: assets/img/full/<slug>-480.webp and -900.webp, listed in _data/previews.yml (height, date, embed).
+  `embed: true` means the site allows framing, so the large frame also offers a live view. Nothing is bypassed:
+  sites that send X-Frame-Options / frame-ancestors are only ever shown as captures.
+{%- endcomment -%}
+{%- assign pv = site.data.previews.sites[include.slug] -%}
+{%- assign size = include.size | default: "card" -%}
+<div class="pv pv-{{ size }}{% unless pv %} pv-none{% endunless %}" data-pv{% if pv %} data-pv-ready{% endif %}{% if pv.embed and size == "large" %} data-embed="{{ include.url }}"{% endif %}>
+  <div class="pv-bar">
+    <span class="pv-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="pv-url"><svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><rect x="2.5" y="5.5" width="7" height="5" rx="1"/><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5"/></svg>{{ include.domain }}</span>
+    {%- if size == "large" %}
+    <a class="pv-visit" href="{{ include.url }}" target="_blank" rel="noopener">Visit live site<span class="sr-only"> — {{ include.name }} (opens in a new tab)</span></a>
+    {%- endif %}
+  </div>
+  <div class="pv-view"{% if pv %} tabindex="0" role="group" aria-roledescription="scrolling preview" aria-label="Full-page capture of the {{ include.name }} website. It scrolls by itself; scroll or use the arrow keys to explore."{% endif %} data-lenis-prevent>
+    {%- if pv %}
+    <img class="pv-page" src="{{ root }}assets/img/full/{{ include.slug }}-{% if size == 'large' %}900{% else %}480{% endif %}.webp" srcset="{{ root }}assets/img/full/{{ include.slug }}-480.webp 480w, {{ root }}assets/img/full/{{ include.slug }}-900.webp 900w" sizes="{% if size == 'large' %}(max-width: 1000px) 100vw, 1000px{% else %}(max-width: 640px) 92vw, 440px{% endif %}" width="900" height="{{ pv.h }}" alt="Full-page capture of the {{ include.name }} website" loading="lazy" decoding="async">
+    {%- elsif include.fallback and include.fallback != "" %}
+    <img class="pv-static" src="{{ include.fallback }}" alt="{{ include.name }} — home page screenshot" loading="lazy" decoding="async">
+    {%- else %}
+    <span class="pv-empty"><span class="pv-empty-name">{{ include.name }}</span><span class="pv-empty-note">This site blocks automated captures — open it live.</span></span>
+    {%- endif %}
+  </div>
+  {%- if size == "card" and pv %}
+  <button type="button" class="pv-mini" data-pv-toggle aria-pressed="false" aria-label="Pause automatic scrolling"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path class="pv-i-pause" d="M5 3.5v9M11 3.5v9"/><path class="pv-i-play" d="M5 3l8 5-8 5z"/></svg></button>
+  {%- endif %}
+  {%- if size == "large" %}
+  <div class="pv-ctrl">
+    {%- if pv %}
+    <button type="button" class="pv-btn" data-pv-toggle aria-pressed="false">Pause</button>
+    <button type="button" class="pv-btn" data-pv-replay>Replay</button>
+    <label class="pv-speed"><span>Speed</span>
+      <select data-pv-speed>
+        <option value="0.5">0.5×</option>
+        <option value="1" selected>1×</option>
+        <option value="1.5">1.5×</option>
+        <option value="2">2×</option>
+      </select>
+    </label>
+    {%- if pv.embed %}
+    <button type="button" class="pv-btn pv-live" data-pv-live aria-pressed="false">Live site</button>
+    {%- endif %}
+    <p class="pv-note" data-pv-note>Full-page capture, {{ pv.date | date: "%-d %B %Y" }}{% if pv.clipped %} (first part of a very long page){% endif %}. Scroll or tap to take over.</p>
+    {%- else %}
+    <p class="pv-note">No full-page capture could be made of this site — visit it live instead.</p>
+    {%- endif %}
+  </div>
+  {%- endif %}
+</div>

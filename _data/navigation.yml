@@ -25,12 +25,12 @@ groups:
   - id: work
     label: Work
     title: Built, launched, live
-    blurb: Websites, stores and the CRM automations behind them — for clients on four continents.
+    blurb: Websites, stores, AI and CRM automation — what I offer and the work behind it.
     links:
+      - { label: Services, sub: "Websites, AI automation, CRM and security", url: services/, nav: services }
       - { label: Portfolio, sub: "What I build and how, with a live demo", url: portfolio/, nav: portfolio }
       - { label: Projects, sub: "Case studies, filterable by region and type", url: "portfolio/#projects" }
       - { label: CV, sub: "One page, printable, always current", url: cv/, nav: cv }
-      - { label: AI Prompt Engineering, sub: "Prompts, agent instructions and AI workflows — from $49", url: ai-prompt-engineering/, nav: ai }
       - { label: Photography, sub: "Nine albums — wildlife, festivals, the Himalayas", url: photography/, nav: photography }
     feature:
       kind: image

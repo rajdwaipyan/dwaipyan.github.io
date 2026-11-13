@@ -7,6 +7,7 @@ root: "../"
 nav: portfolio
 crumb: Portfolio
 ---
+{%- assign root = page.root -%}
     <section class="page-hero page-hero-dark" id="top" data-room="ink" aria-labelledby="page-title">
       <div class="container">
         <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Home</a><span aria-hidden="true">/</span><span aria-current="page">Portfolio</span></nav>
@@ -55,6 +56,13 @@ crumb: Portfolio
           {%- for p in site.data.projects %}
           <li class="proj-card" data-tags="{{ p.filters }}">
             <a href="{{ p.id }}/" data-cursor="View">
+              {%- capture cslug %}case-{{ p.id }}{% endcapture %}
+              {%- assign cap = site.data.previews.sites[cslug] %}
+              {%- if cap %}
+              <span class="proj-media proj-media-scroll" data-clip data-scrollshot style="--dur: {{ cap.h | divided_by: 90 | plus: 8 }}s">
+                <img class="proj-scroll" src="../assets/img/full/{{ cslug }}-480.webp" srcset="../assets/img/full/{{ cslug }}-480.webp 480w, ../assets/img/full/{{ cslug }}-900.webp 900w" sizes="(max-width: 640px) 92vw, 50vw" width="900" height="{{ cap.h }}" alt="" loading="lazy" decoding="async">
+              </span>
+              {%- else %}
               <span class="proj-media" data-clip>
                 {%- if p.images.desktop %}
                 <img src="../assets/img/work/{{ p.images.desktop }}" width="1582" height="989" alt="" loading="lazy" decoding="async">
@@ -62,6 +70,7 @@ crumb: Portfolio
                 <img src="../assets/img/work/{{ p.images.full }}" width="1582" height="1978" alt="" loading="lazy" decoding="async">
                 {%- endif %}
               </span>
+              {%- endif %}
               <span class="proj-meta">{{ p.industry }} · {{ p.region }}</span>
               <span class="proj-title">{{ p.title }}</span>
               <span class="proj-work">{{ p.work }}</span>
@@ -80,7 +89,7 @@ crumb: Portfolio
           <div>
             <p class="kicker"><span>02</span> Website portfolio</p>
             <h2 class="section-title" id="websites-title">{{ sites | size }} websites, <em>seven industries.</em></h2>
-            <p class="section-intro">Websites I designed and built for clients in real estate, architecture, automotive, trades, food, retail and healthcare. Every card opens the live site.</p>
+            <p class="section-intro">Websites I designed and built for clients in real estate, architecture, automotive, trades, food, retail and healthcare. Watch each one scroll from top to bottom, open it for a closer look, or visit the live site.</p>
           </div>
         </header>
         <div class="filter-bar" role="group" aria-label="Filter websites by industry" data-filters="#site-grid" data-filters-status="#site-status">
@@ -91,28 +100,67 @@ crumb: Portfolio
           {%- endfor %}
         </div>
         <p class="filter-status" id="site-status" role="status" aria-live="polite"></p>
-        <ul class="site-grid" id="site-grid" data-limit="18">
+        <div class="pv-toolbar" data-pv-global>
+          <p class="pv-toolbar-k">Each frame scrolls through a full-page capture of the live site. Open one for the full view.</p>
+          <div class="pv-toolbar-ctl">
+            <button type="button" class="pv-btn" data-pv-all aria-pressed="false">Pause all</button>
+            <label class="pv-speed"><span>Speed</span>
+              <select data-pv-speed-all aria-label="Scrolling speed for all previews">
+                <option value="0.5">0.5×</option>
+                <option value="1" selected>1×</option>
+                <option value="1.5">1.5×</option>
+                <option value="2">2×</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <ul class="site-grid" id="site-grid" data-limit="12">
           {%- for x in sites %}
           {%- assign label = "" %}{% for c in site.data.sites.categories %}{% if c.id == x.cat %}{% assign label = c.label %}{% endif %}{% endfor %}
-          <li class="site-card" data-tags="{{ x.cat }}">
-            <a href="{{ x.url }}" target="_blank" rel="noopener" data-cursor="Visit">
-              <span class="sc-frame">
-                <span class="sc-bar" aria-hidden="true"><i></i><i></i><i></i><span>{{ x.domain }}</span></span>
-                {%- if x.shot == false %}
-                <span class="sc-type" aria-hidden="true">{{ x.name }}</span>
-                {%- else %}
-                <img src="../assets/img/sites/{{ x.slug }}.webp" width="800" height="500" alt="" loading="lazy" decoding="async">
-                {%- endif %}
-              </span>
-              <span class="sc-meta"><span class="sc-name">{{ x.name }}</span><span class="sc-cat">{{ label }}</span></span>
-              <span class="sr-only"> — {{ x.domain }} (opens in a new tab)</span>
-            </a>
+          {%- capture fb %}{% unless x.shot == false %}../assets/img/sites/{{ x.slug }}.webp{% endunless %}{% endcapture %}
+          <li class="site-card" data-tags="{{ x.cat }}" data-slug="{{ x.slug }}" data-name="{{ x.name }}" data-domain="{{ x.domain }}" data-url="{{ x.url }}" data-cat="{{ label }}">
+            {% include browser.html slug=x.slug name=x.name domain=x.domain url=x.url size="card" fallback=fb %}
+            <div class="sc-meta">
+              <h3 class="sc-name"><button type="button" class="sc-open" data-pv-open="{{ x.slug }}">{{ x.name }}<span class="sr-only"> — open the preview</span></button></h3>
+              <p class="sc-cat">{{ label }}</p>
+              <a class="sc-visit" href="{{ x.url }}" target="_blank" rel="noopener">Visit<span class="sr-only"> {{ x.domain }} (opens in a new tab)</span></a>
+            </div>
           </li>
           {%- endfor %}
         </ul>
-        <div class="sites-more"><button class="btn btn-ink" type="button" data-more="#site-grid">Show all {{ sites | size }} websites <span class="btn-arrow" aria-hidden="true">↓</span></button></div>
-        <p class="sites-note">Screenshots taken from the live sites in November 2026. Sites change after hand-over, so what you see today may differ.</p>
+        <div class="sites-more"><button class="btn btn-ink" type="button" data-more="#site-grid">Show all {{ sites | size }} websites</button></div>
+        <p class="sites-note">The previews are full-page captures of the live sites, taken on {{ site.data.previews.date | date: "%-d %B %Y" }} — not live pages. Sites change after hand-over, so what you see today may differ; every project links to the live site.</p>
       </div>
+
+      <script type="application/json" id="pv-data">{{ site.data.previews | jsonify }}</script>
+      <!-- the project viewer: one dialog, filled from the card that opened it -->
+      <dialog class="pv-dlg" id="pv-dlg" aria-labelledby="pvd-title" data-lenis-prevent>
+        <div class="pvd-in">
+          <header class="pvd-head">
+            <div>
+              <p class="pvd-k" id="pvd-cat"></p>
+              <h2 class="pvd-title" id="pvd-title">Website</h2>
+            </div>
+            <div class="pvd-acts">
+              <a class="btn btn-lime btn-sm" id="pvd-visit" href="#" target="_blank" rel="noopener">Visit live website<span class="sr-only"> (opens in a new tab)</span></a>
+              <button type="button" class="pvd-x" data-pvd-close>Close</button>
+            </div>
+          </header>
+          <div class="pvd-stage" id="pvd-stage"></div>
+          <footer class="pvd-foot">
+            <dl class="pvd-facts">
+              <div><dt>Industry</dt><dd id="pvd-ind"></dd></div>
+              <div><dt>Address</dt><dd id="pvd-dom"></dd></div>
+              <div><dt>Work</dt><dd>Designed and built by Dwaipyan Mandal</dd></div>
+            </dl>
+            <div class="pvd-nav">
+              <button type="button" class="pv-btn" id="pvd-prev">Previous</button>
+              <span class="pvd-pos" id="pvd-pos"></span>
+              <button type="button" class="pv-btn" id="pvd-next">Next</button>
+            </div>
+          </footer>
+        </div>
+      </dialog>
     </section>
 
     <!-- 03 · WHAT I BUILD -->
