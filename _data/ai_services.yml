@@ -1,0 +1,196 @@
+# AI PROMPT ENGINEERING — the service page at /ai-prompt-engineering/ reads everything from this file.
+# Change prices, services, examples or answers here; the page layout and JavaScript stay the same.
+# Prices are starting prices in US dollars. Do not add claims you can't back up (guarantees, client results).
+
+currency: USD
+
+services:
+  - id: prompts
+    letter: A
+    title: Custom Prompt Engineering
+    line: Prompts that give the same quality answer every time, not just the first time.
+    items: [ChatGPT prompts, Claude prompts, Gemini prompts, Role-based system prompts, Structured output prompts, Research and analysis prompts]
+    deliver: A tested prompt set with notes on when and how to use each one.
+    from: custom
+  - id: vibe
+    letter: B
+    title: Website & Vibe-Coding Prompts
+    line: Build instructions that AI coding tools can follow from first screen to finished site.
+    items: [Claude Code, Cursor, Lovable, Bolt, Replit, v0, Website design and development prompts, UI/UX implementation instructions]
+    deliver: A build brief and step-by-step prompts written for the tool you use.
+    from: custom
+  - id: agents
+    letter: C
+    title: AI Agent Instructions
+    line: System instructions that tell an agent who it is, what it may do and how to check its own work.
+    items: [System instructions, Agent personas and responsibilities, Tool usage instructions, Context and memory design, Multi-step task execution, Output validation]
+    deliver: An instruction set with tool rules, task steps and checks on the output.
+    from: agents
+  - id: workflows
+    letter: D
+    title: Business AI Workflows
+    line: AI steps placed where they help in sales, support, content and research.
+    items: [Sales and marketing workflows, Customer support, Content operations, Research workflows, CRM and automation instructions, n8n-related AI workflow planning]
+    deliver: A documented workflow with the prompt for every AI step.
+    from: system
+  - id: audit
+    letter: E
+    title: Prompt Auditing & Optimisation
+    line: Your existing prompts, reviewed and rewritten so the answers drift less.
+    items: [Existing prompt analysis, Output quality improvement, Hallucination reduction strategies, Prompt structure improvements, Testing and refinement]
+    deliver: Before-and-after prompts with the reasons for each change.
+    from: optimise
+
+# "Works with" — the tools I write prompts and instructions for. Text names only; no partnership implied.
+tools: [ChatGPT, Claude, Gemini, Claude Code, Cursor, Lovable, Bolt, Replit, v0]
+
+# The before-and-after demonstration. `engineered` is shown with its section labels highlighted.
+demos:
+  - id: website
+    label: Company website
+    basic: "Create a professional website for my company."
+    engineered: |-
+      ROLE
+      You are a senior web designer and front-end developer building a marketing website for a small business.
+
+      CONTEXT
+      Company: [name], a [type of business] in [city/country].
+      What it sells: [main services or products].
+      Why customers choose it: [2–3 real differences].
+
+      AUDIENCE
+      Primary: [who buys — e.g. homeowners aged 30–55 looking for a reliable contractor].
+      What they need to decide: price range, proof of quality, how to get in touch.
+
+      DESIGN DIRECTION
+      Calm, trustworthy and modern. Brand colours: [hex codes]. One display font, one body font.
+      Avoid stock-photo clichés, gradients on every block and generic icons.
+
+      CONTENT & PAGES
+      1. Home — headline that states the offer, three services, one proof section, contact.
+      2. Services — one section per service: who it is for, what is included, next step.
+      3. About — the story in under 200 words, team photo placeholder.
+      4. Contact — form (name, email, message), phone, map placeholder.
+      Write real copy from the context above; mark anything you had to assume with [CHECK].
+
+      TECHNICAL REQUIREMENTS
+      Semantic HTML, mobile-first CSS, no layout shift, images lazy-loaded with width and height.
+      Accessible: WCAG 2.2 AA contrast, keyboard navigation, visible focus, labelled form fields.
+      Responsive at 360, 768, 1280 and 1440 px.
+
+      DELIVERABLES
+      1. A sitemap and section outline for approval.
+      2. Then the code, one page at a time.
+      3. A short list of the assumptions you made.
+      Ask me up to three questions before you start if anything above is unclear.
+  - id: support
+    label: Support assistant
+    basic: "Answer customer questions about our store."
+    engineered: |-
+      ROLE
+      You are the customer support assistant for [store name], an online store selling [products].
+
+      KNOWLEDGE
+      Answer only from the policies and product details provided below. If the answer is not there,
+      say you are not sure and offer to pass the question to a person. Never invent prices, stock or dates.
+
+      TONE
+      Friendly, short and direct. Two to four sentences. No exclamation marks in complaints.
+
+      RULES
+      - Orders: ask for the order number before discussing a specific order.
+      - Refunds: explain the policy; do not promise a refund — a team member approves it.
+      - Angry customers: acknowledge the problem first, then give the next step.
+      - Never ask for card numbers or passwords.
+
+      ESCALATE WHEN
+      The customer asks for a person, mentions a legal issue, or the same problem is raised twice.
+
+      OUTPUT
+      Reply text only. If escalating, end with: "I've passed this to our team — they'll reply by email."
+
+      POLICIES AND PRODUCTS
+      [paste shipping, returns and product information here]
+  - id: research
+    label: Market research
+    basic: "Research my competitors."
+    engineered: |-
+      ROLE
+      You are a market analyst preparing a short, sourced competitor brief.
+
+      CONTEXT
+      My business: [what you sell, to whom, where].
+      Competitors to study: [names or website addresses] — add up to three more you find.
+
+      TASK
+      For each competitor, find: positioning in one line, main offers, price range (if public),
+      channels they use, and one thing they do better than us.
+
+      EVIDENCE
+      Cite a source link for every factual claim. If you cannot find something, write "not found" —
+      do not estimate or fill gaps.
+
+      OUTPUT
+      1. A comparison table (one row per competitor).
+      2. Three opportunities for us, each tied to evidence in the table.
+      3. A list of the sources used.
+      Keep the whole brief under 600 words.
+
+process:
+  - { n: "01", title: Discover, text: "Understand the business, goals and AI use case." }
+  - { n: "02", title: Engineer, text: "Develop structured prompts and instructions." }
+  - { n: "03", title: Test & Refine, text: "Evaluate outputs and improve reliability." }
+  - { n: "04", title: Deliver, text: "Provide documented, reusable prompts and implementation guidance." }
+
+packages:
+  - id: optimise
+    name: Prompt Optimisation
+    price: 49
+    fit: You already use prompts and want steadier results.
+    items: [Up to 5 existing prompts, Structure and clarity optimisation, Output consistency improvements, Usage documentation]
+  - id: custom
+    name: Custom Prompt Engineering
+    price: 149
+    recommended: true
+    fit: You need new prompts written for your tasks and tools.
+    items: [Up to 10 custom prompts, Context and role engineering, Testing and refinement, Reusable prompt documentation]
+  - id: agents
+    name: AI Workflow & Agent Prompts
+    price: 349
+    fit: You are building an agent or a multi-step AI workflow.
+    items: [Custom AI agent instructions, Multi-step workflow prompts, Tool interaction guidance, Testing and implementation support]
+  - id: system
+    name: Business AI Prompt System
+    price: 699
+    plus: true
+    fit: Your team needs a shared, documented prompt library.
+    items: [Business-specific prompt architecture, Department-level instruction systems, Workflow documentation, Team-ready reusable prompts, Custom consultation]
+
+# Use cases — demonstrations of what the work looks like, not client projects.
+uses:
+  - { title: Website generation, text: "A build brief that takes an AI coding tool from sitemap to responsive, accessible pages.", tag: Vibe coding }
+  - { title: E-commerce content systems, text: "Product descriptions, category pages and FAQs written to one voice from one product sheet.", tag: Content }
+  - { title: AI research assistants, text: "Research prompts that cite sources and say \"not found\" instead of guessing.", tag: Research }
+  - { title: Business process documentation, text: "Turning notes and recordings into step-by-step SOPs with owners and checks.", tag: Operations }
+  - { title: Customer support assistants, text: "Answers from your own policies only, with clear rules for when to hand over to a person.", tag: Support }
+  - { title: Marketing content workflows, text: "Briefs, drafts and edits chained into one workflow with a review step before anything is published.", tag: Marketing }
+  - { title: Coding assistants, text: "Project rules for Claude Code or Cursor: stack, conventions, tests and what not to touch.", tag: Development }
+  - { title: AI agent instructions, text: "Role, tools, limits and self-checks for an agent that runs multi-step tasks.", tag: Agents }
+
+faq:
+  - q: What is prompt engineering?
+    a: "It is the work of writing instructions that an AI model can follow reliably: who it should act as, what it needs to know, the rules it must keep, and the exact form the answer should take. A good prompt is tested on real examples and rewritten until the results are consistent."
+  - q: Which AI platforms do you support?
+    a: "I write prompts and instructions for ChatGPT, Claude, Gemini, Claude Code, Cursor, Lovable, Bolt, Replit and v0, and for most tools that accept written instructions. I am independent — not affiliated with or endorsed by any of these companies."
+  - q: Can you create prompts for Claude Code?
+    a: "Yes — project instructions (such as a CLAUDE.md file), task prompts and step-by-step build briefs, written around your stack, your conventions and what the tool should not change."
+  - q: Can you improve my existing prompts?
+    a: "Yes. Send them with a few examples of the answers you get and the answers you want. I explain what each change does, so you can keep improving them yourself. Prompts can reduce errors and inconsistency, but no prompt makes an AI model always correct."
+  - q: Do you build complete AI agents?
+    a: "My focus is the instruction layer: the agent's role, tools, rules, memory and checks, plus the workflow around it. If you also need the automation built — for example in n8n or connected to a CRM — tell me about it and we can scope that separately."
+  - q: How is pricing calculated?
+    a: "The packages are starting prices. The final quote depends on how many prompts or workflows you need, how complex they are, and how much testing is involved. You get a fixed quote before any work starts."
+  - q: Can you work with businesses internationally?
+    a: "Yes. I work remotely with clients in other countries, in English, and agree the schedule and communication channel at the start."
+  - q: How do I start a project?
+    a: "Send a short message by email or WhatsApp: what you want the AI to do, which tool you use, and an example of the result you want. I reply with questions or a quote."

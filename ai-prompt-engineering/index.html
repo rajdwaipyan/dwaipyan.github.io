@@ -1,0 +1,305 @@
+---
+layout: default
+title: AI Prompt Engineering & AI Workflow Services | Dwaipyan Mandal
+og_title: AI Prompt Engineering & Intelligent AI Workflows — Dwaipyan Mandal
+description: Custom AI prompts, agent instructions and AI workflows for ChatGPT, Claude, Gemini, Claude Code, Cursor and more — engineered, tested and documented by Dwaipyan Mandal. Packages from $49.
+root: "../"
+nav: ai
+crumb: AI Prompt Engineering
+schema: page
+guide: false
+---
+{%- assign ai = site.data.ai_services -%}
+{%- assign wa = site.data.social.whatsapp -%}
+{%- capture mail -%}mailto:rajdwaipayan@gmail.com{%- endcapture -%}
+    <!-- HERO — the headline on the left, a live prompt console on the right -->
+    <section class="ai-hero" id="top" data-room="night" aria-labelledby="page-title">
+      <div class="ai-hero-glow" aria-hidden="true" data-speed="0.15"></div>
+      <div class="container ai-hero-grid">
+        <div class="ai-hero-copy">
+          <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Home</a><span aria-hidden="true">/</span><span aria-current="page">AI Prompt Engineering</span></nav>
+          <p class="ai-k"><span class="ai-k-dot" aria-hidden="true"></span>Service · AI Prompt Engineering &amp; Workflows</p>
+          <h1 class="ai-mast" id="page-title" data-split>Stop guessing. <em>Start engineering</em> better AI.</h1>
+          <p class="ai-lede">Custom AI prompts, intelligent instruction systems and workflow-ready solutions designed to turn AI from a generic assistant into a practical business advantage.</p>
+          <div class="ai-cta">
+            <a class="ai-btn ai-btn-solid" href="#services" data-magnetic="0.3">Explore services <span aria-hidden="true">↓</span></a>
+            <a class="ai-btn ai-btn-line" href="#start" data-magnetic="0.2">Discuss your project</a>
+          </div>
+          <p class="ai-for">For founders, agencies, developers, marketing teams and organisations adopting AI.</p>
+        </div>
+
+        <!-- the console: plays Input → Engineer → Structure → Output; the tabs can be used directly -->
+        <div class="console" data-console>
+          <div class="console-bar">
+            <span class="cb-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="cb-title">prompt.engineer</span>
+            <span class="cb-live" aria-hidden="true">live</span>
+          </div>
+          <div class="console-tabs" role="tablist" aria-label="How a prompt is engineered">
+            <button type="button" role="tab" id="ct-1" aria-controls="cp-1" aria-selected="true" tabindex="0"><span>01</span>Input</button>
+            <button type="button" role="tab" id="ct-2" aria-controls="cp-2" aria-selected="false" tabindex="-1"><span>02</span>Engineer</button>
+            <button type="button" role="tab" id="ct-3" aria-controls="cp-3" aria-selected="false" tabindex="-1"><span>03</span>Structure</button>
+            <button type="button" role="tab" id="ct-4" aria-controls="cp-4" aria-selected="false" tabindex="-1"><span>04</span>Output</button>
+          </div>
+          <div class="console-body">
+            <div class="cpanel" role="tabpanel" id="cp-1" aria-labelledby="ct-1">
+              <p class="cp-k">What you ask</p>
+              <p class="cp-input"><span class="cp-type" data-text="Write a product description for our new running shoe.">Write a product description for our new running shoe.</span><span class="caret" aria-hidden="true"></span></p>
+              <p class="cp-note">One line. No audience, no voice, no format — so every answer comes out different.</p>
+            </div>
+            <div class="cpanel" role="tabpanel" id="cp-2" aria-labelledby="ct-2" hidden>
+              <p class="cp-k">What the AI needs to know</p>
+              <ul class="cp-chips">
+                <li><b>Role</b> E-commerce copywriter</li>
+                <li><b>Audience</b> Weekend runners, 25–45</li>
+                <li><b>Voice</b> Confident, no hype</li>
+                <li><b>Facts</b> Weight, drop, foam, price</li>
+                <li><b>Limits</b> No invented claims</li>
+                <li><b>Format</b> Title · 3 bullets · 60 words</li>
+              </ul>
+            </div>
+            <div class="cpanel" role="tabpanel" id="cp-3" aria-labelledby="ct-3" hidden>
+              <p class="cp-k">The engineered instruction</p>
+<pre class="cp-code"><span class="t-k">ROLE</span>      E-commerce copywriter for a running brand.
+<span class="t-k">AUDIENCE</span>  Weekend runners aged 25–45.
+<span class="t-k">FACTS</span>     Use only: 240 g · 8 mm drop · [foam] · $129.
+<span class="t-k">RULES</span>     No medical claims. No "revolutionary".
+          If a fact is missing, write [CHECK].
+<span class="t-k">FORMAT</span>    Title (≤ 8 words), 3 benefit bullets,
+          one closing line. 60 words in total.</pre>
+            </div>
+            <div class="cpanel" role="tabpanel" id="cp-4" aria-labelledby="ct-4" hidden>
+              <p class="cp-k">The kind of answer it produces <span class="cp-tag">illustration</span></p>
+              <div class="cp-out">
+                <p class="cp-out-t">Light Enough for Every Weekend Mile</p>
+                <ul>
+                  <li>240 g, so your legs stay fresh past the 10 km mark.</li>
+                  <li>An 8 mm drop for a smooth, natural stride.</li>
+                  <li>[CHECK] foam name — cushioning that keeps its bounce.</li>
+                </ul>
+                <p>Built for the runs you plan all week. $129.</p>
+              </div>
+            </div>
+          </div>
+          <div class="console-progress" aria-hidden="true"><span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORKS WITH — names only; no partnership is implied -->
+    <section class="ai-tools" aria-labelledby="tools-title">
+      <div class="container ai-tools-row">
+        <p class="ai-tools-k" id="tools-title">Prompts &amp; instructions for</p>
+        <ul class="ai-tool-list">
+          {%- for t in ai.tools %}<li>{{ t }}</li>{% endfor %}
+        </ul>
+      </div>
+      <p class="container ai-tools-note">Independent service — not affiliated with or endorsed by these companies.</p>
+    </section>
+
+    <!-- SERVICES — browse the five services; each shows what's included and where it starts -->
+    <section class="section ai-services" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <header class="section-head section-head-row">
+          <div>
+            <p class="kicker"><span>01</span> Services</p>
+            <h2 class="section-title" id="services-title">Five ways to get <em>more from AI.</em></h2>
+          </div>
+        </header>
+        <div class="svc" data-svc>
+          <div class="svc-list" role="tablist" aria-label="Services" aria-orientation="vertical">
+            {%- for s in ai.services %}
+            <button type="button" role="tab" id="st-{{ s.id }}" aria-controls="sp-{{ s.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}">
+              <span class="svc-l">{{ s.letter }}</span>
+              <span class="svc-t">{{ s.title }}</span>
+              <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </button>
+            {%- endfor %}
+          </div>
+          <div class="svc-panels">
+            {%- for s in ai.services %}
+            {%- for p in ai.packages %}{% if p.id == s.from %}{% assign pk = p %}{% endif %}{% endfor %}
+            <div class="svc-panel" role="tabpanel" id="sp-{{ s.id }}" aria-labelledby="st-{{ s.id }}"{% unless forloop.first %} hidden{% endunless %}>
+              <p class="svc-big" aria-hidden="true">{{ s.letter }}</p>
+              <h3>{{ s.title }}</h3>
+              <p class="svc-line">{{ s.line }}</p>
+              <ul class="svc-items">{% for i in s.items %}<li>{{ i }}</li>{% endfor %}</ul>
+              <div class="svc-foot">
+                <p><span class="svc-fk">You receive</span>{{ s.deliver }}</p>
+                <a class="svc-price" href="#pricing">From ${{ pk.price }}{% if pk.plus %}+{% endif %} <span aria-hidden="true">→</span><span class="sr-only"> — see the {{ pk.name }} package</span></a>
+              </div>
+            </div>
+            {%- endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEMONSTRATION — an ordinary instruction next to an engineered one; runs entirely in the browser -->
+    <section class="section ai-demo" id="demo" data-room="night" aria-labelledby="demo-title">
+      <div class="container">
+        <header class="section-head section-head-row">
+          <div>
+            <p class="kicker kicker-light"><span>02</span> See the difference</p>
+            <h2 class="section-title" id="demo-title">From one line <em>to a real brief.</em></h2>
+          </div>
+          <div class="demo-pick" role="group" aria-label="Choose an example">
+            {%- for d in ai.demos %}<button type="button" data-demo="{{ d.id }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}">{{ d.label }}</button>{% endfor %}
+          </div>
+        </header>
+        {%- for d in ai.demos %}
+        <div class="demo" data-demo-panel="{{ d.id }}"{% unless forloop.first %} hidden{% endunless %}>
+          <div class="demo-basic">
+            <p class="demo-k">Basic instruction</p>
+            <p class="demo-basic-t">“{{ d.basic }}”</p>
+            <ul class="demo-miss" aria-label="What it leaves out">
+              <li>No audience</li><li>No context</li><li>No constraints</li><li>No output format</li>
+            </ul>
+            <p class="demo-arrow" aria-hidden="true">→</p>
+          </div>
+          <div class="demo-eng">
+            <div class="demo-eng-bar">
+              <p class="demo-k">Engineered prompt</p>
+              <button class="demo-copy" type="button" data-copy="#demo-text-{{ d.id }}"><span class="dc-idle">Copy prompt</span><span class="dc-done" hidden>Copied</span></button>
+            </div>
+            <pre class="demo-code" id="demo-text-{{ d.id }}" tabindex="0" data-lenis-prevent>{{ d.engineered | escape }}</pre>
+          </div>
+        </div>
+        {%- endfor %}
+        <p class="demo-note">Examples to show the method — replace the [brackets] with your own details. A good prompt makes results more consistent; it does not make an AI model infallible.</p>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section ai-process" aria-labelledby="process-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="kicker"><span>03</span> How it works</p>
+          <h2 class="section-title" id="process-title">Four steps, <em>no guesswork.</em></h2>
+        </header>
+        <ol class="steps" data-steps>
+          {%- for p in ai.process %}
+          <li class="step"><span class="step-n">{{ p.n }}</span><h3>{{ p.title }}</h3><p>{{ p.text }}</p></li>
+          {%- endfor %}
+        </ol>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="section ai-pricing" id="pricing" aria-labelledby="pricing-title">
+      <div class="container">
+        <header class="section-head section-head-row">
+          <div>
+            <p class="kicker"><span>04</span> Pricing</p>
+            <h2 class="section-title" id="pricing-title">Clear starting prices. <em>A fixed quote before we begin.</em></h2>
+          </div>
+        </header>
+        <ul class="price-grid" data-stagger>
+          {%- for p in ai.packages %}
+          <li class="price{% if p.recommended %} price-rec{% endif %}">
+            {%- if p.recommended %}<p class="price-flag">Recommended</p>{% endif %}
+            <h3 class="price-name">{{ p.name }}</h3>
+            <p class="price-for">{{ p.fit }}</p>
+            <p class="price-amt"><span class="price-from">Starting at</span><span class="price-n"><sup>$</sup>{{ p.price }}{% if p.plus %}<span class="price-plus">+</span>{% endif %}</span><span class="price-cur">{{ ai.currency }}</span></p>
+            <ul class="price-items">{% for i in p.items %}<li>{{ i }}</li>{% endfor %}</ul>
+            {%- capture subj %}AI prompt engineering — {{ p.name }}{% endcapture %}
+            <a class="price-cta" href="{{ mail }}?subject={{ subj | url_encode | replace: '+', '%20' }}" data-magnetic="0.15">Start with this package <span aria-hidden="true">→</span></a>
+          </li>
+          {%- endfor %}
+        </ul>
+        <div class="price-custom">
+          <div>
+            <h3>Larger project or team rollout?</h3>
+            <p>Many prompts, several departments or an agent with its own tools — describe it and get a custom quotation.</p>
+          </div>
+          <a class="ai-btn ai-btn-ink" href="{{ mail }}?subject={{ 'AI prompt engineering — custom quotation' | url_encode | replace: '+', '%20' }}">Request a custom quote</a>
+        </div>
+        <p class="price-note">All prices are starting prices in US dollars. Scope, number of revisions and timing are agreed in writing before work begins.</p>
+      </div>
+    </section>
+
+    <!-- USE CASES — demonstrations, not client projects -->
+    <section class="section ai-uses" aria-labelledby="uses-title">
+      <div class="container">
+        <header class="section-head section-head-row">
+          <div>
+            <p class="kicker"><span>05</span> Use cases</p>
+            <h2 class="section-title" id="uses-title">Where engineered prompts <em>earn their keep.</em></h2>
+          </div>
+          <p class="uses-label">Demonstration scenarios — not client projects</p>
+        </header>
+        <ul class="use-grid" data-stagger>
+          {%- for u in ai.uses %}
+          <li class="use"><span class="use-tag">{{ u.tag }}</span><h3>{{ u.title }}</h3><p>{{ u.text }}</p></li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section ai-faq" aria-labelledby="faq-title">
+      <div class="container ai-faq-grid">
+        <header class="section-head">
+          <p class="kicker"><span>06</span> Questions</p>
+          <h2 class="section-title" id="faq-title">Before you <em>ask.</em></h2>
+        </header>
+        <div class="faq">
+          {%- for f in ai.faq %}
+          <details{% if forloop.first %} open{% endif %}>
+            <summary>{{ f.q }}<span class="faq-i" aria-hidden="true"></span></summary>
+            <p>{{ f.a }}</p>
+          </details>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA — existing contact details only -->
+    <section class="ai-final" id="start" data-room="night" aria-labelledby="start-title">
+      <div class="container">
+        <p class="ai-k"><span class="ai-k-dot" aria-hidden="true"></span>Start a project</p>
+        <h2 class="ai-final-t" id="start-title" data-split>Have an AI idea? <em>Let's engineer the right instructions.</em></h2>
+        <div class="ai-final-cta">
+          <a class="ai-btn ai-btn-solid" href="../#contact" data-magnetic="0.3">Start a project <span aria-hidden="true">→</span></a>
+          <a class="ai-btn ai-btn-wa" href="https://wa.me/{{ wa.number }}?text={{ 'Hello Dwaipyan, I would like to discuss an AI prompt engineering project:' | url_encode | replace: '+', '%20' }}" target="_blank" rel="noopener" data-magnetic="0.2">WhatsApp</a>
+          <a class="ai-btn ai-btn-line" href="{{ mail }}?subject={{ 'AI prompt engineering project' | url_encode | replace: '+', '%20' }}" data-magnetic="0.2">Email</a>
+        </div>
+        <p class="ai-final-meta">rajdwaipayan@gmail.com · WhatsApp {{ wa.display }} · Dhaka, Bangladesh — working with clients worldwide</p>
+      </div>
+    </section>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Service",
+          "@id": "https://rajdwaipyan.github.io/dwaipyan.github.io/ai-prompt-engineering/#service",
+          "name": "AI Prompt Engineering & Intelligent AI Workflows",
+          "serviceType": "AI prompt engineering",
+          "description": {{ page.description | jsonify }},
+          "provider": { "@id": "https://rajdwaipyan.github.io/dwaipyan.github.io/#person" },
+          "areaServed": "Worldwide",
+          "url": "https://rajdwaipyan.github.io/dwaipyan.github.io/ai-prompt-engineering/",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Prompt engineering packages",
+            "itemListElement": [
+              {%- for p in ai.packages %}
+              { "@type": "Offer", "name": {{ p.name | jsonify }}, "description": {{ p.items | join: ', ' | jsonify }},
+                "priceSpecification": { "@type": "PriceSpecification", "minPrice": {{ p.price }}, "priceCurrency": "{{ ai.currency }}" } }{% unless forloop.last %},{% endunless %}
+              {%- endfor %}
+            ]
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {%- for f in ai.faq %}
+            { "@type": "Question", "name": {{ f.q | jsonify }}, "acceptedAnswer": { "@type": "Answer", "text": {{ f.a | jsonify }} } }{% unless forloop.last %},{% endunless %}
+            {%- endfor %}
+          ]
+        }
+      ]
+    }
+    </script>

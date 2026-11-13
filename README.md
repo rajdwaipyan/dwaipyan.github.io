@@ -154,6 +154,13 @@ Subscribe / Follow buttons. The page (`/watch/`), its menu link, the home-page r
 automatically once there is at least one video. YouTube plays in a pop-up player (youtube-nocookie.com, loaded only
 when a visitor presses play); Facebook videos open on Facebook unless the entry has `embed: true`.
 
+## AI Prompt Engineering service page
+
+`/ai-prompt-engineering/` reads everything from `_data/ai_services.yml`: services, the tools list, the
+before-and-after examples (with copy button), the process, packages and prices, use cases and FAQ. Change a
+price or add a question there; the page and `assets/js/ai.js` don't need editing. The page carries Service
+(with an offer catalogue of starting prices) and FAQPage structured data.
+
 ## Photography
 
 `/photography/` is built from `_data/photography.yml`: albums (title, Flickr link, description, categories, cover)
