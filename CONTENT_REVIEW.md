@@ -142,3 +142,14 @@ Status key: **Hidden** = in the data file but not shown · **Cautious** = shown 
 - **Facebook albums**: both links lead to albums that Facebook only shows to signed-in visitors, so their titles and
   covers could not be read. They appear as "Photo album 1 / 2" cards — add `title` (and a `cover`) in the data file.
 - The Flickr link in your social profiles now points to your photostream (flickr.com/photos/199494905@N04/) instead of a single photo.
+
+## AI Prompt Engineering page (added 13 November 2026)
+
+- Prices are the starting prices you gave ($49 / $149 / $349 / $699+, USD), shown as "Starting at". Change them in `_data/ai_services.yml`.
+- "Start with this package" and "Request a custom quote" open an email to rajdwaipayan@gmail.com with the package in the subject;
+  the final call to action uses the existing home-page contact form, WhatsApp and email. No new contact details were added.
+- The before-and-after prompts and the console are **demonstrations**, labelled as such; the use cases are labelled
+  "Demonstration scenarios — not client projects". Add real projects only with the client's permission.
+- Tool names are text only, with a note that the service is independent and not affiliated with those companies.
+- Nothing promises guaranteed results, unlimited revisions, delivery times or support periods — the FAQ says scope is
+  agreed in writing before work starts. Check that the FAQ answers match how you actually work.
