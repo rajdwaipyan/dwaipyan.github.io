@@ -1,0 +1,85 @@
+# Full-page captures for the scrolling browser previews (_includes/browser.html, assets/js/preview.js).
+# Captured by a GitHub Actions run on the date below: 1440 px wide desktop view, scrolled once so lazy content
+# loads, saved as assets/img/full/<slug>-900.webp and -480.webp. h = height of the 900 px version.
+# embed: true = the site sent no X-Frame-Options / frame-ancestors restriction, so a live view is offered.
+# clipped: true = very long page; the capture stops at 14,400 px. Sites missing here show their old screenshot.
+date: 2026-11-13
+sites:
+  a-tract-be: { h: 2236, date: 2026-11-13, embed: true, clipped: false }
+  acdoctorga-com: { h: 5034, date: 2026-11-13, embed: true, clipped: false }
+  additionals-polestar-com: { h: 6372, date: 2026-11-13, embed: true, clipped: false }
+  agrouprealestate-com: { h: 4318, date: 2026-11-13, embed: true, clipped: false }
+  aj-health-com-au: { h: 6981, date: 2026-11-13, embed: true, clipped: false }
+  al-tumi-ly: { h: 4239, date: 2026-11-13, embed: true, clipped: false }
+  americanomexicano-com: { h: 9000, date: 2026-11-13, embed: true, clipped: true }
+  auto-reuvers-nl: { h: 3501, date: 2026-11-13, embed: false, clipped: false }
+  balanceblissreiki-com: { h: 4913, date: 2026-11-13, embed: false, clipped: false }
+  bianchi-com: { h: 3509, date: 2026-11-13, embed: true, clipped: false }
+  brodo-com: { h: 5912, date: 2026-11-13, embed: true, clipped: false }
+  brushseattle-com: { h: 3612, date: 2026-11-13, embed: true, clipped: false }
+  bunsen-ie: { h: 1125, date: 2026-11-13, embed: false, clipped: false }
+  camilincowski-com: { h: 5330, date: 2026-11-13, embed: true, clipped: false }
+  case-arca: { h: 3160, date: 2026-11-13, embed: true, clipped: false }
+  case-eagle: { h: 6192, date: 2026-11-13, embed: true, clipped: false }
+  case-els: { h: 4519, date: 2026-11-13, embed: true, clipped: false }
+  case-osea: { h: 4682, date: 2026-11-13, embed: true, clipped: false }
+  case-vtek: { h: 2826, date: 2026-11-13, embed: true, clipped: false }
+  chania-honey-gr: { h: 3216, date: 2026-11-13, embed: true, clipped: false }
+  chanterellecateringcompany-com: { h: 5141, date: 2026-11-13, embed: true, clipped: false }
+  constructable-pro: { h: 1792, date: 2026-11-13, embed: true, clipped: false }
+  copelandairtexas-com: { h: 6425, date: 2026-11-13, embed: false, clipped: false }
+  cryptoworldcoffee-com: { h: 3188, date: 2026-11-13, embed: true, clipped: false }
+  dbenergy-group: { h: 4803, date: 2026-11-13, embed: true, clipped: false }
+  ddgflorhampark-com: { h: 6702, date: 2026-11-13, embed: true, clipped: false }
+  dentistonmadison-com: { h: 8562, date: 2026-11-13, embed: false, clipped: false }
+  dgsdubai-com: { h: 5655, date: 2026-11-13, embed: true, clipped: false }
+  diablaoutdoor-com: { h: 1948, date: 2026-11-13, embed: true, clipped: false }
+  drvictormendoza-com: { h: 6294, date: 2026-11-13, embed: false, clipped: false }
+  eatnaya-com: { h: 4476, date: 2026-11-13, embed: false, clipped: false }
+  expertelectricalservices-com-au: { h: 6390, date: 2026-11-13, embed: true, clipped: false }
+  fairlife-com: { h: 1939, date: 2026-11-13, embed: false, clipped: false }
+  fireflydentistry-com: { h: 5389, date: 2026-11-13, embed: true, clipped: false }
+  foresglobal-in: { h: 4755, date: 2026-11-13, embed: true, clipped: false }
+  forestlakechrysler-com: { h: 5772, date: 2026-11-13, embed: true, clipped: false }
+  gecorelectrical-co-uk: { h: 3974, date: 2026-11-13, embed: false, clipped: false }
+  getbrightwire-com: { h: 7005, date: 2026-11-13, embed: true, clipped: false }
+  good-drills-com: { h: 8105, date: 2026-11-13, embed: true, clipped: false }
+  haleelectricalcontractors-co-uk: { h: 2341, date: 2026-11-13, embed: true, clipped: false }
+  haybcoffee-eu: { h: 2419, date: 2026-11-13, embed: true, clipped: false }
+  helloyumi-com: { h: 6766, date: 2026-11-13, embed: true, clipped: false }
+  holzweileroslo-com: { h: 2002, date: 2026-11-13, embed: true, clipped: false }
+  horizon-com: { h: 4689, date: 2026-11-13, embed: false, clipped: false }
+  ilelectrician-com: { h: 8804, date: 2026-11-13, embed: true, clipped: false }
+  intownrenovations-com: { h: 6591, date: 2026-11-13, embed: false, clipped: false }
+  jaxhomeswithstephanie-com: { h: 4047, date: 2026-11-13, embed: true, clipped: false }
+  jerseyautolease-com: { h: 4082, date: 2026-11-13, embed: true, clipped: false }
+  junctionelectricllc-com: { h: 7435, date: 2026-11-13, embed: true, clipped: false }
+  kettlebrand-com: { h: 3888, date: 2026-11-13, embed: false, clipped: false }
+  landyachtz-com: { h: 2558, date: 2026-11-13, embed: true, clipped: false }
+  lunascateringcorp-com: { h: 5917, date: 2026-11-13, embed: true, clipped: false }
+  mandarinstone-com: { h: 3882, date: 2026-11-13, embed: true, clipped: false }
+  martinc10-com: { h: 4817, date: 2026-11-13, embed: true, clipped: false }
+  mazdaoman-com: { h: 4573, date: 2026-11-13, embed: true, clipped: false }
+  medallionfoods-com: { h: 1742, date: 2026-11-13, embed: true, clipped: false }
+  migaeyewear-com: { h: 3599, date: 2026-11-13, embed: true, clipped: false }
+  myobligo-com: { h: 3696, date: 2026-11-13, embed: true, clipped: false }
+  novoslabs-com: { h: 4994, date: 2026-11-13, embed: true, clipped: false }
+  nutribullet-com: { h: 2171, date: 2026-11-13, embed: false, clipped: false }
+  nypizzeria-com: { h: 4965, date: 2026-11-13, embed: false, clipped: false }
+  offermanwoodshop-com: { h: 5111, date: 2026-11-13, embed: true, clipped: false }
+  pdnyc-com: { h: 1058, date: 2026-11-13, embed: false, clipped: false }
+  russianriverbrewing-com: { h: 3444, date: 2026-11-13, embed: false, clipped: false }
+  shakeac-com: { h: 3051, date: 2026-11-13, embed: true, clipped: false }
+  shebaa-it: { h: 3108, date: 2026-11-13, embed: true, clipped: false }
+  sherry4x4-com: { h: 3072, date: 2026-11-13, embed: true, clipped: false }
+  shop-arredodalpozzo-it: { h: 5046, date: 2026-11-13, embed: true, clipped: false }
+  studio-fv-com: { h: 3161, date: 2026-11-13, embed: true, clipped: false }
+  sunnydayselectrical-com-au: { h: 5947, date: 2026-11-13, embed: false, clipped: false }
+  taika-co: { h: 4768, date: 2026-11-13, embed: true, clipped: false }
+  texaschampionservices-com: { h: 3695, date: 2026-11-13, embed: true, clipped: false }
+  thehoolyteam-com-au: { h: 4291, date: 2026-11-13, embed: true, clipped: false }
+  whi-co-uk: { h: 2831, date: 2026-11-13, embed: true, clipped: false }
+  workclubglobal-com: { h: 6266, date: 2026-11-13, embed: true, clipped: false }
+  workco-com: { h: 3574, date: 2026-11-13, embed: true, clipped: false }
+  wynwood25-com: { h: 3538, date: 2026-11-13, embed: true, clipped: false }
+  youly-com-au: { h: 4068, date: 2026-11-13, embed: false, clipped: false }

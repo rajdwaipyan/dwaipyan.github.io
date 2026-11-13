@@ -1,0 +1,127 @@
+---
+layout: default
+title: Services — Web Development, AI Automation, CRM & Cybersecurity | Dwaipyan Mandal
+og_title: Services — Dwaipyan Mandal
+description: WordPress and custom website development, AI agents and n8n automation, GoHighLevel CRM systems, prompt engineering, and website security — services by Dwaipyan Mandal, Dhaka, for clients worldwide.
+root: "../"
+nav: services
+crumb: Services
+schema: page
+---
+{%- assign root = page.root -%}
+{%- assign cats = site.data.services.categories -%}
+{%- assign total = 0 %}{% for c in cats %}{% assign total = total | plus: c.services.size %}{% endfor -%}
+    <!-- HERO — the four practices as a glass index over the night room -->
+    <section class="svo-hero" id="top" data-room="night" aria-labelledby="page-title">
+      <div class="svo-hero-light" aria-hidden="true"></div>
+      <div class="container">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Home</a><span aria-hidden="true">/</span><span aria-current="page">Services</span></nav>
+        <div class="svo-hero-grid">
+          <div>
+            <p class="svx-k"><span>{{ cats.size }}</span> practices · {{ total }} services</p>
+            <h1 class="svo-mast" id="page-title" data-split>Websites, AI and the systems <em>behind them.</em></h1>
+          </div>
+          <p class="svo-lede">From a WordPress site to the CRM, automations and AI that run after it launches — designed, built and documented by one accountable person, and secured from the start.</p>
+        </div>
+
+        <ol class="svo-index">
+          {%- for c in cats %}
+          <li>
+            <a class="svo-tile" href="{{ c.id }}/">
+              <span class="svo-tile-n">{{ c.n }}</span>
+              <span class="svo-tile-t">{{ c.title }}</span>
+              <span class="svo-tile-l">{{ c.line }}</span>
+              <span class="svo-tile-c">{{ c.services.size }} services</span>
+            </a>
+          </li>
+          {%- endfor %}
+        </ol>
+      </div>
+    </section>
+
+    <!-- each practice: title and tools on the left, its services as an index on the right -->
+    {%- for c in cats %}
+    <section class="section svo-cat svo-cat-{{ forloop.index }}" id="{{ c.id }}" aria-labelledby="cat-{{ c.id }}">
+      <div class="container svo-cat-grid">
+        <header class="svo-cat-head">
+          <p class="kicker"><span>{{ c.n }}</span> {{ c.short }}</p>
+          <h2 class="svo-cat-t" id="cat-{{ c.id }}">{{ c.title }}</h2>
+          <p class="svo-cat-intro">{{ c.intro }}</p>
+          <ul class="svx-tools svx-tools-light" aria-label="Technologies">{% for t in c.tools limit: 8 %}<li>{{ t }}</li>{% endfor %}</ul>
+          <a class="btn btn-ink" href="{{ c.id }}/">Explore {{ c.short | downcase }}<span class="sr-only"> — {{ c.title }}</span></a>
+        </header>
+        <ul class="svo-rows" data-stagger>
+          {%- for s in c.services %}
+          <li>
+            <a class="svo-row" href="{{ c.id }}/#{{ s.title | slugify }}">
+              <span class="svo-row-n">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+              <span class="svo-row-t">{{ s.title }}</span>
+              <span class="svo-row-d">{{ s.text }}</span>
+            </a>
+          </li>
+          {%- endfor %}
+        </ul>
+      </div>
+      {%- if c.id == "web-development" %}
+      <div class="container svo-proof">
+        <p class="svo-proof-k">Live work — each frame scrolls through a capture of the site</p>
+        <ul class="svx-cases">
+          {%- for id in c.related limit: 3 %}
+          {%- for p in site.data.projects %}{% if p.id == id %}
+          {%- assign d = p.url | remove: 'https://' | remove: 'http://' | remove: 'www.' | remove: '/' %}
+          {%- capture cslug %}case-{{ p.id }}{% endcapture %}
+          {%- capture cfb %}{{ root }}assets/img/work/{% if p.images.desktop %}{{ p.images.desktop }}{% else %}{{ p.images.full }}{% endif %}{% endcapture %}
+          <li class="svx-case">
+            {% include browser.html slug=cslug name=p.title domain=d url=p.url size="card" fallback=cfb %}
+            <div class="svx-case-meta">
+              <p class="svx-case-k">{{ p.work }} · {{ p.region }}</p>
+              <h3><a href="{{ root }}portfolio/{{ p.id }}/">{{ p.title }}</a></h3>
+              <p class="svx-case-tech">{{ p.built_with | join: " · " }}</p>
+            </div>
+          </li>
+          {%- endif %}{% endfor %}
+          {%- endfor %}
+        </ul>
+      </div>
+      {%- endif %}
+      {%- if c.id == "ai-automation" %}
+      <div class="container svo-proof">
+        <a class="svo-feature" href="{{ root }}ai-prompt-engineering/">
+          <span class="svo-feature-k">Inside AI &amp; automation</span>
+          <span class="svo-feature-t">AI Prompt Engineering</span>
+          <span class="svo-feature-d">A free library of {{ site.data.prompt_library.prompts.size }} prompts, a prompt builder, setup templates for each AI tool, and packages from ${{ site.data.ai_services.packages[0].price }}.</span>
+          <span class="svo-feature-go">Open prompt engineering</span>
+        </a>
+      </div>
+      {%- endif %}
+    </section>
+    {%- endfor %}
+
+    <!-- how a project runs -->
+    <section class="section svo-how" aria-labelledby="how-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="kicker"><span>05</span> Working together</p>
+          <h2 class="section-title" id="how-title">Clear scope, <em>then the build.</em></h2>
+        </header>
+        <ol class="svo-steps" data-stagger>
+          <li><span>01</span><h3>Brief</h3><p>You describe the goal, the audience and any deadline — by email, WhatsApp or the contact form.</p></li>
+          <li><span>02</span><h3>Written quote</h3><p>I reply with questions or a written scope and price. Nothing starts until you agree to it.</p></li>
+          <li><span>03</span><h3>Build &amp; review</h3><p>Work happens in stages you can see and comment on — a staging site, a workflow diagram, a draft.</p></li>
+          <li><span>04</span><h3>Hand-over</h3><p>Launch, logins, and documentation in plain language, so your team can run what was built.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    {% include services-cta.html %}
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Services by Dwaipyan Mandal",
+      "itemListElement": [
+        {%- for c in cats %}{ "@type": "ListItem", "position": {{ forloop.index }}, "url": "https://rajdwaipyan.github.io/dwaipyan.github.io/services/{{ c.id }}/", "name": {{ c.title | jsonify }} }{% unless forloop.last %},{% endunless %}{% endfor %}
+      ]
+    }
+    </script>

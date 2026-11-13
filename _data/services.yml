@@ -1,0 +1,174 @@
+# SERVICES — /services/ and one page per category (services/<id>/index.html sets `service: <id>`).
+# Describe what you do and how, not results you can't show. No client names, numbers or guarantees here:
+# proof comes from `related` — case studies in _data/projects.yml (ids), and `sites` — website categories
+# from _data/sites.yml shown as live previews.
+#
+# Fields per category
+#   id, n, title, short (nav label), line (one sentence), intro (a paragraph), tools (technology list)
+#   services: title, text, tech (list), uses (list of typical situations)
+#   related: project ids · sites: site category ids · links: extra related pages { label, url, text }
+#   price: how it is priced (shown on the page)
+
+categories:
+  - id: web-development
+    n: "01"
+    title: Web Design & Development
+    short: Websites
+    line: WordPress, WooCommerce and custom websites — designed, built and handed over ready to run.
+    intro: "Most of my client work is here: business websites, online stores and booking sites, built mainly on WordPress with Elementor Pro and WooCommerce, and on Webflow, Wix or custom code when the project calls for it. Every site is responsive, fast to load and handed over so the client can edit it."
+    tools: [WordPress, Elementor Pro, Crocoblock, WooCommerce, PHP, JavaScript, HTML & CSS, Webflow, Wix, Shopify]
+    price: Quoted per project after a short brief.
+    services:
+      - title: WordPress Development
+        text: Business websites on WordPress, from structure and design to forms, SEO basics, speed and hand-over training.
+        tech: [WordPress, Elementor Pro, Yoast / Rank Math]
+        uses: [A company website that the team can update itself, Moving an outdated site to a maintainable WordPress build, Landing pages for a campaign or a new service]
+      - title: Full-Stack WordPress Development
+        text: "When a theme or plugin isn't enough: custom post types, custom fields, custom plugins and integrations with outside systems."
+        tech: [PHP, MySQL, WordPress REST API, JavaScript, Crocoblock JetEngine]
+        uses: [Internal tools built as WordPress plugins, Directories and listings with custom fields and filters, Connecting forms and data to a CRM or another API]
+      - title: Elementor Pro
+        text: Pixel-careful Elementor Pro builds with global styles, reusable templates and dynamic content — so the site stays consistent as it grows.
+        tech: [Elementor Pro, Crocoblock, Global styles and templates]
+        uses: [Turning a Figma or image design into a live Elementor site, Cleaning up an Elementor site that has become slow or inconsistent]
+      - title: WooCommerce Development
+        text: Online stores and booking flows with WooCommerce — products, variations, payments, shipping and the emails customers receive.
+        tech: [WooCommerce, Payment gateways, Booking extensions]
+        uses: [A product catalogue with online ordering, Bookable experiences or services paid online, Adding a shop to an existing WordPress site]
+      - title: Website Redesign & Optimisation
+        text: Redesigning a live site without losing its content or search visibility, and fixing what makes it slow, dated or hard to use.
+        tech: [Core Web Vitals, Image optimisation, Caching, Redirect mapping]
+        uses: [A site that looks dated or doesn't work well on phones, A slow site with poor PageSpeed results, Restructuring pages so visitors find services faster]
+      - title: Custom Website Development
+        text: Hand-built sites in HTML, CSS and JavaScript when a page builder would get in the way — fast, accessible and easy to host.
+        tech: [HTML, CSS, JavaScript, Jekyll, GitHub Pages]
+        uses: [A lightweight portfolio or company site, An interactive page such as a calculator or product explorer]
+      - title: Webflow & Wix Development
+        text: Building and updating sites on Webflow and Wix for clients who already use those platforms or prefer a hosted builder.
+        tech: [Webflow, Wix]
+        uses: [Extending or redesigning an existing Webflow or Wix site, A simple hosted site the owner can manage without plugins]
+    related: [eagle, arca, vtek, els, osea]
+    sites: [property, architecture, automotive, trades, food, brands, health]
+
+  - id: ai-automation
+    n: "02"
+    title: AI Engineering & Automation
+    short: AI & automation
+    line: AI agents, prompt systems and automated workflows that take repetitive work off your team.
+    intro: "Practical AI for small and growing businesses: engineered prompts and agent instructions that behave consistently, and workflows in n8n that connect your forms, inbox, CRM and spreadsheets. Each workflow is specified first, built step by step, and documented so your team understands what it does."
+    tools: [ChatGPT, Claude, Gemini, n8n, REST APIs, Webhooks, Google Workspace, Claude Code, Cursor]
+    price: "Prompt engineering packages start at $49; automation projects are quoted after a short brief."
+    services:
+      - title: AI Prompt Engineering
+        text: Custom prompts, prompt libraries and instruction systems for ChatGPT, Claude, Gemini and AI coding tools — with a free prompt library to try first.
+        tech: [ChatGPT, Claude, Gemini, Claude Code, Cursor]
+        uses: [Consistent outputs for a repeated business task, A shared prompt library for a team, Project rules for AI coding assistants]
+        link: { label: "Prompt engineering, free library and packages", url: ai-prompt-engineering/ }
+      - title: AI Agent Development
+        text: "Agents that carry out multi-step tasks with clear limits: a defined role, the tools they may use, when to ask a person, and checks before they act."
+        tech: [Claude, ChatGPT, Tool / function calling, n8n AI nodes]
+        uses: [A research or reporting assistant that works from your own documents, A support assistant that answers from your policies and hands over to a person]
+      - title: AI-Powered Business Automation
+        text: Putting AI into the steps of a process where it helps — summarising, classifying, drafting — with a person approving what matters.
+        tech: [n8n, OpenAI / Anthropic APIs, Google Sheets, Email]
+        uses: [Sorting and summarising incoming enquiries, Drafting replies or reports for a person to review]
+      - title: Workflow Automation
+        text: Mapping a manual process, deciding which steps to automate, and building the workflow with error handling and notifications.
+        tech: [n8n, Webhooks, Schedules, Error workflows]
+        uses: [Moving data between forms, spreadsheets and a CRM, Scheduled reports and reminders]
+      - title: n8n Automation
+        text: n8n workflows built, tested and documented — including lead-generation flows from sources such as Google Maps and LinkedIn where their terms allow it.
+        tech: [n8n, HTTP Request, Code nodes, Google Sheets]
+        uses: [Lead collection and enrichment into a sheet or CRM, Notifications to email, Slack or WhatsApp]
+      - title: API Integrations
+        text: Connecting the tools you already pay for through their APIs, so data is entered once and appears where it is needed.
+        tech: [REST APIs, Webhooks, OAuth, JSON]
+        uses: [Website forms into a CRM, Orders or bookings into accounting or a spreadsheet]
+      - title: Intelligent Business Systems
+        text: Combining a website, a CRM, automations and AI into one system with a clear owner for each part — documented so it can be maintained.
+        tech: [WordPress, GoHighLevel, n8n, AI APIs]
+        uses: [A lead-to-customer pipeline from first enquiry to follow-up, An internal dashboard fed by several tools]
+      - title: AI-Assisted Productivity Solutions
+        text: Setting up AI assistants, Projects, Gems and custom GPTs for a team, with usage guidelines and prompts for their daily tasks.
+        tech: [ChatGPT Projects / GPTs, Claude Projects, Gemini Gems]
+        uses: [A team adopting AI with shared rules, Writing, research and meeting-notes assistants]
+    related: []
+    links:
+      - { label: Free prompt library, url: "ai-prompt-engineering/#library", text: "22 prompts to search, open and copy" }
+      - { label: Prompt builder, url: "ai-prompt-engineering/#try", text: "Build a structured prompt in your browser" }
+      - { label: Packages and pricing, url: "ai-prompt-engineering/#pricing", text: "Prompt engineering from $49" }
+
+  - id: crm-automation
+    n: "03"
+    title: CRM & Business Automation
+    short: CRM & automation
+    line: GoHighLevel and CRM systems that capture every lead, route it and follow up on time.
+    intro: "A CRM only helps if leads arrive in it cleanly and nothing waits on someone remembering to follow up. I design the pipeline, connect the website and forms to it, and build the workflows, messages and reminders that move each lead forward."
+    tools: [GoHighLevel, A2P 10DLC SMS, WhatsApp, n8n, Webhooks, Forms, Email marketing]
+    price: Quoted per project after a short brief.
+    services:
+      - title: GoHighLevel
+        text: GoHighLevel set up properly — pipelines, forms, calendars, workflows, SMS and email — and connected to your website.
+        tech: [GoHighLevel, Workflows, Calendars, A2P 10DLC]
+        uses: [A new GoHighLevel account for a service business, Cleaning up and documenting an existing account]
+      - title: CRM Architecture
+        text: Deciding what a CRM should hold — stages, fields, tags and owners — before anything is built, so reports mean something later.
+        tech: [Pipeline design, Custom fields, Tagging rules]
+        uses: [Several kinds of enquiry that each need their own route, A team that needs to see who owns which lead]
+      - title: Sales Pipeline Automation
+        text: Leads move between stages automatically as they reply, book or buy, with tasks created for the steps a person should take.
+        tech: [Pipeline triggers, Task automation, Notifications]
+        uses: [Automatic stage changes after a booking, Reminders when a lead has waited too long]
+      - title: Lead Generation Systems
+        text: Forms, landing pages and lead magnets connected to the CRM, plus automated lead collection where the source allows it.
+        tech: [Landing pages, Forms, n8n, CRM import]
+        uses: [Separate forms for each type of enquiry, Collecting and qualifying leads into one list]
+      - title: Marketing Automation
+        text: Follow-up sequences by email and SMS that stop when a lead replies, with opt-outs and sending rules handled correctly.
+        tech: [Email sequences, SMS workflows, Segmentation]
+        uses: [Nurturing leads who aren't ready yet, Re-engaging past enquiries]
+      - title: WhatsApp Automation
+        text: WhatsApp as a contact channel — chat buttons on the website and automated messages through supported business tools.
+        tech: [WhatsApp Business, Click-to-chat, CRM messaging integrations]
+        uses: [A WhatsApp enquiry button on every page, Booking confirmations and reminders on WhatsApp]
+      - title: Business Process Automation
+        text: The admin behind the sales process — documents, notifications, data entry — automated where it saves real time.
+        tech: [n8n, Google Workspace, Webhooks]
+        uses: [Creating records and documents from a form, Internal notifications when something needs attention]
+    related: [eagle]
+    links:
+      - { label: Eagle Premier Real Estate, url: "portfolio/eagle/", text: "Five lead forms, one GoHighLevel pipeline and SMS follow-up" }
+
+  - id: cybersecurity
+    n: "04"
+    title: Cybersecurity & IT Solutions
+    short: Security & IT
+    line: Securing websites and the infrastructure behind them, and practical advice on what to fix first.
+    intro: "My master's research looked at cyber resilience in Bangladesh's ISP sector, and security is part of every site I build. For businesses, that means hardened websites, a clear picture of their risks and IT set up so it is easier to keep safe."
+    tools: [WordPress hardening, Web application firewalls, SSL / TLS, Backups, Access control, Network fundamentals]
+    price: Quoted per project after a short brief.
+    services:
+      - title: Website Security
+        text: Hardening a website and its hosting — HTTPS everywhere, secure headers, least-privilege accounts, backups you have tested and monitoring.
+        tech: [SSL / TLS, Security headers, Backups, Uptime monitoring]
+        uses: [A business site that has never had a security review, Preparing a site before a launch or campaign]
+      - title: WordPress Security
+        text: WordPress-specific protection — updates, plugin review, login protection, a firewall, file permissions and clean-up after an incident.
+        tech: [Wordfence / firewall plugins, 2FA, Plugin audit, Malware clean-up]
+        uses: [A hacked or spam-injected WordPress site, Reducing risk from old or unused plugins]
+      - title: Security Assessment
+        text: A structured review of a website or small network against common weaknesses, with findings ranked by risk and a plan to fix them.
+        tech: [OWASP Top 10, Configuration review, Vulnerability scanning]
+        uses: [Knowing where you stand before a client or partner asks, A prioritised to-do list for your developer]
+      - title: IT Infrastructure
+        text: Setting up and documenting the basics for a small office — accounts, devices, networking, backups and who has access to what.
+        tech: [Networking, Google Workspace / Microsoft 365, Backups, Access management]
+        uses: [A growing office with no written IT setup, Moving to cloud email and file storage]
+      - title: Technical Consulting
+        text: An independent opinion on platforms, vendors and technical plans — what to build, buy or leave alone.
+        tech: [Platform selection, Requirements, Vendor review]
+        uses: [Choosing between website platforms or CRMs, Reviewing a proposal from another agency]
+    related: []
+    links:
+      - { label: "Master's project report", url: "education/#report", text: "Digital Shield: a roadmap to cyber resilience in Bangladesh's ISP ecosystem" }
+      - { label: Articles on Medium, url: "journal/#articles", text: "Technology and cybersecurity writing" }

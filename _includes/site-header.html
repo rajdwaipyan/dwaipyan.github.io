@@ -1,5 +1,5 @@
 {%- comment -%}
-  Header: DM monogram + name, the mega menu (four groups from _data/navigation.yml), CV and the phone menu.
+  Header: DM monogram + name, the mega menu (four groups from _data/navigation.yml), a contact button and the phone menu (the CV stays in the Work menu).
   Each group is a disclosure: a button that opens a panel of ordinary links (assets/js/menu.js).
   Without JavaScript a panel opens on hover or keyboard focus. Uses `root` and page.nav from the layout.
 {%- endcomment -%}
@@ -66,10 +66,7 @@
     </nav>
 
     <div class="header-actions">
-      <a class="btn-cv" href="{{ root }}cv/"{% if page.nav == 'cv' %} aria-current="page"{% endif %} data-magnetic="0.25">
-        <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M5 2.5h7l3.5 3.5v11.5H5z M12 2.5V6h3.5 M8 10.5h5 M8 13.5h5"/></svg>
-        <span>View CV</span>
-      </a>
+      <a class="hdr-cta" href="{{ root }}#contact" data-magnetic="0.2"><span class="hdr-cta-dot" aria-hidden="true"></span>Let's talk</a>
       <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Menu">
         <span class="menu-toggle-label">Menu</span>
         <span class="menu-toggle-icon" aria-hidden="true"><i></i><i></i></span>
@@ -94,8 +91,8 @@
     </div>
     {%- endfor %}
     <div class="mnav-actions">
-      <a class="btn btn-lime" href="{{ root }}cv/">View CV</a>
-      <a class="btn btn-line" href="{{ root }}#contact">Contact</a>
+      <a class="btn btn-lime" href="{{ root }}#contact">Contact</a>
+      <a class="btn btn-line" href="https://wa.me/{{ site.data.social.whatsapp.number }}" target="_blank" rel="noopener">WhatsApp<span class="sr-only"> (opens in a new tab)</span></a>
     </div>
     <p class="mnav-meta">Dhaka, Bangladesh · <a href="mailto:rajdwaipayan@gmail.com">rajdwaipayan@gmail.com</a></p>
   </nav>

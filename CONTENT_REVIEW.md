@@ -171,3 +171,21 @@ Status key: **Hidden** = in the data file but not shown · **Cautious** = shown 
   are counted from the data files.
 - Site-wide: the "↗" symbol was removed from every button and link (no replacement icon); screen-reader text
   "(opens in a new tab)" is kept or added.
+
+## Liquid Glass, Services and live previews (13 November 2026)
+
+- **Header:** "View CV" is gone from the desktop header and the phone menu. A "Let's talk" button (to the home
+  contact form) takes its place; the phone menu has Contact and WhatsApp. The CV is still in the Work menu, the
+  footer and the "View CV" buttons on the home, experience, leadership and education pages.
+- **Services** replaces "AI Prompt Engineering" in the menu. The service descriptions in `_data/services.yml` were
+  written from your service list and profile — read every line and remove anything you don't offer
+  (in particular: Webflow & Wix, Shopify, IT infrastructure, and the security services). No prices except the
+  existing AI packages; every other practice says "Quoted per project after a short brief".
+- **Related work** only uses real case studies: all five for Web, Eagle Premier for CRM. AI and Security show
+  links (prompt library, master's report, articles) instead of invented projects.
+- **Previews:** 78 of the 87 sites (82 portfolio sites + 5 case studies) have full-page captures from 13 November
+  2026. No capture — the old screenshot or the name is shown instead — for: paaco.com (capture failed),
+  carsolutionsfl.com and caffeina.ca (bot protection), caesarstoneus.com, cipherskincare.com,
+  greenmountaingrills.com, gruum.com, tech-on-deck.com (blank or verification page) and jimmynelson.com
+  (single-screen page). Re-capture them later, or record a screen video if you want those too.
+- A few captures show a cookie banner the capture couldn't dismiss (e.g. haybcoffee.eu). Check the grid.
