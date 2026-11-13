@@ -2691,7 +2691,11 @@ html[data-room="night"], html[data-room="ink"], html[data-room="navy"], html[dat
   box-shadow: var(--hdr-rim), var(--g-drop);
 }
 .mega-bar { background: var(--cap-bg); border-color: transparent; box-shadow: var(--hdr-rim); }
-.site-header:not(.is-scrolled) .mega-bar { background: var(--hdr-sheen), var(--hdr-bg); -webkit-backdrop-filter: var(--g-blur); backdrop-filter: var(--g-blur); box-shadow: var(--hdr-rim), var(--g-drop); }
+/* No backdrop-filter on .mega-bar: a filtered element becomes the containing block of the absolutely
+   positioned dropdown inside it, which squeezed the menu to the width of the capsule. */
+:root { --bar-glass: rgba(253, 251, 247, .84); }
+html[data-room="night"], html[data-room="ink"], html[data-room="navy"], html[data-room="machine"], html[data-room="contact"], html[data-room="violet"] { --bar-glass: rgba(18, 24, 42, .72); }
+.site-header:not(.is-scrolled) .mega-bar { background: var(--hdr-sheen), var(--bar-glass); box-shadow: var(--hdr-rim), var(--g-drop); }
 .mega-trigger { font-family: var(--font-body); font-weight: 500; font-size: .92rem; letter-spacing: 0; }
 .mega-trigger:hover, .mega-item.is-open .mega-trigger { background: var(--pill); box-shadow: var(--hdr-rim); }
 /* the dropdown: dark glass, strong enough that the text never competes with the page */
