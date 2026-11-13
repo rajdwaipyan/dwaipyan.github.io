@@ -1,0 +1,439 @@
+# PROMPT LIBRARY — free prompts on /ai-prompt-engineering/#library. Visitors can search, filter, open and copy them.
+# Add a prompt: copy a block, give it a unique id, pick a category id from `categories`, list the tools it suits.
+# Write [BRACKETS] for anything the user must fill in — they are highlighted on the page.
+categories:
+  - { id: website, label: Website & Vibe Coding }
+  - { id: coding, label: Coding Assistants }
+  - { id: agents, label: AI Agents }
+  - { id: marketing, label: Marketing & Sales }
+  - { id: support, label: Customer Support }
+  - { id: research, label: Research & Analysis }
+  - { id: content, label: Content & SEO }
+  - { id: operations, label: Business Operations }
+
+prompts:
+  - id: landing-page-brief
+    title: Landing page build brief
+    category: website
+    tools: [Lovable, Bolt, v0, Claude Code]
+    summary: Turns a one-line idea into a complete, buildable landing-page specification.
+    prompt: |-
+      ROLE
+      You are a senior product designer and front-end developer.
+
+      GOAL
+      Build a single landing page for [product], which helps [audience] to [main outcome].
+
+      SECTIONS (in this order)
+      1. Hero — headline that states the outcome, one supporting line, one primary button: "[CTA]".
+      2. Problem — three short pains the audience recognises.
+      3. How it works — three steps.
+      4. Proof — [real testimonial or "leave a placeholder"].
+      5. Pricing or offer — [details].
+      6. FAQ — five questions.
+      7. Final call to action.
+
+      DESIGN
+      Brand colours [hex], one display font and one body font, generous spacing, no stock-photo clichés.
+
+      TECHNICAL
+      Mobile first, semantic HTML, accessible contrast, visible focus states, no layout shift.
+
+      Before writing code, show me the section outline and copy for approval.
+
+  - id: redesign-existing-site
+    title: Redesign an existing website
+    category: website
+    tools: [Claude Code, Cursor, Lovable]
+    summary: Upgrades a live site without losing its content, routes or SEO.
+    prompt: |-
+      You are redesigning an existing website. Do not start from scratch.
+
+      FIRST
+      1. Read the current pages and list every route, section and piece of content.
+      2. Note what must not change: URLs, page titles, meta descriptions, forms and their destinations.
+
+      THEN PROPOSE
+      - A new visual direction in five bullet points (type, colour, spacing, imagery, motion).
+      - Which sections to merge, split or remove, and why.
+
+      RULES
+      - Keep all existing content unless I approve removing it.
+      - Keep every URL working.
+      - Work page by page; show me each page before moving on.
+      - Mark anything you are unsure about with [CHECK].
+
+      Current site: [URL or repository]
+      What I dislike today: [list]
+
+  - id: component-spec
+    title: UI component specification
+    category: website
+    tools: [v0, Cursor, Claude Code]
+    summary: Describes one interface component precisely enough to build it right the first time.
+    prompt: |-
+      Build a [component name, e.g. pricing table] for [framework / plain HTML+CSS].
+
+      CONTENT
+      [paste the real content: labels, prices, items]
+
+      STATES
+      Default, hover, focus-visible, active, disabled, loading and empty — show each one.
+
+      RESPONSIVE
+      Describe and implement the layout at 360 px, 768 px and 1280 px.
+
+      ACCESSIBILITY
+      Correct roles and labels, keyboard operable, contrast at least 4.5:1 for text.
+
+      OUTPUT
+      The component code, then a short list of design decisions you made.
+
+  - id: claude-md
+    title: Project rules file (CLAUDE.md / Cursor rules)
+    category: coding
+    tools: [Claude Code, Cursor]
+    summary: A rules file that keeps an AI coding assistant consistent across sessions.
+    prompt: |-
+      # Project: [name]
+
+      ## What this is
+      [One paragraph: what the app does and who uses it.]
+
+      ## Stack
+      - [language, framework, versions]
+      - Package manager: [npm / pnpm / pip]
+      - Run: `[command]`   Test: `[command]`   Lint: `[command]`
+
+      ## Conventions
+      - [naming, folder structure, state management, styling approach]
+      - Write tests for every new function in [test folder].
+
+      ## Never
+      - Do not edit [generated files / migrations / vendor folder].
+      - Do not add dependencies without asking.
+      - Do not commit secrets or .env files.
+
+      ## Before you finish a task
+      Run the tests and the linter, and summarise what changed and why.
+
+  - id: bug-investigation
+    title: Bug investigation
+    category: coding
+    tools: [Claude Code, Cursor, ChatGPT, Claude]
+    summary: Makes the assistant find the cause before it changes any code.
+    prompt: |-
+      There is a bug. Do not change any code yet.
+
+      WHAT HAPPENS
+      [steps to reproduce]
+      Expected: [expected result]
+      Actual: [actual result, error message, logs]
+
+      YOUR TASK
+      1. List the three most likely causes, with the file and line you suspect.
+      2. For each, describe how to confirm or rule it out.
+      3. Run or describe those checks and tell me which cause is confirmed.
+      4. Only then propose the smallest fix, and a test that would have caught it.
+
+  - id: code-review
+    title: Pull-request review
+    category: coding
+    tools: [Claude, ChatGPT, Claude Code]
+    summary: A structured review that separates real problems from style preferences.
+    prompt: |-
+      Review this change as a senior engineer.
+
+      Group your findings under:
+      1. Bugs or incorrect behaviour (with the failing input).
+      2. Security or data-loss risks.
+      3. Missing tests.
+      4. Readability — only if it would confuse the next developer.
+
+      For each finding: file and line, what is wrong, why it matters, and a suggested fix.
+      Skip anything that is purely personal style. If the change looks correct, say so.
+
+      [paste the diff]
+
+  - id: agent-system-prompt
+    title: Agent system instructions
+    category: agents
+    tools: [Claude, ChatGPT, Gemini]
+    summary: Role, tools, limits and self-checks for an agent that runs multi-step tasks.
+    prompt: |-
+      IDENTITY
+      You are [agent name], an assistant that [main job] for [organisation].
+
+      YOU CAN
+      - Use [tool 1] to [purpose].
+      - Use [tool 2] to [purpose].
+
+      YOU MUST NOT
+      - Send, delete, pay or publish anything without explicit confirmation.
+      - Invent facts, prices, dates or names. Say "I don't know" instead.
+
+      HOW TO WORK
+      1. Restate the task in one sentence.
+      2. Plan the steps. Ask one question if something essential is missing.
+      3. Do the steps, checking each tool result before using it.
+      4. Before answering, check: did I complete every part? Is every fact supported?
+
+      OUTPUT
+      [format: e.g. a short summary, then details as a list]
+
+  - id: tool-use-rules
+    title: Tool-use rules for an agent
+    category: agents
+    tools: [Claude, ChatGPT, n8n]
+    summary: Clear rules for when an agent may call each tool and what to do when one fails.
+    prompt: |-
+      TOOLS AVAILABLE
+      - search_crm(query): read-only. Use to find a contact before any other action.
+      - create_task(contact, note, due): creates a follow-up task.
+      - send_email(to, subject, body): ONLY after the user has approved the exact text.
+
+      RULES
+      - Always search before creating, to avoid duplicates.
+      - Never guess an email address. If it is not in the CRM, ask.
+      - If a tool returns an error, report it in plain words and stop — do not retry more than once.
+      - Keep a short log of every tool call and its result at the end of your reply.
+
+      Adapt the tool names and rules above to your own system: [describe your tools].
+
+  - id: agent-memory
+    title: Context & memory design
+    category: agents
+    tools: [Claude, ChatGPT, Gemini]
+    summary: Decides what an assistant should remember, forget and look up each time.
+    prompt: |-
+      Help me design the context for an AI assistant that [job].
+
+      Produce three lists:
+      1. ALWAYS IN CONTEXT — facts it needs on every request (keep this under 300 words).
+      2. LOOK UP WHEN NEEDED — documents or data it should search, with when to search them.
+      3. NEVER STORE — personal or sensitive data it must not keep.
+
+      Then write the "always in context" block itself, ready to paste into the system prompt.
+
+      About the assistant and its users: [details]
+
+  - id: cold-email
+    title: Personalised outreach email
+    category: marketing
+    tools: [ChatGPT, Claude, Gemini]
+    summary: Short, specific outreach that references something real about the recipient.
+    prompt: |-
+      Write a first outreach email from [sender, role] to [recipient, role, company].
+
+      WHAT I KNOW ABOUT THEM (use only this)
+      [one or two real facts: recent launch, article, job post]
+
+      WHAT I OFFER
+      [one sentence]
+
+      RULES
+      - Under 120 words. No flattery, no "I hope this finds you well".
+      - One clear ask: [e.g. a 15-minute call next week].
+      - Write three subject lines under 6 words each.
+      - If my facts are too thin to personalise, tell me what to find out instead.
+
+  - id: offer-positioning
+    title: Offer & positioning statement
+    category: marketing
+    tools: [ChatGPT, Claude]
+    summary: Clarifies who the offer is for, what it changes and why it beats alternatives.
+    prompt: |-
+      Act as a positioning strategist. Interview me first: ask up to five questions about my offer,
+      my customers and what they use instead today. Wait for my answers.
+
+      Then write:
+      1. A one-sentence positioning statement: For [who] who [need], [offer] is [category] that [benefit], unlike [alternative].
+      2. Three headline options for a website hero.
+      3. The three objections a buyer is most likely to have, with an honest answer to each.
+
+  - id: ad-variations
+    title: Ad copy variations
+    category: marketing
+    tools: [ChatGPT, Claude, Gemini]
+    summary: Several distinct angles for the same offer, each within platform limits.
+    prompt: |-
+      Write ad copy for [platform] promoting [offer] to [audience].
+
+      Give five variations, each with a different angle:
+      1. Pain  2. Outcome  3. Proof  4. Curiosity  5. Objection handled
+
+      For each: headline (max [n] characters), primary text (max [n] characters), call to action.
+      Use only these facts: [facts, prices, real numbers].
+      No claims you cannot support, no superlatives like "best" or "#1".
+
+  - id: support-assistant
+    title: Support assistant (policy-grounded)
+    category: support
+    tools: [ChatGPT, Claude, Gemini]
+    summary: Answers only from your own policies and hands over to a person when it should.
+    prompt: |-
+      You are the support assistant for [business]. Answer only from the information below.
+      If the answer is not there, say you are not sure and offer to connect the customer with the team.
+
+      TONE: friendly, short, direct — two to four sentences.
+
+      HAND OVER WHEN: the customer asks for a person, mentions a legal or safety issue,
+      or the same problem comes up twice.
+
+      NEVER: promise refunds, invent dates or stock, or ask for passwords or card numbers.
+
+      INFORMATION
+      [paste policies, opening hours, shipping, returns, product details]
+
+  - id: reply-drafts
+    title: Reply drafts for an inbox
+    category: support
+    tools: [ChatGPT, Claude]
+    summary: Drafts replies in your voice for a person to check before sending.
+    prompt: |-
+      Draft a reply to the message below. I will review it before sending.
+
+      MY VOICE: [e.g. warm, plain English, no exclamation marks]
+      WHAT I WANT TO SAY: [the decision or answer in your own words]
+      CONTEXT: [order number, previous messages, anything relevant]
+
+      Keep it under [n] words. If the message asks something I haven't answered above,
+      list those questions at the end instead of guessing.
+
+      MESSAGE:
+      [paste]
+
+  - id: competitor-brief
+    title: Competitor brief with sources
+    category: research
+    tools: [ChatGPT, Claude, Gemini]
+    summary: A short, sourced comparison that says "not found" instead of guessing.
+    prompt: |-
+      Prepare a competitor brief for [my business] in [market].
+      Competitors: [names or URLs] — add up to three more you find.
+
+      For each: positioning in one line, main offers, public pricing, channels, one strength.
+      Cite a source link for every fact. Write "not found" when you can't find something.
+
+      Finish with a comparison table and three opportunities, each tied to evidence in the table.
+      Keep it under 600 words.
+
+  - id: document-summary
+    title: Decision-ready document summary
+    category: research
+    tools: [Claude, ChatGPT, Gemini]
+    summary: Summarises a long document around the decision you actually need to make.
+    prompt: |-
+      I need to decide: [the decision].
+      Read the document below and give me:
+
+      1. The answer to my decision question in two sentences, with your confidence.
+      2. The five facts that matter most for it, each with the page or section it comes from.
+      3. Anything in the document that argues against your answer.
+      4. What the document does not tell me that I would need to know.
+
+      Quote exact numbers; do not round or estimate.
+
+      [paste or attach the document]
+
+  - id: survey-analysis
+    title: Customer feedback analysis
+    category: research
+    tools: [ChatGPT, Claude]
+    summary: Groups open-text feedback into themes with counts and real quotes.
+    prompt: |-
+      Analyse the customer feedback below.
+
+      1. Group it into themes. For each theme: a name, how many responses mention it, and two exact quotes.
+      2. Separate complaints, requests and praise.
+      3. List the three changes that would address the most responses.
+
+      Count only what is in the data. If a response fits no theme, put it under "Other".
+
+      [paste feedback, one response per line]
+
+  - id: blog-outline
+    title: Search-friendly article outline
+    category: content
+    tools: [ChatGPT, Claude, Gemini]
+    summary: An outline built around the reader's real question, not keyword stuffing.
+    prompt: |-
+      Create an article outline for the search query: "[query]".
+
+      READER: [who searches this and why]
+      MY EXPERTISE TO INCLUDE: [real examples, numbers, opinions only I can give]
+
+      Give me:
+      - A title under 60 characters and a meta description under 155.
+      - H2 and H3 headings that answer the query in a logical order.
+      - Where each of my examples fits.
+      - Three questions for an FAQ section.
+      Do not write the article yet.
+
+  - id: product-descriptions
+    title: Product descriptions from a spec sheet
+    category: content
+    tools: [ChatGPT, Claude, Gemini]
+    summary: Consistent product copy written only from the facts you provide.
+    prompt: |-
+      Write product descriptions for an online store.
+
+      VOICE: [brand voice in three words]
+      FORMAT per product: title (max 60 characters), 3 benefit bullets, one closing sentence, 80 words total.
+      RULES: use only the facts in the sheet; if a key fact is missing, write [CHECK] instead of inventing it.
+      No medical, legal or "best in the world" claims.
+
+      PRODUCTS
+      [paste: name, materials, sizes, price, features — one product per block]
+
+  - id: sop-writer
+    title: SOP from rough notes
+    category: operations
+    tools: [ChatGPT, Claude, Gemini]
+    summary: Turns notes or a call transcript into a step-by-step standard operating procedure.
+    prompt: |-
+      Turn the notes below into a standard operating procedure.
+
+      FORMAT
+      - Purpose (one sentence) and who does this task.
+      - Numbered steps, each starting with a verb. One action per step.
+      - For each step: the tool used and what "done" looks like.
+      - Common mistakes and how to avoid them.
+
+      Flag any step where my notes are unclear with [QUESTION] instead of guessing.
+
+      NOTES
+      [paste]
+
+  - id: meeting-actions
+    title: Meeting notes to actions
+    category: operations
+    tools: [ChatGPT, Claude, Gemini]
+    summary: Extracts decisions, owners and deadlines from a meeting transcript.
+    prompt: |-
+      From the meeting transcript below, extract:
+
+      1. Decisions made (one line each).
+      2. Action items as a table: task, owner, deadline. Use "unassigned" or "no date" when not stated.
+      3. Open questions nobody answered.
+
+      Use names exactly as they appear. Do not add tasks that weren't discussed.
+
+      [paste transcript]
+
+  - id: workflow-map
+    title: AI workflow map for a business process
+    category: operations
+    tools: [Claude, ChatGPT, n8n]
+    summary: Shows where AI should and shouldn't sit in a process, step by step.
+    prompt: |-
+      Map this business process and show where AI can help.
+
+      PROCESS: [describe it, from trigger to finish]
+      TOOLS WE USE: [CRM, email, forms, spreadsheets]
+
+      For each step, give:
+      - Who or what does it today.
+      - Whether AI should do it, assist a person, or stay manual — and why.
+      - The input, the output and the check a person should make.
+      End with the three steps to automate first and what could go wrong with each.

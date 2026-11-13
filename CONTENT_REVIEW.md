@@ -146,10 +146,28 @@ Status key: **Hidden** = in the data file but not shown · **Cautious** = shown 
 ## AI Prompt Engineering page (added 13 November 2026)
 
 - Prices are the starting prices you gave ($49 / $149 / $349 / $699+, USD), shown as "Starting at". Change them in `_data/ai_services.yml`.
-- "Start with this package" and "Request a custom quote" open an email to rajdwaipayan@gmail.com with the package in the subject;
-  the final call to action uses the existing home-page contact form, WhatsApp and email. No new contact details were added.
+- "Start with this package", "Choose" and "Request a custom quote" now pre-select the package in the enquiry form at the
+  bottom of the page. That form writes an email to rajdwaipayan@gmail.com (or a WhatsApp message to your existing number)
+  and says plainly that nothing is sent or stored by the website. No new contact details were added.
 - The before-and-after prompts and the console are **demonstrations**, labelled as such; the use cases are labelled
   "Demonstration scenarios — not client projects". Add real projects only with the client's permission.
 - Tool names are text only, with a note that the service is independent and not affiliated with those companies.
 - Nothing promises guaranteed results, unlimited revisions, delivery times or support periods — the FAQ says scope is
   agreed in writing before work starts. Check that the FAQ answers match how you actually work.
+
+### Platform upgrade (13 November 2026)
+
+- **Prompt library — 22 prompts written for this page** (`_data/prompt_library.yml`). They are free demonstration resources,
+  labelled as such, not client work. Read them through and remove or rewrite any you would not stand behind.
+- **Two new services** in the services browser: "Custom Prompt Libraries" and "AI Business Solutions" (both point to the
+  Business AI Prompt System package, from $699+). They describe planning and documentation only — automation *building*
+  (e.g. in n8n) is still described as scoped separately. Check that this matches what you offer.
+- **Setup templates** ("Use it in your tool") describe where instructions go in Claude Code (CLAUDE.md), Cursor
+  (`.cursor/rules/*.mdc`), ChatGPT (project instructions / GPTs), Claude (project instructions), Gemini (Gems),
+  Codex (AGENTS.md) and Lovable / Bolt / v0. Product menus change; the page says so. Re-check these occasionally.
+- **Two new FAQ answers**: whether the prompts are free, and what the enquiry form does (no accounts, logins or online payment).
+- Tool names "Codex" and "n8n" were added to the "works with" list.
+- No testimonials, client names, statistics or guarantees were added. The hero numbers (22 prompts, 7 services, from $49)
+  are counted from the data files.
+- Site-wide: the "↗" symbol was removed from every button and link (no replacement icon); screen-reader text
+  "(opens in a new tab)" is kept or added.

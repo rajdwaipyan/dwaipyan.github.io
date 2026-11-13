@@ -156,10 +156,26 @@ when a visitor presses play); Facebook videos open on Facebook unless the entry 
 
 ## AI Prompt Engineering service page
 
-`/ai-prompt-engineering/` reads everything from `_data/ai_services.yml`: services, the tools list, the
-before-and-after examples (with copy button), the process, packages and prices, use cases and FAQ. Change a
-price or add a question there; the page and `assets/js/ai.js` don't need editing. The page carries Service
-(with an offer catalogue of starting prices) and FAQPage structured data.
+`/ai-prompt-engineering/` is built from two data files, so content changes never need the HTML or JavaScript:
+
+- `_data/ai_services.yml` — services (and which library category each links to), the "works with" tool names,
+  before-and-after examples, the per-tool setup templates (`setup:`), process, packages and prices, use cases and FAQ.
+- `_data/prompt_library.yml` — the free prompt library: categories and prompts (`id`, `title`, `category`, `tools`,
+  `summary`, `prompt`). Write `[BRACKETS]` for anything the reader fills in; they are highlighted on the page.
+
+`assets/js/ai.js` runs the page. **Everything works in the browser, with no server:**
+
+| Works on this site (front end only) | Would need a backend or third-party service |
+|---|---|
+| Prompt library search, category and tool filters, sort, viewer, copy, `.txt` download, shareable `#prompt-<id>` links | Accounts, logins or saved favourites |
+| Prompt builder (fills a template; no AI model is called) | Generating answers with a real AI model |
+| Setup templates with copy | — |
+| Pricing view switch, package finder, "start with this package" (pre-selects the form) | Online checkout or payments |
+| Enquiry form: opens the visitor's email app or WhatsApp with the message written; "copy message" | Sending or storing form submissions on a server |
+
+The marquee bands are CSS animations (paused on hover/focus and off screen, turned into scrollable rows when the
+visitor prefers reduced motion). The page carries Service (offer catalogue of starting prices) and FAQPage
+structured data. Pages also cross-fade on navigation in browsers that support view transitions (`style.css`, base).
 
 ## Photography
 

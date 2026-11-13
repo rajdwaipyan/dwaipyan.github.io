@@ -387,7 +387,7 @@ preload_portrait: cutout
               <span class="note-k">Articles · {{ w.venue }}</span>
               <span class="note-t">{{ w.title }}</span>
               <span class="note-x">{{ w.note }}</span>
-              <span class="note-go">Read on {{ w.venue }} <span aria-hidden="true">↗</span></span>
+              <span class="note-go">Read on {{ w.venue }}</span>
             </a>
           </li>
           {%- endfor %}
@@ -446,12 +446,12 @@ preload_portrait: cutout
             <a class="contact-email" href="mailto:rajdwaipayan@gmail.com">rajdwaipayan@gmail.com</a>
             <button class="copy-btn" type="button" data-copy="rajdwaipayan@gmail.com">Copy address</button>
             <span class="copy-status" role="status" aria-live="polite"></span>
-            <a class="contact-wa" href="https://wa.me/{{ site.data.social.whatsapp.number }}" target="_blank" rel="noopener">WhatsApp {{ site.data.social.whatsapp.display }} <span aria-hidden="true">↗</span></a>
+            <a class="contact-wa" href="https://wa.me/{{ site.data.social.whatsapp.number }}" target="_blank" rel="noopener">WhatsApp {{ site.data.social.whatsapp.display }}</a>
           </div>
           <div id="connect">
             <ul class="contact-profiles" aria-label="Let's connect">
               {%- for s in site.data.social.links %}{% unless s.profile == false %}
-              <li><a href="{{ s.url }}" target="_blank" rel="noopener me">{{ s.name }} <span aria-hidden="true">↗</span></a></li>
+              <li><a href="{{ s.url }}" target="_blank" rel="noopener me">{{ s.name }}</a></li>
               {%- endunless %}{% endfor %}
             </ul>
           </div>

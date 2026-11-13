@@ -153,7 +153,7 @@ schema: about
           <h3>My own writing</h3>
           <ul class="plain-list">
             {%- for w in site.data.publications.own_writing %}
-            <li><span><b>{{ w.title }}</b> — {{ w.note }}</span><small><a href="{{ w.url }}" target="_blank" rel="noopener me">{{ w.venue }} ↗</a></small></li>
+            <li><span><b>{{ w.title }}</b> — {{ w.note }}</span><small><a href="{{ w.url }}" target="_blank" rel="noopener me">{{ w.venue }}<span class="sr-only"> (opens in a new tab)</span></a></small></li>
             {%- endfor %}
           </ul>
           <h3>Coverage by others</h3>
