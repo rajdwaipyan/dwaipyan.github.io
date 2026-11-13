@@ -6,6 +6,7 @@ currency: USD
 
 services:
   - id: prompts
+    lib: all
     letter: A
     title: Custom Prompt Engineering
     line: Prompts that give the same quality answer every time, not just the first time.
@@ -13,6 +14,7 @@ services:
     deliver: A tested prompt set with notes on when and how to use each one.
     from: custom
   - id: vibe
+    lib: website
     letter: B
     title: Website & Vibe-Coding Prompts
     line: Build instructions that AI coding tools can follow from first screen to finished site.
@@ -20,6 +22,7 @@ services:
     deliver: A build brief and step-by-step prompts written for the tool you use.
     from: custom
   - id: agents
+    lib: agents
     letter: C
     title: AI Agent Instructions
     line: System instructions that tell an agent who it is, what it may do and how to check its own work.
@@ -27,6 +30,7 @@ services:
     deliver: An instruction set with tool rules, task steps and checks on the output.
     from: agents
   - id: workflows
+    lib: operations
     letter: D
     title: Business AI Workflows
     line: AI steps placed where they help in sales, support, content and research.
@@ -34,6 +38,7 @@ services:
     deliver: A documented workflow with the prompt for every AI step.
     from: system
   - id: audit
+    lib: all
     letter: E
     title: Prompt Auditing & Optimisation
     line: Your existing prompts, reviewed and rewritten so the answers drift less.
@@ -41,8 +46,25 @@ services:
     deliver: Before-and-after prompts with the reasons for each change.
     from: optimise
 
+  - id: library
+    letter: F
+    title: Custom Prompt Libraries
+    line: A shared set of prompts your whole team can find, reuse and improve — organised by task, tool and department.
+    items: [An inventory of your recurring AI tasks, Categories by team and by tool, Placeholders and usage notes on every prompt, Naming and versioning conventions, Handover as Markdown, Google Docs or Notion pages, A starter set like the free library on this page]
+    deliver: A documented prompt library in the format your team already works in.
+    from: system
+    lib: all
+  - id: solutions
+    letter: G
+    title: AI Business Solutions
+    line: A practical plan for where AI belongs in your business — and where it doesn't.
+    items: [A review of your processes for AI opportunities, Choosing between ChatGPT, Claude, Gemini and other tools, Automation planning for n8n and CRM workflows, Team usage guidelines, A data-privacy and risk checklist, The first workflows specified and ready to build]
+    deliver: A written AI roadmap with the first workflows documented step by step.
+    from: system
+    lib: operations
+
 # "Works with" — the tools I write prompts and instructions for. Text names only; no partnership implied.
-tools: [ChatGPT, Claude, Gemini, Claude Code, Cursor, Lovable, Bolt, Replit, v0]
+tools: [ChatGPT, Claude, Gemini, Claude Code, Cursor, Codex, Lovable, Bolt, Replit, v0, n8n]
 
 # The before-and-after demonstration. `engineered` is shown with its section labels highlighted.
 demos:
@@ -192,5 +214,197 @@ faq:
     a: "The packages are starting prices. The final quote depends on how many prompts or workflows you need, how complex they are, and how much testing is involved. You get a fixed quote before any work starts."
   - q: Can you work with businesses internationally?
     a: "Yes. I work remotely with clients in other countries, in English, and agree the schedule and communication channel at the start."
+  - q: Are the prompts on this page free to use?
+    a: "Yes. The prompt library, the prompt builder and the setup templates are free to copy and adapt. They are starting points: test them on your own tasks, because results depend on the model you use and the details you add."
+  - q: What happens when I send the enquiry form?
+    a: "It opens your email app — or WhatsApp, if you choose that — with your message already written. Nothing is sent or stored by this website: there are no accounts, logins or online payments here. Scope, price and payment are agreed in writing before any work starts."
   - q: How do I start a project?
     a: "Send a short message by email or WhatsApp: what you want the AI to do, which tool you use, and an example of the result you want. I reply with questions or a quote."
+
+# "Use it in your tool" — where each kind of instruction goes. Keep the steps factual; product menus change,
+# so wording is deliberately general where a tool renames its settings often.
+setup:
+  - id: claude-code
+    tool: Claude Code
+    where: CLAUDE.md
+    kind: file in the project root
+    steps:
+      - "Create a file named CLAUDE.md in the root of your project — or run /init inside Claude Code to generate a first draft."
+      - "Paste the template below and replace every [bracket] with your project's details."
+      - "Claude Code reads the file at the start of each session. Commit it so everyone on the team works with the same rules."
+    snippet: |-
+      # [Project name]
+
+      ## Overview
+      [One paragraph: what the app does and who uses it.]
+
+      ## Commands
+      - Install: `[command]`
+      - Run: `[command]`
+      - Test: `[command]`
+      - Lint: `[command]`
+
+      ## Conventions
+      - [Language, framework and versions]
+      - [Folder structure and naming]
+      - Write or update tests for every change.
+
+      ## Do not
+      - Edit [generated files / migrations / vendor folders].
+      - Add dependencies without asking.
+      - Commit secrets or .env files.
+
+      ## Finishing a task
+      Run the tests and the linter, then summarise what changed and why.
+  - id: cursor
+    tool: Cursor
+    where: .cursor/rules/project.mdc
+    kind: project rule file
+    steps:
+      - "In your project, create the folder .cursor/rules and add a file such as project.mdc."
+      - "Keep the header block: alwaysApply: true loads the rule in every chat. Use globs instead to apply a rule only to certain files."
+      - "Split large rule sets into several focused .mdc files — one for the stack, one for testing, one for UI."
+    snippet: |-
+      ---
+      description: Project conventions for [project name]
+      alwaysApply: true
+      ---
+
+      You are working on [project name], a [type of app] built with [stack].
+
+      - Follow the existing folder structure in [path].
+      - Use [styling approach] for all UI; do not add new CSS frameworks.
+      - Keep functions small and typed; add tests in [test folder].
+      - Before large changes, outline the plan and list the files you will touch.
+      - Never remove existing features or change public URLs without asking.
+  - id: chatgpt
+    tool: ChatGPT
+    where: Project instructions or a GPT
+    kind: instructions field
+    steps:
+      - "Create a project in ChatGPT and open its instructions — or create a GPT and use the Instructions field when configuring it."
+      - "Paste the template and fill in the brackets. Upload reference files to the project or GPT if the assistant should answer from them."
+      - "Test it with three real requests and tighten the rules wherever an answer drifts."
+    snippet: |-
+      # Role
+      You are [role] for [business or team]. You help [who] with [main tasks].
+
+      # Context
+      [Products, services, audience and anything the assistant must always know.]
+
+      # Rules
+      - Use only the information in the uploaded files and this message for facts about [business].
+      - If you are unsure, say so and ask a question instead of guessing.
+      - Never invent prices, dates, names or results.
+
+      # Style
+      [Tone in three words.] Short paragraphs. Plain language.
+
+      # Output
+      [Default format — e.g. a short answer first, then details as a list.]
+  - id: claude
+    tool: Claude
+    where: Project instructions
+    kind: Claude Projects
+    steps:
+      - "In Claude, create a project and open its project instructions."
+      - "Paste the template — the XML-style tags help Claude keep the parts of your instructions apart."
+      - "Add your documents to the project knowledge so answers can be grounded in them."
+    snippet: |-
+      <role>
+      You are [role] for [business or team], helping [who] with [main tasks].
+      </role>
+
+      <context>
+      [Products, services, audience, and anything Claude must always know.]
+      </context>
+
+      <rules>
+      - Base facts about [business] only on the project documents.
+      - If something is missing, say so and ask one clear question.
+      - Do not invent prices, dates, names or results.
+      </rules>
+
+      <style>
+      [Tone in three words.] Short paragraphs, plain language.
+      </style>
+
+      <output_format>
+      [Default format — e.g. a two-line answer, then details as a list.]
+      </output_format>
+  - id: gemini
+    tool: Gemini
+    where: A Gem's instructions
+    kind: custom Gem
+    steps:
+      - "In Gemini, open the Gem manager and create a new Gem."
+      - "Paste the template into the Instructions field and give the Gem a clear name."
+      - "Use the preview to try a few real requests before you save it."
+    snippet: |-
+      Persona: You are [role] for [business or team].
+
+      Task: Help [who] to [main tasks]. When a request is unclear, ask one question before answering.
+
+      Context: [Products, services, audience and key facts.]
+
+      Rules:
+      - Use only the facts provided here or in attached files about [business].
+      - Say "I don't know" rather than guessing.
+      - No invented prices, dates or results.
+
+      Format: [Default format — e.g. a short summary followed by bullet points.]
+  - id: agents-md
+    tool: Codex & AGENTS.md
+    where: AGENTS.md
+    kind: file in the repository root
+    steps:
+      - "Create AGENTS.md in the root of your repository. OpenAI Codex reads it, and so do a growing number of other coding agents."
+      - "Describe the commands, conventions and checks the agent must follow."
+      - "Add another AGENTS.md inside a sub-folder when one part of the project has its own rules."
+    snippet: |-
+      # AGENTS.md
+
+      ## Setup
+      - Install dependencies: `[command]`
+      - Start the dev server: `[command]`
+
+      ## Tests and checks
+      - Run `[test command]` and `[lint command]` before you finish a task.
+      - All checks must pass; fix failures instead of skipping them.
+
+      ## Code style
+      - [Language and framework conventions]
+      - [Formatting tool and settings]
+
+      ## Boundaries
+      - Do not change [protected folders or files].
+      - Ask before adding dependencies or changing the database schema.
+  - id: builders
+    tool: Lovable · Bolt · v0
+    where: Project knowledge or first message
+    kind: AI website builders
+    steps:
+      - "Paste the brief into the project's knowledge or custom-instructions settings — the name differs by tool and changes between versions — or send it as the first message of a new project."
+      - "Ask for the section outline first and approve it before any code is generated."
+      - "Then build one section at a time, checking each on a phone-sized screen."
+    snippet: |-
+      PROJECT
+      A [type of website] for [business], which helps [audience] to [main outcome].
+
+      PAGES & SECTIONS
+      1. Home — hero with one clear call to action: "[CTA]".
+      2. [Section] — [purpose].
+      3. [Section] — [purpose].
+      4. Contact — form with name, email and message.
+
+      DESIGN
+      Colours [hex codes]. One display font and one body font. Generous spacing.
+      No stock-photo clichés, no gradients on every section.
+
+      CONTENT
+      Use only the text I provide. Mark anything you had to assume with [CHECK].
+
+      QUALITY
+      Mobile first, accessible contrast, visible focus states, fast-loading images.
+
+      Start by showing me the section outline — do not write code yet.

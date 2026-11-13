@@ -94,7 +94,7 @@ schema: blog
           <li><a href="{{ w.url }}" target="_blank" rel="noopener me">
             <span class="al-t">{{ w.title }}</span>
             <span class="al-x">{{ w.venue }} · {{ w.note }}</span>
-            <span class="al-go">Read on {{ w.venue }} <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></span>
+            <span class="al-go">Read on {{ w.venue }}<span class="sr-only"> (opens in a new tab)</span></span>
           </a></li>
           {%- endfor %}
           {%- for a in site.data.publications.academic %}

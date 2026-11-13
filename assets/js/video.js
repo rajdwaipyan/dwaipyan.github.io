@@ -25,7 +25,7 @@ export function initVideo() {
     dialog.querySelector(".vm-title").textContent = v.title;
     dialog.querySelector(".vm-desc").textContent = v.description || "";
     const ext = dialog.querySelector(".vm-ext");
-    ext.href = v.url; ext.textContent = `Watch on ${v.platform === "facebook" ? "Facebook" : "YouTube"} ↗`;
+    ext.href = v.url; ext.textContent = `Watch on ${v.platform === "facebook" ? "Facebook" : "YouTube"}`;
     frame.innerHTML = "";
     const iframe = document.createElement("iframe");
     iframe.src = v.embed;

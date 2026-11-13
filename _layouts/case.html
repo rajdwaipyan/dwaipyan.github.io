@@ -25,7 +25,7 @@ layout: default
           <div><dt>Where</dt><dd>{{ p.country }}</dd></div>
           <div><dt>What was built</dt><dd>{{ p.work }}</dd></div>
           <div><dt>Platform</dt><dd>{{ p.built_with | first }}</dd></div>
-          <div><dt>Live site</dt><dd>{% if p.url %}<a href="{{ p.url }}" target="_blank" rel="noopener">{{ domain }} <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>{% else %}Not public{% endif %}</dd></div>
+          <div><dt>Live site</dt><dd>{% if p.url %}<a href="{{ p.url }}" target="_blank" rel="noopener">{{ domain }}<span class="sr-only"> (opens in a new tab)</span></a>{% else %}Not public{% endif %}</dd></div>
         </dl>
         <figure class="case-shot">
           <div class="case-shot-frame{% unless p.images.desktop %} case-shot-tall{% endunless %}" data-clip>
@@ -48,7 +48,7 @@ layout: default
             <h2 id="brief-title">{{ p.brief }}</h2>
             <ul class="case-stack" aria-label="Built with">{% for t in p.built_with %}<li>{{ t }}</li>{% endfor %}</ul>
             {%- if p.url %}
-            <a class="btn btn-ink" href="{{ p.url }}" target="_blank" rel="noopener" data-magnetic>Visit {{ domain }} <span class="btn-arrow" aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+            <a class="btn btn-ink" href="{{ p.url }}" target="_blank" rel="noopener" data-magnetic>Visit {{ domain }}<span class="sr-only"> (opens in a new tab)</span></a>
             {%- endif %}
           </aside>
           <div class="case-blocks" data-stagger>

@@ -34,7 +34,7 @@ guide: false
           </dl>
           <div class="ph-cta">
             <a class="cta-solid ph-solid" href="#exhibition" data-magnetic="0.3">Enter the exhibition <span aria-hidden="true">↓</span></a>
-            <a class="cta-line" href="{{ ph.profile }}" target="_blank" rel="noopener me">Flickr profile <span aria-hidden="true">↗</span></a>
+            <a class="cta-line" href="{{ ph.profile }}" target="_blank" rel="noopener me">Flickr profile</a>
           </div>
         </div>
         <div class="ph-stage" role="group" aria-label="Featured photograph">
@@ -77,7 +77,7 @@ guide: false
             {%- if a.description != "" %}<p class="album-d">{{ a.description }}</p>{% endif %}
             <p class="album-actions">
               <button type="button" class="album-view" data-album="{{ a.id }}">View album <span aria-hidden="true">↓</span></button>
-              <a href="{{ a.flickr }}" target="_blank" rel="noopener">On Flickr <span aria-hidden="true">↗</span><span class="sr-only"> — {{ a.title }} (opens in a new tab)</span></a>
+              <a href="{{ a.flickr }}" target="_blank" rel="noopener">On Flickr<span class="sr-only"> — {{ a.title }} (opens in a new tab)</span></a>
             </p>
           </div>
         </li>
@@ -139,12 +139,12 @@ guide: false
         </header>
         <ul class="ph-more-grid" data-stagger>
           <li><a class="more-card mc-flickr" href="{{ ph.profile }}" target="_blank" rel="noopener me">
-            <span class="mc-k">Flickr</span><span class="mc-t">The full photostream</span><span class="mc-go">Open Flickr <span aria-hidden="true">↗</span></span>
+            <span class="mc-k">Flickr</span><span class="mc-t">The full photostream</span><span class="mc-go">Open Flickr</span>
           </a></li>
           {%- for f in ph.facebook %}
           <li><a class="more-card mc-fb" href="{{ f.url }}" target="_blank" rel="noopener">
             {%- if f.cover != "" %}<img src="../{{ f.cover }}" alt="" loading="lazy" decoding="async">{% endif %}
-            <span class="mc-k">Facebook album</span><span class="mc-t">{% if f.title != "" %}{{ f.title }}{% else %}Photo album {{ forloop.index }}{% endif %}</span><span class="mc-go">Open on Facebook <span aria-hidden="true">↗</span></span>
+            <span class="mc-k">Facebook album</span><span class="mc-t">{% if f.title != "" %}{{ f.title }}{% else %}Photo album {{ forloop.index }}{% endif %}</span><span class="mc-go">Open on Facebook</span>
           </a></li>
           {%- endfor %}
         </ul>
@@ -165,7 +165,7 @@ guide: false
         <button class="lb-btn lb-next" type="button" data-lb="next" aria-label="Next photograph"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg></button>
         <div class="lb-cap">
           <div><h2 class="lb-title" id="lb-title">Photograph</h2><p class="lb-album"></p></div>
-          <a class="lb-flickr" href="{{ ph.profile }}" target="_blank" rel="noopener">View on Flickr <span aria-hidden="true">↗</span></a>
+          <a class="lb-flickr" href="{{ ph.profile }}" target="_blank" rel="noopener">View on Flickr</a>
         </div>
       </div>
     </dialog>

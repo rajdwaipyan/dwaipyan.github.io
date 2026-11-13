@@ -1,8 +1,8 @@
 ---
 layout: default
 title: AI Prompt Engineering & AI Workflow Services | Dwaipyan Mandal
-og_title: AI Prompt Engineering & Intelligent AI Workflows — Dwaipyan Mandal
-description: Custom AI prompts, agent instructions and AI workflows for ChatGPT, Claude, Gemini, Claude Code, Cursor and more — engineered, tested and documented by Dwaipyan Mandal. Packages from $49.
+og_title: AI Prompt Engineering, Prompt Libraries & AI Workflows — Dwaipyan Mandal
+description: Custom AI prompts, prompt libraries, agent instructions and AI workflows for ChatGPT, Claude, Gemini, Claude Code, Cursor and more. Browse and copy free prompts, build your own, and see packages from $49.
 root: "../"
 nav: ai
 crumb: AI Prompt Engineering
@@ -10,6 +10,7 @@ schema: page
 guide: false
 ---
 {%- assign ai = site.data.ai_services -%}
+{%- assign lib = site.data.prompt_library -%}
 {%- assign wa = site.data.social.whatsapp -%}
 {%- capture mail -%}mailto:rajdwaipayan@gmail.com{%- endcapture -%}
     <!-- HERO — the headline on the left, a live prompt console on the right -->
@@ -18,14 +19,18 @@ guide: false
       <div class="container ai-hero-grid">
         <div class="ai-hero-copy">
           <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Home</a><span aria-hidden="true">/</span><span aria-current="page">AI Prompt Engineering</span></nav>
-          <p class="ai-k"><span class="ai-k-dot" aria-hidden="true"></span>Service · AI Prompt Engineering &amp; Workflows</p>
+          <p class="ai-k"><span class="ai-k-dot" aria-hidden="true"></span>Prompts · Agents · AI workflows</p>
           <h1 class="ai-mast" id="page-title" data-split>Stop guessing. <em>Start engineering</em> better AI.</h1>
-          <p class="ai-lede">Custom AI prompts, intelligent instruction systems and workflow-ready solutions designed to turn AI from a generic assistant into a practical business advantage.</p>
+          <p class="ai-lede">Custom prompts, instruction systems and AI workflows that turn a generic assistant into a dependable part of how your business works.</p>
           <div class="ai-cta">
-            <a class="ai-btn ai-btn-solid" href="#services" data-magnetic="0.3">Explore services <span aria-hidden="true">↓</span></a>
-            <a class="ai-btn ai-btn-line" href="#start" data-magnetic="0.2">Discuss your project</a>
+            <a class="ai-btn ai-btn-solid" href="#library" data-magnetic="0.3">Browse free prompts</a>
+            <a class="ai-btn ai-btn-line" href="#pricing" data-magnetic="0.2">See packages</a>
           </div>
-          <p class="ai-for">For founders, agencies, developers, marketing teams and organisations adopting AI.</p>
+          <dl class="ai-hero-facts">
+            <div><dt>Free prompts</dt><dd>{{ lib.prompts.size }}</dd></div>
+            <div><dt>Services</dt><dd>{{ ai.services.size }}</dd></div>
+            <div><dt>Packages from</dt><dd>${{ ai.packages[0].price }}</dd></div>
+          </dl>
         </div>
 
         <!-- the console: plays Input → Engineer → Structure → Output; the tabs can be used directly -->
@@ -33,7 +38,7 @@ guide: false
           <div class="console-bar">
             <span class="cb-dots" aria-hidden="true"><i></i><i></i><i></i></span>
             <span class="cb-title">prompt.engineer</span>
-            <span class="cb-live" aria-hidden="true">live</span>
+            <span class="cb-live" aria-hidden="true">demo</span>
           </div>
           <div class="console-tabs" role="tablist" aria-label="How a prompt is engineered">
             <button type="button" role="tab" id="ct-1" aria-controls="cp-1" aria-selected="true" tabindex="0"><span>01</span>Input</button>
@@ -86,25 +91,46 @@ guide: false
       </div>
     </section>
 
-    <!-- WORKS WITH — names only; no partnership is implied -->
+    <!-- WORKS WITH — a moving band of tool names; names only, no partnership implied -->
     <section class="ai-tools" aria-labelledby="tools-title">
-      <div class="container ai-tools-row">
-        <p class="ai-tools-k" id="tools-title">Prompts &amp; instructions for</p>
-        <ul class="ai-tool-list">
-          {%- for t in ai.tools %}<li>{{ t }}</li>{% endfor %}
+      <div class="container ai-tools-head">
+        <h2 class="ai-tools-k" id="tools-title">Prompts &amp; instructions written for</h2>
+        <p class="ai-tools-note">Independent service — not affiliated with or endorsed by these companies.</p>
+      </div>
+      <div class="mq mq-tools" data-marquee>
+        <ul class="mq-track">
+          {%- for t in ai.tools %}<li>{{ t }}</li>{% endfor -%}
+        </ul>
+        <ul class="mq-track" aria-hidden="true">
+          {%- for t in ai.tools %}<li>{{ t }}</li>{% endfor -%}
         </ul>
       </div>
-      <p class="container ai-tools-note">Independent service — not affiliated with or endorsed by these companies.</p>
     </section>
 
-    <!-- SERVICES — browse the five services; each shows what's included and where it starts -->
+    <!-- ON THIS PAGE — sticky section index; the current section is marked as you scroll -->
+    <nav class="ai-sub" aria-label="On this page" data-subnav>
+      <div class="container ai-sub-in">
+        <ul class="ai-sub-links">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#library">Prompt library</a></li>
+          <li><a href="#try">Builder</a></li>
+          <li><a href="#setup">Setup</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <a class="ai-sub-cta" href="#start">Get a quote</a>
+      </div>
+    </nav>
+
+    <!-- SERVICES — browse the seven services; each shows what's included, where it starts and related free prompts -->
     <section class="section ai-services" id="services" aria-labelledby="services-title">
       <div class="container">
         <header class="section-head section-head-row">
           <div>
             <p class="kicker"><span>01</span> Services</p>
-            <h2 class="section-title" id="services-title">Five ways to get <em>more from AI.</em></h2>
+            <h2 class="section-title" id="services-title">Seven ways to get <em>more from AI.</em></h2>
           </div>
+          <p class="ai-head-note">From a single prompt that behaves, to a documented AI system your whole team uses.</p>
         </header>
         <div class="svc" data-svc>
           <div class="svc-list" role="tablist" aria-label="Services" aria-orientation="vertical">
@@ -112,7 +138,6 @@ guide: false
             <button type="button" role="tab" id="st-{{ s.id }}" aria-controls="sp-{{ s.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}">
               <span class="svc-l">{{ s.letter }}</span>
               <span class="svc-t">{{ s.title }}</span>
-              <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
             </button>
             {%- endfor %}
           </div>
@@ -126,7 +151,10 @@ guide: false
               <ul class="svc-items">{% for i in s.items %}<li>{{ i }}</li>{% endfor %}</ul>
               <div class="svc-foot">
                 <p><span class="svc-fk">You receive</span>{{ s.deliver }}</p>
-                <a class="svc-price" href="#pricing">From ${{ pk.price }}{% if pk.plus %}+{% endif %} <span aria-hidden="true">→</span><span class="sr-only"> — see the {{ pk.name }} package</span></a>
+                <div class="svc-acts">
+                  <a class="svc-price" href="#pricing" data-pick="{{ pk.id }}">From ${{ pk.price }}{% if pk.plus %}+{% endif %}<span class="sr-only"> — the {{ pk.name }} package</span></a>
+                  <a class="svc-lib" href="#library" data-lib-cat="{{ s.lib }}">Related free prompts</a>
+                </div>
               </div>
             </div>
             {%- endfor %}
@@ -135,38 +163,294 @@ guide: false
       </div>
     </section>
 
-    <!-- DEMONSTRATION — an ordinary instruction next to an engineered one; runs entirely in the browser -->
-    <section class="section ai-demo" id="demo" data-room="night" aria-labelledby="demo-title">
+    <!-- PROMPT LIBRARY — free prompts: search, filter by category and tool, sort, open, copy or download -->
+    <section class="ai-lib" id="library" data-room="night" aria-labelledby="lib-title">
+      <div class="container lib-intro">
+        <p class="kicker kicker-light"><span>02</span> Prompt library</p>
+        <h2 class="lib-mast" id="lib-title" data-split>{{ lib.prompts.size }} prompts. <em>Free to copy.</em></h2>
+        <p class="lib-lede">Tested structures for websites, coding assistants, agents, marketing, support, research and operations. Open one, fill in the [brackets], use it.</p>
+      </div>
+
+      <!-- two rows that drift in opposite directions; every item opens its prompt -->
+      {%- assign half = lib.prompts.size | divided_by: 2 %}
+      <div class="lib-rows" aria-label="Featured prompts">
+        {%- for row in (1..2) %}
+        <div class="mq mq-cards{% if row == 2 %} mq-rev{% endif %}" data-marquee>
+          {%- for copy in (1..2) %}
+          <ul class="mq-track"{% if copy == 2 %} aria-hidden="true"{% endif %}>
+            {%- if row == 1 %}{% assign set = lib.prompts | slice: 0, half %}{% else %}{% assign set = lib.prompts | slice: half, 99 %}{% endif %}
+            {%- for p in set %}
+            {%- for c in lib.categories %}{% if c.id == p.category %}{% assign cl = c.label %}{% endif %}{% endfor %}
+            <li><button type="button" class="mq-card" data-open="{{ p.id }}"{% if copy == 2 %} tabindex="-1"{% endif %}><span class="mq-cat">{{ cl }}</span><span class="mq-t">{{ p.title }}</span><span class="mq-tools">{{ p.tools | join: " · " }}</span></button></li>
+            {%- endfor %}
+          </ul>
+          {%- endfor %}
+        </div>
+        {%- endfor %}
+      </div>
+
+      <div class="container">
+        <div class="lib" data-lib>
+          <aside class="lib-side" aria-label="Categories">
+            <p class="lib-side-k">Browse</p>
+            <ul class="lib-cats">
+              <li><button type="button" data-cat="all" aria-pressed="true"><span>All prompts</span><span class="lib-n">{{ lib.prompts.size }}</span></button></li>
+              {%- for c in lib.categories %}
+              {%- assign n = 0 %}{% for p in lib.prompts %}{% if p.category == c.id %}{% assign n = n | plus: 1 %}{% endif %}{% endfor %}
+              <li><button type="button" data-cat="{{ c.id }}" aria-pressed="false"><span>{{ c.label }}</span><span class="lib-n">{{ n }}</span></button></li>
+              {%- endfor %}
+            </ul>
+          </aside>
+
+          <div class="lib-main">
+            <div class="lib-bar">
+              <div class="lib-search">
+                <label class="sr-only" for="lib-q">Search prompts</label>
+                <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4.5 4.5"/></svg>
+                <input id="lib-q" type="search" placeholder="Search prompts" autocomplete="off" spellcheck="false">
+                <kbd aria-hidden="true">/</kbd>
+              </div>
+              <div class="lib-selects">
+                <label class="lib-sel"><span>Tool</span>
+                  <select id="lib-tool">
+                    <option value="">Any tool</option>
+                    {%- assign alltools = "" | split: "" %}{% for p in lib.prompts %}{% assign alltools = alltools | concat: p.tools %}{% endfor %}
+                    {%- assign alltools = alltools | uniq | sort %}
+                    {%- for t in alltools %}<option value="{{ t }}">{{ t }}</option>{% endfor %}
+                  </select>
+                </label>
+                <label class="lib-sel"><span>Sort</span>
+                  <select id="lib-sort">
+                    <option value="order">Featured</option>
+                    <option value="az">A–Z</option>
+                    <option value="short">Shortest first</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+            <p class="lib-count" id="lib-count" role="status" aria-live="polite">Showing all {{ lib.prompts.size }} prompts</p>
+
+            <ul class="lib-grid" id="lib-grid">
+              {%- for p in lib.prompts %}
+              {%- for c in lib.categories %}{% if c.id == p.category %}{% assign cl = c.label %}{% endif %}{% endfor %}
+              {%- assign lines = p.prompt | newline_to_br | split: '<br />' %}
+              <li class="lib-card" data-id="{{ p.id }}" data-cat="{{ p.category }}" data-tools="{{ p.tools | join: '|' }}" data-order="{{ forloop.index }}" data-len="{{ p.prompt | size }}">
+                <p class="lib-card-cat">{{ cl }}</p>
+                <h3 class="lib-card-t"><button type="button" class="lib-open" data-open="{{ p.id }}">{{ p.title }}</button></h3>
+                <p class="lib-card-sum">{{ p.summary }}</p>
+                <pre class="lib-peek" aria-hidden="true">{% for l in lines limit: 4 %}{{ l | strip | escape }}
+{% endfor %}</pre>
+                <div class="lib-card-foot">
+                  <p class="lib-card-tools">{{ p.tools | join: " · " }}</p>
+                  <button type="button" class="lib-copy" data-copy-id="{{ p.id }}">Copy<span class="sr-only"> the “{{ p.title }}” prompt</span></button>
+                </div>
+              </li>
+              {%- endfor %}
+            </ul>
+            <div class="lib-empty" id="lib-empty" hidden>
+              <p>No prompt matches that search.</p>
+              <button type="button" class="ai-btn ai-btn-line" id="lib-reset">Clear search and filters</button>
+            </div>
+            <p class="lib-status" id="lib-status" role="status" aria-live="polite"></p>
+            <noscript><p class="lib-noscript">Opening, copying and filtering prompts needs JavaScript. You can still read every prompt title above and ask for any of them by email.</p></noscript>
+          </div>
+        </div>
+        <p class="lib-note">Free demonstration resources, not client work. A well-structured prompt makes answers more consistent; it does not make an AI model infallible — always check the output.</p>
+      </div>
+
+      <script type="application/json" id="lib-data">{{ lib.prompts | jsonify }}</script>
+    </section>
+
+    <!-- the prompt viewer (a native modal dialog) -->
+    <dialog class="lib-dlg" id="lib-dlg" aria-labelledby="dlg-title" data-lenis-prevent>
+      <div class="dlg-in">
+        <header class="dlg-head">
+          <div>
+            <p class="dlg-cat" id="dlg-cat"></p>
+            <h2 class="dlg-title" id="dlg-title">Prompt</h2>
+            <p class="dlg-sum" id="dlg-sum"></p>
+            <p class="dlg-tools" id="dlg-tools"></p>
+          </div>
+          <button type="button" class="dlg-x" data-close>Close<span class="sr-only"> the prompt</span></button>
+        </header>
+        <div class="dlg-bar">
+          <p class="dlg-hint"><mark>[Highlighted]</mark> parts are yours to fill in.</p>
+          <div class="dlg-acts">
+            <button type="button" class="dlg-btn dlg-btn-solid" id="dlg-copy">Copy prompt</button>
+            <button type="button" class="dlg-btn" id="dlg-dl">Download .txt</button>
+          </div>
+        </div>
+        <pre class="dlg-code" id="dlg-code" tabindex="0"></pre>
+        <footer class="dlg-foot">
+          <div class="dlg-nav">
+            <button type="button" class="dlg-btn" id="dlg-prev">Previous</button>
+            <span class="dlg-pos" id="dlg-pos"></span>
+            <button type="button" class="dlg-btn" id="dlg-next">Next</button>
+          </div>
+          <a class="dlg-ask" id="dlg-ask" href="#start">Ask for a version tailored to you</a>
+        </footer>
+        <p class="sr-only" id="dlg-status" role="status" aria-live="polite"></p>
+      </div>
+    </dialog>
+
+    <!-- TRY IT — two ways to start: build a prompt from a few answers, or compare a basic and an engineered one -->
+    <section class="section ai-try" id="try" aria-labelledby="try-title">
       <div class="container">
         <header class="section-head section-head-row">
           <div>
-            <p class="kicker kicker-light"><span>02</span> See the difference</p>
-            <h2 class="section-title" id="demo-title">From one line <em>to a real brief.</em></h2>
+            <p class="kicker"><span>03</span> Try it</p>
+            <h2 class="section-title" id="try-title">Two ways <em>to start.</em></h2>
           </div>
+          <div class="try-tabs" role="tablist" aria-label="Choose a tool">
+            <button type="button" role="tab" id="tt-build" aria-controls="tp-build" aria-selected="true" tabindex="0">Prompt builder</button>
+            <button type="button" role="tab" id="tt-demo" aria-controls="tp-demo" aria-selected="false" tabindex="-1">Before &amp; after</button>
+          </div>
+        </header>
+
+        <!-- the builder: every change rewrites the prompt on the right; it runs in your browser and sends nothing -->
+        <div class="try-panel" role="tabpanel" id="tp-build" aria-labelledby="tt-build">
+          <div class="bld" data-bld>
+            <div class="bld-form" id="bld-form" role="group" aria-label="Prompt details">
+              <div class="bld-row bld-row-wide">
+                <label for="bld-task">What should the AI do?</label>
+                <textarea id="bld-task" name="task" rows="3" placeholder="e.g. Write a welcome email for new customers of my bakery"></textarea>
+              </div>
+              <div class="bld-row">
+                <label for="bld-tool">Where will you use it?</label>
+                <select id="bld-tool" name="tool">
+                  <option value="generic">Any assistant</option>
+                  <option value="chatgpt">ChatGPT</option>
+                  <option value="claude">Claude</option>
+                  <option value="gemini">Gemini</option>
+                  <option value="code">Claude Code / Cursor / Codex</option>
+                  <option value="builder">Lovable / Bolt / v0</option>
+                </select>
+              </div>
+              <div class="bld-row">
+                <label for="bld-role">Role for the AI</label>
+                <input id="bld-role" name="role" type="text" placeholder="e.g. friendly email copywriter" autocomplete="off">
+              </div>
+              <div class="bld-row">
+                <label for="bld-aud">Who is it for?</label>
+                <input id="bld-aud" name="audience" type="text" placeholder="e.g. first-time customers" autocomplete="off">
+              </div>
+              <div class="bld-row">
+                <label for="bld-tone">Tone</label>
+                <select id="bld-tone" name="tone">
+                  <option value="plain">Plain and direct</option>
+                  <option value="friendly">Warm and friendly</option>
+                  <option value="formal">Formal and precise</option>
+                  <option value="persuasive">Persuasive, no hype</option>
+                </select>
+              </div>
+              <div class="bld-row bld-row-wide">
+                <label for="bld-ctx">Background the AI needs <span class="bld-opt">optional</span></label>
+                <textarea id="bld-ctx" name="context" rows="2" placeholder="Facts, products, links, data — anything it must not guess"></textarea>
+              </div>
+              <div class="bld-row">
+                <label for="bld-fmt">Output format</label>
+                <select id="bld-fmt" name="format">
+                  <option value="short">A short paragraph</option>
+                  <option value="bullets">A bulleted list</option>
+                  <option value="steps">Numbered steps</option>
+                  <option value="table">A table</option>
+                  <option value="email">An email with a subject line</option>
+                  <option value="json">JSON</option>
+                  <option value="code">Code with brief comments</option>
+                </select>
+              </div>
+              <div class="bld-row">
+                <label for="bld-len">Length limit in words <span class="bld-opt">optional</span></label>
+                <input id="bld-len" name="length" type="number" min="10" max="5000" step="10" inputmode="numeric" placeholder="e.g. 150">
+              </div>
+              <fieldset class="bld-row bld-row-wide bld-checks">
+                <legend>Rules</legend>
+                <label><input type="checkbox" name="ask" checked> Ask me questions first if anything is unclear</label>
+                <label><input type="checkbox" name="noguess" checked> Say “not found” instead of guessing</label>
+                <label><input type="checkbox" name="mark" checked> Mark assumptions with [CHECK]</label>
+                <label><input type="checkbox" name="cite"> Cite a source for every fact</label>
+              </fieldset>
+            </div>
+
+            <div class="bld-out">
+              <div class="bld-out-bar">
+                <p class="bld-out-k">Your prompt <span id="bld-meta"></span></p>
+                <div class="bld-out-acts">
+                  <button type="button" class="dlg-btn dlg-btn-solid" id="bld-copy">Copy</button>
+                  <button type="button" class="dlg-btn" id="bld-reset">Reset</button>
+                </div>
+              </div>
+              <pre class="bld-code" id="bld-code" tabindex="0" data-lenis-prevent></pre>
+              <div class="bld-out-foot">
+                <p>Built in your browser from a template — no AI is called and nothing is sent anywhere.</p>
+                <a class="bld-send" id="bld-send" href="#start">Ask me to engineer and test it properly</a>
+              </div>
+              <p class="sr-only" id="bld-status" role="status" aria-live="polite"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- before & after -->
+        <div class="try-panel" role="tabpanel" id="tp-demo" aria-labelledby="tt-demo" hidden>
           <div class="demo-pick" role="group" aria-label="Choose an example">
             {%- for d in ai.demos %}<button type="button" data-demo="{{ d.id }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}">{{ d.label }}</button>{% endfor %}
           </div>
-        </header>
-        {%- for d in ai.demos %}
-        <div class="demo" data-demo-panel="{{ d.id }}"{% unless forloop.first %} hidden{% endunless %}>
-          <div class="demo-basic">
-            <p class="demo-k">Basic instruction</p>
-            <p class="demo-basic-t">“{{ d.basic }}”</p>
-            <ul class="demo-miss" aria-label="What it leaves out">
-              <li>No audience</li><li>No context</li><li>No constraints</li><li>No output format</li>
-            </ul>
-            <p class="demo-arrow" aria-hidden="true">→</p>
-          </div>
-          <div class="demo-eng">
-            <div class="demo-eng-bar">
-              <p class="demo-k">Engineered prompt</p>
-              <button class="demo-copy" type="button" data-copy="#demo-text-{{ d.id }}"><span class="dc-idle">Copy prompt</span><span class="dc-done" hidden>Copied</span></button>
+          {%- for d in ai.demos %}
+          <div class="demo" data-demo-panel="{{ d.id }}"{% unless forloop.first %} hidden{% endunless %}>
+            <div class="demo-basic">
+              <p class="demo-k">Basic instruction</p>
+              <p class="demo-basic-t">“{{ d.basic }}”</p>
+              <ul class="demo-miss" aria-label="What it leaves out">
+                <li>No audience</li><li>No context</li><li>No constraints</li><li>No output format</li>
+              </ul>
             </div>
-            <pre class="demo-code" id="demo-text-{{ d.id }}" tabindex="0" data-lenis-prevent>{{ d.engineered | escape }}</pre>
+            <div class="demo-eng">
+              <div class="demo-eng-bar">
+                <p class="demo-k">Engineered prompt</p>
+                <button class="dlg-btn" type="button" data-copy-from="#demo-text-{{ d.id }}">Copy prompt</button>
+              </div>
+              <pre class="demo-code" id="demo-text-{{ d.id }}" tabindex="0" data-lenis-prevent>{{ d.engineered | escape }}</pre>
+            </div>
           </div>
+          {%- endfor %}
+          <p class="demo-note">Examples of the method — replace the [brackets] with your own details.</p>
+          <p class="sr-only" id="demo-status" role="status" aria-live="polite"></p>
         </div>
-        {%- endfor %}
-        <p class="demo-note">Examples to show the method — replace the [brackets] with your own details. A good prompt makes results more consistent; it does not make an AI model infallible.</p>
+      </div>
+    </section>
+
+    <!-- SETUP — where instructions go in each tool, with a template to copy -->
+    <section class="section ai-setup" id="setup" data-room="night" aria-labelledby="setup-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="kicker kicker-light"><span>04</span> Use it in your tool</p>
+          <h2 class="section-title" id="setup-title">One brief. <em>Wherever you work.</em></h2>
+          <p class="section-intro">Every tool keeps its standing instructions somewhere different. Pick yours, copy the template, fill in the brackets.</p>
+        </header>
+        <div class="setup" data-setup>
+          <div class="setup-tabs" role="tablist" aria-label="AI tools">
+            {%- for t in ai.setup %}
+            <button type="button" role="tab" id="su-{{ t.id }}" aria-controls="sx-{{ t.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}">{{ t.tool }}</button>
+            {%- endfor %}
+          </div>
+          {%- for t in ai.setup %}
+          <div class="setup-panel" role="tabpanel" id="sx-{{ t.id }}" aria-labelledby="su-{{ t.id }}"{% unless forloop.first %} hidden{% endunless %}>
+            <div class="setup-how">
+              <p class="setup-where"><span>Goes in</span><code>{{ t.where }}</code><small>{{ t.kind }}</small></p>
+              <ol class="setup-steps">{% for s in t.steps %}<li>{{ s }}</li>{% endfor %}</ol>
+            </div>
+            <div class="setup-code">
+              <div class="setup-code-bar">
+                <p>{{ t.where }}</p>
+                <button type="button" class="dlg-btn" data-copy-from="#sc-{{ t.id }}">Copy template</button>
+              </div>
+              <pre id="sc-{{ t.id }}" tabindex="0" data-lenis-prevent>{{ t.snippet | escape }}</pre>
+            </div>
+          </div>
+          {%- endfor %}
+          <p class="sr-only" id="setup-status" role="status" aria-live="polite"></p>
+        </div>
+        <p class="setup-note">Menus and setting names change between versions of these products; if a step doesn't match what you see, look for the tool's “instructions”, “rules” or “knowledge” setting.</p>
       </div>
     </section>
 
@@ -174,7 +458,7 @@ guide: false
     <section class="section ai-process" aria-labelledby="process-title">
       <div class="container">
         <header class="section-head">
-          <p class="kicker"><span>03</span> How it works</p>
+          <p class="kicker"><span>05</span> How it works</p>
           <h2 class="section-title" id="process-title">Four steps, <em>no guesswork.</em></h2>
         </header>
         <ol class="steps" data-steps>
@@ -185,63 +469,108 @@ guide: false
       </div>
     </section>
 
-    <!-- PRICING -->
+    <!-- PRICING — packages or a comparison table, a three-question package finder, and a custom quote -->
     <section class="section ai-pricing" id="pricing" aria-labelledby="pricing-title">
       <div class="container">
         <header class="section-head section-head-row">
           <div>
-            <p class="kicker"><span>04</span> Pricing</p>
+            <p class="kicker"><span>06</span> Pricing</p>
             <h2 class="section-title" id="pricing-title">Clear starting prices. <em>A fixed quote before we begin.</em></h2>
           </div>
+          <div class="price-view" role="group" aria-label="Show pricing as">
+            <button type="button" data-view="cards" aria-pressed="true">Packages</button>
+            <button type="button" data-view="table" aria-pressed="false">Compare</button>
+          </div>
         </header>
-        <ul class="price-grid" data-stagger>
-          {%- for p in ai.packages %}
-          <li class="price{% if p.recommended %} price-rec{% endif %}">
-            {%- if p.recommended %}<p class="price-flag">Recommended</p>{% endif %}
-            <h3 class="price-name">{{ p.name }}</h3>
-            <p class="price-for">{{ p.fit }}</p>
-            <p class="price-amt"><span class="price-from">Starting at</span><span class="price-n"><sup>$</sup>{{ p.price }}{% if p.plus %}<span class="price-plus">+</span>{% endif %}</span><span class="price-cur">{{ ai.currency }}</span></p>
-            <ul class="price-items">{% for i in p.items %}<li>{{ i }}</li>{% endfor %}</ul>
-            {%- capture subj %}AI prompt engineering — {{ p.name }}{% endcapture %}
-            <a class="price-cta" href="{{ mail }}?subject={{ subj | url_encode | replace: '+', '%20' }}" data-magnetic="0.15">Start with this package <span aria-hidden="true">→</span></a>
-          </li>
-          {%- endfor %}
-        </ul>
+
+        <div class="price-views" data-price>
+          <ul class="price-grid" data-view-panel="cards">
+            {%- for p in ai.packages %}
+            <li class="price{% if p.recommended %} price-rec{% endif %}" data-pkg="{{ p.id }}">
+              {%- if p.recommended %}<p class="price-flag">Recommended</p>{% endif %}
+              <h3 class="price-name">{{ p.name }}</h3>
+              <p class="price-for">{{ p.fit }}</p>
+              <p class="price-amt"><span class="price-from">Starting at</span><span class="price-n"><sup>$</sup>{{ p.price }}{% if p.plus %}<span class="price-plus">+</span>{% endif %}</span><span class="price-cur">{{ ai.currency }}</span></p>
+              <ul class="price-items">{% for i in p.items %}<li>{{ i }}</li>{% endfor %}</ul>
+              <a class="price-cta" href="#start" data-pick="{{ p.id }}">Start with this package<span class="sr-only"> — {{ p.name }}</span></a>
+            </li>
+            {%- endfor %}
+          </ul>
+
+          <div class="price-table-wrap" data-view-panel="table" hidden>
+            <table class="price-table">
+              <caption class="sr-only">Packages compared</caption>
+              <thead>
+                <tr><th scope="col"><span class="sr-only">Detail</span></th>{% for p in ai.packages %}<th scope="col"{% if p.recommended %} class="pt-rec"{% endif %}>{{ p.name }}{% if p.recommended %}<span class="pt-flag">Recommended</span>{% endif %}</th>{% endfor %}</tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Starting at</th>{% for p in ai.packages %}<td class="pt-price{% if p.recommended %} pt-rec{% endif %}">${{ p.price }}{% if p.plus %}+{% endif %}</td>{% endfor %}</tr>
+                <tr><th scope="row">Best when</th>{% for p in ai.packages %}<td{% if p.recommended %} class="pt-rec"{% endif %}>{{ p.fit }}</td>{% endfor %}</tr>
+                <tr><th scope="row">Scope</th>{% for p in ai.packages %}<td{% if p.recommended %} class="pt-rec"{% endif %}>{{ p.items[0] }}</td>{% endfor %}</tr>
+                <tr><th scope="row">Also included</th>{% for p in ai.packages %}<td{% if p.recommended %} class="pt-rec"{% endif %}><ul>{% for i in p.items offset: 1 %}<li>{{ i }}</li>{% endfor %}</ul></td>{% endfor %}</tr>
+                <tr><th scope="row"><span class="sr-only">Choose</span></th>{% for p in ai.packages %}<td{% if p.recommended %} class="pt-rec"{% endif %}><a class="pt-cta" href="#start" data-pick="{{ p.id }}">Choose<span class="sr-only"> {{ p.name }}</span></a></td>{% endfor %}</tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- three yes/no questions point to a package; nothing is stored -->
+        <div class="finder" id="finder" role="group" aria-labelledby="finder-title">
+          <div class="finder-q">
+            <h3 class="finder-title" id="finder-title">Not sure which? <em>Three questions.</em></h3>
+            {%- assign qs = "Do you already have prompts you want to improve?|Do you need an AI agent or a multi-step workflow?|Is it for a whole team or several departments?" | split: "|" %}
+            {%- for q in qs %}
+            <fieldset class="finder-row">
+              <legend>{{ q }}</legend>
+              <label><input type="radio" name="q{{ forloop.index }}" value="yes"><span>Yes</span></label>
+              <label><input type="radio" name="q{{ forloop.index }}" value="no"><span>No</span></label>
+            </fieldset>
+            {%- endfor %}
+          </div>
+          <div class="finder-out" aria-live="polite">
+            <p class="finder-k">Suggested package</p>
+            <p class="finder-name" id="finder-name">Answer the questions</p>
+            <p class="finder-why" id="finder-why">The suggestion appears as you answer. It is only a starting point — the quote is based on what you actually need.</p>
+            <a class="ai-btn ai-btn-solid" id="finder-go" href="#start" hidden>Start with this package</a>
+          </div>
+        </div>
+
         <div class="price-custom">
           <div>
             <h3>Larger project or team rollout?</h3>
             <p>Many prompts, several departments or an agent with its own tools — describe it and get a custom quotation.</p>
           </div>
-          <a class="ai-btn ai-btn-ink" href="{{ mail }}?subject={{ 'AI prompt engineering — custom quotation' | url_encode | replace: '+', '%20' }}">Request a custom quote</a>
+          <a class="ai-btn ai-btn-ink" href="#start" data-pick="custom-quote">Request a custom quote</a>
         </div>
-        <p class="price-note">All prices are starting prices in US dollars. Scope, number of revisions and timing are agreed in writing before work begins.</p>
+        <p class="price-note">All prices are starting prices in US dollars. Scope, number of revisions and timing are agreed in writing before work begins. There is no online checkout — nothing is charged on this website.</p>
       </div>
     </section>
 
-    <!-- USE CASES — demonstrations, not client projects -->
+    <!-- USE CASES — demonstrations, not client projects; an editorial index rather than cards -->
     <section class="section ai-uses" aria-labelledby="uses-title">
       <div class="container">
         <header class="section-head section-head-row">
           <div>
-            <p class="kicker"><span>05</span> Use cases</p>
+            <p class="kicker"><span>07</span> Use cases</p>
             <h2 class="section-title" id="uses-title">Where engineered prompts <em>earn their keep.</em></h2>
           </div>
           <p class="uses-label">Demonstration scenarios — not client projects</p>
         </header>
-        <ul class="use-grid" data-stagger>
+        <ol class="use-list" data-stagger>
           {%- for u in ai.uses %}
-          <li class="use"><span class="use-tag">{{ u.tag }}</span><h3>{{ u.title }}</h3><p>{{ u.text }}</p></li>
+          <li class="use"><span class="use-n">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span><h3>{{ u.title }}</h3><p>{{ u.text }}</p><span class="use-tag">{{ u.tag }}</span></li>
           {%- endfor %}
-        </ul>
+        </ol>
       </div>
     </section>
 
     <!-- FAQ -->
-    <section class="section ai-faq" aria-labelledby="faq-title">
+    <section class="section ai-faq" id="faq" aria-labelledby="faq-title">
       <div class="container ai-faq-grid">
         <header class="section-head">
-          <p class="kicker"><span>06</span> Questions</p>
+          <p class="kicker"><span>08</span> Questions</p>
           <h2 class="section-title" id="faq-title">Before you <em>ask.</em></h2>
+          <p class="faq-side">Still unsure? <a href="#start">Send a question</a> — it goes straight to my inbox.</p>
         </header>
         <div class="faq">
           {%- for f in ai.faq %}
@@ -254,17 +583,58 @@ guide: false
       </div>
     </section>
 
-    <!-- FINAL CTA — existing contact details only -->
+    <!-- CONTACT — composes an email or WhatsApp message; no backend, so nothing is sent from this page -->
     <section class="ai-final" id="start" data-room="night" aria-labelledby="start-title">
-      <div class="container">
-        <p class="ai-k"><span class="ai-k-dot" aria-hidden="true"></span>Start a project</p>
-        <h2 class="ai-final-t" id="start-title" data-split>Have an AI idea? <em>Let's engineer the right instructions.</em></h2>
-        <div class="ai-final-cta">
-          <a class="ai-btn ai-btn-solid" href="../#contact" data-magnetic="0.3">Start a project <span aria-hidden="true">→</span></a>
-          <a class="ai-btn ai-btn-wa" href="https://wa.me/{{ wa.number }}?text={{ 'Hello Dwaipyan, I would like to discuss an AI prompt engineering project:' | url_encode | replace: '+', '%20' }}" target="_blank" rel="noopener" data-magnetic="0.2">WhatsApp</a>
-          <a class="ai-btn ai-btn-line" href="{{ mail }}?subject={{ 'AI prompt engineering project' | url_encode | replace: '+', '%20' }}" data-magnetic="0.2">Email</a>
+      <div class="container ai-final-grid">
+        <div class="ai-final-copy">
+          <p class="ai-k"><span class="ai-k-dot" aria-hidden="true"></span>Start a project</p>
+          <h2 class="ai-final-t" id="start-title" data-split>Have an AI idea? <em>Let's engineer the right instructions.</em></h2>
+          <ol class="ai-next">
+            <li><b>You write</b> what the AI should do, the tool you use and an example of the result you want.</li>
+            <li><b>I reply</b> with questions or a fixed quote, agreed in writing.</li>
+            <li><b>You receive</b> tested, documented prompts and the notes to keep improving them.</li>
+          </ol>
+          <ul class="ai-direct">
+            <li><span>Email</span><a href="{{ mail }}?subject={{ 'AI prompt engineering project' | url_encode | replace: '+', '%20' }}">rajdwaipayan@gmail.com</a></li>
+            <li><span>WhatsApp</span><a href="https://wa.me/{{ wa.number }}?text={{ 'Hello Dwaipyan, I would like to discuss an AI prompt engineering project:' | url_encode | replace: '+', '%20' }}" target="_blank" rel="noopener">{{ wa.display }}<span class="sr-only"> (opens in a new tab)</span></a></li>
+            <li><span>Based in</span>Dhaka, Bangladesh — working with clients worldwide</li>
+          </ul>
         </div>
-        <p class="ai-final-meta">rajdwaipayan@gmail.com · WhatsApp {{ wa.display }} · Dhaka, Bangladesh — working with clients worldwide</p>
+
+        <form class="enq" id="enq" novalidate aria-describedby="enq-note">
+          <div class="enq-row">
+            <label for="enq-name">Your name</label>
+            <input id="enq-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="enq-row">
+            <label for="enq-pkg">Package</label>
+            <select id="enq-pkg" name="package">
+              <option value="">Not sure yet</option>
+              {%- for p in ai.packages %}<option value="{{ p.id }}">{{ p.name }} — from ${{ p.price }}{% if p.plus %}+{% endif %}</option>{% endfor %}
+              <option value="custom-quote">Custom quotation</option>
+            </select>
+          </div>
+          <div class="enq-row">
+            <label for="enq-tool">Main AI tool</label>
+            <select id="enq-tool" name="tool">
+              <option value="">Not decided</option>
+              {%- for t in ai.tools %}<option>{{ t }}</option>{% endfor %}
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="enq-row enq-wide">
+            <label for="enq-msg">What should the AI do?</label>
+            <textarea id="enq-msg" name="message" rows="5" required placeholder="The task, who it is for, and an example of a good result."></textarea>
+          </div>
+          <p class="enq-error" id="enq-error" role="alert" hidden></p>
+          <div class="enq-acts enq-wide">
+            <button type="submit" class="ai-btn ai-btn-solid">Open in my email app</button>
+            <button type="button" class="ai-btn ai-btn-wa" id="enq-wa">Send on WhatsApp</button>
+            <button type="button" class="ai-btn ai-btn-line" id="enq-copy">Copy message</button>
+          </div>
+          <p class="enq-note enq-wide" id="enq-note">This form has no server behind it: it writes the message for you and opens your email app or WhatsApp, where you choose to send it. Nothing is stored here.</p>
+          <p class="enq-done enq-wide" id="enq-done" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </section>
 
