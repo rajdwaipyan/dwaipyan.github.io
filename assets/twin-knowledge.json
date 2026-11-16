@@ -1,0 +1,45 @@
+---
+layout: null
+---
+{%- comment -%}
+  What the digital twin knows — built by Jekyll from the data files, loaded only when a visitor first asks
+  something. Hand-written topics come from _data/twin.yml; projects and services are generated below so they
+  never drift from the pages. Public information only: this file is readable by anyone.
+{%- endcomment -%}
+{%- assign tw = site.data.twin -%}
+{
+  "name": {{ tw.name | jsonify }},
+  "unknown": {{ tw.unknown | jsonify }},
+  "intro": {{ tw.intro | jsonify }},
+  "places": {{ tw.places | jsonify }},
+  "topics": [
+    {%- for t in tw.topics %}
+    {{ t | jsonify }},
+    {%- endfor %}
+    {%- for p in site.data.projects %}
+    {%- capture a %}{{ p.title }} is a client project in {{ p.country | replace: " · ", ", " }}: {{ p.work | replace: " · ", " and " | downcase | replace: "crm", "CRM" }}. {{ p.summary }} The brief: {{ p.brief | downcase | truncate: 1 , "" }}{{ p.brief | slice: 1, 400 }}{% endcapture %}
+    {%- capture m %}{% if p.role %}{{ p.role }} {% endif %}Built with {{ p.built_with | join: ", " }}.{% if p.outcome %} {{ p.outcome }}{% endif %}{% endcapture %}
+    { "id": "project-{{ p.id }}", "t": {{ p.title | jsonify }}, "project": {{ p.id | jsonify }},
+      "q": [{{ p.title | downcase | jsonify }}, {{ p.id | jsonify }}, {{ p.industry | downcase | jsonify }}, {{ p.place | default: p.region | downcase | jsonify }}],
+      "a": {{ a | strip | jsonify }}, "more": {{ m | strip | jsonify }},
+      "links": [{ "label": "Open the case study", "url": "portfolio/{{ p.id }}/" }{% if p.url %}, { "label": "Visit the live site", "url": {{ p.url | jsonify }} }{% endif %}] },
+    {%- endfor %}
+    {%- for c in site.data.services.categories %}
+    {%- capture names %}{% for s in c.services %}{{ s.title }}{% unless forloop.last %}, {% endunless %}{% endfor %}{% endcapture %}
+    { "id": "service-{{ c.id }}", "t": {{ c.title | jsonify }},
+      "q": [{{ c.title | downcase | jsonify }}, {{ c.short | downcase | jsonify }}{% for s in c.services %}, {{ s.title | downcase | jsonify }}{% endfor %}],
+      "a": {{ c.line | append: " It covers: " | append: names | append: "." | jsonify }}, "more": {{ c.price | jsonify }},
+      "links": [{ "label": {{ c.title | jsonify }}, "url": "services/{{ c.id }}/" }] },
+    {%- endfor %}
+    {%- capture cats %}{% for c in site.data.services.categories %}{{ c.title }}{% unless forloop.last %}; {% endunless %}{% endfor %}{% endcapture %}
+    { "id": "services", "t": "Services he offers",
+      "q": ["services", "what services", "what does he offer", "offer", "offerings", "what can he do for me", "what can he build", "help me with"],
+      "a": {{ "He works in four areas: " | append: cats | append: ". Each has its own page with the individual services, typical situations and technologies." | jsonify }},
+      "links": [{ "label": "Services", "url": "services/" }] },
+    {%- capture titles %}{% for p in site.data.projects %}{{ p.title }} ({{ p.industry | downcase }}, {{ p.region }}){% unless forloop.last %}; {% endunless %}{% endfor %}{% endcapture %}
+    { "id": "projects", "t": "Projects and websites",
+      "q": ["projects", "project", "portfolio", "his work", "examples", "case studies", "case study", "clients", "what has he built", "kinds of websites", "sites he built", "show me his work", "previous work", "samples"],
+      "a": {{ "The portfolio shows " | append: site.data.sites.sites.size | append: " websites he designed and built, across real estate, architecture, automotive, food, health and more. Five have full case studies: " | append: titles | append: "." | jsonify }},
+      "links": [{ "label": "Case studies", "url": "portfolio/#projects" }, { "label": "All websites", "url": "portfolio/#websites" }] }
+  ]
+}

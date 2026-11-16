@@ -1,38 +1,26 @@
 {%- comment -%}
-  The guide: a drawn Dwaipyan who follows you down the page. He waves, blinks, turns his head toward the
-  pointer, changes costume per section (data-guide-prop), moves left/right (data-guide-side), points at
-  projects, falls asleep when ignored, and does tricks with sounds when clicked.
-  Lines live on the sections (data-guide="…"). Behaviour: assets/js/guide.js + sound.js + particles.js.
-  Styles: "GUIDE" in style.css. Without JavaScript it stays hidden.
+  THE DIGITAL TWIN — the drawn Dwaipyan, now a roaming assistant (assets/js/twin.js, twin-brain.js, twin-voice.js).
+  He flies in when the page loads, wanders between empty spots of the screen (never over text, controls or the
+  WhatsApp button), and opens into an assistant that answers questions about Dwaipyan by text or voice.
+  What he knows: _data/twin.yml + the project/service data (assets/twin-knowledge.json).
+  The drawing, costumes (data-guide-prop on sections) and tricks are the original "drawn me".
+  Styles: "GUIDE" (the drawing) and "DIGITAL TWIN" in style.css. Without JavaScript he stays hidden.
 {%- endcomment -%}
-<aside class="guide" id="guide" aria-label="Guide" hidden>
-  <div class="guide-bubble" id="guide-bubble">
-    <p class="guide-text" id="guide-text"></p>
-    <div class="guide-actions" id="guide-actions" hidden>
-      <button class="guide-btn guide-btn-go" type="button" data-guide-tour>Show me around</button>
-      <button class="guide-btn" type="button" data-guide-quiet>Not now</button>
-    </div>
-    <div class="guide-menu" id="guide-menu" hidden>
-      <button class="guide-trick" type="button" data-trick="wave"><span aria-hidden="true">👋</span>Wave</button>
-      <button class="guide-trick" type="button" data-trick="dance"><span aria-hidden="true">🕺</span>Dance</button>
-      <button class="guide-trick" type="button" data-trick="jump"><span aria-hidden="true">⤴</span>Jump</button>
-      <button class="guide-trick" type="button" data-trick="sneeze"><span aria-hidden="true">🤧</span>Sneeze</button>
-      <button class="guide-trick" type="button" data-trick="spin"><span aria-hidden="true">🌀</span>Spin</button>
-      <button class="guide-trick" type="button" data-trick="magic"><span aria-hidden="true">✨</span>Magic</button>
-    </div>
-    <div class="guide-tools">
-      <button class="guide-tool" type="button" data-guide-sound aria-pressed="true" title="Sound on/off"><span class="snd-on" aria-hidden="true">🔊</span><span class="snd-off" aria-hidden="true">🔇</span><span class="sr-only">Sound</span></button>
-      <button class="guide-tool" type="button" data-guide-hide aria-label="Hide the guide">×</button>
-    </div>
-  </div>
-
-  <button class="guide-figure" type="button" id="guide-figure" aria-label="Guide: click for tricks" aria-describedby="guide-text">
-    <svg class="guide-svg" viewBox="0 0 200 236" aria-hidden="true" focusable="false">
+{%- assign tw = site.data.twin -%}
+<aside class="guide" id="guide" aria-label="{{ tw.short }}" data-root="{{ root }}" data-endpoint="{{ tw.endpoint }}" data-greeting="{{ tw.greeting | escape }}" hidden>
+  <div class="twin-flyer" id="twin-flyer">
+    <div class="twin-bank"><div class="twin-bob">
+      <button class="guide-figure" type="button" id="guide-figure" aria-label="Talk to {{ tw.short }}" aria-expanded="false" aria-controls="twin-panel">
+        <span class="twin-ring" aria-hidden="true"></span>
+        <svg class="guide-svg" viewBox="-10 8 220 232" aria-hidden="true" focusable="false">
       <defs>
         <pattern id="g-dots" width="4.5" height="4.5" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">
           <circle cx="2.25" cy="2.25" r="1.05" fill="#121212" fill-opacity=".38"/>
         </pattern>
+        <clipPath id="g-clip"><path d="M-60 -60 H260 V128 H206 A106 106 0 0 1 -6 128 H-60 Z"/></clipPath>
       </defs>
+      <circle class="g-disc" cx="100" cy="128" r="106"/>
+      <g clip-path="url(#g-clip)">
       <g class="g-all">
         <!-- arms sit behind the body; hidden until a gesture raises them -->
         <g class="g-arm g-arm-r">
@@ -123,6 +111,58 @@
           <g class="g-prop p-nightcap"><path d="M54 74 Q80 14 146 34 Q176 52 182 104 Q166 74 146 66 Q100 58 54 74 Z"/><path class="stripe" d="M84 34 L92 66 M112 30 L118 62 M140 38 L142 66"/><circle class="pom" cx="182" cy="106" r="9"/></g>
         </g>
       </g>
+      </g>
     </svg>
-  </button>
+        <span class="twin-think" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="twin-badge" aria-hidden="true"><svg viewBox="0 0 16 16" focusable="false"><path d="M3 3.5h10v7H8.5L5.5 13v-2.5H3z"/></svg></span>
+      </button>
+    </div></div>
+    <p class="twin-chip" id="twin-chip" aria-hidden="true"></p>
+  </div>
 </aside>
+
+<script type="application/json" id="twin-ctx">{ "intro": {{ tw.intro | jsonify }}, "suggestions": {{ tw.suggestions | jsonify }}, "contexts": {{ tw.contexts | jsonify }} }</script>
+
+<section class="twin-panel" id="twin-panel" role="dialog" aria-modal="false" aria-labelledby="twin-title" data-lenis-prevent hidden>
+  <header class="twin-head">
+    <div class="twin-id">
+      <h2 class="twin-title" id="twin-title">Dwaipyan Mandal</h2>
+      <p class="twin-sub"><span class="twin-state" id="twin-state">Personal AI assistant</span><span class="twin-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></p>
+    </div>
+    <div class="twin-tools">
+      <button class="twin-tool" type="button" id="twin-voice" aria-pressed="false" title="Read answers aloud"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M3.5 7.5h3l4-3.5v12l-4-3.5h-3z"/><path class="tw-on" d="M13.5 7a4 4 0 0 1 0 6M15.5 4.8a7 7 0 0 1 0 10.4"/><path class="tw-off" d="M13.5 7.8l4 4.4M17.5 7.8l-4 4.4"/></svg><span class="sr-only">Read answers aloud</span></button>
+      <button class="twin-tool" type="button" id="twin-more" aria-expanded="false" aria-controls="twin-tray" title="More"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><circle cx="4.5" cy="10" r="1.4"/><circle cx="10" cy="10" r="1.4"/><circle cx="15.5" cy="10" r="1.4"/></svg><span class="sr-only">More options</span></button>
+      <button class="twin-tool" type="button" id="twin-close" title="Minimise"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M5 5l10 10M15 5L5 15"/></svg><span class="sr-only">Minimise the assistant</span></button>
+    </div>
+  </header>
+
+  <div class="twin-tray" id="twin-tray" hidden>
+    <p class="twin-tray-k">Make him…</p>
+    <div class="twin-tricks">
+      <button type="button" data-trick="wave">Wave</button>
+      <button type="button" data-trick="dance">Dance</button>
+      <button type="button" data-trick="jump">Jump</button>
+      <button type="button" data-trick="sneeze">Sneeze</button>
+      <button type="button" data-trick="spin">Spin</button>
+      <button type="button" data-trick="magic">Change outfit</button>
+    </div>
+    <div class="twin-tray-row">
+      <button type="button" class="twin-link" id="twin-sfx" aria-pressed="true">Sound effects: on</button>
+      <button type="button" class="twin-link" id="twin-clear">Clear conversation</button>
+      <button type="button" class="twin-link" id="twin-hide">Hide him for now</button>
+    </div>
+    <p class="twin-about" id="twin-about"></p>
+  </div>
+
+  <div class="twin-log" id="twin-log" role="log" aria-live="polite" aria-label="Conversation" tabindex="0"></div>
+
+  <div class="twin-ask" id="twin-ask" role="group" aria-label="Suggested questions"></div>
+
+  <form class="twin-form" id="twin-form" autocomplete="off">
+    <button class="twin-mic" type="button" id="twin-mic" aria-pressed="false" title="Ask by voice"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><rect x="7.5" y="2.5" width="5" height="9" rx="2.5"/><path d="M4.5 9.5a5.5 5.5 0 0 0 11 0M10 15v2.5"/></svg><span class="sr-only">Ask by voice</span></button>
+    <label class="sr-only" for="twin-input">Ask about Dwaipyan</label>
+    <input class="twin-input" id="twin-input" type="text" maxlength="300" placeholder="Ask about Dwaipyan…" enterkeyhint="send">
+    <button class="twin-send" type="submit" title="Send"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 16V4.5M5 9l5-5 5 5"/></svg><span class="sr-only">Send</span></button>
+  </form>
+  <p class="twin-note" id="twin-note" role="status" aria-live="polite"></p>
+</section>

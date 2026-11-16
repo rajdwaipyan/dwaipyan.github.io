@@ -966,31 +966,19 @@ body.nav-open .site-header .header-inner { background: transparent; border-color
 html.xray .scratch { opacity: .25; }
 
 /* ==========================================================================
-   GUIDE — a drawn Dwaipyan who follows you down the page (assets/js/guide.js)
+   GUIDE — the drawn Dwaipyan: the artwork, costumes, expressions and gestures (assets/js/twin.js)
    ========================================================================== */
-.guide {
-  --gw: clamp(84px, 10vw, 156px); --edge: clamp(.5rem, 2vw, 1.75rem);
-  --tx: 0px; --ty: 115%;
-  position: fixed; right: var(--edge); bottom: 0; z-index: 45;
-  display: grid; justify-items: end; pointer-events: none;
-  transform: translate(var(--tx), var(--ty));
-  transition: transform 1s cubic-bezier(.65, -.25, .35, 1.25);
-}
-.guide.is-in { --ty: 0px; }
-.guide.side-left { --tx: calc(-100vw + 100% + 2 * var(--edge) + 15px); }
+/* The figure itself. Where he is on screen, the chip and the assistant panel are in "DIGITAL TWIN" below. */
+.guide { --gw: clamp(64px, 5.4vw, 84px); position: fixed; left: 0; top: 0; z-index: 45; width: 0; height: 0; pointer-events: none; }
 .guide-figure {
   --ex: 0px; --ey: 0px; --fx: 0px; --fy: 0px; --tilt: 0deg;
-  pointer-events: auto; display: block; width: var(--gw); padding: 0; margin: 0; background: none; border: 0; cursor: pointer;
-  transform-origin: 50% 100%; transition: width .6s cubic-bezier(.34, 1.56, .64, 1);
+  position: relative; pointer-events: auto; display: block; width: var(--gw); padding: 0; margin: 0; background: none; border: 0; cursor: pointer;
+  transform-origin: 50% 100%; transition: width .5s cubic-bezier(.34, 1.56, .64, 1);
   -webkit-tap-highlight-color: transparent;
 }
-.guide-figure:focus-visible { outline-offset: -2px; border-radius: 12px; }
+.guide-figure:focus-visible { outline: 3px solid var(--violet); outline-offset: 4px; border-radius: 50%; }
 .guide-svg { display: block; width: 100%; height: auto; overflow: visible; }
-.guide.is-large .guide-figure { width: calc(var(--gw) * 1.5); }
-.guide.is-big .guide-figure { width: calc(var(--gw) * 1.45); }
-.guide.is-hero .guide-figure { width: min(34vw, 52vh, 540px); }
-.guide.is-hero .guide-bubble { font-size: 1.05rem; right: 12%; }
-.guide.is-hero .g-all { animation-duration: 5.5s; }
+.g-disc { fill: var(--lime); }
 .side-left .guide-svg { transform: scaleX(-1); } /* face the page when standing on the left */
 
 /* drawing */
@@ -1053,9 +1041,8 @@ html.xray .scratch { opacity: .25; }
 
 /* gestures */
 @media (prefers-reduced-motion: no-preference) {
-  .guide.is-in .g-all { animation: breathe 4.5s ease-in-out infinite; transform-origin: 50% 100%; transform-box: view-box; }
+  .guide.is-on .g-all { animation: breathe 4.5s ease-in-out infinite; transform-origin: 50% 100%; transform-box: view-box; }
   .guide.is-asleep .g-all { animation-duration: 6s; }
-  .guide.is-traveling .guide-figure { animation: run 1s ease-in-out; }
   .guide.do-jump .guide-figure { animation: jump .9s cubic-bezier(.3, 0, .3, 1); }
   .guide.do-wave .g-arm-r { opacity: 1; animation: wave 2.2s var(--ease) both; }
   .guide.do-wave .g-head { --tilt: -4deg; }
@@ -1090,53 +1077,10 @@ html.xray .scratch { opacity: .25; }
 @keyframes spin { 0% { transform: none; } 25% { transform: translateY(-14%) scaleX(.05); } 50% { transform: translateY(-20%) scaleX(-1); } 75% { transform: translateY(-14%) scaleX(.05); } 100% { transform: none; } }
 @keyframes poof { 0% { transform: scale(1); } 25% { transform: scale(.15) rotate(-20deg); opacity: .2; } 100% { transform: none; opacity: 1; } }
 
-/* speech bubble (absolutely placed: new text never moves the guide, so no layout shift) */
-.guide-bubble {
-  position: absolute; right: calc(var(--gw) * .3); bottom: calc(100% + .7rem); pointer-events: auto;
-  width: max-content; max-width: min(20rem, calc(100vw - 2rem));
-  padding: .8rem 4.4rem .85rem 1rem; background: #fff; color: var(--ink); border: 1.5px solid var(--ink); border-radius: 14px;
-  box-shadow: 5px 5px 0 var(--ink); font-size: .95rem; line-height: 1.4; font-weight: 500;
-  opacity: 0; visibility: hidden; transform: translateY(8px) scale(.94); transform-origin: 85% 100%;
-  transition: opacity .25s, transform .35s cubic-bezier(.34, 1.56, .64, 1), visibility 0s .35s;
-}
-.guide-bubble::after { /* tail */
-  content: ""; position: absolute; right: 1.4rem; bottom: -9px; width: 16px; height: 16px; background: #fff;
-  border-right: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); transform: rotate(45deg);
-}
-.side-left .guide-bubble { right: auto; left: calc(var(--gw) * .3); transform-origin: 15% 100%; }
-.side-left .guide-bubble::after { right: auto; left: 1.4rem; }
-.guide.is-talking .guide-bubble { opacity: 1; visibility: visible; transform: none; transition: opacity .25s, transform .4s cubic-bezier(.34, 1.56, .64, 1); }
-.guide-actions { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .65rem; }
-.guide-btn { min-height: 36px; padding: .3rem .8rem; border: 1.5px solid var(--ink); border-radius: 99px; background: #fff; cursor: pointer; font-size: .85rem; font-weight: 600; }
-.guide-btn-go { background: var(--ink); color: var(--cream); }
-.guide-btn:hover { background: var(--lime); color: var(--ink); }
-.guide-menu { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .35rem; margin-top: .65rem; margin-right: -3.4rem; }
-.guide-menu[hidden] { display: none; }
-.guide-trick { display: grid; justify-items: center; gap: .1rem; min-height: 54px; padding: .35rem .3rem; border: 1.5px solid var(--ink); border-radius: 10px; background: var(--cream); cursor: pointer; font-size: .78rem; font-weight: 600; transition: transform .2s cubic-bezier(.34, 1.56, .64, 1), background-color .2s; }
-.guide-trick span { font-size: 1.15rem; line-height: 1; }
-.guide-trick:hover { background: var(--lime); transform: translateY(-2px) rotate(-2deg); }
-.guide-tools { position: absolute; top: .25rem; right: .25rem; display: flex; }
-.guide-tool { width: 32px; height: 32px; display: grid; place-items: center; border: 0; background: none; cursor: pointer; font-size: 1rem; line-height: 1; color: var(--muted); border-radius: 50%; }
-.guide-tool:hover { background: var(--cream); color: var(--ink); }
-[data-guide-hide] { font-size: 1.25rem; }
-.snd-off, .guide.is-muted .snd-on { display: none; }
-.guide.is-muted .snd-off { display: inline; }
-
-/* tucked away: hidden until a visitor opens it from the footer ("Meet the drawn me") */
-.guide.is-min { display: none; }
-
 /* the particle layer (sparkles, dust, puffs, Zzz) */
 .fx-canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 46; pointer-events: none; }
 
-/* stay out of the way */
-body.nav-open .guide { display: none; }
-@media (max-width: 640px) {
-  .guide { --gw: 76px; --edge: .25rem; }
-  .guide-bubble { font-size: .88rem; right: .5rem; }
-  .guide.is-big .guide-figure { width: 96px; }
-  .guide-menu { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
-@media print { .guide, .fx-canvas { display: none !important; } }
+@media print { .guide, .twin-panel, .fx-canvas { display: none !important; } }
 
 /* X-ray: the guide shows its wireframe too */
 html.xray .guide-svg path, html.xray .guide-svg ellipse, html.xray .guide-svg circle, html.xray .guide-svg rect { fill: transparent !important; stroke: var(--violet); stroke-width: 1.5; }
@@ -3043,3 +2987,148 @@ html.pvd-open { overflow: hidden; }
 }
 @keyframes proj-drift { 0%, 6% { transform: translateY(0); } 47%, 55% { transform: translateY(calc(-100% + 100cqh)); } 94%, 100% { transform: translateY(0); } }
 body.nav-open .hdr-cta { visibility: hidden; }
+
+/* ==========================================================================
+   DIGITAL TWIN — the drawn Dwaipyan as a roaming assistant
+   (_includes/guide.html, assets/js/twin.js, twin-brain.js, twin-voice.js, _data/twin.yml)
+   The figure is drawn in "GUIDE" above; this block is where he is, how he moves, and the assistant panel.
+   ========================================================================== */
+.twin-flyer { position: absolute; left: 0; top: 0; width: var(--gw); will-change: transform; opacity: 0; transition: opacity .5s; }
+.guide.is-on .twin-flyer { opacity: 1; }
+.guide.is-away .twin-flyer, .guide.is-hidden .twin-flyer { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .25s, visibility 0s .25s; }
+.guide.is-away .guide-figure, .guide.is-hidden .guide-figure { pointer-events: none; }
+.twin-bank { --bank: 0deg; transform: rotate(var(--bank)); filter: drop-shadow(0 10px 12px rgba(8, 12, 26, .28)); transition: filter .4s; }
+.guide.is-flying .twin-bank { filter: drop-shadow(0 18px 16px rgba(8, 12, 26, .22)); }
+@media (prefers-reduced-motion: no-preference) {
+  .twin-bob { animation: twin-bob 3.8s ease-in-out infinite; }
+  .guide.is-flying .twin-bob, .guide.is-docked .twin-bob, .guide.is-asleep .twin-bob { animation-duration: 6s; }
+  .guide.do-celebrate .guide-figure { animation: jump .9s cubic-bezier(.3, 0, .3, 1); }
+}
+@keyframes twin-bob { 0%, 100% { transform: translateY(-3px); } 50% { transform: translateY(4px); } }
+.guide.do-celebrate .g-mouth-smile { display: none; } .guide.do-celebrate .g-mouth-big { display: inline; }
+.guide.is-docked { --gw: 92px; z-index: 48; }
+.guide.is-peek .guide-figure { opacity: .96; }
+
+/* the ring around the disc shows what he is doing */
+.twin-ring { position: absolute; left: 1.8%; top: 6%; width: 96.4%; height: 91.4%; border-radius: 50%; pointer-events: none; }
+.guide[data-state="curious"] .twin-ring { box-shadow: 0 0 0 3px rgba(255, 255, 255, .85), 0 0 0 5px var(--ink); }
+.guide[data-state="listening"] .twin-ring { box-shadow: 0 0 0 4px #3fb871; }
+.guide[data-state="speaking"] .twin-ring { box-shadow: 0 0 0 4px var(--violet); }
+.guide[data-state="thinking"] .twin-ring { border: 3px dashed var(--ink); inset: auto; left: -3%; top: 1%; width: 106%; height: 100.5%; }
+@media (prefers-reduced-motion: no-preference) {
+  .guide[data-state="listening"] .twin-ring { animation: twin-pulse 1.3s ease-out infinite; }
+  .guide[data-state="thinking"] .twin-ring { animation: twin-turn 5s linear infinite; }
+}
+@keyframes twin-pulse { 0% { box-shadow: 0 0 0 3px #3fb871, 0 0 0 3px rgba(63, 184, 113, .5); } 100% { box-shadow: 0 0 0 3px #3fb871, 0 0 0 16px rgba(63, 184, 113, 0); } }
+@keyframes twin-turn { to { transform: rotate(360deg); } }
+/* expressions per state (the drawing's own parts) */
+.guide[data-state="curious"] .g-brow, .guide[data-state="listening"] .g-brow { transform: translateY(-3.5px); transition: transform .25s; }
+.guide[data-state="curious"] .g-head { --tilt: 4deg; }
+.guide[data-state="listening"] .p-headset { display: inline; }
+.guide[data-state="thinking"] .g-pupil { transform: translate(-2.6px, -3.2px); }
+.guide[data-state="thinking"] .g-mouth-smile { display: none; } .guide[data-state="thinking"] .g-mouth-flat { display: inline; }
+.guide[data-state="thinking"] .g-head { --tilt: -5deg; }
+.twin-think { position: absolute; left: 62%; top: -8%; display: none; gap: 3px; }
+.twin-think i { width: 7px; height: 7px; border-radius: 50%; background: #fff; border: 1.5px solid var(--ink); }
+.guide[data-state="thinking"] .twin-think { display: flex; }
+@media (prefers-reduced-motion: no-preference) { .twin-think i { animation: twin-dot 1s ease-in-out infinite; } .twin-think i:nth-child(2) { animation-delay: .15s; } .twin-think i:nth-child(3) { animation-delay: .3s; } }
+@keyframes twin-dot { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-5px); } }
+/* "you can talk to me": a small speech mark on the disc */
+.twin-badge { position: absolute; right: -2%; bottom: 4%; display: grid; place-items: center; width: 32%; aspect-ratio: 1; min-width: 22px; border-radius: 50%; background: #fff; border: 1.5px solid var(--ink); transition: transform .4s cubic-bezier(.34, 1.56, .64, 1), opacity .3s; }
+.twin-badge svg { width: 58%; fill: var(--ink); }
+.side-left .twin-badge { right: auto; left: -2%; }
+.guide.is-docked .twin-badge, .guide.is-asleep .twin-badge, .guide.is-peek .twin-badge, .guide[data-state="thinking"] .twin-badge { opacity: 0; transform: scale(.4); }
+.guide-figure:hover .twin-badge, .guide.is-hint .twin-badge { transform: scale(1.18) rotate(-8deg); background: var(--lime); }
+@media (prefers-reduced-motion: no-preference) { .guide.is-hint .twin-badge { animation: twin-nudge .8s ease-in-out 3; } }
+@keyframes twin-nudge { 50% { transform: scale(1.3) rotate(8deg); } }
+
+/* the chip: one short line beside him (greeting, hover hint) */
+.twin-chip { position: absolute; left: calc(100% + 12px); top: 50%; width: max-content; max-width: min(15.5rem, calc(100vw - var(--gw) - 2.5rem)); padding: .55rem .85rem; border-radius: 14px 14px 14px 4px; background: #fff; color: var(--ink); border: 1.5px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); font: 500 .88rem/1.35 var(--font-body); opacity: 0; visibility: hidden; transform: translateY(-50%) scale(.9); transform-origin: 0 50%; transition: opacity .2s, transform .35s cubic-bezier(.34, 1.56, .64, 1), visibility 0s .35s; pointer-events: none; }
+.guide.chip-left .twin-chip { left: auto; right: calc(100% + 12px); border-radius: 14px 14px 4px 14px; transform-origin: 100% 50%; }
+.guide.has-chip .twin-chip { opacity: 1; visibility: visible; transform: translateY(-50%); transition: opacity .2s, transform .35s cubic-bezier(.34, 1.56, .64, 1); }
+.guide.is-peek:not(.chip-left) .twin-chip { left: calc(100% + 6px); }
+
+/* ---------- the assistant panel: dark glass, bottom-left (the WhatsApp button keeps the bottom-right) */
+.twin-panel { --kb: 0px; --vvh: 100vh; position: fixed; z-index: 47; left: clamp(.75rem, 2vw, 1.5rem); bottom: calc(clamp(.75rem, 2vw, 1.5rem) + var(--kb)); width: min(25.5rem, calc(100vw - 1.5rem)); max-height: min(40rem, calc(var(--vvh) - 9.5rem)); display: grid; grid-template-rows: auto auto minmax(0, 1fr) auto auto auto; border-radius: 22px; color: var(--on-night); overflow: hidden;
+  background: var(--g-sheen-d), rgba(13, 18, 33, .88); -webkit-backdrop-filter: var(--g-blur-lg); backdrop-filter: var(--g-blur-lg); box-shadow: var(--g-rim-d), 0 40px 90px -30px rgba(0, 0, 0, .75);
+  opacity: 0; transform: translateY(14px) scale(.97); transform-origin: 12% 0; transition: opacity .25s, transform .45s cubic-bezier(.22, 1, .36, 1); }
+.twin-panel[hidden] { display: none; }
+.twin-panel.is-open { opacity: 1; transform: none; }
+.twin-panel :focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; }
+.twin-head { display: flex; justify-content: space-between; align-items: center; gap: .6rem; padding: .85rem .7rem .7rem calc(92px + 1.6rem); min-height: 62px; border-bottom: 1px solid rgba(255, 255, 255, .09); }
+.twin-title { font-family: var(--font-display); font-weight: 800; font-size: 1.08rem; letter-spacing: -.02em; line-height: 1.1; }
+.twin-sub { display: flex; align-items: center; gap: .5rem; margin-top: .2rem; font: 500 .72rem/1.2 var(--font-body); letter-spacing: .06em; text-transform: uppercase; color: var(--on-night-2); }
+.twin-panel[data-state="listening"] .twin-state { color: #6fdc9b; } .twin-panel[data-state="speaking"] .twin-state, .twin-panel[data-state="thinking"] .twin-state { color: var(--lime); }
+.twin-wave { display: none; align-items: center; gap: 2px; height: 14px; }
+.twin-wave i { width: 3px; height: 4px; border-radius: 2px; background: currentColor; }
+.twin-panel[data-state="speaking"] .twin-wave, .twin-panel[data-state="listening"] .twin-wave { display: inline-flex; color: var(--lime); }
+.twin-panel[data-state="listening"] .twin-wave { color: #6fdc9b; }
+@media (prefers-reduced-motion: no-preference) {
+  .twin-wave i { animation: twin-wave .9s ease-in-out infinite; }
+  .twin-wave i:nth-child(2) { animation-delay: -.2s; } .twin-wave i:nth-child(3) { animation-delay: -.45s; } .twin-wave i:nth-child(4) { animation-delay: -.1s; } .twin-wave i:nth-child(5) { animation-delay: -.6s; }
+  .twin-panel.is-beat .twin-wave i { animation-duration: .35s; }
+}
+@keyframes twin-wave { 0%, 100% { height: 4px; } 50% { height: 14px; } }
+.twin-tools { display: flex; gap: 2px; flex: none; }
+.twin-tool { display: grid; place-items: center; width: 38px; height: 38px; border: 0; border-radius: 50%; background: transparent; color: var(--on-night-2); cursor: pointer; transition: background-color .25s, color .25s; }
+.twin-tool:hover { background: rgba(255, 255, 255, .1); color: var(--on-night); }
+.twin-tool svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+#twin-more svg { fill: currentColor; stroke: none; }
+.twin-tool .tw-on { display: none; } .twin-tool[aria-pressed="true"] .tw-on { display: inline; } .twin-tool[aria-pressed="true"] .tw-off { display: none; }
+.twin-tool[aria-pressed="true"] { color: var(--night); background: var(--lime); }
+.twin-tray { padding: .8rem 1rem .9rem; border-bottom: 1px solid rgba(255, 255, 255, .09); background: rgba(0, 0, 0, .18); }
+.twin-tray[hidden] { display: none; }
+.twin-tray-k { font: 500 .68rem/1.3 var(--font-body); letter-spacing: .1em; text-transform: uppercase; color: var(--on-night-2); margin-bottom: .45rem; }
+.twin-tricks { display: flex; flex-wrap: wrap; gap: .35rem; }
+.twin-tricks button, .twin-q { min-height: 34px; padding: .3rem .8rem; border: 0; border-radius: 999px; background: rgba(255, 255, 255, .09); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14); color: var(--on-night); font: 500 .82rem/1.25 var(--font-body); text-align: left; cursor: pointer; transition: background-color .25s, color .25s, transform .3s var(--ease-out); }
+.twin-tricks button:hover, .twin-q:hover { background: var(--lime); color: var(--night); transform: translateY(-1px); }
+.twin-tray-row { display: flex; flex-wrap: wrap; gap: .3rem 1.1rem; margin-top: .7rem; }
+.twin-link { padding: .25rem 0; border: 0; background: none; color: var(--on-night); font: 500 .82rem/1.3 var(--font-body); text-decoration: underline; text-underline-offset: .2em; cursor: pointer; }
+.twin-link:hover { color: var(--lime); }
+.twin-about { margin-top: .6rem; font-size: .76rem; line-height: 1.5; color: var(--on-night-2); }
+.twin-log { min-height: 7rem; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, .25) transparent; display: flex; flex-direction: column; gap: .6rem; padding: 1rem 1rem .6rem; }
+.twin-msg { max-width: 90%; font-size: .93rem; line-height: 1.5; }
+@media (prefers-reduced-motion: no-preference) { .twin-msg { animation: twin-msg .4s cubic-bezier(.22, 1, .36, 1) both; } }
+@keyframes twin-msg { from { opacity: 0; transform: translateY(8px); } }
+.twin-msg p { padding: .6rem .85rem; border-radius: 16px 16px 16px 5px; background: rgba(255, 255, 255, .08); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1); overflow-wrap: anywhere; }
+.twin-msg-user { align-self: flex-end; }
+.twin-msg-user p { border-radius: 16px 16px 5px 16px; background: var(--lime); color: var(--night); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .45); }
+.twin-acts { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .45rem; }
+.twin-go { display: inline-flex; align-items: center; min-height: 34px; padding: .3rem .85rem; border-radius: 999px; background: var(--on-night); color: var(--night); text-decoration: none; font: 500 .82rem/1.25 var(--font-body); transition: background-color .25s, transform .3s var(--ease-out); }
+.twin-go:hover { background: var(--lime); transform: translateY(-1px); }
+.twin-typing p { display: inline-flex; gap: 4px; padding: .8rem .9rem; }
+.twin-typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--on-night-2); }
+@media (prefers-reduced-motion: no-preference) { .twin-typing i { animation: twin-dot 1s ease-in-out infinite; } .twin-typing i:nth-child(2) { animation-delay: .15s; } .twin-typing i:nth-child(3) { animation-delay: .3s; } }
+.twin-ask { display: flex; gap: .35rem; padding: .2rem 1rem .7rem; overflow-x: auto; scrollbar-width: none; }
+.twin-ask::-webkit-scrollbar { display: none; }
+.twin-ask .twin-q { flex: none; white-space: nowrap; }
+.twin-back { background: transparent; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35); }
+.twin-form { display: flex; align-items: center; gap: .4rem; margin: 0 .7rem; padding: .3rem; border-radius: 999px; background: rgba(255, 255, 255, .08); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12); }
+.twin-form:focus-within { box-shadow: inset 0 0 0 1.5px var(--lime); }
+.twin-input { flex: 1; min-width: 0; height: 40px; padding: 0 .3rem; border: 0; background: transparent; color: var(--on-night); font: 400 1rem/1 var(--font-body); }
+.twin-input::placeholder { color: rgba(242, 238, 230, .55); }
+.twin-input:focus, .twin-input:focus-visible { outline: none; }
+.twin-mic, .twin-send { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border: 0; border-radius: 50%; cursor: pointer; transition: background-color .25s, color .25s, transform .3s var(--ease-out); }
+.twin-mic { background: rgba(255, 255, 255, .1); color: var(--on-night); }
+.twin-mic:hover { background: rgba(255, 255, 255, .2); }
+.twin-mic[aria-pressed="true"] { background: #3fb871; color: var(--night); }
+.twin-send { background: var(--lime); color: var(--night); }
+.twin-send:hover { transform: translateY(-1px); background: var(--on-night); }
+.twin-panel.is-busy .twin-send { opacity: .5; pointer-events: none; }
+.twin-mic svg, .twin-send svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+@media (prefers-reduced-motion: no-preference) { .twin-mic[aria-pressed="true"] { animation: twin-mic 1.3s ease-out infinite; } }
+@keyframes twin-mic { 0% { box-shadow: 0 0 0 0 rgba(63, 184, 113, .6); } 100% { box-shadow: 0 0 0 12px rgba(63, 184, 113, 0); } }
+.twin-note { min-height: 1.1rem; margin: .35rem 1.1rem .65rem; font-size: .76rem; line-height: 1.4; color: var(--on-night-2); }
+
+@media (max-width: 640px) {
+  .guide { --gw: 56px; }
+  .guide.is-docked { --gw: 68px; }
+  .twin-chip { font-size: .82rem; }
+  /* a sheet that stops above the WhatsApp button, so that button is never covered */
+  .twin-panel { left: .5rem; right: .5rem; width: auto; bottom: calc(5.4rem + var(--kb)); max-height: calc(var(--vvh) - 10.6rem); border-radius: 20px; }
+  .twin-head { padding-left: calc(68px + 1.5rem); }
+  .twin-title { font-size: 1rem; }
+  .twin-log { min-height: 5rem; }
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .twin-panel { background: #0d1221; } }
+@media (prefers-reduced-transparency: reduce) { .twin-panel { background: #0d1221; } }

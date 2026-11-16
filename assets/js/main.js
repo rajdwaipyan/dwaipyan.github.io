@@ -14,7 +14,7 @@ import { initBuilder } from "./builder.js";
 import { initMachine } from "./machine.js";
 import { initContact } from "./contact.js";
 import { initXray } from "./xray.js";
-import { initGuide } from "./guide.js";
+import { initTwin } from "./twin.js";
 import { initFx } from "./fx.js";
 
 const run = (name, fn) => {
@@ -36,5 +36,5 @@ run("builder", initBuilder);
 run("machine", initMachine);
 run("contact", initContact);
 run("xray", initXray);
-run("guide", initGuide);
+run("twin", initTwin);
 run("fx", initFx);

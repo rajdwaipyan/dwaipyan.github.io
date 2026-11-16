@@ -1,0 +1,9 @@
+name = "dwaipyan-twin"
+main = "worker.js"
+compatibility_date = "2026-01-01"
+
+[vars]
+SITE = "https://rajdwaipyan.github.io/dwaipyan.github.io/"
+ALLOWED_ORIGIN = "https://rajdwaipyan.github.io"
+DAILY_LIMIT = "40"
+MODEL = ""   # set to a current model id from https://docs.claude.com/en/docs/about-claude/models
