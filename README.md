@@ -48,10 +48,10 @@ _includes/
   project.html         one portfolio case study ("room")
   exp-track.html       one career track on /experience/
   timeline.html        milestones list
-  guide.html           the optional drawn guide (inline SVG)
+  guide.html           the digital twin: the drawn Dwaipyan (inline SVG) and his assistant panel
 _data/                 navigation, experience, education, leadership, skills, projects, publications, timeline
 style.css              all styles, design tokens at the top
-assets/js/             ES modules loaded by main.js (core, menu, hero, motion, cases, journal, builder, machine, contact, xray, guide, sound, particles, fx)
+assets/js/             ES modules loaded by main.js (core, menu, hero, motion, cases, journal, builder, machine, contact, xray, twin, twin-brain, twin-voice, sound, particles, fx)
 assets/vendor/         gsap.min.js, ScrollTrigger.min.js, lenis.min.js (unmodified, with licences)
 portfolio/<id>/        one short file per case study (front matter only)
 journal/               the journal landing page
@@ -83,7 +83,7 @@ Plain HTML, CSS and ES modules with GSAP, ScrollTrigger and Lenis — no framewo
   mirrored with `scaleX(-1)` so he always faces the page.
 - **Costumes** are hidden `<g class="g-prop p-…">` groups shown with `[data-prop~="glasses"]` selectors.
 - **Section awareness** is one `IntersectionObserver` watching a thin band in the middle of the viewport;
-  each section carries its own `data-guide`, `data-guide-prop`, `data-guide-side` attributes.
+  sections can carry a costume in `data-guide-prop`.
 - **Sound** is synthesised on the fly (oscillators + filtered noise) and only starts after a click,
   which is also what browsers require. Mute is remembered in `localStorage`.
 - **Halftone reveal** animates a registered custom property (`@property --dot`) inside a repeating
@@ -114,9 +114,7 @@ Leave `role` and `outcome` empty until you can back them up — empty fields are
 **Add a milestone.** Open `_data/timeline.yml` and add an entry at the top (newest first). Use
 `published: false` to keep a draft entry out of the site until it can be confirmed.
 
-**Change what the guide says.** Each section's line is its `data-guide="…"` attribute in the HTML; project
-lines are the `guide:` field in `_data/projects.yml`. On phones he only speaks when tapped, plus hello and
-the contact section.
+**Change what the digital twin says.** Edit `_data/twin.yml` (see "The digital twin" below).
 
 **Change contact details.** Search `index.html` and `assets/js/contact.js` for `rajdwaipayan@gmail.com`.
 
@@ -176,6 +174,39 @@ when a visitor presses play); Facebook videos open on Facebook unless the entry 
 The marquee bands are CSS animations (paused on hover/focus and off screen, turned into scrollable rows when the
 visitor prefers reduced motion). The page carries Service (offer catalogue of starting prices) and FAQPage
 structured data. Pages also cross-fade on navigation in browsers that support view transitions (`style.css`, base).
+
+## The digital twin
+
+The drawn Dwaipyan (`_includes/guide.html`) is a roaming assistant on every page except the CV.
+
+- **Roaming** (`assets/js/twin.js`). He flies in on load and wanders between empty spots. Before landing he
+  checks what is underneath with `document.elementsFromPoint` and only lands where there is no text, link,
+  button, image, form, header or WhatsApp button. With no clear spot (common on phones) he peeks in from the
+  screen edge. While the page scrolls he tucks to the edge and comes back out when it stops. He steps aside
+  when a visitor types in a form, hides under menus and dialogs, sleeps when idle, and does not fly at all
+  with reduced motion. The WhatsApp button is never moved or covered.
+- **Assistant.** Clicking him opens a panel (bottom-left; a sheet above the WhatsApp button on phones) with the
+  conversation, suggested questions for the section in view, a text box, a microphone and a read-aloud switch.
+  Answers can carry buttons that take the visitor to a page or section; a "Back to …" button returns them.
+  The conversation is kept in `sessionStorage`, so it follows the visitor between pages until the tab closes.
+- **What he knows.** `_data/twin.yml` (topics, places, per-section suggestions) plus the project and service
+  data, combined by Jekyll into `assets/twin-knowledge.json` and loaded on the first question.
+  `assets/js/twin-brain.js` matches a question to a topic in the browser. Below a confidence threshold he says
+  he doesn't know and offers the contact options — he never makes things up.
+- **Voice** (`assets/js/twin-voice.js`) uses the browser's Web Speech API: speech recognition where the browser
+  has it (Chrome, Edge, Safari — not Firefox) and speech synthesis for reading answers aloud. Nothing plays or
+  listens without a click; if voice is unavailable or the microphone is refused, the text chat carries on.
+
+| Works on this site (no server) | Needs the optional backend |
+|---|---|
+| Roaming, states, tricks, context suggestions, navigation with "Back" | — |
+| Text answers matched from the portfolio's content | Answers *written* by a language model |
+| Voice input and spoken answers through the browser | — |
+
+**Live AI is optional and off by default.** To connect a language model without exposing an API key, deploy the
+Cloudflare Worker in `tools/twin-worker/` (its README has the steps) and put its URL in `_data/twin.yml` →
+`endpoint`. If that service fails, the twin falls back to the portfolio answers. The Worker was written but
+could not be tested against a live key from the build environment.
 
 ## Services
 

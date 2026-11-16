@@ -1,0 +1,282 @@
+# THE DIGITAL TWIN — what the drawn Dwaipyan knows and says (assets/js/twin*.js, _includes/guide.html).
+#
+# Everything the assistant can say about you comes from this file plus the project, service, experience and
+# education data files (see assets/twin-knowledge.json, which Jekyll builds from them). It never invents facts:
+# when nothing here matches a question, it says so and points to the contact options.
+#
+# Edit an answer: change the `a:` text. Add a topic: copy a block, give it a new id, list the words and
+# phrases a visitor might use in `q:` (lower case), and write the answer in the third person ("He …").
+# Keep answers short — they are also read aloud. `more:` is used when a visitor asks for more detail.
+# `links:` become buttons under the answer. Urls are relative to the site root, or full https/mailto links.
+
+name: Dwaipyan Mandal — Personal AI Assistant
+short: Dwaipyan's digital twin
+
+# Live AI (optional). Leave empty to answer from this file in the visitor's browser — no server, no cost.
+# To connect a real language model, deploy tools/twin-worker (see its README) and paste the Worker URL here.
+# Never put an API key in this file or anywhere in the website's code.
+endpoint: ""
+
+greeting: "Hi — I'm Dwaipyan's digital twin. Ask me anything about him."
+intro: "I'm a drawn, digital version of Dwaipyan. Ask me about his work, experience, education or services — by typing or by voice — and I can take you to the right page."
+unknown: "I don't have that in my notes, and I'd rather not guess. You can ask Dwaipyan directly — he replies by email or WhatsApp."
+
+# Questions offered as buttons. `default` is used when nothing more specific fits the page or section.
+suggestions:
+  default: ["Who is Dwaipyan Mandal?", "What does he do?", "How can I hire him?", "Show me his projects"]
+
+# Context: the first entry whose `section` (an element id in view) or `page` (the page's nav key, or part of
+# its address) matches decides the hint and the suggested questions. Sections are checked before pages.
+contexts:
+  - section: [work, more-websites, websites, projects, proj-grid]
+    hint: Ask me about these projects
+    ask: ["What kinds of websites has he built?", "Tell me about Eagle Premier Real Estate", "Does he work with GoHighLevel?"]
+  - section: [expertise]
+    hint: Ask me about his skills
+    ask: ["What are his technical skills?", "What is his WordPress experience?", "Does he do CRM automation?"]
+  - section: [leadership-snapshot]
+    hint: Ask me about his role as CEO
+    ask: ["What is Surjamukhi Sangstha?", "What is his role as CEO?", "Does he work with international organisations?"]
+  - section: [academic-snapshot, research, report]
+    hint: Ask me about his studies
+    ask: ["Tell me about his education", "What was his master's project about?", "What are his research interests?"]
+  - section: [contact, connect, start]
+    hint: I can help you reach him
+    ask: ["How can I contact him?", "How can I hire him?", "How can I collaborate with him?"]
+  - section: [library, try, setup, pricing]
+    hint: Ask me about prompt engineering
+    ask: ["What is his prompt engineering service?", "How much do the packages cost?", "How can I hire him?"]
+  - page: [portfolio/eagle, portfolio/arca, portfolio/vtek, portfolio/els, portfolio/osea]
+    hint: Want this project explained?
+    ask: ["Explain this project", "What was built with?", "Show me his other projects"]
+  - page: [portfolio]
+    hint: Ask me about his work
+    ask: ["What kinds of websites has he built?", "Tell me about Eagle Premier Real Estate", "What does he build with?"]
+  - page: [services]
+    hint: Ask me what he offers
+    ask: ["What services does he offer?", "Does he build AI automations?", "How is a project priced?"]
+  - page: [experience]
+    hint: Ask me about his experience
+    ask: ["Tell me about his professional experience", "What is ED Shield Solutions?", "How long has he freelanced?"]
+  - page: [leadership]
+    hint: Ask me about his leadership
+    ask: ["What is his role as CEO?", "What is Surjamukhi Sangstha?", "Which programmes has he worked on?"]
+  - page: [education]
+    hint: Ask me about his studies
+    ask: ["Tell me about his education", "What was his master's project about?", "What training has he completed?"]
+  - page: [ai-prompt-engineering]
+    hint: Ask me about prompt engineering
+    ask: ["What is his prompt engineering service?", "How much do the packages cost?", "Are the prompts free?"]
+  - page: [photography]
+    hint: Ask me about the photos
+    ask: ["Tell me about his photography", "Who is Dwaipyan Mandal?", "How can I contact him?"]
+  - page: [journal, watch]
+    hint: Ask me about his writing
+    ask: ["What does he write about?", "What are his research interests?", "Who is Dwaipyan Mandal?"]
+  - page: [about]
+    hint: Ask me about him
+    ask: ["Who is Dwaipyan Mandal?", "What languages does he speak?", "What is he planning next?"]
+
+# Places the assistant can take a visitor. `words` are what a visitor might call the place.
+places:
+  - { id: home, label: Home, url: "", words: [home, homepage, start, beginning] }
+  - { id: projects, label: Projects, url: "portfolio/#projects", words: [projects, project, case studies, case study, work, portfolio projects] }
+  - { id: portfolio, label: Portfolio, url: "portfolio/", words: [portfolio, websites, sites, showcase] }
+  - { id: services, label: Services, url: "services/", words: [services, service, offer, offers, offering] }
+  - { id: experience, label: Experience, url: "experience/", words: [experience, career, work history, jobs] }
+  - { id: leadership, label: Leadership, url: "leadership/", words: [leadership, ceo, ngo, surjamukhi] }
+  - { id: education, label: Education, url: "education/", words: [education, degrees, studies, university, research, academic] }
+  - { id: about, label: About, url: "about/", words: [about, story, bio, biography] }
+  - { id: cv, label: CV, url: "cv/", words: [cv, resume, résumé, curriculum vitae] }
+  - { id: contact, label: Contact, url: "#contact", words: [contact, contact form, get in touch, reach, message, hire] }
+  - { id: journal, label: Journal, url: "journal/", words: [journal, articles, blog, writing, essays] }
+  - { id: prompts, label: AI Prompt Engineering, url: "ai-prompt-engineering/", words: [prompt engineering, prompts, prompt library, ai prompts, ai page] }
+  - { id: photography, label: Photography, url: "photography/", words: [photography, photos, photographs, albums, gallery] }
+  - { id: videos, label: Watch & Explore, url: "watch/", words: [videos, video, watch, youtube] }
+  - { id: web, label: Web development services, url: "services/web-development/", words: [web development, website services, wordpress services] }
+  - { id: aiauto, label: AI & automation services, url: "services/ai-automation/", words: [ai automation, automation services, ai services, n8n services] }
+  - { id: crm, label: CRM services, url: "services/crm-automation/", words: [crm services, crm automation, gohighlevel services] }
+  - { id: security, label: Security services, url: "services/cybersecurity/", words: [security services, cybersecurity services, it services] }
+
+topics:
+  - id: who
+    t: Who is Dwaipyan Mandal
+    q: [who is dwaipyan, who is he, who are you talking about, introduce, introduction, about him, tell me about dwaipyan, about dwaipyan mandal, summary, overview, bio, dwaipayan]
+    a: "Dwaipyan Mandal is a technology leader and web developer based in Dhaka, Bangladesh. He is Chief Executive Officer of Surjamukhi Sangstha, a non-governmental organisation, co-founder of the web company ED Shield Solutions, and has built websites and automations for international clients since 2020."
+    more: "He holds a BSc in Computer Science and Engineering and a Professional Masters in Information Technology, and his research interest is cyber resilience in Bangladesh's internet service providers."
+    links: [{ label: About him, url: "about/" }, { label: View CV, url: "cv/" }]
+
+  - id: does
+    t: What he does
+    q: [what does he do, what do you do, his job, his work, profession, occupation, what is his role, current role, what is he working on, day to day]
+    a: "Three things. He leads Surjamukhi Sangstha as its Chief Executive Officer. He runs operations at ED Shield Solutions, the web company he co-founded. And he builds websites, online stores, CRM systems and AI automations for clients abroad."
+    links: [{ label: Services, url: "services/" }, { label: Experience, url: "experience/" }]
+
+  - id: experience
+    t: Professional experience
+    q: [professional experience, experience, career, work history, background, employment, where has he worked, how many years, years of experience, track record]
+    a: "He joined Surjamukhi Sangstha in January 2020 to lead its IT and manage projects, and was appointed its Chief Executive Officer in October 2026. Alongside that, he co-founded ED Shield Solutions and has freelanced since April 2020 — more than six years of websites, stores and automations for clients outside Bangladesh."
+    more: "His client sites are live in the United States, French Polynesia and for a consultancy working between Europe and Asia-Pacific."
+    links: [{ label: Experience, url: "experience/" }, { label: View CV, url: "cv/" }]
+
+  - id: ceo
+    t: His role as CEO
+    q: [ceo, chief executive, role as ceo, his role at surjamukhi, leadership role, what does he do as ceo, executive, leads, leader, leadership]
+    a: "He was appointed Chief Executive Officer of Surjamukhi Sangstha with effect from 26 October 2026, after nearly seven years running the organisation's IT and managing its projects. The specific initiatives and results of the role will be published on the Leadership page as they are confirmed."
+    links: [{ label: Leadership, url: "leadership/" }]
+
+  - id: surjamukhi
+    t: Surjamukhi Sangstha
+    q: [surjamukhi sangstha, surjamukhi, sangstha, sms, ngo, non-governmental, nonprofit, non profit, organisation he leads, organization he leads, development organisation]
+    a: "Surjamukhi Sangstha, or SMS, is a non-governmental organisation in Bangladesh. Dwaipyan joined it in January 2020 to run its technology and manage projects, and has been its Chief Executive Officer since October 2026."
+    more: "His project work there included programme activities involving the International Labour Organization and Dhaka South City Corporation."
+    links: [{ label: Leadership, url: "leadership/" }]
+
+  - id: international
+    t: Work with international organisations
+    q: [international organisations, international organizations, ilo, international labour organization, united nations, un, dhaka south city corporation, dscc, government projects, development sector, donors, partners, ngo projects, international clients, clients abroad, overseas, global clients, which countries, programme, programmes he worked on]
+    a: "Yes, in two ways. At Surjamukhi Sangstha he managed projects that included programme activities involving the International Labour Organization and Dhaka South City Corporation — his part was IT and project management. As a developer, his clients are international: the United States, French Polynesia, and a consultancy with offices in Germany, Singapore, Hong Kong and China."
+    links: [{ label: Leadership, url: "leadership/" }, { label: Projects, url: "portfolio/#projects" }]
+
+  - id: edshield
+    t: ED Shield Solutions
+    q: [ed shield, edshield, ed shield solutions, his company, company, agency, co-founder, cofounder, founder, business, white label, white-label, startup]
+    a: "ED Shield Solutions is a web design and development company in Dhaka that Dwaipyan co-founded. He runs its day-to-day operations. It builds WordPress websites and online stores, does white-label development for digital agencies, and sets up CRM and workflow automation."
+    more: "The company also uses its own in-house WordPress tools for attendance and expense tracking."
+    links: [{ label: Experience, url: "experience/" }]
+
+  - id: freelance
+    t: Freelance work
+    q: [freelance, freelancer, freelancing, fiverr, upwork, independent, self employed, contractor, remote work, how long has he freelanced]
+    a: "He has freelanced since April 2020, building business websites on WordPress and Elementor Pro, online stores on WooCommerce and Shopify, and GoHighLevel, n8n and API integrations — mostly for clients outside Bangladesh, through Fiverr and directly."
+    links: [{ label: Portfolio, url: "portfolio/" }, { label: Fiverr profile, url: "https://www.fiverr.com/dwaipyan" }]
+
+  - id: skills
+    t: Technical skills
+    q: [technical skills, skills, skill set, expertise, tech stack, stack, technologies, tools, what can he do, programming languages, languages does he code, capabilities, competencies, what does he build with, python, php, javascript, html, css, c#, asp.net, coding, programming, code]
+    a: "His core stack is WordPress, Elementor Pro, Crocoblock and WooCommerce for websites and stores; custom WordPress plugins, REST APIs and webhooks for integration; and GoHighLevel and n8n for CRM and automation. He codes in PHP, JavaScript, HTML and CSS, Python, and C# with ASP.NET MVC."
+    more: "On the management side: organisational leadership, project and IT management, and stakeholder reporting. In security: WordPress hardening, and he is studying network and Wi-Fi security."
+    links: [{ label: Services, url: "services/" }, { label: View CV, url: "cv/" }]
+
+  - id: wordpress
+    t: WordPress and web development
+    q: [wordpress, web development, website development, websites, elementor, elementor pro, crocoblock, woocommerce, shopify, online store, ecommerce, e-commerce, web developer, web design, plugin, plugins, custom plugin, landing page, redesign, speed, webflow, wix]
+    a: "WordPress is his main platform. He builds business websites with Elementor Pro and Crocoblock, online stores with WooCommerce, and custom plugins when a theme isn't enough. The portfolio shows the sites he has built, each in a scrolling preview."
+    more: "He also builds on Shopify, and in hand-written HTML, CSS and JavaScript — this website is an example of that."
+    links: [{ label: See the websites, url: "portfolio/#websites" }, { label: Web development services, url: "services/web-development/" }]
+
+  - id: crm
+    t: GoHighLevel and CRM automation
+    q: [gohighlevel, go high level, ghl, highlevel, crm, crm automation, pipeline, pipelines, lead forms, leads, lead generation, sms, a2p, 10dlc, marketing automation, follow up, whatsapp automation, sales automation]
+    a: "Yes. He sets up GoHighLevel — pipelines, forms, calendars, workflows, SMS and email — and connects it to the website. For Eagle Premier Real Estate he built five lead forms feeding one GoHighLevel pipeline, with workflows and registered A2P 10DLC text messaging behind them."
+    links: [{ label: Eagle Premier case study, url: "portfolio/eagle/" }, { label: CRM services, url: "services/crm-automation/" }]
+
+  - id: ai
+    t: AI and automation
+    q: [ai, artificial intelligence, ai automation, automation, n8n, workflow, workflows, agents, ai agent, ai agents, chatbot, api integration, integrations, webhooks, zapier, llm, chatgpt, claude, gemini]
+    a: "He builds automations in n8n that connect forms, inboxes, CRMs and spreadsheets, and writes the prompts and agent instructions that make AI tools behave consistently. Each workflow is specified first, built step by step and documented."
+    links: [{ label: AI & automation services, url: "services/ai-automation/" }, { label: Prompt engineering, url: "ai-prompt-engineering/" }]
+
+  - id: prompts
+    t: Prompt engineering service
+    q: [prompt engineering, prompts, prompt, prompt library, free prompts, prompt builder, custom prompts, agent instructions, prompt service, are the prompts free]
+    a: "He offers prompt engineering: custom prompts, prompt libraries and agent instructions for ChatGPT, Claude, Gemini and AI coding tools. The page has a free library of prompts you can copy, a prompt builder, and packages with starting prices."
+    links: [{ label: Prompt engineering, url: "ai-prompt-engineering/" }, { label: Free prompt library, url: "ai-prompt-engineering/#library" }]
+
+  - id: security
+    t: Cybersecurity
+    q: [cybersecurity, cyber security, security, security projects, cybersecurity projects, hacking, penetration, pentest, network security, wifi, wi-fi, router, isp, zero trust, infosec, wordpress security, hardening, cyber resilience, digital shield, hack, hacked site, malware, secure my site, clean up]
+    a: "His cybersecurity work is research and practice rather than a list of products. His master's project report, Digital Shield, studied cyber resilience across Bangladesh's internet service providers and proposed a security and policy roadmap. He has completed professional cyber security and Cisco CyberOps training, and his security services cover WordPress hardening and clean-up after an incident."
+    more: "His research interests are ISP and home-network security in Bangladesh, cyber-resilience policy, and responsible disclosure."
+    links: [{ label: Research, url: "education/#research" }, { label: Security services, url: "services/cybersecurity/" }]
+
+  - id: netguard
+    t: NetGuard Bangladesh
+    q: [netguard, net guard, netguard bangladesh]
+    a: "I don't have details about NetGuard Bangladesh in my notes yet, so I won't guess. What I can tell you about is his master's research on cyber resilience in Bangladesh's internet service providers — or you can ask Dwaipyan directly."
+    links: [{ label: Research, url: "education/#research" }, { label: Contact, url: "#contact" }]
+
+  - id: education
+    t: Education
+    q: [education, educational background, degree, degrees, university, college, studied, study, qualification, qualifications, masters, master's, bachelor, bsc, pmit, jahangirnagar, stamford, cgpa, graduated, academic background]
+    a: "He holds a Professional Masters in Information Technology from the Institute of Information Technology at Jahangirnagar University — his project report was accepted in April 2025 — and a BSc in Computer Science and Engineering from Stamford University Bangladesh, where he graduated in 2022."
+    more: "His results were a CGPA of 3.02 out of 4 for the masters and 3.34 out of 4 for the BSc."
+    links: [{ label: Education, url: "education/" }]
+
+  - id: research
+    t: Research and academic projects
+    q: [research, academic projects, academic project, thesis, project report, master's project, masters project, dissertation, paper, papers, publication, publications, published, university projects, final year project, drowsiness, research interests]
+    a: "His master's project report is titled Digital Shield: Bangladesh's Transformative Roadmap to Cyber Resilience in the ISP Ecosystem, supervised by Professor Dr. Fahima Tabassum and accepted on 5 April 2025. During his BSc he built a driver drowsiness detector using a convolutional neural network, and two management systems in ASP.NET MVC."
+    more: "The report isn't publicly available, and he has no peer-reviewed publications yet. He also writes about technology and cybersecurity on Medium."
+    links: [{ label: Research, url: "education/#research" }, { label: Articles on Medium, url: "https://medium.com/@rajdwaipyan" }]
+
+  - id: training
+    t: Training and courses
+    q: [training, courses, course, certification, certifications, certificate, certificates, cisco, cyberops, bitm, dev skill, professional development]
+    a: "He has completed four training programmes: Professional Cyber Security at DEV SKILL, a CyberOps Associate course on the Cisco curriculum at AIUB, C# .NET programming at BITM, and Web Design and Development at LEDP."
+    links: [{ label: Education, url: "education/" }]
+
+  - id: plans
+    t: Plans and graduate study
+    q: [plans, future, next, graduate study, phd, masters abroad, study abroad, scholarship, admission, goals, ambition, what is he planning]
+    a: "He is planning graduate study in cybersecurity. No admission or scholarship has been received yet."
+    links: [{ label: Education, url: "education/" }]
+
+  - id: hire
+    t: Hiring him
+    q: [hire, hire him, hiring, work with him, start a project, get a quote, quote, quotation, need a website, build my website, available, availability, is he available, book, engage, commission, project enquiry]
+    a: "Send him a short brief — what the project should do, who it is for, and any deadline. He replies with questions or a written scope and price, and nothing starts until you agree to it. You can use the contact form, email, or WhatsApp."
+    links: [{ label: Write a brief, url: "#contact" }, { label: Email him, url: "mailto:rajdwaipayan@gmail.com" }, { label: Services, url: "services/" }]
+
+  - id: collaborate
+    t: Collaborating with him
+    q: [collaborate, collaboration, partner, partnership, work together, cooperate, joint project, speaking, speak at, invite, interview, academic collaboration, research collaboration]
+    a: "He is open to partnerships, academic enquiries and joint projects. The quickest route is a short email saying who you are and what you have in mind — or a message on LinkedIn."
+    links: [{ label: Email him, url: "mailto:rajdwaipayan@gmail.com" }, { label: LinkedIn, url: "https://www.linkedin.com/in/dwaipyan-cyberexpert" }, { label: Contact form, url: "#contact" }]
+
+  - id: contact
+    t: Contacting him
+    q: [contact, contact him, reach him, get in touch, email, e-mail, mail, phone, phone number, whatsapp, call, message him, linkedin, social media, socials, address, how to reach]
+    a: "You can email him at rajdwaipayan@gmail.com, message him on WhatsApp at +880 1863-324379, or use the contact form on the home page, which opens in your email app. He is also on LinkedIn."
+    links: [{ label: Contact form, url: "#contact" }, { label: Email him, url: "mailto:rajdwaipayan@gmail.com" }, { label: WhatsApp, url: "https://wa.me/8801863324379" }, { label: LinkedIn, url: "https://www.linkedin.com/in/dwaipyan-cyberexpert" }]
+
+  - id: cv
+    t: His CV
+    q: [cv, resume, résumé, curriculum vitae, download cv, see his cv]
+    a: "His CV is a single printable page on this site, kept up to date."
+    links: [{ label: View CV, url: "cv/" }]
+
+  - id: pricing
+    t: Pricing
+    q: [price, prices, pricing, cost, costs, how much, rate, rates, fee, fees, budget, charge, charges, packages, package, priced, how is a project priced, quote]
+    a: "Most work is quoted per project after a short brief, in writing, before anything starts. Prompt engineering is the exception: it has packages with published starting prices, from 49 US dollars."
+    links: [{ label: Prompt packages, url: "ai-prompt-engineering/#pricing" }, { label: Write a brief, url: "#contact" }]
+
+  - id: location
+    t: Where he is based
+    q: [where is he, location, based, live, lives, city, country, dhaka, bangladesh, timezone, time zone, where from]
+    a: "He is based in Dhaka, Bangladesh, and works with clients worldwide."
+    links: [{ label: Contact, url: "#contact" }]
+
+  - id: languages
+    t: Languages he speaks
+    q: [languages does he speak, speak, speaks, english, bengali, bangla, language, ielts]
+    a: "Bengali is his native language and English is his working language. He is preparing for IELTS."
+
+  - id: writing
+    t: Writing and videos
+    q: [writing, write, articles, blog, medium, journal, essays, videos, youtube, channel, content, talks, what does he write about]
+    a: "He writes about technology and cybersecurity on Medium — including pieces on Zero Trust and AI in cybersecurity — and keeps a journal on this site. He also has a YouTube channel."
+    links: [{ label: Journal, url: "journal/" }, { label: Medium, url: "https://medium.com/@rajdwaipyan" }, { label: Watch & Explore, url: "watch/" }]
+
+  - id: photography
+    t: Photography
+    q: [photography, photos, photographer, pictures, albums, flickr, camera, wildlife, hobby, hobbies, interests outside work]
+    a: "Photography is his creative side. The gallery on this site shows albums from his Flickr — wildlife, festivals and the Himalayas among them."
+    links: [{ label: Photography, url: "photography/" }]
+
+  - id: principles
+    t: How he works
+    q: [values, principles, philosophy, approach, how does he work, working style, process, why him, why should i hire, what makes him different, strengths]
+    a: "Three principles he writes about: own your part and credit the team; build systems that still work when the person who set them up is away; and report what is real — numbers are published only when they are documented."
+    links: [{ label: Leadership, url: "leadership/" }]

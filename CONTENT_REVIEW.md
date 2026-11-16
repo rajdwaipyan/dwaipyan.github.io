@@ -189,3 +189,18 @@ Status key: **Hidden** = in the data file but not shown · **Cautious** = shown 
   greenmountaingrills.com, gruum.com, tech-on-deck.com (blank or verification page) and jimmynelson.com
   (single-screen page). Re-capture them later, or record a screen video if you want those too.
 - A few captures show a cookie banner the capture couldn't dismiss (e.g. haybcoffee.eu). Check the grid.
+
+## The digital twin (17 November 2026)
+
+- **Read every answer in `_data/twin.yml`.** They were written from the site's data files (experience, leadership,
+  education, skills, projects, services). The twin speaks for you, so remove or reword anything you would not say.
+- **NetGuard Bangladesh** is not described anywhere on the site, so the twin says it has no details yet.
+  To change that, replace the `netguard` answer in `_data/twin.yml` with the facts (what it is, your role, status).
+- **Not mentioned by the twin** because it is unpublished or unconfirmed on the site: Tech Maximus, the
+  Out-of-School Children programme, any founding year for ED Shield Solutions, and any client results.
+- The twin gives your email address and WhatsApp number (already public on the site) when asked how to reach you.
+- **Live AI is off.** The twin answers from the portfolio content in the browser. `tools/twin-worker/` holds an
+  optional backend for a real language model; it needs your own Cloudflare account and API key, costs money per
+  question, and has not been tested with a live key.
+- The twin now also appears on the AI Prompt Engineering, Watch and Photography pages (it was off there).
+  The CV page stays without it. The footer button now reads "Talk to my digital twin".
