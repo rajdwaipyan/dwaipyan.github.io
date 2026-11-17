@@ -77,11 +77,23 @@ export function initTwin() {
     guide.classList.add("do-" + name);
     setTimeout(() => guide.classList.remove("do-" + name), ms);
   };
-  const mouth = (ms) => {   // flap the mouth for a while (typed answers); spoken answers drive it per word
-    clearInterval(talkT);
+  /* lip movement: each spoken word is turned into a short run of mouth shapes from its vowels
+     (a = open, e/i = wide, o/u = round; the mouth closes between words). An approximation, not phoneme-exact. */
+  let visT = [];
+  const shapesFor = (word) => (String(word).toLowerCase().match(/[aeiouy]+/g) || ["a"]).slice(0, 3).map((v) => (/[ou]/.test(v) ? "o" : /a/.test(v) ? "a" : "e"));
+  const stopLips = () => { visT.forEach(clearTimeout); visT = []; clearInterval(talkT); delete guide.dataset.vis; guide.classList.remove("is-o"); };
+  const lipWord = (word) => {
     if (still) return;
-    let n = 0; const max = Math.round(ms / 110);
-    talkT = setInterval(() => { guide.classList.toggle("is-o", n % 2 === 0 && n < max); if (++n > max) { clearInterval(talkT); guide.classList.remove("is-o"); } }, 110);
+    visT.forEach(clearTimeout); visT = [];
+    const shapes = shapesFor(word), step = shapes.length > 2 ? 85 : 105;
+    shapes.forEach((v, i) => visT.push(setTimeout(() => { guide.dataset.vis = v; }, i * step)));
+    visT.push(setTimeout(() => { delete guide.dataset.vis; }, shapes.length * step + 40));
+  };
+  const mouth = (ms) => {   // typed answers: mime the words for a moment (spoken answers are driven word by word)
+    stopLips();
+    if (still) return;
+    const end = Date.now() + ms, pool = ["a", "e", "o", "a", "e"];
+    talkT = setInterval(() => { if (Date.now() > end) { stopLips(); return; } lipWord(pool[Math.floor(Math.random() * pool.length)].repeat(1)); }, 230);
   };
   const celebrate = () => { gesture("celebrate", 1300); if (!still) { const h = head(); burst(h.x, h.top + 8, "sparkle", 10); } };
 
@@ -324,11 +336,13 @@ export function initTwin() {
     try { voice = voice || await import("./twin-voice.js"); } catch { return; }
     if (!voice.canSpeak) return;
     let last = 0, pulse = 0;
-    const flap = () => { last = Date.now(); guide.classList.add("is-o"); setTimeout(() => guide.classList.remove("is-o"), 130); panel.classList.add("is-beat"); setTimeout(() => panel.classList.remove("is-beat"), 160); };
+    const onWord = (word) => { last = Date.now(); lipWord(word || "a"); panel.classList.add("is-beat"); setTimeout(() => panel.classList.remove("is-beat"), 160); };
+    stopLips();
     voice.speak(text, {
-      onStart: () => { setMode("speaking"); pulse = setInterval(() => { if (Date.now() - last > 420) flap(); }, 260); },   // browsers without word events still move the mouth
-      onWord: flap,
-      onEnd: () => { clearInterval(pulse); guide.classList.remove("is-o"); if (mode === "speaking") setMode(""); },
+      // browsers that send no word events still get a moving mouth
+      onStart: () => { setMode("speaking"); pulse = setInterval(() => { if (Date.now() - last > 420) onWord(["a", "e", "o"][Math.floor(Math.random() * 3)]); }, 240); },
+      onWord,
+      onEnd: () => { clearInterval(pulse); stopLips(); if (mode === "speaking") setMode(""); },
     });
   };
 

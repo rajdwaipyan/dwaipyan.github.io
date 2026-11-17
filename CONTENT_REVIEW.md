@@ -204,3 +204,10 @@ Status key: **Hidden** = in the data file but not shown · **Cautious** = shown 
   question, and has not been tested with a live key.
 - The twin now also appears on the AI Prompt Engineering, Watch and Photography pages (it was off there).
   The CV page stays without it. The footer button now reads "Talk to my digital twin".
+
+### Portrait (17 November 2026)
+- The digital twin is now drawn from your photograph: wavy dark hair, full beard, thick brows, face shape and
+  skin tone. The photo itself is **not** in the repository or on the site — only the drawing is.
+- Clothes are the light blazer and dark tee from the home-page portrait, so he matches the hero.
+- Check the likeness on a phone and a desktop. Small tweaks (hair volume, beard length, brow angle, skin tone)
+  are single numbers or colours in `_includes/guide.html` and the "drawing" block of `style.css`.
