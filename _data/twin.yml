@@ -43,6 +43,12 @@ contexts:
   - section: [contact, connect, start]
     hint: I can help you reach him
     ask: ["How can I contact him?", "How can I hire him?", "How can I collaborate with him?"]
+  - section: [builder]
+    hint: Describe your business to me
+    ask: ["I want to start an eCommerce business", "I own a restaurant and need more customers", "My business needs a CRM and automation system"]
+  - section: [lifecycle, solutions, industries, technology, inquiry]
+    hint: Ask me what fits your business
+    ask: ["What business solutions does he offer?", "I want to expand my business internationally", "How can I start a project?"]
   - section: [library, try, setup, pricing]
     hint: Ask me about prompt engineering
     ask: ["What is his prompt engineering service?", "How much do the packages cost?", "How can I hire him?"]
@@ -52,6 +58,9 @@ contexts:
   - page: [portfolio]
     hint: Ask me about his work
     ask: ["What kinds of websites has he built?", "Tell me about Eagle Premier Real Estate", "What does he build with?"]
+  - page: [solutions]
+    hint: Tell me about your business
+    ask: ["I want to start an eCommerce business", "What business solutions does he offer?", "How can I start a project?"]
   - page: [services]
     hint: Ask me what he offers
     ask: ["What services does he offer?", "Does he build AI automations?", "How is a project priced?"]
@@ -83,6 +92,9 @@ places:
   - { id: projects, label: Projects, url: "portfolio/#projects", words: [projects, project, case studies, case study, work, portfolio projects] }
   - { id: portfolio, label: Portfolio, url: "portfolio/", words: [portfolio, websites, sites, showcase] }
   - { id: services, label: Services, url: "services/", words: [services, service, offer, offers, offering] }
+  - { id: solutions, label: Business Solutions, url: "solutions/", words: [business solutions, solutions, 360, ecosystem, lifecycle] }
+  - { id: builder, label: the Business Builder, url: "solutions/#builder", words: [business builder, blueprint, builder, business plan] }
+  - { id: inquiry, label: the project form, url: "solutions/#inquiry", words: [project form, inquiry, enquiry, project brief, start a project] }
   - { id: experience, label: Experience, url: "experience/", words: [experience, career, work history, jobs] }
   - { id: leadership, label: Leadership, url: "leadership/", words: [leadership, ceo, ngo, surjamukhi] }
   - { id: education, label: Education, url: "education/", words: [education, degrees, studies, university, research, academic] }
@@ -274,6 +286,18 @@ topics:
     q: [photography, photos, photographer, pictures, albums, flickr, camera, wildlife, hobby, hobbies, interests outside work]
     a: "Photography is his creative side. The gallery on this site shows albums from his Flickr — wildlife, festivals and the Himalayas among them."
     links: [{ label: Photography, url: "photography/" }]
+
+  - id: solutions
+    t: Business solutions
+    q: [business solutions, 360, ecosystem, end to end, end-to-end, full service, branding, digital marketing, seo, erp, international expansion, business strategy, startup consulting, maintenance, what business solutions, idea to business, build a business, business blueprint, business builder]
+    a: "Beyond the four core services, he and the ED Shield Solutions team plan businesses across their whole lifecycle — strategy, branding, websites, marketing, SEO, CRM, AI automation, security, operations, international expansion, analytics and support. Some are delivered directly; others are scoped per project with specialist partners. The Business Builder drafts a free preliminary blueprint for your business."
+    links: [{ label: Business solutions, url: "solutions/" }, { label: Business Builder, url: "solutions/#builder" }]
+
+  - id: start
+    t: Starting a project
+    q: [start a project, project brief, inquiry, enquiry, proposal, send a brief, project form]
+    a: "The project form on the Business Solutions page takes five short steps — the business, the services, the challenge, budget and timing — and shows you the brief before anything is sent. Nothing is promised until scope, timeline and price are agreed in writing."
+    links: [{ label: Project form, url: "solutions/#inquiry" }, { label: Email him, url: "mailto:rajdwaipayan@gmail.com" }]
 
   - id: principles
     t: How he works

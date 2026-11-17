@@ -1,0 +1,342 @@
+# 360° BUSINESS SOLUTIONS — /solutions/ (solutions/index.html, assets/js/solutions.js, assets/js/builder.js).
+#
+# HONESTY RULES FOR THIS FILE
+#   delivery: direct   = Dwaipyan / ED Shield Solutions deliver it themselves (only set this when true)
+#   delivery: scoped   = shown as "scoped per project — in-house or with specialist partners"
+#   budget: ""         = shown as "quoted after a short call". Put a real starting range here, e.g. "from $1,500",
+#                        and the page and the Business Builder will use it. Nothing else invents a price.
+#   proof:             = only real case studies or pages on this site.
+# The four categories already on /services/ are marked direct because that page says so; mark the others yourself.
+
+brand: ED Shield Solutions
+lead: Dwaipyan Mandal
+
+# The optional backend (tools/hostinger-api) — its public address, e.g. "https://api.example.com/".
+# Empty = everything runs in the visitor's browser: blueprints are drafted by rules, and enquiries are sent
+# from the visitor's email app or WhatsApp. Never put an API key here.
+api: ""
+
+categories:
+  - id: strategy
+    n: "01"
+    title: Business Strategy & Startup Consulting
+    short: Strategy
+    problem: "An idea, a budget and too many possible first steps — with no clear order, scope or way to tell what matters first."
+    approach: "Turn the idea into a written plan: who the customer is, what is sold and how, what has to exist on day one, and what can wait. Every recommendation is tied to a cost and a sequence."
+    deliverables: [Business and customer brief, Offer and pricing structure options, Launch scope (must-have vs later), Phased roadmap with dependencies, Technology and vendor choices]
+    value: Fewer expensive false starts, and a plan that everyone involved can follow.
+    tech: [Notion / Google Workspace, Miro, Spreadsheet models]
+    delivery: scoped
+    budget: ""
+    service_page: ""
+  - id: branding
+    n: "02"
+    title: Branding & Creative Identity
+    short: Branding
+    problem: "A business that looks improvised — inconsistent logo use, colours and tone — loses trust before anyone reads a word."
+    approach: "Define how the business should come across, then turn it into a small, usable identity system applied to the website, documents and social profiles."
+    deliverables: [Name and positioning workshop, Logo and identity system, Colour and type palette, Brand guidelines, Templates for social and documents]
+    value: A business that looks established from the first impression, and stays consistent as more people create for it.
+    tech: [Figma, Adobe Illustrator, Canva brand kits]
+    delivery: scoped
+    budget: ""
+    service_page: ""
+  - id: web
+    n: "03"
+    title: Website, eCommerce & Application Development
+    short: Websites & apps
+    problem: "A website that is slow, dated or hard to update — or no online way to sell, book or capture leads at all."
+    approach: "Design and build the site, store or web application on the platform that fits the business, connected to forms, payments and the CRM, and handed over so the team can run it."
+    deliverables: [Information architecture and page plan, Website or online store build, Payments, booking and forms, Integrations with CRM and email, Hand-over training and documentation]
+    value: A site that earns trust, captures enquiries and sales, and can be updated without a developer for every change.
+    tech: [WordPress, Elementor Pro, Crocoblock, WooCommerce, Shopify, Webflow, Wix, HTML / CSS / JavaScript]
+    delivery: direct
+    budget: ""
+    service_page: services/web-development/
+  - id: marketing
+    n: "04"
+    title: Digital Marketing & Customer Acquisition
+    short: Marketing
+    problem: "Good products that not enough of the right people hear about — or ad spend with no way to tell what is working."
+    approach: "Pick the few channels that fit the customer, set up campaigns with measurement from day one, and connect every lead to the CRM so it is followed up."
+    deliverables: [Channel and audience plan, Campaign set-up (search, social, email), Landing pages and lead magnets, Tracking and conversion events, Monthly performance review]
+    value: Customer acquisition you can measure and adjust, instead of guessing.
+    tech: [Google Ads, Meta Ads, Email marketing, Google Analytics 4, Tag Manager]
+    delivery: scoped
+    budget: ""
+    service_page: ""
+  - id: seo
+    n: "05"
+    title: SEO & Search Visibility
+    short: SEO
+    problem: "Customers search for exactly what the business offers — and find competitors instead."
+    approach: "Fix the technical basics, structure pages around what customers actually search for, and set up local and structured-data signals so search engines understand the business."
+    deliverables: [Technical SEO audit and fixes, Keyword and page mapping, On-page optimisation, Google Business Profile and local SEO, Structured data, Content plan]
+    value: A steady source of visitors who are already looking for what you sell.
+    tech: [Google Search Console, Rank Math / Yoast, Schema.org, PageSpeed / Core Web Vitals]
+    delivery: scoped
+    budget: ""
+    service_page: ""
+  - id: crm
+    n: "06"
+    title: Sales Funnels, CRM & Revenue Automation
+    short: CRM & funnels
+    problem: "Leads arrive by form, phone, email and WhatsApp — and some are never followed up."
+    approach: "Design one pipeline, connect every lead source to it, and automate the follow-up: messages, reminders, bookings and tasks for the steps a person should take."
+    deliverables: [CRM and pipeline design, Lead forms and funnels connected to the CRM, Email / SMS / WhatsApp follow-up sequences, Booking calendars, Pipeline reporting]
+    value: Every enquiry captured and followed up on time, with a clear view of what is in the pipeline.
+    tech: [GoHighLevel, A2P 10DLC SMS, WhatsApp Business, Webhooks, n8n]
+    delivery: direct
+    budget: ""
+    service_page: services/crm-automation/
+    proof: [{ label: "Eagle Premier Real Estate — five forms, one GoHighLevel pipeline", url: "portfolio/eagle/" }]
+  - id: ai
+    n: "07"
+    title: AI Agents & Business Process Automation
+    short: AI & automation
+    problem: "Skilled people spending hours on copying data, sorting enquiries and writing the same replies."
+    approach: "Map the process, decide where automation or AI genuinely helps, and build documented workflows with a person approving what matters."
+    deliverables: [Process map and automation plan, n8n workflows with error handling, AI assistants and agent instructions, API integrations, Team prompt library and guidelines]
+    value: Time back for the work that needs people, and processes that keep running when someone is away.
+    tech: [n8n, OpenAI / Anthropic / Gemini APIs, REST APIs and webhooks, Google Workspace, Claude Code / Cursor]
+    delivery: direct
+    budget: ""
+    service_page: services/ai-automation/
+    proof: [{ label: "AI Prompt Engineering — free prompt library and packages", url: "ai-prompt-engineering/" }]
+  - id: security
+    n: "08"
+    title: IT Infrastructure & Cybersecurity
+    short: IT & security
+    problem: "A growing business with no written IT set-up, shared passwords and a website nobody has security-reviewed."
+    approach: "Harden the website and hosting, put the basics of accounts, devices, backups and access in place, and document who owns what."
+    deliverables: [Website and WordPress hardening, Security assessment with prioritised fixes, Accounts, email and access set-up, Backups that are tested, IT documentation]
+    value: Lower risk of downtime and data loss, and a clear plan for what to fix first.
+    tech: [WordPress hardening, Web application firewalls, SSL / TLS, Google Workspace / Microsoft 365, Backups]
+    delivery: direct
+    budget: ""
+    service_page: services/cybersecurity/
+    proof: [{ label: "Master's research on cyber resilience in Bangladesh's ISPs", url: "education/#research" }]
+  - id: operations
+    n: "09"
+    title: Business Operations, ERP & Management Systems
+    short: Operations & ERP
+    problem: "Stock, orders, staff, attendance and expenses tracked across spreadsheets that disagree with each other."
+    approach: "Choose or build the system that fits the business — an existing ERP, a configured platform, or a custom WordPress tool — and move the data and processes into it."
+    deliverables: [Requirements and system selection, ERP / management system set-up, Custom internal tools, Data migration, Staff training]
+    value: One reliable source of truth for operations, and less time reconciling spreadsheets.
+    tech: [Odoo / ERPNext, Custom WordPress plugins, Google Sheets automation, n8n]
+    delivery: scoped
+    budget: ""
+    service_page: ""
+  - id: expansion
+    n: "10"
+    title: International Expansion & Business Growth
+    short: Expansion
+    problem: "A business ready to sell abroad, without the multilingual site, payments, compliance basics or local presence to do it."
+    approach: "Plan the target markets, then put the digital groundwork in place: localised site and content, payments and currencies, international SEO and market-specific campaigns."
+    deliverables: [Market-entry plan, Multilingual / multi-region website, International payments and shipping set-up, International SEO (hreflang), Market-specific campaigns]
+    value: A credible presence in each new market without rebuilding the business for each one.
+    tech: [WPML / Weglot, Shopify Markets, Stripe / PayPal, hreflang, Multi-currency]
+    delivery: scoped
+    budget: ""
+    service_page: ""
+    proof: [{ label: "ARCA Advisory — a site for a firm working across Europe and Asia-Pacific", url: "portfolio/arca/" }]
+  - id: analytics
+    n: "11"
+    title: Analytics, Optimisation & Scaling
+    short: Analytics
+    problem: "Plenty of data in different tools, and no clear answer to which channel, page or product actually makes money."
+    approach: "Define the few numbers that matter, connect the data sources, build a dashboard people will read, and run structured improvements on what it shows."
+    deliverables: [Measurement plan and KPIs, Analytics and conversion tracking, Reporting dashboard, Conversion-rate improvement tests, Quarterly optimisation review]
+    value: Decisions based on what the numbers show, and a clear view of where to invest next.
+    tech: [Google Analytics 4, Looker Studio, Tag Manager, Microsoft Clarity, CRM reporting]
+    delivery: scoped
+    budget: ""
+    service_page: ""
+  - id: support
+    n: "12"
+    title: Ongoing Technical Support & Maintenance
+    short: Support
+    problem: "A website or system that was built well, then left without updates, backups or anyone responsible."
+    approach: "A retainer that keeps everything updated, backed up, monitored and secure, with a set amount of time for changes each month."
+    deliverables: [Updates and security patches, Backups and uptime monitoring, Monthly changes and fixes, Performance checks, Priority support channel]
+    value: Systems that stay fast and secure, and one accountable contact when something needs changing.
+    tech: [Managed WordPress, Uptime monitoring, Backups, Staging environments]
+    delivery: scoped
+    budget: ""
+    service_page: ""
+
+# The business lifecycle. `services` are category ids above.
+stages:
+  - id: idea
+    n: "01"
+    title: Idea
+    line: Shape the idea into something you can test.
+    services: [strategy]
+    deliverables: [Business and customer brief, First list of what must exist to launch]
+    process: [Discovery call, Written brief, Agreement on the first step]
+  - id: validate
+    n: "02"
+    title: Validate
+    line: Check that real customers want it before spending heavily.
+    services: [strategy, web, marketing]
+    deliverables: [Landing page with sign-up or pre-order, Small test campaign, What the test showed]
+    process: [Define what would count as interest, Build a simple test, Read the results honestly]
+  - id: establish
+    n: "03"
+    title: Establish
+    line: Give the business an identity, accounts and the basic systems.
+    services: [branding, security, operations]
+    deliverables: [Identity system, Business email and accounts, Core tools and access set up]
+    process: [Identity workshop, Set-up checklist, Hand-over of every login]
+  - id: launch
+    n: "04"
+    title: Launch
+    line: Open for business online.
+    services: [web, seo, crm]
+    deliverables: [Website or store live, Lead capture into the CRM, Search basics in place]
+    process: [Page plan and design, Build on staging, Launch checklist and go-live]
+  - id: market
+    n: "05"
+    title: Market
+    line: Bring in customers through the right channels.
+    services: [marketing, seo, crm]
+    deliverables: [Channel plan, Running campaigns with tracking, Follow-up sequences]
+    process: [Pick channels, Launch campaigns, Review weekly then monthly]
+  - id: automate
+    n: "06"
+    title: Automate
+    line: Take repetitive work off the team.
+    services: [ai, crm, operations]
+    deliverables: [Process map, Documented workflows, AI assistants with clear limits]
+    process: [Map the process, Automate step by step, Document and train]
+  - id: grow
+    n: "07"
+    title: Grow
+    line: Improve what works and add what is missing.
+    services: [analytics, marketing, support]
+    deliverables: [Reporting dashboard, Optimisation tests, Retainer for steady improvement]
+    process: [Measure, Test one change at a time, Keep what works]
+  - id: scale
+    n: "08"
+    title: Scale
+    line: New markets, larger teams, stronger systems.
+    services: [expansion, operations, security]
+    deliverables: [Market-entry plan, Systems that handle more volume, Security reviewed for a larger team]
+    process: [Plan the next market, Strengthen systems, Review security and access]
+
+# Industries. `combo` = the usual mix of categories; `needs` = typical requirements; `words` help the Business Builder
+# recognise the industry. `proof` only links to real work on this site.
+industries:
+  - id: retail
+    title: Retail & eCommerce
+    line: Selling products online, with or without a physical shop.
+    needs: [An online store with clear product pages, Payments and shipping rules, Abandoned-cart and post-purchase emails, Stock that stays in sync]
+    combo: [branding, web, marketing, seo, crm, analytics]
+    uses: [Launching a first online store, Moving from social-media selling to a proper shop, Adding wholesale ordering]
+    words: [ecommerce, e-commerce, online store, shop, store, retail, products, selling online, shopify, woocommerce, dropshipping, fashion, clothing, boutique]
+    proof: []
+  - id: healthcare
+    title: Healthcare
+    line: Clinics, practices, care providers and health platforms.
+    needs: [Clear service and practitioner pages, Online appointment booking, Careful handling of patient data, Local search visibility]
+    combo: [web, seo, crm, security, ai]
+    uses: [A clinic website with booking, A care provider explaining services to families, A health information platform]
+    words: [healthcare, health, clinic, hospital, doctor, dental, dentist, medical, care, pharmacy, telemedicine, therapy, patients]
+    proof: [{ label: "Exceptional Life Services — disability and care services, Wyoming", url: "portfolio/els/" }]
+  - id: education
+    title: Education & eLearning
+    line: Schools, training providers, tutors and course platforms.
+    needs: [Course or programme pages, Enrolment and payments, A learning platform or LMS, Student communication]
+    combo: [web, marketing, crm, ai, operations]
+    uses: [An online course business, A training centre taking enrolments online, A tutoring service with booking]
+    words: [education, elearning, e-learning, school, course, courses, training, academy, tutor, tutoring, lms, ielts, coaching, university]
+    proof: []
+  - id: realestate
+    title: Real Estate
+    line: Agents, brokerages, developers and property managers.
+    needs: [Listings and property search, Separate lead forms for buyers / sellers / renters, Fast follow-up by SMS and email, Agent pipelines]
+    combo: [web, crm, marketing, seo, ai]
+    uses: [A brokerage capturing and routing every lead, A developer marketing a new project, A property manager handling tenant enquiries]
+    words: [real estate, property, properties, realtor, realty, brokerage, broker, listings, rentals, homes, apartments, developer, mortgage]
+    proof: [{ label: "Eagle Premier Real Estate — website and GoHighLevel CRM", url: "portfolio/eagle/" }]
+  - id: hospitality
+    title: Restaurants & Hospitality
+    line: Restaurants, cafés, hotels, tours and venues.
+    needs: [Menus, rooms or experiences shown well, Reservations or online booking, Google Business Profile and reviews, Repeat-visit campaigns]
+    combo: [branding, web, seo, marketing, crm]
+    uses: [A restaurant that needs more local customers, A tour operator taking bookings online, A hotel reducing booking-platform commissions]
+    words: [restaurant, cafe, café, coffee, food, catering, hotel, resort, tourism, tours, travel, hospitality, bar, bakery, booking, reservations]
+    proof: [{ label: "O-Sea Bora Bora — tours with online booking", url: "portfolio/osea/" }]
+  - id: manufacturing
+    title: Manufacturing & Industrial
+    line: Manufacturers, distributors and B2B suppliers.
+    needs: [A product catalogue engineers can search, Quote requests instead of a cart, Distributor and dealer pages, ERP or inventory links]
+    combo: [web, seo, crm, operations, expansion]
+    uses: [A manufacturer replacing PDF catalogues, A distributor taking quote requests online, A factory organising orders and stock]
+    words: [manufacturing, manufacturer, factory, industrial, b2b, distributor, wholesale, supplier, machinery, equipment, garments, export, import]
+    proof: [{ label: "Vtek — industrial B2B catalogue, Ohio", url: "portfolio/vtek/" }]
+  - id: professional
+    title: Professional Services
+    line: Consultancies, law and accounting firms, agencies.
+    needs: [A site that shows expertise and earns trust, Consultation booking, Case studies and insights, Client intake and follow-up]
+    combo: [branding, web, seo, crm, ai]
+    uses: [A consultancy presenting work across several countries, A firm automating client intake, An agency needing white-label development]
+    words: [consultancy, consulting, consultant, law, lawyer, legal, accounting, accountant, agency, advisory, marketing agency, digital agency, firm, coach]
+    proof: [{ label: "ARCA Advisory — consultancy across Europe and Asia-Pacific", url: "portfolio/arca/" }]
+  - id: nonprofit
+    title: NGOs & Nonprofits
+    line: Development organisations, charities and foundations.
+    needs: [Programme and impact pages, Donations or partner enquiries, Reporting to donors, Simple internal tools]
+    combo: [web, operations, security, ai, analytics]
+    uses: [An NGO website that donors and partners trust, Internal tools for attendance and expenses, Data and reporting for programmes]
+    words: [ngo, nonprofit, non-profit, charity, foundation, donor, donors, donation, programme, development organisation, ingo, cso]
+    proof: [{ label: "Leadership — Chief Executive Officer of Surjamukhi Sangstha", url: "leadership/" }]
+  - id: startup
+    title: Technology Startups
+    line: SaaS, apps and platforms from idea to traction.
+    needs: [A clear landing page and waitlist, An MVP scoped to what matters, Onboarding and email sequences, Analytics from the first user]
+    combo: [strategy, branding, web, marketing, analytics, ai]
+    uses: [A founder validating an idea, A startup building its MVP, A platform preparing to raise or scale]
+    words: [startup, start-up, saas, app, platform, mvp, software, marketplace, fintech, edtech, healthtech, tech company]
+    proof: []
+  - id: enterprise
+    title: Corporate Enterprises
+    line: Larger organisations with several teams and systems.
+    needs: [Integrations between existing systems, Security and access reviews, Automation across departments, Clear documentation and governance]
+    combo: [ai, operations, security, analytics, support]
+    uses: [Automating a cross-department process, A security and IT review, A company-wide AI usage guideline and prompt library]
+    words: [enterprise, corporate, corporation, group of companies, conglomerate, departments, large company, multinational, bank, telecom]
+    proof: []
+
+# How work is engaged.
+engagements:
+  - { id: consult, title: Consultation, text: "A paid session or short written review to answer one question well — a plan, an audit or a second opinion." }
+  - { id: project, title: Project, text: "A defined scope with deliverables, timeline and price agreed in writing before work starts." }
+  - { id: retainer, title: Retainer, text: "A monthly arrangement for ongoing marketing, optimisation, automation or support." }
+  - { id: transform, title: Transformation programme, text: "A phased programme across several areas — for example website, CRM, automation and security — planned together and delivered in stages." }
+
+# Who it is for (the Business Builder scales the plan to this).
+sizes: [Startup or idea stage, Small business, Medium-sized business, Large company, Enterprise or industrial organisation, NGO or institution]
+
+# Technology map. mode: direct = implemented directly; scoped = scoped per project, in-house or with partners.
+technology:
+  - { group: Websites & commerce, items: [{ n: WordPress, mode: direct }, { n: WooCommerce, mode: direct }, { n: Elementor Pro, mode: direct }, { n: Shopify, mode: direct }, { n: Webflow, mode: direct }, { n: Wix, mode: direct }, { n: React / Next.js, mode: scoped }] }
+  - { group: CRM & automation, items: [{ n: GoHighLevel, mode: direct }, { n: n8n, mode: direct }, { n: CRM integrations, mode: direct }, { n: Webhooks & REST APIs, mode: direct }] }
+  - { group: AI, items: [{ n: OpenAI / Anthropic / Gemini APIs, mode: direct }, { n: AI agents & assistants, mode: direct }, { n: Prompt engineering, mode: direct }] }
+  - { group: Infrastructure & security, items: [{ n: WordPress security, mode: direct }, { n: Web hosting & SSL, mode: direct }, { n: Cloud infrastructure (AWS, GCP, Azure), mode: scoped }, { n: Security assessment, mode: direct }] }
+  - { group: Marketing & analytics, items: [{ n: Google Analytics 4, mode: scoped }, { n: Google & Meta Ads, mode: scoped }, { n: SEO tools, mode: scoped }, { n: Email marketing, mode: scoped }] }
+
+# Business Builder: what visitors may say they want (goal), and what it implies.
+goals:
+  - { id: start, label: Start a new business, words: [start, starting, launch, establish, new business, open a, set up, setup, found, idea, begin], cats: [strategy, branding, web, marketing] }
+  - { id: sell, label: Sell online, words: [ecommerce, e-commerce, online store, sell online, selling online, shop, store, online orders, checkout, products], cats: [web, marketing, seo, crm] }
+  - { id: customers, label: Get more customers, words: [more customers, customers, clients, leads, sales, traffic, visibility, footfall, grow sales, nobody finds, marketing, more orders], cats: [marketing, seo, crm, analytics] }
+  - { id: crm, label: CRM & follow-up, words: [crm, pipeline, follow up, follow-up, gohighlevel, leads get lost, lead management, funnel, funnels, sales process], cats: [crm, ai] }
+  - { id: automate, label: Automate work, words: [automate, automation, automations, ai agent, ai, chatbot, workflow, manual work, repetitive, n8n, integrate, integration], cats: [ai, crm, operations] }
+  - { id: website, label: New or better website, words: [website, site, redesign, web, landing page, wordpress, webflow, wix, slow site, outdated, booking, bookings, reservations, online booking, order online, by phone], cats: [web, seo, branding] }
+  - { id: brand, label: Brand & identity, words: [brand, branding, logo, identity, rebrand, name, design], cats: [branding, web] }
+  - { id: platform, label: Build a platform or app, words: [platform, app, application, portal, saas, marketplace, mvp, software, system for], cats: [strategy, web, ai, security] }
+  - { id: expand, label: Expand internationally, words: [international, internationally, abroad, export, new markets, overseas, global, other countries, expand], cats: [expansion, web, seo, marketing] }
+  - { id: operations, label: Organise operations, words: [erp, inventory, stock, accounting, attendance, payroll, operations, management system, spreadsheets, hr], cats: [operations, ai] }
+  - { id: secure, label: Security & IT, words: [security, secure, hacked, malware, cyber, it support, backup, backups, infrastructure, email setup], cats: [security, support] }

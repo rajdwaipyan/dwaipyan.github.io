@@ -28,6 +28,7 @@ groups:
     blurb: Websites, stores, AI and CRM automation — what I offer and the work behind it.
     links:
       - { label: Services, sub: "Websites, AI automation, CRM and security", url: services/, nav: services }
+      - { label: Business Solutions, sub: "From idea to established business — plan yours", url: solutions/, nav: solutions }
       - { label: Portfolio, sub: "What I build and how, with a live demo", url: portfolio/, nav: portfolio }
       - { label: Projects, sub: "Case studies, filterable by region and type", url: "portfolio/#projects" }
       - { label: CV, sub: "One page, printable, always current", url: cv/, nav: cv }

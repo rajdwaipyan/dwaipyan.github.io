@@ -211,3 +211,24 @@ Status key: **Hidden** = in the data file but not shown · **Cautious** = shown 
 - Clothes are the light blazer and dark tee from the home-page portrait, so he matches the hero.
 - Check the likeness on a phone and a desktop. Small tweaks (hair volume, beard length, brow angle, skin tone)
   are single numbers or colours in `_includes/guide.html` and the "drawing" block of `style.css`.
+
+## 360° Business Solutions (17 November 2026)
+
+**Please review before merging — the page speaks for you and ED Shield Solutions.**
+
+- **Mark each practice** in `_data/solutions.yml` → `delivery:`. Four are `direct` because the Services page already
+  says so (websites, CRM, AI automation, security). The other eight — strategy, branding, marketing, SEO,
+  operations/ERP, expansion, analytics, support — are `scoped` ("in-house or with specialist partners") until you
+  change them. Remove any you don't want to offer at all.
+- **Technology map** (`technology:`): React / Next.js, cloud infrastructure and the marketing/analytics tools are
+  marked "scoped" because the site doesn't say you build with them directly. Change any that are wrong.
+- **Prices:** none are shown. Add a starting range to a practice's `budget:` (e.g. "from $1,500") and the page and
+  the Business Builder will use it. Visitors choose their own budget band in the builder and the inquiry form.
+- **Industry "related work"** links only to real case studies (Eagle, ELS, O-Sea, Vtek, ARCA) and your leadership page.
+- **Wording:** "Dwaipyan Mandal and the ED Shield Solutions team, with specialist partners where a project needs
+  them." Change `brand:` / `lead:` in the data file if you prefer another name (e.g. Pentangular IT).
+- **The Business Builder** is rule-based and labelled as a preliminary recommendation, not a quote or a promise.
+  It never states revenue, success rates or market figures.
+- **Backend not installed.** Until you set up `tools/hostinger-api` on Hostinger and set `api:`, enquiries are sent
+  from the visitor's own email app or WhatsApp. The page says so.
+- Navigation: one new link, "Business Solutions", in the Work menu; one link block on the Services page.

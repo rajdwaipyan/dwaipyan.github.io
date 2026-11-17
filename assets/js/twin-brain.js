@@ -106,6 +106,13 @@ export function answerLocal(question, ctx = {}) {
       : "I'm Dwaipyan's digital twin — a drawn version of him that answers from what's published on this portfolio. I'm not Dwaipyan himself and not a general chatbot, so if I don't know something, I'll say so.", { kind: "small" });
   if (/\bwhat can (you|i) (do|ask)\b|^help\b|what do you know/.test(q)) return out(kb.intro, { kind: "small" });
 
+  // a visitor describing their own business → hand it to the Business Builder on /solutions/
+  if (/^(i|we)\s?(want|wanna|would like|d like|plan|am planning|are planning|need|own|run|have|m starting|am starting|are starting)\b.*\b(business|company|startup|shop|store|restaurant|clinic|agency|brand|platform|ecommerce|e commerce|online store|factory|ngo|school|hotel|cafe|firm|practice)\b/.test(q)
+      || /^(my|our) (business|company|startup|shop|store|restaurant|clinic|agency|organisation|organization|ngo|firm|factory|brand) /.test(q)
+      || /\b(business idea|start a business|starting a business|open a business|launch a business|grow my business|scale my business|expand my business)\b/.test(q))
+    return out("That's exactly what the Business Builder is for. I'll pass your words to it — it asks a few questions and drafts a preliminary blueprint: services, technology, marketing, automation and a phased roadmap. It's a starting point for a conversation, not a quote.",
+      { links: [{ label: "Draft my blueprint", url: "solutions/#builder", prefill: question.trim().slice(0, 1200) }, { label: "Business solutions", url: "solutions/" }], topic: "solutions", kind: "answer" });
+
   // "explain this project / this page"
   if (/\b(this|that|current|selected) (project|site|website|case|one|page)\b|\bexplain (this|it)\b|what am i looking at/.test(q)) {
     const t = ctx.project && byId("project-" + ctx.project);

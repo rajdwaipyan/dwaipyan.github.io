@@ -286,7 +286,7 @@ export function initTwin() {
     const row = document.createElement("div"); row.className = "twin-acts";
     for (const l of m.links || []) {
       const a = Object.assign(document.createElement("a"), { className: "twin-go", href: resolve(l.url), textContent: l.label });
-      if (internal(l.url)) { a.dataset.go = l.url; a.dataset.label = l.label; }
+      if (internal(l.url)) { a.dataset.go = l.url; a.dataset.label = l.label; if (l.prefill) a.dataset.prefill = l.prefill; }
       else if (l.url.startsWith("http")) { a.target = "_blank"; a.rel = "noopener"; a.insertAdjacentHTML("beforeend", '<span class="sr-only"> (opens in a new tab)</span>'); }
       row.appendChild(a);
     }
@@ -488,7 +488,14 @@ export function initTwin() {
     const q = e.target.closest(".twin-q");
     if (q) { if (q.dataset.back) goBack(); else ask(q.textContent); return; }
     const a = e.target.closest("a[data-go]");
-    if (a) { e.preventDefault(); go(a.dataset.go, a.dataset.label); }
+    if (a) {
+      e.preventDefault();
+      if (a.dataset.prefill) {   // hand a business description to the Business Builder (solutions.js reads it)
+        if (document.getElementById("bb-text")) { if (compactMq.matches) close(); document.dispatchEvent(new CustomEvent("builder:prefill", { detail: { text: a.dataset.prefill } })); return; }
+        try { sessionStorage.setItem("builder-prefill", a.dataset.prefill); } catch { /* storage blocked */ }
+      }
+      go(a.dataset.go, a.dataset.label);
+    }
   });
   $("#twin-clear").addEventListener("click", () => {
     voice?.stopSpeaking(); store.msgs = []; store.lastTopic = ""; save();
