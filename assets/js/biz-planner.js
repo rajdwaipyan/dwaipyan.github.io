@@ -106,6 +106,14 @@ export function blueprint(a, data) {
   const ranked = Object.entries(score).filter(([, s]) => s > 2).sort((x, y) => y[1] - x[1]).map(([id]) => id);
   const maxCore = a.budget === "lean" ? 3 : a.budget === "substantial" ? 6 : 4;
   const core = ranked.slice(0, maxCore), later = ranked.slice(maxCore, maxCore + 4);
+  // the practice that defines the visitor's current stage is always in Phase 1
+  const anchor = stageBoost[0];
+  if (anchor && !core.includes(anchor)) {
+    const li = later.indexOf(anchor); if (li >= 0) later.splice(li, 1);
+    const bumped = core.length >= maxCore ? core.pop() : null;
+    core.unshift(anchor);
+    if (bumped) later.unshift(bumped);
+  }
   if (!core.includes("security") && !later.includes("security")) later.push("security");
 
   // dependencies: some things must come before others
@@ -113,32 +121,31 @@ export function blueprint(a, data) {
   const sorted = (ids) => [...ids].sort((x, y) => order.indexOf(x) - order.indexOf(y));
   const all = new Set([...core, ...later]);
   const deps = [];
-  if (all.has("branding") && all.has("web")) deps.push("Identity before the website, so the site is designed once, not twice.");
+  if (all.has("branding") && all.has("web") && (core.includes("branding") || !core.includes("web"))) deps.push("Identity before the website, so the site is designed once, not twice.");
   if (all.has("web") && (all.has("seo") || all.has("marketing"))) deps.push("Website and tracking live before paid marketing, so spend can be measured.");
-  if (all.has("crm") && all.has("marketing")) deps.push("CRM and follow-up ready before campaigns start, so no lead is lost.");
+  if (all.has("crm") && all.has("marketing") && (core.includes("crm") || !core.includes("marketing"))) deps.push("CRM and follow-up ready before campaigns start, so no lead is lost.");
   if (all.has("ai")) deps.push("Automation after the manual process is clear — automate a process that works, not one that is still changing.");
   if (all.has("expansion")) deps.push("New markets after the home market's site, payments and support run smoothly.");
   if (all.has("analytics")) deps.push("Agree the few numbers that matter before building dashboards.");
   if (a.stage === "idea") deps.unshift("Validate demand with a small test before committing the larger budget.");
 
-  // roadmap: each practice sits in the first lifecycle stage it belongs to; stages holding a Phase-1 practice come
-  // first (in lifecycle order), then the stages that only hold later ones. Every stage appears once.
-  const life = data.stages.map((x) => x.id);
-  const startAt = { idea: 0, launching: 2, operating: 3, scaling: 5 }[a.stage] ?? 3;
-  const pref = [...life.slice(startAt), ...life.slice(0, startAt).reverse()];   // earlier stages: nearest first
-  const home = {};
-  for (const c of all) home[c] = pref.find((sid) => data.stages.find((x) => x.id === sid).services.includes(c)) || pref[0];
-  if (a.stage === "idea") home.__validate = "validate";
-  const byStage = {};
-  Object.entries(home).forEach(([c, sid]) => { (byStage[sid] = byStage[sid] || []).push(c); });
-  const coreFirst = (sid) => (byStage[sid].some((c) => core.includes(c) || c === "__validate") ? 0 : 1);
-  const phases = Object.keys(byStage)
-    .sort((x, y) => coreFirst(x) - coreFirst(y) || life.indexOf(x) - life.indexOf(y))
-    .map((sid) => {
-      const st = data.stages.find((x) => x.id === sid);
-      const cats = sorted(byStage[sid].filter((c) => c !== "__validate"));
-      return { title: st.title, line: st.line, cats, now: coreFirst(sid) === 0 };
-    });
+  // roadmap: work is grouped by what it builds on, so a phase never needs something from a later one —
+  // foundations, then customers, then systems and growth; Phase-1 work first, later work after it.
+  const BUCKETS = [
+    { cats: ["strategy", "branding", "web", "security"], title: "Foundations", stages: "Idea → Establish",
+      line: a.stage === "idea" ? "Plan, identity and website — with a small test of demand before the larger spend." : "Plan, identity, website and the basic safeguards everything else sits on." },
+    { cats: ["seo", "marketing", "crm"], title: "Customers", stages: "Launch → Market",
+      line: "Get found, bring the right people in and follow up every enquiry." },
+    { cats: ["ai", "operations", "analytics", "support", "expansion"], title: "Systems & growth", stages: "Automate → Scale",
+      line: "Automate the routine, run operations in one place, measure what works and expand." },
+  ];
+  const phases = BUCKETS.map((b) => {
+    const now = sorted(core.filter((c) => b.cats.includes(c)));
+    const then = sorted(later.filter((c) => b.cats.includes(c)));
+    return { title: b.title, stages: b.stages, line: b.line, now: now.length > 0, ids: [...now, ...then] };
+  }).filter((p) => p.ids.length)
+    .map((p) => (!p.now && p.title === "Foundations" ? { ...p, line: "Refresh the identity, website and safeguards once the first phase is paying for itself." } : p))
+    .sort((x, y) => (x.now === y.now ? 0 : x.now ? -1 : 1));   // stable: phases with Phase-1 work first
 
   const reqs = [...(ind ? ind.needs : WEB.other.slice(0, 3))];
   if (a.market === "international") reqs.push("Content, payments and support that work in each target market");
@@ -177,7 +184,7 @@ export function blueprint(a, data) {
     { id: "marketing", h: "Marketing strategy", items: channels },
     { id: "sales", h: "Sales & customer acquisition", items: sales },
     { id: "automation", h: "Automation opportunities", items: AUTO[indId] },
-    { id: "roadmap", h: "Implementation roadmap", phases: phases.map((p, i) => ({ ...p, n: i + 1, cats: p.cats.map((c) => cat[c].title + (core.includes(c) ? "" : " (later)")) })), note: "Phases follow the order things depend on each other; how long each takes depends on scope and is agreed with you." },
+    { id: "roadmap", h: "Implementation roadmap", phases: phases.map((p, i) => ({ title: p.title, stages: p.stages, line: p.line, now: p.now, n: i + 1, cats: p.ids.map((c) => cat[c].title + (core.includes(c) ? "" : " (later)")) })), note: "Each phase builds on the one before. How long each takes depends on scope and is agreed with you in writing." },
     { id: "deps", h: "Priorities & dependencies", items: deps },
     { id: "budget", h: "Budget", items: [BUDGET_NOTE[a.budget || "unsure"], ...budgetLines], note: "Ranges are given only where a starting price is published; everything else is quoted in writing after a short call." },
   ];
@@ -192,7 +199,7 @@ function toMarkdown(sections, a, understood) {
     if (s.text) out.push(s.text, "");
     if (s.items) out.push(...s.items.map((x) => "- " + x), "");
     if (s.services) out.push(...s.services.map((x) => `- **${x.title}** (${x.phase}) — ${x.why}`), "");
-    if (s.phases) s.phases.forEach((p) => out.push(`${p.n}. **${p.title}** — ${p.line} ${p.cats.length ? "Services: " + p.cats.join(", ") + "." : ""}`));
+    if (s.phases) s.phases.forEach((p) => out.push(`${p.n}. **${p.title}${p.now ? "" : " (later)"}** (${p.stages}) — ${p.line} ${p.cats.length ? "Services: " + p.cats.join(", ") + "." : ""}`));
     if (s.phases) out.push("");
     if (s.note) out.push(`_${s.note}_`, "");
   }

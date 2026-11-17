@@ -97,6 +97,7 @@ schema: page
                 <span class="cat-t">{{ c.title }}</span>
                 <span class="cat-p">{{ c.problem }}</span>
                 <span class="cat-mode cat-mode-{{ c.delivery }}">{% if c.delivery == "direct" %}Delivered directly{% else %}Scoped per project{% endif %}</span>
+                <span class="cat-more" aria-hidden="true"><span class="cat-more-t">Details</span><i></i></span>
               </button>
             </h3>
             <div class="cat-body" id="cb-{{ c.id }}">
