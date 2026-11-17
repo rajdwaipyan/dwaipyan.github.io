@@ -56,6 +56,12 @@
         imagesrcset="{{ root }}assets/img/dwaipyan-mandal-cutout-720.webp 720w, {{ root }}assets/img/dwaipyan-mandal-cutout-1100.webp 1100w" imagesizes="(max-width: 960px) 88vw, 44vh">
   {%- endif %}
   {%- assign v = site.time | date: "%s" %}
+  {%- if site.data.forms.endpoint and site.data.forms.endpoint != "" %}
+  <meta name="forms-endpoint" content="{{ site.data.forms.endpoint }}">
+  {%- if site.data.forms.turnstile_sitekey and site.data.forms.turnstile_sitekey != "" %}
+  <meta name="turnstile-sitekey" content="{{ site.data.forms.turnstile_sitekey }}">
+  {%- endif %}
+  {%- endif %}
   <link rel="stylesheet" href="{{ root }}style.css?v={{ v }}">
   <!-- motion: GSAP 3.13.0 + ScrollTrigger and Lenis 1.3.23, self-hosted (assets/vendor/README.md) -->
   <script src="{{ root }}assets/vendor/gsap.min.js" defer></script>

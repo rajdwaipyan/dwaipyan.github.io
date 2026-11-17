@@ -323,6 +323,9 @@ schema: page
             <legend class="inq-legend">About you and the business</legend>
             <div class="inq-row"><label for="iq-name">Your name</label><input type="text" id="iq-name" name="name" autocomplete="name" required maxlength="120"></div>
             <div class="inq-row"><label for="iq-email">Email</label><input id="iq-email" name="email" type="email" autocomplete="email" required maxlength="160"></div>
+            {%- if site.data.forms.endpoint and site.data.forms.endpoint != "" %}
+            <div class="inq-row"><label for="iq-phone">Phone <span class="bld-opt">optional</span></label><input type="tel" id="iq-phone" name="phone" autocomplete="tel" inputmode="tel" maxlength="30"></div>
+            {%- endif %}
             <div class="inq-row"><label for="iq-company">Business or organisation <span class="bld-opt">optional</span></label><input type="text" id="iq-company" name="company" autocomplete="organization" maxlength="160"></div>
             <div class="inq-row"><label for="iq-country">Country</label><input type="text" id="iq-country" name="country" autocomplete="country-name" maxlength="80"></div>
             <div class="inq-row"><label for="iq-industry">Industry</label>
@@ -359,6 +362,7 @@ schema: page
             <legend class="inq-legend">Your project brief</legend>
             <pre class="inq-brief" id="inq-brief" tabindex="0" data-lenis-prevent></pre>
             <label class="inq-consent"><input type="checkbox" id="iq-consent"> <span>I agree that this brief is sent to {{ sol.lead }} to reply to my enquiry.</span></label>
+            <div class="ts-slot" data-turnstile></div>
           </fieldset>
 
           <p class="enq-error" id="inq-error" role="alert" hidden></p>

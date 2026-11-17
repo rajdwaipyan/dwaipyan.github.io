@@ -12,6 +12,7 @@
 //   enquiry        writes the enquiry into an email or a WhatsApp message
 import { reduceMotion } from "./core.js";
 import { lenis } from "./motion.js";
+import { formClient, showFieldErrors } from "./forms-api.js";
 
 const EMAIL = "rajdwaipayan@gmail.com";
 const $ = (s, r = document) => r.querySelector(s);
@@ -543,12 +544,15 @@ function initEnquiry() {
   const err = $("#enq-error"), done = $("#enq-done");
   const f = form.elements;
   const pkgText = () => (f.package.value ? f.package.options[f.package.selectedIndex].text : "");
-  const check = () => {
+  const client = formClient(form);   // the email API, when _data/forms.yml has an endpoint
+  const check = (needEmail = false) => {
     const missing = [];
-    [["name", "your name"], ["message", "what the AI should do"]].forEach(([n, label]) => {
-      const bad = !f[n].value.trim();
+    const req = [["name", "your name"], ...(needEmail && f.email ? [["email", "your email"]] : []), ["message", "what the AI should do"]];
+    req.forEach(([n, label]) => {
+      let bad = !f[n].value.trim();
+      if (!bad && n === "email") bad = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f[n].value.trim());
       f[n].setAttribute("aria-invalid", String(bad));
-      if (bad) missing.push(label);
+      if (bad) missing.push(n === "email" && f[n].value.trim() ? "a valid email address" : label);
     });
     if (missing.length) {
       err.hidden = false;
@@ -568,11 +572,36 @@ function initEnquiry() {
   const subject = () => `AI prompt engineering${pkgText() ? " — " + pkgText().split(" — ")[0] : ""} — ${f.name.value.trim()}`;
   const enc = (s) => encodeURIComponent(s);
 
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (!check()) return;
+  const openMail = () => {
     location.href = `mailto:${EMAIL}?subject=${enc(subject())}&body=${enc(body())}`;
     done.textContent = "Your email app should open with the message ready to send. If nothing happened, use “Copy message” and email rajdwaipayan@gmail.com.";
+  };
+  let sending = false;
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (sending) return;
+    if (!client) { if (check()) openMail(); return; }
+    if (!check(true)) return;
+    const btn = form.querySelector('button[type="submit"]'), label = btn.textContent;
+    sending = true; btn.disabled = true; btn.setAttribute("aria-busy", "true"); btn.textContent = "Sending…"; done.textContent = "";
+    try {
+      const pkg = pkgText();
+      const res = await client.send("consultation", {
+        name: f.name.value.trim(), email: f.email.value.trim(), phone: f.phone ? f.phone.value.trim() : "",
+        services: ["AI prompt engineering"], budget: pkg || "", message: f.message.value.trim(),
+        details: { package: pkg || "Not sure yet", main_ai_tool: f.tool.value || "Not decided" },
+      });
+      err.hidden = true;
+      done.textContent = `Thank you — your enquiry has been sent (reference ${res.ref}). ` + (res.confirmation ? `A confirmation is on its way to ${f.email.value.trim()}.` : "Dwaipyan will reply by email.");
+      if (!res.duplicate) { f.message.value = ""; }
+    } catch (ex) {
+      const first = showFieldErrors(form, ex.fields);
+      err.hidden = false;
+      err.textContent = ex.code === "invalid" && ex.fields ? Object.values(ex.fields).join(" ") : ex.message + " You can also use “Send on WhatsApp” or email rajdwaipayan@gmail.com.";
+      first?.focus();
+    } finally {
+      sending = false; btn.disabled = false; btn.removeAttribute("aria-busy"); btn.textContent = label;
+    }
   });
   $("#enq-wa").addEventListener("click", () => {
     if (!check()) return;

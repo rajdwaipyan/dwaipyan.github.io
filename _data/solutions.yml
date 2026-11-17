@@ -14,7 +14,7 @@ lead: Dwaipyan Mandal
 # The optional backend (tools/hostinger-api) — its public address, e.g. "https://api.example.com/".
 # Empty = everything runs in the visitor's browser: blueprints are drafted by rules, and enquiries are sent
 # from the visitor's email app or WhatsApp. Never put an API key here.
-api: ""
+api: ""   # leave empty — the API address now lives in _data/forms.yml (endpoint)
 
 categories:
   - id: strategy

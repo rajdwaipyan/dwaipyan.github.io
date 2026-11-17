@@ -229,6 +229,18 @@ Status key: **Hidden** = in the data file but not shown · **Cautious** = shown 
   them." Change `brand:` / `lead:` in the data file if you prefer another name (e.g. Pentangular IT).
 - **The Business Builder** is rule-based and labelled as a preliminary recommendation, not a quote or a promise.
   It never states revenue, success rates or market figures.
-- **Backend not installed.** Until you set up `tools/hostinger-api` on Hostinger and set `api:`, enquiries are sent
-  from the visitor's own email app or WhatsApp. The page says so.
+- **Email system not switched on yet.** Until you install `tools/hostinger-api` on Hostinger and set `endpoint` in
+  `_data/forms.yml`, enquiries are sent from the visitor's own email app or WhatsApp. The page says so.
 - Navigation: one new link, "Business Solutions", in the Work menu; one link block on the Services page.
+
+## Email system (17 November 2026)
+
+- **Confirmation email wording** (`tools/hostinger-api/private/templates/client-confirmation.php`): written in your
+  voice ("Your enquiry has reached me, and I read every message personally"). It promises no response time unless you
+  set `response_time` in config.php. Change any wording you like.
+- **Signature** in emails comes from `brand` in config.php (name, tagline, website, optional WhatsApp link).
+- **New fields when switched on:** home page and AI page gain "Your email" (required — needed for the confirmation)
+  and "Phone (optional)"; the Solutions inquiry gains "Phone (optional)". Nothing changes until `endpoint` is set.
+- **Data kept:** what the visitor typed, the form, the time, delivery status, your status/notes — no IP address
+  (only a salted hash for rate limits). Deleted after `retention_days` (365 by default). Consider adding a line about
+  this to a privacy note on the site.

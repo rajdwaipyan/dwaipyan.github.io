@@ -1,2 +1,5 @@
-api/config.php
+# Real configuration and runtime data never go to GitHub
+private/config.php
+private/logs/*.log
+private/logs/*.log.*
 *.sqlite

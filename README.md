@@ -225,15 +225,23 @@ models, the **Business Builder** and a five-step **project inquiry**.
   The digital twin hands business descriptions to it ("Draft my blueprint").
 - **Project inquiry.** Five steps → a structured brief the visitor reviews. Without a backend it is sent from the
   visitor's email app or WhatsApp (or copied / downloaded). Nothing is promised automatically.
-- **Optional backend** for Hostinger shared hosting in `tools/hostinger-api/` (PHP + MySQL): stores enquiries,
-  emails them, an admin inbox, webhook forwarding to n8n / GoHighLevel, and optional AI (internal proposal drafts,
-  blueprint notes, AI answers for the twin). Set `api:` in `_data/solutions.yml` once it is installed — see its README.
+- **Email system** (see below) — the inquiry sends through it once it is switched on.
 
-| Works now (no server) | Needs the optional backend |
+| Works now (no server) | Needs the email/AI API (`tools/hostinger-api`) |
 |---|---|
 | Lifecycle, practices, industries, technology map | — |
 | Business Builder blueprints (rule-based), copy / download / print | AI-written advisor notes |
 | Inquiry brief sent by email app / WhatsApp, copy, download | Stored enquiries with a reference, email to you, admin inbox, CRM webhook, AI proposal drafts |
+
+## Email system (forms → your inbox)
+
+Every form — home page contact / partnership / collaboration, the AI page enquiry, the Business Solutions project
+inquiry and Business Builder submissions — can send through one secure PHP API on Hostinger shared hosting
+(`tools/hostinger-api/`, PHPMailer over authenticated SMTP, MySQL, Cloudflare Turnstile). Each submission emails
+you a structured notification (Reply-To = the visitor) and the visitor a branded confirmation from your own domain.
+It is **off until you set `endpoint` in `_data/forms.yml`**; until then the forms work exactly as before.
+Setup, upload paths, security and the go-live checklist: [`tools/hostinger-api/README.md`](tools/hostinger-api/README.md).
+SMTP passwords and other secrets live only in `~/portfolio-api/config.php` on the server — never in this repository.
 
 ## Services
 
