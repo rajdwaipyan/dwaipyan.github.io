@@ -981,31 +981,55 @@ html.xray .scratch { opacity: .25; }
 .g-disc { fill: var(--lime); }
 .side-left .guide-svg { transform: scaleX(-1); } /* face the page when standing on the left */
 
-/* drawing */
-.guide-svg path, .guide-svg ellipse, .guide-svg circle, .guide-svg rect { stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
-.g-skin { fill: #b98159; }
-.g-hair, .g-curls circle { fill: #1b1714; }
-.g-curls circle { stroke-width: 0 !important; }
-.g-tee { fill: #151515; }
-.g-blazer, .g-sleeve { fill: #e3d6bf; }
-.g-shade { fill: url(#g-dots); stroke-width: 0 !important; }
-.g-pin { fill: var(--lime); }
-.g-line { fill: none; }
-.g-brow { fill: none; stroke-width: 5 !important; }
-.g-white { fill: #fff; }
-.g-pupil { fill: var(--ink); stroke-width: 0 !important; transform: translate(var(--ex), var(--ey)); transition: transform .18s ease-out; }
-.g-lid { fill: #b98159; stroke-width: 0 !important; transform-box: fill-box; transform-origin: 50% 0; transform: scaleY(0); transition: transform .07s; }
-.g-mouth { fill: #fff; }
-.g-mouth-o, .g-mouth-big { fill: #4a1f1a; }
-.g-mouth-o, .g-mouth-big, .g-mouth-flat, .g-eyes-shut { display: none; }
-.guide.is-o .g-mouth-o { display: inline; }
-.guide.is-o .g-mouth-smile { display: none; }
+/* drawing: a soft-shaded vector portrait — no outlines; depth comes from gradients, shade and light shapes */
+.g-disc { fill: url(#g-disc-fill); }
+.g-disc-ring { fill: none; stroke: rgba(255, 255, 255, .5); stroke-width: 1.5; }
+.g-skin { fill: url(#g-skin-fill); }
+.g-skin-flat { fill: #b98259; }
+.g-ear { fill: #a87350; }
+.g-neck { fill: url(#g-neck-fill); }
+.g-hair { fill: url(#g-hair-fill); }
+.g-tuft { fill: #1a1410; }
+.g-hair-light { fill: none; stroke: #5a4636; stroke-width: 2.4; stroke-linecap: round; opacity: .75; }
+.g-beard { fill: url(#g-beard-fill); }
+.g-beard-soft { fill: none; stroke: #241b15; stroke-width: 5; stroke-linecap: round; opacity: .4; }
+.g-beard-light { fill: #3b2d23; opacity: .55; }
+.g-brow { fill: #17120e; }
+.g-tee { fill: url(#g-tee-fill); }
+.g-tee-neck { fill: #08090a; opacity: .6; }
+.g-blazer, .g-sleeve { fill: url(#g-blazer-fill); }
+.g-lapel { fill: #d8cbb2; }
+.g-shade { fill: #a8987c; opacity: .45; }
+.g-face-shade { fill: #6f442b; opacity: .22; }
+.g-rim { fill: #e6b98f; opacity: .55; }
+.g-nose-shade { fill: #7d4f33; opacity: .32; }
+.g-nose-light { fill: #e0b089; opacity: .55; }
+.g-nose-line { fill: none; stroke: #6f442b; stroke-width: 2; stroke-linecap: round; opacity: .75; }
+.g-crease { fill: none; stroke: #7d4f33; stroke-width: 1.3; stroke-linecap: round; opacity: .6; }
+.g-white { fill: #f7f3ec; }
+.g-iris { fill: #3a2417; } .g-dot { fill: #0d0907; } .g-glint { fill: #fff; }
+.g-lash { fill: none; stroke: #15100d; stroke-width: 2.6; stroke-linecap: round; }
+.g-pupil { transform: translate(var(--ex), var(--ey)); transition: transform .18s ease-out; }
+.g-lid { fill: #a9744e; transform-box: fill-box; transform-origin: 50% 0; transform: scaleY(0); transition: transform .07s; }
+.g-lip-up { fill: #8a4a40; } .g-lip-low { fill: #b06a5e; }
+.g-mouth-in { fill: #3a1411; } .g-teeth { fill: #f4efe6; } .g-tongue { fill: #b2564e; }
+.g-lip-ring { fill: none; stroke: #96574b; stroke-width: 2.2; stroke-linejoin: round; }
+.g-mouth-flat { fill: none; stroke: #8c4e42; stroke-width: 3; stroke-linecap: round; }
+.g-eyes-shut { fill: none; stroke: #15100d; stroke-width: 2.6; stroke-linecap: round; }
+/* one mouth at a time: rest by default; data-vis picks a speaking shape (a, e, o) */
+.g-mouth-o, .g-mouth-a, .g-mouth-e, .g-mouth-big, .g-mouth-flat, .g-eyes-shut { display: none; }
+.guide.is-o .g-mouth-o, .guide[data-vis="o"] .g-mouth-o, .guide[data-vis="a"] .g-mouth-a, .guide[data-vis="e"] .g-mouth-e { display: inline; }
+.guide.is-o .g-mouth-smile, .guide[data-vis] .g-mouth-smile { display: none; }
+.guide[data-vis] .g-mouth-flat, .guide[data-vis] .g-mouth-big { display: none !important; }
 .guide.is-blink .g-lid { transform: scaleY(1); }
+.g-lash-shut { display: none; fill: none; stroke: #15100d; stroke-width: 2.4; stroke-linecap: round; }
+.guide.is-blink .g-lash-shut { display: inline; } .guide.is-blink .g-lash, .guide.is-blink .g-crease { display: none; }
 .g-head { transform-box: view-box; transform-origin: 100px 170px; transform: rotate(var(--tilt)); transition: transform .4s var(--ease-out); }
 .g-face { transform: translate(var(--fx), var(--fy)); transition: transform .3s ease-out; }
 .g-hairs { transform: translate(calc(var(--fx) * .35), calc(var(--fy) * .3)); transition: transform .3s ease-out; }
 .g-ear-l, .g-ear-r { transform: translateX(calc(var(--fx) * -.4)); transition: transform .3s ease-out; }
 .g-face-shade { transform: translateX(calc(var(--fx) * -.6)); transition: transform .3s ease-out; }
+.g-brow { transition: transform .25s; }
 .g-arm { opacity: 0; transform-box: view-box; transition: transform .5s var(--ease-out), opacity .2s; }
 .g-arm-r { transform-origin: 156px 230px; transform: rotate(38deg) translateY(30px); }
 .g-arm-l { transform-origin: 44px 230px; transform: rotate(-38deg) translateY(30px); }
@@ -1016,15 +1040,18 @@ html.xray .scratch { opacity: .25; }
 .guide[data-prop~="headset"] .p-headset, .guide[data-prop~="tie"] .p-tie, .guide[data-prop~="bowtie"] .p-bowtie,
 .guide[data-prop~="lei"] .p-lei, .guide.is-asleep .p-nightcap { display: inline; }
 .guide.is-asleep .g-prop:not(.p-nightcap) { display: none; }
-.p-glasses rect { fill: rgba(255, 255, 255, .22); }
+.g-prop path, .g-prop rect, .g-prop circle { stroke: #121212; stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round; }
+.p-glasses rect { fill: rgba(255, 255, 255, .16); }
 .p-glasses path, .p-shades .arm, .p-hardhat .ridge, .p-headset .band, .p-headset .boom, .p-nightcap .stripe { fill: none; }
 .p-shades path { fill: #121212; }
 .p-shades .glint { stroke: #fff; stroke-width: 2.5; }
 .p-hardhat path { fill: #ffd23f; }
-.p-hardhat .ridge { stroke-width: 2; }
-.p-headset .band { stroke: var(--violet); stroke-width: 7; }
-.p-headset rect, .p-headset circle { fill: var(--ink); }
+.p-hardhat .ridge { stroke-width: 1.6; }
+.p-headset .band { stroke: #2a2c33; stroke-width: 7; }
+.p-headset .boom { stroke-width: 3; }
+.p-headset rect, .p-headset circle { fill: #2a2c33; }
 .p-tie path, .p-bowtie path, .p-bowtie circle { fill: var(--violet); }
+.p-lei circle { stroke-width: 1.5; }
 .p-lei .f1 { fill: #ff7aa8; } .p-lei .f2 { fill: var(--lime); } .p-lei .f3 { fill: #fff; }
 .p-nightcap path { fill: var(--violet-soft); }
 .p-nightcap .stripe { stroke: #fff; stroke-width: 4; }
@@ -1084,7 +1111,8 @@ html.xray .scratch { opacity: .25; }
 
 /* X-ray: the guide shows its wireframe too */
 html.xray .guide-svg path, html.xray .guide-svg ellipse, html.xray .guide-svg circle, html.xray .guide-svg rect { fill: transparent !important; stroke: var(--violet); stroke-width: 1.5; }
-html.xray .g-curls circle, html.xray .g-shade { stroke-width: 1 !important; }
+html.xray .g-shade { stroke-width: 1 !important; }
+html.xray .guide-svg [clip-path] { clip-path: none; }
 
 /* ==========================================================================
    X-RAY MODE — the page shows its own structure (toggle in header, or press X)
@@ -3132,3 +3160,19 @@ body.nav-open .hdr-cta { visibility: hidden; }
 }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .twin-panel { background: #0d1221; } }
 @media (prefers-reduced-transparency: reduce) { .twin-panel { background: #0d1221; } }
+
+/* the portrait in motion: nods and an explaining hand while speaking, a tilt while listening, a warm grin */
+@media (prefers-reduced-motion: no-preference) {
+  .guide[data-state="speaking"] .g-head { animation: twin-nod 2.8s ease-in-out infinite; }
+  .guide[data-state="speaking"] .g-brow { animation: twin-brow 3.6s ease-in-out infinite; }
+  .guide[data-state="speaking"].is-docked .g-arm-r { animation: twin-explain 6.5s ease-in-out infinite; }
+  .guide[data-state="listening"] .g-head { animation: twin-listen 3.2s ease-in-out infinite; }
+}
+@keyframes twin-nod { 0%, 100% { transform: rotate(-1.6deg); } 30% { transform: rotate(1.8deg) translateY(1.5px); } 62% { transform: rotate(-.6deg) translateY(-.5px); } 80% { transform: rotate(1.2deg) translateY(1px); } }
+@keyframes twin-brow { 0%, 38%, 62%, 100% { transform: none; } 48% { transform: translateY(-2.4px); } }
+@keyframes twin-listen { 0%, 100% { transform: rotate(4deg); } 50% { transform: rotate(5.5deg) translateY(1px); } }
+@keyframes twin-explain {
+  0%, 18%, 62%, 100% { opacity: 0; transform: rotate(38deg) translateY(30px); }
+  26% { opacity: 1; transform: rotate(6deg); } 36% { opacity: 1; transform: rotate(-4deg); } 46% { opacity: 1; transform: rotate(5deg); } 54% { opacity: 1; transform: rotate(10deg) translateY(6px); }
+}
+.guide.do-celebrate .g-eyes-open { display: none; } .guide.do-celebrate .g-eyes-shut { display: inline; }

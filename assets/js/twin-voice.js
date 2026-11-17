@@ -2,7 +2,7 @@
 // Uses the browser's own speech features (Web Speech API): no service to pay for and no key.
 //   • listening: SpeechRecognition (Chrome, Edge, Safari). The browser asks for the microphone the first time,
 //     and some browsers send the audio to their own speech service to transcribe it.
-//   • speaking: speechSynthesis (all modern browsers), with word events used to move the character's mouth.
+//   • speaking: speechSynthesis (all modern browsers), with word events used to shape the character's mouth.
 // Nothing here runs without a click, and every failure reports back so the text chat keeps working.
 
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -69,7 +69,7 @@ export function speak(text, h = {}) {
     if (voice) { u.voice = voice; u.lang = voice.lang; } else u.lang = "en-GB";
     u.rate = 1.02; u.pitch = 1;
     u.onstart = () => { if (!started) { started = true; h.onStart?.(); } };
-    u.onboundary = () => { if (id === current) h.onWord?.(); };
+    u.onboundary = (e) => { if (id === current && (!e || !e.name || e.name === "word")) h.onWord?.(part.slice((e && e.charIndex) || 0).match(/^\s*([\w'’-]+)/)?.[1] || ""); };
     u.onend = () => next();
     u.onerror = () => { if (id === current) { current++; h.onEnd?.(false); } };
     speechSynthesis.speak(u);

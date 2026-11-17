@@ -177,7 +177,10 @@ structured data. Pages also cross-fade on navigation in browsers that support vi
 
 ## The digital twin
 
-The drawn Dwaipyan (`_includes/guide.html`) is a roaming assistant on every page except the CV.
+The drawn Dwaipyan (`_includes/guide.html`) is a roaming assistant on every page except the CV. He is a
+hand-drawn SVG likeness (soft-shaded, no outlines) with separate layers for hair, brows, eyes, eyelids, five
+mouth shapes and hands, so expressions, blinks, gestures and lip movement are CSS and a few lines of JS — no
+images or 3D libraries to download.
 
 - **Roaming** (`assets/js/twin.js`). He flies in on load and wanders between empty spots. Before landing he
   checks what is underneath with `document.elementsFromPoint` and only lands where there is no text, link,
