@@ -3440,3 +3440,10 @@ body.nav-open .hdr-cta { visibility: hidden; }
 @media (max-width: 960px) { .sol-inq-grid { grid-template-columns: 1fr; } }
 @media (max-width: 560px) { .inq-step, .inq-svcs { grid-template-columns: 1fr; } .inq-steps li { font-size: 0; } .inq-steps li::before { font-size: .74rem; } .inq-send .btn { flex: 1 1 100%; } }
 .svo-more { background: var(--paper); border-top: 1px solid var(--line); padding-block: clamp(2.5rem, 5vw, 4rem); }
+
+/* ── email API (only rendered when _data/forms.yml has an endpoint) ── */
+.ts-slot { min-height: 0; }
+.ts-slot:empty { display: none; }
+.ts-slot iframe { max-width: 100%; }
+.enq-opt { font-weight: 400; font-size: .8em; color: var(--muted); }
+.form-error a { color: inherit; font-weight: 500; }

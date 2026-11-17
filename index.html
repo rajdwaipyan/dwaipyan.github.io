@@ -515,19 +515,42 @@ preload_portrait: cutout
               </select>
             </div>
           </div>
+          {%- assign forms_on = false %}{% if site.data.forms.endpoint and site.data.forms.endpoint != "" %}{% assign forms_on = true %}{% endif %}
+          {%- if forms_on %}
+          <div class="field-row">
+            <div class="field">
+              <label for="f-email">Your email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required>
+            </div>
+            <div class="field">
+              <label for="f-phone">Phone <span class="opt">optional</span></label>
+              <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel">
+            </div>
+          </div>
+          {%- endif %}
           <div class="field">
             <label for="f-message">Message</label>
             <textarea id="f-message" name="message" rows="4" required placeholder="A few lines about what you have in mind."></textarea>
           </div>
+          {%- if forms_on %}
+          <div class="inq-hp" aria-hidden="true"><label for="f-web">Leave this empty</label><input type="text" id="f-web" name="website" tabindex="-1" autocomplete="off"></div>
+          <div class="ts-slot" data-turnstile></div>
+          {%- endif %}
 
           <p class="form-error" id="form-error" role="alert" hidden></p>
           <div class="form-done" id="form-done" role="status" hidden>
-            <p><b>Your email app should now be open with the message filled in.</b> Review it and press send. If nothing opened, copy it and email rajdwaipayan@gmail.com.</p>
+            <p data-done-mail><b>Your email app should now be open with the message filled in.</b> Review it and press send. If nothing opened, copy it and email rajdwaipayan@gmail.com.</p>
+            {%- if forms_on %}<p data-done-sent hidden></p>{% endif %}
             <button class="btn btn-line btn-sm" type="button" data-copy-brief>Copy the message</button>
             <span class="copy-status" role="status" aria-live="polite"></span>
           </div>
+          {%- if forms_on %}
+          <button class="btn btn-lime btn-block" type="submit">Send message <span class="btn-arrow" aria-hidden="true">→</span></button>
+          <p class="form-note">Sent securely to Dwaipyan — you’ll get a confirmation email. Prefer your own email app? <a href="mailto:rajdwaipayan@gmail.com" data-mail-instead>Write the email instead</a>.</p>
+          {%- else %}
           <button class="btn btn-lime btn-block" type="submit">Write the email <span class="btn-arrow" aria-hidden="true">→</span></button>
           <p class="form-note">This opens a pre-filled email in your own email app. Nothing is sent or stored by this site.</p>
+          {%- endif %}
         </form>
       </div>
     </section>

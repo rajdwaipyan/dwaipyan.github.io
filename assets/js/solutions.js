@@ -4,6 +4,7 @@
 import { reduceMotion } from "./core.js";
 import { lenis } from "./motion.js";
 import { analyse, blueprint } from "./biz-planner.js";
+import { formClient, formsEndpoint, showFieldErrors } from "./forms-api.js";
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -34,7 +35,7 @@ export function initSolutions() {
   const dataEl = $("#sol-data");
   if (!dataEl) return;
   const data = JSON.parse(dataEl.textContent);
-  const api = (data.api || "").trim();
+  const api = (data.api || "").trim() || formsEndpoint();   // the email/AI API from _data/forms.yml
   initTabs($(".life-track"), (i) => { $(".life-track")?.style.setProperty("--k", String(i / Math.max(1, data.stages.length - 1))); });
   initTabs($(".ind-tabs"));
   initCats();
@@ -204,9 +205,10 @@ function initInquiry(data, api, builder) {
   const prev = $("#inq-prev"), next = $("#inq-next"), send = $("#inq-send"), err = $("#inq-error"), done = $("#inq-done"), brief = $("#inq-brief"), note = $("#inq-note");
   const f = (n) => form.elements[n];
   let step = 1, attachedPlan = null;
-  $("#inq-submit").hidden = !api;
-  note.textContent = api
-    ? "“Send the brief” stores it securely and emails it to Dwaipyan. Or use your own email app or WhatsApp."
+  const client = formClient(form);
+  $("#inq-submit").hidden = !client;
+  note.textContent = client
+    ? "“Send the brief” sends it securely to Dwaipyan and emails you a confirmation. Or use your own email app or WhatsApp."
     : "This sends nothing by itself: choose your email app or WhatsApp to send the brief, or copy or download it.";
 
   const show = (n, focus = true) => {
@@ -235,7 +237,7 @@ function initInquiry(data, api, builder) {
   const label = (id, list) => (list.find((x) => x.id === id) || {}).title || id;
   const services = () => $$(".inq-svcs input:checked", form).map((c) => label(c.value, data.categories));
   const fields = () => ({
-    name: f("name").value.trim(), email: f("email").value.trim(), company: f("company").value.trim(), country: f("country").value.trim(),
+    name: f("name").value.trim(), email: f("email").value.trim(), phone: f("phone") ? f("phone").value.trim() : "", company: f("company").value.trim(), country: f("country").value.trim(),
     industry: f("industry").value ? (f("industry").value === "other" ? "Other" : label(f("industry").value, data.industries)) : "", size: f("size").value,
     about: f("about").value.trim(), services: services(), challenge: f("challenge").value.trim(), have: f("have").value.trim(),
     budget: f("budget").value || "Prefer to discuss", timeline: f("timeline").value || "Flexible", engagement: form.querySelector('input[name="engagement"]:checked')?.value || "Not sure",
@@ -244,7 +246,7 @@ function initInquiry(data, api, builder) {
     const d = fields();
     const lines = [
       "PROJECT BRIEF", "",
-      `From: ${d.name}${d.company ? " — " + d.company : ""}`, `Email: ${d.email}`, d.country ? `Country: ${d.country}` : "",
+      `From: ${d.name}${d.company ? " — " + d.company : ""}`, `Email: ${d.email}`, d.phone ? `Phone: ${d.phone}` : "", d.country ? `Country: ${d.country}` : "",
       d.industry ? `Industry: ${d.industry}` : "", d.size ? `Size: ${d.size}` : "", "",
       "THE BUSINESS", d.about, "",
       "THE CHALLENGE", d.challenge, d.have ? `\nAlready in place: ${d.have}` : "", "",
@@ -290,20 +292,37 @@ function initInquiry(data, api, builder) {
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    if (!api || step !== steps.length || !ready()) return;
-    const btn = $("#inq-submit"); btn.disabled = true; btn.textContent = "Sending…"; done.textContent = "";
+    if (!client || step !== steps.length || !ready()) return;
+    const btn = $("#inq-submit"); if (btn.disabled) return;
+    btn.disabled = true; btn.setAttribute("aria-busy", "true"); btn.textContent = "Sending…"; done.textContent = "";
     try {
-      const ctl = new AbortController(); const tm = setTimeout(() => ctl.abort(), 20000);
-      const res = await fetch(api.replace(/\/?$/, "/") + "inquiry", { method: "POST", signal: ctl.signal, credentials: "omit", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...fields(), website: f("website").value, brief: makeBrief(), blueprint: attachedPlan ? attachedPlan.md.slice(0, 8000) : "", page: location.pathname }) });
-      clearTimeout(tm);
-      const d = await res.json().catch(() => ({}));
-      if (!res.ok || !d.ok) throw new Error(d.error || "failed");
-      done.textContent = `Thank you — your brief has been received (reference ${d.ref}). Dwaipyan will reply by email.`;
+      const d = fields();
+      const res = await client.send(attachedPlan ? "business-builder" : "project-request", {
+        name: d.name, email: d.email, phone: d.phone, company: d.company,
+        services: d.services.length ? d.services : ["Not sure — would like a recommendation"],
+        budget: d.budget, timeline: d.timeline,
+        message: [d.about, d.challenge !== d.about ? d.challenge : "", d.have ? `Already in place: ${d.have}` : ""].filter(Boolean).join("\n\n"),
+        details: { country: d.country, industry: d.industry, size: d.size, engagement: d.engagement },
+        blueprint: attachedPlan ? attachedPlan.md.slice(0, 8000) : "",
+        consent: $("#iq-consent").checked,
+      });
+      err.hidden = true;
+      done.textContent = `Thank you — your brief has been sent (reference ${res.ref}). ` + (res.confirmation ? `A confirmation is on its way to ${d.email}.` : "Dwaipyan will reply by email.");
       $$("button", send).forEach((b) => { if (b !== btn) b.disabled = true; });
-      btn.textContent = "Sent";
+      btn.removeAttribute("aria-busy"); btn.textContent = "Sent";
     } catch (ex) {
-      btn.disabled = false; btn.textContent = "Send the brief";
-      done.textContent = ex.message === "rate limited" ? "Too many enquiries from this connection today — please use email or WhatsApp instead." : "The brief couldn't be sent from here. Please use “Open in my email app” or WhatsApp — nothing is lost.";
+      btn.disabled = false; btn.removeAttribute("aria-busy"); btn.textContent = "Send the brief";
+      if (ex.code === "invalid" && ex.fields) {
+        // a field the server rejected lives on an earlier step: go there and mark it
+        const map = { name: 1, email: 1, phone: 1, message: 2 };
+        const k = Object.keys(ex.fields).find((x) => map[x]);
+        if (k) show(map[k]);
+        const first = showFieldErrors(form, ex.fields, { message: "about" });
+        err.hidden = false; err.textContent = Object.values(ex.fields).join(" ");
+        first?.focus();
+        return;
+      }
+      done.textContent = ex.message + " Please use “Open in my email app” or WhatsApp — nothing is lost.";
     }
   });
   show(1, false);

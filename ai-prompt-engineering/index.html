@@ -607,6 +607,17 @@ schema: page
             <label for="enq-name">Your name</label>
             <input id="enq-name" name="name" type="text" autocomplete="name" required>
           </div>
+          {%- assign forms_on = false %}{% if site.data.forms.endpoint and site.data.forms.endpoint != "" %}{% assign forms_on = true %}{% endif %}
+          {%- if forms_on %}
+          <div class="enq-row">
+            <label for="enq-email">Your email</label>
+            <input id="enq-email" name="email" type="email" autocomplete="email" inputmode="email" required>
+          </div>
+          <div class="enq-row">
+            <label for="enq-phone">Phone <span class="enq-opt">optional</span></label>
+            <input id="enq-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel">
+          </div>
+          {%- endif %}
           <div class="enq-row">
             <label for="enq-pkg">Package</label>
             <select id="enq-pkg" name="package">
@@ -627,13 +638,21 @@ schema: page
             <label for="enq-msg">What should the AI do?</label>
             <textarea id="enq-msg" name="message" rows="5" required placeholder="The task, who it is for, and an example of a good result."></textarea>
           </div>
+          {%- if forms_on %}
+          <div class="inq-hp" aria-hidden="true"><label for="enq-web">Leave this empty</label><input type="text" id="enq-web" name="website" tabindex="-1" autocomplete="off"></div>
+          <div class="ts-slot enq-wide" data-turnstile></div>
+          {%- endif %}
           <p class="enq-error" id="enq-error" role="alert" hidden></p>
           <div class="enq-acts enq-wide">
-            <button type="submit" class="ai-btn ai-btn-solid">Open in my email app</button>
+            <button type="submit" class="ai-btn ai-btn-solid">{% if forms_on %}Send enquiry{% else %}Open in my email app{% endif %}</button>
             <button type="button" class="ai-btn ai-btn-wa" id="enq-wa">Send on WhatsApp</button>
             <button type="button" class="ai-btn ai-btn-line" id="enq-copy">Copy message</button>
           </div>
+          {%- if forms_on %}
+          <p class="enq-note enq-wide" id="enq-note">“Send enquiry” sends it securely to Dwaipyan and emails you a confirmation. Or send it yourself on WhatsApp, or copy it.</p>
+          {%- else %}
           <p class="enq-note enq-wide" id="enq-note">This form has no server behind it: it writes the message for you and opens your email app or WhatsApp, where you choose to send it. Nothing is stored here.</p>
+          {%- endif %}
           <p class="enq-done enq-wide" id="enq-done" role="status" aria-live="polite"></p>
         </form>
       </div>

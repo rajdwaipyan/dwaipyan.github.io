@@ -1,0 +1,17 @@
+# Portfolio API — clean routes: /api/submit → index.php?r=submit
+Options -Indexes
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+RewriteRule ^(health|token|submit|blueprint|twin)/?$ index.php?r=$1 [L,QSA]
+# Only the two entry points may be requested directly
+<FilesMatch "\.php$">
+  Require all denied
+</FilesMatch>
+<FilesMatch "^(index|admin)\.php$">
+  Require all granted
+</FilesMatch>
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000"
+  Header always set X-Content-Type-Options "nosniff"
+</IfModule>

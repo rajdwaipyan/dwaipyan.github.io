@@ -1,0 +1,1 @@
+PHPMailer 7.2.0 (https://github.com/PHPMailer/PHPMailer/tree/v7.2.0) — PHPMailer.php, SMTP.php, Exception.php and LICENSE (LGPL-2.1), unmodified.

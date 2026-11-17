@@ -1,0 +1,9 @@
+# Email backend for every form on the site (see tools/hostinger-api/README.md).
+#
+# Leave `endpoint` empty and the forms work exactly as before: they open the visitor's email app or WhatsApp.
+# Set it after uploading the API to Hostinger, e.g.  endpoint: "https://api.your-domain.com/"  — then the forms
+# send directly, you get an email for every submission and the visitor gets a confirmation.
+endpoint: ""
+
+# Cloudflare Turnstile SITE key (public — safe to commit). The SECRET key goes only in the server's config.php.
+turnstile_sitekey: ""
