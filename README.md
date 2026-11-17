@@ -211,6 +211,30 @@ Cloudflare Worker in `tools/twin-worker/` (its README has the steps) and put its
 `endpoint`. If that service fails, the twin falls back to the portfolio answers. The Worker was written but
 could not be tested against a live key from the build environment.
 
+## 360° Business Solutions
+
+`/solutions/` (built from `_data/solutions.yml`, run by `assets/js/solutions.js` and `assets/js/biz-planner.js`)
+presents twelve practices, the business lifecycle (Idea → Scale), ten industries, a technology map, engagement
+models, the **Business Builder** and a five-step **project inquiry**.
+
+- **Business Builder.** A visitor describes their idea or problem; `biz-planner.js` reads it (industry, goals, stage,
+  market, size), asks only the questions it couldn't answer, and drafts a preliminary blueprint: requirements,
+  recommended services (Phase 1 / later), technology, branding, website and infrastructure, marketing, sales,
+  automation, a roadmap, dependencies and budget notes. It is rule-based and runs in the browser. It never invents
+  prices: a practice shows a starting price only if its `budget` field in `_data/solutions.yml` has one.
+  The digital twin hands business descriptions to it ("Draft my blueprint").
+- **Project inquiry.** Five steps → a structured brief the visitor reviews. Without a backend it is sent from the
+  visitor's email app or WhatsApp (or copied / downloaded). Nothing is promised automatically.
+- **Optional backend** for Hostinger shared hosting in `tools/hostinger-api/` (PHP + MySQL): stores enquiries,
+  emails them, an admin inbox, webhook forwarding to n8n / GoHighLevel, and optional AI (internal proposal drafts,
+  blueprint notes, AI answers for the twin). Set `api:` in `_data/solutions.yml` once it is installed — see its README.
+
+| Works now (no server) | Needs the optional backend |
+|---|---|
+| Lifecycle, practices, industries, technology map | — |
+| Business Builder blueprints (rule-based), copy / download / print | AI-written advisor notes |
+| Inquiry brief sent by email app / WhatsApp, copy, download | Stored enquiries with a reference, email to you, admin inbox, CRM webhook, AI proposal drafts |
+
 ## Services
 
 `/services/` and one page per practice (`services/web-development/`, `ai-automation/`, `crm-automation/`,

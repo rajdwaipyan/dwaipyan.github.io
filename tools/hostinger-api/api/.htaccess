@@ -1,0 +1,8 @@
+# Clean routes: /inquiry → index.php?r=inquiry
+Options -Indexes
+RewriteEngine On
+RewriteRule ^(inquiry|blueprint|twin|health)/?$ index.php?r=$1 [L,QSA]
+# Never serve these files over the web
+<FilesMatch "^(config\.php|config\.sample\.php|lib\.php|.*\.sqlite)$">
+  Require all denied
+</FilesMatch>

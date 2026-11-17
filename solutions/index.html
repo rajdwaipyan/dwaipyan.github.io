@@ -1,0 +1,395 @@
+---
+layout: default
+title: 360° Business Solutions — From Idea to Established Business | Dwaipyan Mandal
+og_title: 360° Business Solutions — Dwaipyan Mandal & ED Shield Solutions
+description: Strategy, branding, websites and eCommerce, marketing, SEO, CRM, AI automation, IT security, ERP, international expansion and support — one partner across a business's whole lifecycle. Build a free preliminary business blueprint.
+root: "../"
+nav: solutions
+crumb: Business Solutions
+crumb_parent: Services
+crumb_parent_url: services/
+schema: page
+---
+{%- assign root = page.root -%}
+{%- assign sol = site.data.solutions -%}
+{%- assign wa = site.data.social.whatsapp -%}
+    <!-- HERO — the promise and the lifecycle at a glance -->
+    <section class="sol-hero" id="top" data-room="night" aria-labelledby="page-title">
+      <div class="container">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Home</a><span aria-hidden="true">/</span><a href="../services/">Services</a><span aria-hidden="true">/</span><span aria-current="page">Business Solutions</span></nav>
+        <div class="sol-hero-grid">
+          <div>
+            <p class="svx-k"><span>360°</span> Business solutions · {{ sol.categories.size }} practices</p>
+            <h1 class="sol-mast" id="page-title" data-split>From business idea to <em>established business.</em></h1>
+          </div>
+          <div class="sol-hero-side">
+            <p class="sol-lede">Strategy, identity, websites, marketing, CRM, automation, security and operations — planned together and delivered in the right order, by {{ sol.lead }} and the {{ sol.brand }} team, with specialist partners where a project needs them.</p>
+            <div class="svx-cta">
+              <a class="btn btn-lime" href="#builder">Build my business blueprint</a>
+              <a class="btn btn-line" href="#inquiry">Start a project</a>
+            </div>
+          </div>
+        </div>
+        <ol class="sol-strip" aria-label="The business lifecycle">
+          {%- for s in sol.stages %}<li><a href="#stage-{{ s.id }}" data-stage-link="{{ s.id }}"><span>{{ s.n }}</span>{{ s.title }}</a></li>{% endfor %}
+        </ol>
+      </div>
+    </section>
+
+    <!-- LIFECYCLE — eight stages; each shows services, deliverables and how the stage runs -->
+    <section class="section sol-life" id="lifecycle" aria-labelledby="life-title">
+      <div class="container">
+        <header class="section-head section-head-row">
+          <div>
+            <p class="kicker"><span>01</span> The lifecycle</p>
+            <h2 class="section-title" id="life-title">One partner, <em>every stage.</em></h2>
+          </div>
+          <p class="sol-head-note">Most businesses don't need everything at once. Pick the stage you are at — this is what usually happens there.</p>
+        </header>
+        <div class="life" data-life>
+          <div class="life-track" role="tablist" aria-label="Lifecycle stages">
+            {%- for s in sol.stages %}
+            <button type="button" role="tab" id="stage-{{ s.id }}" aria-controls="lp-{{ s.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"><span class="life-n">{{ s.n }}</span><span class="life-t">{{ s.title }}</span></button>
+            {%- endfor %}
+            <span class="life-fill" aria-hidden="true"></span>
+          </div>
+          {%- for s in sol.stages %}
+          <div class="life-panel" role="tabpanel" id="lp-{{ s.id }}" aria-labelledby="stage-{{ s.id }}"{% unless forloop.first %} hidden{% endunless %}>
+            <div class="life-main">
+              <p class="life-big" aria-hidden="true">{{ s.n }}</p>
+              <h3>{{ s.title }}</h3>
+              <p class="life-line">{{ s.line }}</p>
+            </div>
+            <div class="life-col">
+              <h4 class="svx-h">Services</h4>
+              <ul class="life-svcs">{% for id in s.services %}{% for c in sol.categories %}{% if c.id == id %}<li><a href="#sol-{{ c.id }}" data-open-cat="{{ c.id }}">{{ c.title }}</a></li>{% endif %}{% endfor %}{% endfor %}</ul>
+            </div>
+            <div class="life-col">
+              <h4 class="svx-h">You receive</h4>
+              <ul class="svx-uses">{% for d in s.deliverables %}<li>{{ d }}</li>{% endfor %}</ul>
+            </div>
+            <div class="life-col">
+              <h4 class="svx-h">How it runs</h4>
+              <ol class="life-steps">{% for p in s.process %}<li>{{ p }}</li>{% endfor %}</ol>
+            </div>
+          </div>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- THE TWELVE PRACTICES — each opens to the problem, approach, deliverables, value and technology -->
+    <section class="section sol-cats" id="solutions" aria-labelledby="cats-title">
+      <div class="container">
+        <header class="section-head section-head-row">
+          <div>
+            <p class="kicker"><span>02</span> Solutions</p>
+            <h2 class="section-title" id="cats-title">Twelve practices, <em>one plan.</em></h2>
+          </div>
+          <p class="sol-head-note">Each starts from a business problem. Open one for what is delivered and how.</p>
+        </header>
+        <ul class="cat-grid" data-cats>
+          {%- for c in sol.categories %}
+          <li class="cat" id="sol-{{ c.id }}">
+            <h3 class="cat-h">
+              <button type="button" class="cat-btn" aria-expanded="false" aria-controls="cb-{{ c.id }}">
+                <span class="cat-n">{{ c.n }}</span>
+                <span class="cat-t">{{ c.title }}</span>
+                <span class="cat-p">{{ c.problem }}</span>
+                <span class="cat-mode cat-mode-{{ c.delivery }}">{% if c.delivery == "direct" %}Delivered directly{% else %}Scoped per project{% endif %}</span>
+              </button>
+            </h3>
+            <div class="cat-body" id="cb-{{ c.id }}">
+              <div class="cat-cols">
+                <div>
+                  <h4 class="svx-h">The approach</h4>
+                  <p>{{ c.approach }}</p>
+                  <h4 class="svx-h">Business value</h4>
+                  <p>{{ c.value }}</p>
+                </div>
+                <div>
+                  <h4 class="svx-h">Deliverables</h4>
+                  <ul class="svx-uses">{% for d in c.deliverables %}<li>{{ d }}</li>{% endfor %}</ul>
+                </div>
+                <div>
+                  <h4 class="svx-h">Technology</h4>
+                  <ul class="svx-tech">{% for t in c.tech %}<li>{{ t }}</li>{% endfor %}</ul>
+                  <h4 class="svx-h cat-h-gap">Delivery &amp; pricing</h4>
+                  <p class="cat-note">{% if c.delivery == "direct" %}Delivered directly by {{ sol.lead }} and the {{ sol.brand }} team.{% else %}Scoped per project — delivered in-house or with specialist partners, agreed before work starts.{% endif %} {% if c.budget != "" %}Starting {{ c.budget }}.{% else %}Quoted after a short call.{% endif %}</p>
+                </div>
+              </div>
+              <div class="cat-foot">
+                <a class="svx-more" href="#inquiry" data-pick-cat="{{ c.id }}">Ask about {{ c.short | downcase }}</a>
+                {%- if c.service_page != "" %}<a class="svx-ask" href="{{ root }}{{ c.service_page }}">Full service details</a>{% endif %}
+                {%- for p in c.proof %}<a class="svx-ask" href="{{ root }}{{ p.url }}">{{ p.label }}</a>{% endfor %}
+              </div>
+            </div>
+          </li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </section>
+
+    <!-- INDUSTRIES — typical needs, use cases and the usual combination of practices -->
+    <section class="section sol-ind" id="industries" data-room="night" aria-labelledby="ind-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="kicker kicker-light"><span>03</span> Industries</p>
+          <h2 class="section-title" id="ind-title">Built around <em>how your sector works.</em></h2>
+        </header>
+        <div class="ind" data-ind>
+          <div class="ind-tabs" role="tablist" aria-label="Industries">
+            {%- for i in sol.industries %}
+            <button type="button" role="tab" id="it-{{ i.id }}" aria-controls="ip-{{ i.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}">{{ i.title }}</button>
+            {%- endfor %}
+          </div>
+          {%- for i in sol.industries %}
+          <div class="ind-panel" role="tabpanel" id="ip-{{ i.id }}" aria-labelledby="it-{{ i.id }}"{% unless forloop.first %} hidden{% endunless %}>
+            <div class="ind-main">
+              <h3>{{ i.title }}</h3>
+              <p class="ind-line">{{ i.line }}</p>
+              <h4 class="svx-h">Typical needs</h4>
+              <ul class="svx-uses ind-needs">{% for n in i.needs %}<li>{{ n }}</li>{% endfor %}</ul>
+              <button type="button" class="btn btn-lime ind-plan" data-plan-industry="{{ i.id }}">Plan a {{ i.title | downcase }} business</button>
+            </div>
+            <div class="ind-side">
+              <h4 class="svx-h">The usual combination</h4>
+              <ol class="ind-combo">{% for id in i.combo %}{% for c in sol.categories %}{% if c.id == id %}<li><a href="#sol-{{ c.id }}" data-open-cat="{{ c.id }}"><span>{{ c.n }}</span>{{ c.title }}</a></li>{% endif %}{% endfor %}{% endfor %}</ol>
+              <h4 class="svx-h">Where it helps</h4>
+              <ul class="ind-uses">{% for u in i.uses %}<li>{{ u }}</li>{% endfor %}</ul>
+              {%- if i.proof.size > 0 %}
+              <h4 class="svx-h">Related work</h4>
+              <ul class="ind-proof">{% for p in i.proof %}<li><a href="{{ root }}{{ p.url }}">{{ p.label }}</a></li>{% endfor %}</ul>
+              {%- endif %}
+            </div>
+          </div>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- AI BUSINESS BUILDER — describe the idea or problem, answer a few questions, get a preliminary blueprint -->
+    <section class="section sol-builder" id="builder" aria-labelledby="bb-title">
+      <div class="container">
+        <header class="section-head section-head-row">
+          <div>
+            <p class="kicker"><span>04</span> Business Builder</p>
+            <h2 class="section-title" id="bb-title">Describe it. <em>Get a blueprint.</em></h2>
+          </div>
+          <p class="sol-head-note">Tell it about your idea or your business problem in your own words. It asks what it needs, then drafts a preliminary plan you can keep or send.</p>
+        </header>
+
+        <div class="bb" data-bb data-api="{{ sol.api }}">
+          <div class="bb-in">
+            <form class="bb-ask" id="bb-ask">
+              <label class="bb-label" for="bb-text">Your idea or challenge</label>
+              <textarea id="bb-text" rows="4" maxlength="1200" placeholder="e.g. I own a restaurant in Dhaka and need more customers, and bookings are still taken by phone."></textarea>
+              <div class="bb-examples" role="group" aria-label="Examples">
+                {%- assign ex = "I want to start an eCommerce business.|I want to establish a digital marketing agency.|I own a restaurant and need more customers.|I want to launch a healthcare platform.|My business needs a CRM and automation system.|I want to expand my existing business internationally." | split: "|" %}
+                {%- for e in ex %}<button type="button" class="bb-ex">{{ e }}</button>{% endfor %}
+              </div>
+              <button type="submit" class="btn btn-ink bb-go">Analyse</button>
+            </form>
+
+            <form class="bb-qs" id="bb-qs" hidden aria-labelledby="bb-qs-title">
+              <h3 class="bb-qs-t" id="bb-qs-title">A few questions</h3>
+              <p class="bb-understood" id="bb-understood" aria-live="polite"></p>
+              <fieldset class="bb-q" data-q="industry"><legend>Industry</legend>
+                <div class="bb-opts">{% for i in sol.industries %}<label><input type="radio" name="industry" value="{{ i.id }}"><span>{{ i.title }}</span></label>{% endfor %}<label><input type="radio" name="industry" value="other"><span>Something else</span></label></div>
+              </fieldset>
+              <fieldset class="bb-q" data-q="stage"><legend>Where are you now?</legend>
+                <div class="bb-opts">
+                  <label><input type="radio" name="stage" value="idea"><span>An idea</span></label>
+                  <label><input type="radio" name="stage" value="launching"><span>About to launch</span></label>
+                  <label><input type="radio" name="stage" value="operating"><span>Already operating</span></label>
+                  <label><input type="radio" name="stage" value="scaling"><span>Growing or scaling</span></label>
+                </div>
+              </fieldset>
+              <fieldset class="bb-q" data-q="size"><legend>Size</legend>
+                <div class="bb-opts">{% for s in sol.sizes %}<label><input type="radio" name="size" value="{{ forloop.index0 }}"><span>{{ s }}</span></label>{% endfor %}</div>
+              </fieldset>
+              <fieldset class="bb-q" data-q="market"><legend>Where are your customers?</legend>
+                <div class="bb-opts">
+                  <label><input type="radio" name="market" value="local"><span>One city or area</span></label>
+                  <label><input type="radio" name="market" value="national"><span>Nationwide</span></label>
+                  <label><input type="radio" name="market" value="international"><span>Several countries</span></label>
+                </div>
+              </fieldset>
+              <fieldset class="bb-q" data-q="budget"><legend>Your budget for the first phase</legend>
+                <div class="bb-opts">
+                  <label><input type="radio" name="budget" value="lean"><span>Lean — essentials first</span></label>
+                  <label><input type="radio" name="budget" value="moderate"><span>Moderate</span></label>
+                  <label><input type="radio" name="budget" value="substantial"><span>Substantial</span></label>
+                  <label><input type="radio" name="budget" value="unsure"><span>Not sure yet</span></label>
+                </div>
+              </fieldset>
+              <fieldset class="bb-q" data-q="timeline"><legend>When do you want to start?</legend>
+                <div class="bb-opts">
+                  <label><input type="radio" name="timeline" value="asap"><span>As soon as possible</span></label>
+                  <label><input type="radio" name="timeline" value="quarter"><span>In the next three months</span></label>
+                  <label><input type="radio" name="timeline" value="later"><span>Later this year</span></label>
+                  <label><input type="radio" name="timeline" value="exploring"><span>Just exploring</span></label>
+                </div>
+              </fieldset>
+              <p class="bb-error" id="bb-error" role="alert" hidden></p>
+              <div class="bb-acts">
+                <button type="submit" class="btn btn-lime">Draft my blueprint</button>
+                <button type="button" class="btn btn-line bb-back" id="bb-back">Change my description</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="bb-out" id="bb-out" hidden tabindex="-1" aria-labelledby="bp-title">
+            <div class="bb-out-bar">
+              <p class="bb-out-k">Preliminary blueprint</p>
+              <div class="bb-out-acts">
+                <button type="button" class="pv-btn" id="bb-copy">Copy</button>
+                <button type="button" class="pv-btn" id="bb-dl">Download</button>
+                <button type="button" class="pv-btn" id="bb-print">Print</button>
+              </div>
+            </div>
+            <article class="bp" id="bp"></article>
+            <div class="bb-out-foot">
+              <p class="bb-disclaimer">A preliminary recommendation drafted from your answers by rules written by {{ sol.lead }} — not a quotation and not a promise of results. Scope, timeline and price are agreed in writing after a conversation.</p>
+              <div class="bb-acts">
+                <a class="btn btn-lime" href="#inquiry" id="bb-send">Send this to {{ sol.lead | split: " " | first }}</a>
+                <button type="button" class="btn btn-line" id="bb-again">Start again</button>
+              </div>
+            </div>
+            <p class="sr-only" id="bb-status" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+        <noscript><p class="sol-noscript">The Business Builder needs JavaScript. You can still describe your business in the project form below, or email rajdwaipayan@gmail.com.</p></noscript>
+      </div>
+    </section>
+
+    <!-- TECHNOLOGY — what is implemented directly and what is scoped with partners -->
+    <section class="section sol-tech" id="technology" aria-labelledby="tech-title">
+      <div class="container">
+        <header class="section-head section-head-row">
+          <div>
+            <p class="kicker"><span>05</span> Technology</p>
+            <h2 class="section-title" id="tech-title">Clear about <em>who builds what.</em></h2>
+          </div>
+          <p class="sol-key"><span class="tk tk-direct">Implemented directly</span><span class="tk tk-scoped">Scoped per project, in-house or with partners</span></p>
+        </header>
+        <div class="tech-grid">
+          {%- for g in sol.technology %}
+          <div class="tech-g">
+            <h3>{{ g.group }}</h3>
+            <ul>{% for t in g.items %}<li class="tk tk-{{ t.mode }}">{{ t.n }}<span class="sr-only"> — {% if t.mode == "direct" %}implemented directly{% else %}scoped per project{% endif %}</span></li>{% endfor %}</ul>
+          </div>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO IT IS FOR AND HOW WE WORK -->
+    <section class="section sol-engage" aria-labelledby="eng-title">
+      <div class="container sol-engage-grid">
+        <header>
+          <p class="kicker"><span>06</span> Working together</p>
+          <h2 class="section-title" id="eng-title">Sized to the business, <em>not the other way round.</em></h2>
+          <ul class="sol-sizes" aria-label="Who it is for">{% for s in sol.sizes %}<li>{{ s }}</li>{% endfor %}</ul>
+        </header>
+        <ol class="eng-list">
+          {%- for e in sol.engagements %}
+          <li><span class="eng-n">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span><h3>{{ e.title }}</h3><p>{{ e.text }}</p></li>
+          {%- endfor %}
+        </ol>
+      </div>
+    </section>
+
+    <!-- PROJECT INQUIRY — five short steps, then a structured brief -->
+    <section class="section sol-inq" id="inquiry" data-room="night" aria-labelledby="inq-title">
+      <div class="container sol-inq-grid">
+        <div class="inq-intro">
+          <p class="kicker kicker-light"><span>07</span> Start a project</p>
+          <h2 class="section-title" id="inq-title">Tell me about <em>the business.</em></h2>
+          <p class="inq-lede">Five short steps. You'll see the brief before anything is sent, and nothing is promised until we've talked — prices, timelines and deliverables are agreed in writing.</p>
+          <ul class="ai-direct">
+            <li><span>Email</span><a href="mailto:rajdwaipayan@gmail.com">rajdwaipayan@gmail.com</a></li>
+            <li><span>WhatsApp</span><a href="https://wa.me/{{ wa.number }}" target="_blank" rel="noopener">{{ wa.display }}<span class="sr-only"> (opens in a new tab)</span></a></li>
+          </ul>
+        </div>
+
+        <form class="inq" id="inq" novalidate data-api="{{ sol.api }}">
+          <ol class="inq-steps" aria-label="Progress">
+            <li aria-current="step">Business</li><li>Services</li><li>Challenge</li><li>Budget</li><li>Review</li>
+          </ol>
+
+          <fieldset class="inq-step" data-step="1">
+            <legend class="inq-legend">About you and the business</legend>
+            <div class="inq-row"><label for="iq-name">Your name</label><input type="text" id="iq-name" name="name" autocomplete="name" required maxlength="120"></div>
+            <div class="inq-row"><label for="iq-email">Email</label><input id="iq-email" name="email" type="email" autocomplete="email" required maxlength="160"></div>
+            <div class="inq-row"><label for="iq-company">Business or organisation <span class="bld-opt">optional</span></label><input type="text" id="iq-company" name="company" autocomplete="organization" maxlength="160"></div>
+            <div class="inq-row"><label for="iq-country">Country</label><input type="text" id="iq-country" name="country" autocomplete="country-name" maxlength="80"></div>
+            <div class="inq-row"><label for="iq-industry">Industry</label>
+              <select id="iq-industry" name="industry"><option value="">Choose…</option>{% for i in sol.industries %}<option value="{{ i.id }}">{{ i.title }}</option>{% endfor %}<option value="other">Something else</option></select></div>
+            <div class="inq-row"><label for="iq-size">Size</label>
+              <select id="iq-size" name="size"><option value="">Choose…</option>{% for s in sol.sizes %}<option>{{ s }}</option>{% endfor %}</select></div>
+            <div class="inq-row inq-wide"><label for="iq-about">What does the business do (or will it do)?</label><textarea id="iq-about" name="about" rows="3" required maxlength="1500"></textarea></div>
+          </fieldset>
+
+          <fieldset class="inq-step" data-step="2" hidden>
+            <legend class="inq-legend">Which services might you need?</legend>
+            <p class="inq-hint">Choose any that apply — or none, if you'd rather get a recommendation.</p>
+            <div class="inq-svcs">{% for c in sol.categories %}<label><input type="checkbox" name="svc-{{ c.id }}" value="{{ c.id }}"><span><b>{{ c.short }}</b>{{ c.title }}</span></label>{% endfor %}</div>
+          </fieldset>
+
+          <fieldset class="inq-step" data-step="3" hidden>
+            <legend class="inq-legend">The challenge</legend>
+            <div class="inq-row inq-wide"><label for="iq-challenge">What problem should this solve, or what should change?</label><textarea id="iq-challenge" name="challenge" rows="5" required maxlength="3000"></textarea></div>
+            <div class="inq-row inq-wide"><label for="iq-have">What do you already have? <span class="bld-opt">optional</span></label><input type="text" id="iq-have" name="have" maxlength="400" placeholder="e.g. a website on Wix, a Facebook page, spreadsheets for orders"></div>
+          </fieldset>
+
+          <fieldset class="inq-step" data-step="4" hidden>
+            <legend class="inq-legend">Budget, timing and engagement</legend>
+            <div class="inq-row"><label for="iq-budget">Estimated budget (USD)</label>
+              <select id="iq-budget" name="budget"><option value="">Prefer to discuss</option><option>Under $2,000</option><option>$2,000 – $10,000</option><option>$10,000 – $50,000</option><option>$50,000 – $150,000</option><option>Over $150,000</option></select></div>
+            <div class="inq-row"><label for="iq-timeline">Timeline</label>
+              <select id="iq-timeline" name="timeline"><option value="">Flexible</option><option>As soon as possible</option><option>Within 1 month</option><option>1–3 months</option><option>3–6 months</option><option>Later / exploring</option></select></div>
+            <div class="inq-row inq-wide"><span class="inq-lab" id="iq-eng-l">How would you like to work?</span>
+              <div class="bb-opts" role="radiogroup" aria-labelledby="iq-eng-l">{% for e in sol.engagements %}<label><input type="radio" name="engagement" value="{{ e.title }}"><span>{{ e.title }}</span></label>{% endfor %}<label><input type="radio" name="engagement" value="Not sure" checked><span>Not sure</span></label></div></div>
+            <div class="inq-hp" aria-hidden="true"><label for="iq-web">Leave this empty</label><input type="text" id="iq-web" name="website" tabindex="-1" autocomplete="off"></div>
+          </fieldset>
+
+          <fieldset class="inq-step" data-step="5" hidden>
+            <legend class="inq-legend">Your project brief</legend>
+            <pre class="inq-brief" id="inq-brief" tabindex="0" data-lenis-prevent></pre>
+            <label class="inq-consent"><input type="checkbox" id="iq-consent"> <span>I agree that this brief is sent to {{ sol.lead }} to reply to my enquiry.</span></label>
+          </fieldset>
+
+          <p class="enq-error" id="inq-error" role="alert" hidden></p>
+          <div class="inq-nav">
+            <button type="button" class="btn btn-line" id="inq-prev" hidden>Back</button>
+            <button type="button" class="btn btn-lime" id="inq-next">Next</button>
+            <div class="inq-send" id="inq-send" hidden>
+              <button type="submit" class="btn btn-lime" id="inq-submit">Send the brief</button>
+              <button type="button" class="btn btn-line" id="inq-mail">Open in my email app</button>
+              <button type="button" class="btn btn-line" id="inq-wa">WhatsApp</button>
+              <button type="button" class="btn btn-line" id="inq-copy">Copy</button>
+              <button type="button" class="btn btn-line" id="inq-dl">Download</button>
+            </div>
+          </div>
+          <p class="inq-note" id="inq-note"></p>
+          <p class="enq-done" id="inq-done" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <script type="application/json" id="sol-data">{{ sol | jsonify }}</script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "360° Business Solutions",
+      "description": {{ page.description | jsonify }},
+      "url": "https://rajdwaipyan.github.io/dwaipyan.github.io/solutions/",
+      "provider": { "@id": "https://rajdwaipyan.github.io/dwaipyan.github.io/#person" },
+      "areaServed": "Worldwide",
+      "hasOfferCatalog": { "@type": "OfferCatalog", "name": "Business solutions", "itemListElement": [
+        {%- for c in sol.categories %}{ "@type": "Offer", "itemOffered": { "@type": "Service", "name": {{ c.title | jsonify }}, "description": {{ c.approach | jsonify }} } }{% unless forloop.last %},{% endunless %}{% endfor %}
+      ] }
+    }
+    </script>
