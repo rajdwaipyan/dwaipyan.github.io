@@ -47,7 +47,7 @@ categories:
     short: Websites & apps
     problem: "A website that is slow, dated or hard to update — or no online way to sell, book or capture leads at all."
     approach: "Design and build the site, store or web application on the platform that fits the business, connected to forms, payments and the CRM, and handed over so the team can run it."
-    deliverables: [Information architecture and page plan, Website or online store build, Payments, booking and forms, Integrations with CRM and email, Hand-over training and documentation]
+    deliverables: [Information architecture and page plan, Website or online store build, "Payments, booking and forms", Integrations with CRM and email, Hand-over training and documentation]
     value: A site that earns trust, captures enquiries and sales, and can be updated without a developer for every change.
     tech: [WordPress, Elementor Pro, Crocoblock, WooCommerce, Shopify, Webflow, Wix, HTML / CSS / JavaScript]
     delivery: direct
@@ -59,7 +59,7 @@ categories:
     short: Marketing
     problem: "Good products that not enough of the right people hear about — or ad spend with no way to tell what is working."
     approach: "Pick the few channels that fit the customer, set up campaigns with measurement from day one, and connect every lead to the CRM so it is followed up."
-    deliverables: [Channel and audience plan, Campaign set-up (search, social, email), Landing pages and lead magnets, Tracking and conversion events, Monthly performance review]
+    deliverables: [Channel and audience plan, "Campaign set-up (search, social, email)", Landing pages and lead magnets, Tracking and conversion events, Monthly performance review]
     value: Customer acquisition you can measure and adjust, instead of guessing.
     tech: [Google Ads, Meta Ads, Email marketing, Google Analytics 4, Tag Manager]
     delivery: scoped
@@ -109,7 +109,7 @@ categories:
     short: IT & security
     problem: "A growing business with no written IT set-up, shared passwords and a website nobody has security-reviewed."
     approach: "Harden the website and hosting, put the basics of accounts, devices, backups and access in place, and document who owns what."
-    deliverables: [Website and WordPress hardening, Security assessment with prioritised fixes, Accounts, email and access set-up, Backups that are tested, IT documentation]
+    deliverables: [Website and WordPress hardening, Security assessment with prioritised fixes, "Accounts, email and access set-up", Backups that are tested, IT documentation]
     value: Lower risk of downtime and data loss, and a clear plan for what to fix first.
     tech: [WordPress hardening, Web application firewalls, SSL / TLS, Google Workspace / Microsoft 365, Backups]
     delivery: direct
@@ -263,7 +263,7 @@ industries:
   - id: hospitality
     title: Restaurants & Hospitality
     line: Restaurants, cafés, hotels, tours and venues.
-    needs: [Menus, rooms or experiences shown well, Reservations or online booking, Google Business Profile and reviews, Repeat-visit campaigns]
+    needs: ["Menus, rooms or experiences shown well", Reservations or online booking, Google Business Profile and reviews, Repeat-visit campaigns]
     combo: [branding, web, seo, marketing, crm]
     uses: [A restaurant that needs more local customers, A tour operator taking bookings online, A hotel reducing booking-platform commissions]
     words: [restaurant, cafe, café, coffee, food, catering, hotel, resort, tourism, tours, travel, hospitality, bar, bakery, booking, reservations]
@@ -324,7 +324,7 @@ technology:
   - { group: Websites & commerce, items: [{ n: WordPress, mode: direct }, { n: WooCommerce, mode: direct }, { n: Elementor Pro, mode: direct }, { n: Shopify, mode: direct }, { n: Webflow, mode: direct }, { n: Wix, mode: direct }, { n: React / Next.js, mode: scoped }] }
   - { group: CRM & automation, items: [{ n: GoHighLevel, mode: direct }, { n: n8n, mode: direct }, { n: CRM integrations, mode: direct }, { n: Webhooks & REST APIs, mode: direct }] }
   - { group: AI, items: [{ n: OpenAI / Anthropic / Gemini APIs, mode: direct }, { n: AI agents & assistants, mode: direct }, { n: Prompt engineering, mode: direct }] }
-  - { group: Infrastructure & security, items: [{ n: WordPress security, mode: direct }, { n: Web hosting & SSL, mode: direct }, { n: Cloud infrastructure (AWS, GCP, Azure), mode: scoped }, { n: Security assessment, mode: direct }] }
+  - { group: Infrastructure & security, items: [{ n: WordPress security, mode: direct }, { n: Web hosting & SSL, mode: direct }, { n: "Cloud infrastructure (AWS, GCP, Azure)", mode: scoped }, { n: Security assessment, mode: direct }] }
   - { group: Marketing & analytics, items: [{ n: Google Analytics 4, mode: scoped }, { n: Google & Meta Ads, mode: scoped }, { n: SEO tools, mode: scoped }, { n: Email marketing, mode: scoped }] }
 
 # Business Builder: what visitors may say they want (goal), and what it implies.

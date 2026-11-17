@@ -162,7 +162,7 @@ function initBuilderUI(data, api) {
       if (s.text) body += `<p>${esc(s.text)}</p>`;
       if (s.items) body += `<ul>${s.items.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`;
       if (s.services) body += `<ul class="bp-svcs">${s.services.map((x) => `<li><a href="#sol-${x.id}" data-open-cat="${x.id}">${esc(x.title)}</a><span class="bp-phase bp-phase-${x.phase === "Phase 1" ? "1" : "2"}">${x.phase}</span><span class="bp-why">${esc(x.why)}</span>${x.mode !== "direct" ? '<span class="bp-mode">Scoped per project — in-house or with partners</span>' : ""}</li>`).join("")}</ul>`;
-      if (s.phases) body += `<ol class="bp-road">${s.phases.map((p) => `<li><b>${esc(p.title)}</b><span>${esc(p.line)}</span>${p.cats.length ? `<em>${esc(p.cats.join(" · "))}</em>` : ""}</li>`).join("")}</ol>`;
+      if (s.phases) body += `<ol class="bp-road">${s.phases.map((p) => `<li class="${p.now ? "is-now" : "is-later"}"><b>${esc(p.title)} <small>${esc(p.stages || "")}</small> <i>${p.n === 1 ? "Start here" : p.now ? "Phase 1 work" : "Later"}</i></b><span>${esc(p.line)}</span>${p.cats.length ? `<em>${esc(p.cats.join(" · "))}</em>` : ""}</li>`).join("")}</ol>`;
       if (s.note) body += `<p class="bp-note">${esc(s.note)}</p>`;
       return `<section class="bp-sec bp-${s.id}"><h4>${esc(s.h)}</h4>${body}</section>`;
     };
