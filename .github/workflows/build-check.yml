@@ -23,11 +23,18 @@ jobs:
       - name: Check the build output
         run: |
           set -e
-          for f in index.html journal/index.html portfolio/index.html portfolio/eagle/index.html sitemap.xml assets/vendor/gsap.min.js; do
+          for f in index.html journal/index.html portfolio/index.html portfolio/eagle/index.html intelligence/index.html rights/index.html sitemap.xml assets/vendor/gsap.min.js; do
             test -s "_site/$f" || { echo "missing $f"; exit 1; }
           done
-          test ! -e _site/cv.pdf || { echo "cv.pdf must not be published"; exit 1; }
-          test ! -e _site/_templates || { echo "_templates must not be published"; exit 1; }
+          # private or repo-only files must never be published
+          for f in cv.pdf Profile.png assets/img/about.jpg _templates tools README.md CONTENT_REVIEW.md NOTICE.md AUDIT.md LICENSE; do
+            test ! -e "_site/$f" || { echo "$f must not be published"; exit 1; }
+          done
+          ! find _site -name "*.map" -o -name "*.php" -o -name ".env*" | grep . || { echo "source maps, PHP or env files in the output"; exit 1; }
+          # every page carries the Content Security Policy
+          for f in $(find _site -name "*.html"); do
+            grep -q 'http-equiv="Content-Security-Policy"' "$f" || { echo "no CSP in $f"; exit 1; }
+          done
           echo "build output OK"
       - name: Keep the built site for inspection
         uses: actions/upload-artifact@v4

@@ -1,0 +1,169 @@
+---
+layout: default
+title: DWAIPYAN INTELLIGENCE — Skills, Work and Evidence, Connected | Dwaipyan Mandal
+og_title: DWAIPYAN INTELLIGENCE — explore Dwaipyan Mandal's skills, projects and record
+description: An interactive map of Dwaipyan Mandal's capabilities, live projects, roles, education and research — every connection backed by evidence you can open. Search it by what you need and build a brief with sources.
+root: "../"
+nav: intelligence
+crumb: Dwaipyan Intelligence
+---
+{%- assign I = site.data.intelligence -%}
+{%- assign P = site.data.projects -%}
+{%- assign live_n = 0 %}{% for p in P %}{% if p.url and p.url != "" %}{% assign live_n = live_n | plus: 1 %}{% endif %}{% endfor -%}
+    <section class="page-hero di-hero" id="top" data-room="night" aria-labelledby="page-title">
+      <div class="container di-hero-grid">
+        <div>
+          <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Home</a><span aria-hidden="true">/</span><span aria-current="page">Dwaipyan Intelligence</span></nav>
+          <p class="di-mark" aria-hidden="true"><span class="di-mark-dot"></span>DWAIPYAN INTELLIGENCE</p>
+          <h1 class="page-title" id="page-title"><span class="sr-only">DWAIPYAN INTELLIGENCE — </span>What I can do, <em>and the proof.</em></h1>
+          <p class="page-lede">
+            A map of how my skills, live projects, roles, degrees and research connect. Tell it what you are looking for
+            and it shows the evidence — strongest first — then writes you a brief with links to every source.
+          </p>
+          <ul class="page-jump">
+            <li><a href="#ask">Ask</a></li>
+            <li><a href="#map">Explore the map</a></li>
+            <li><a href="#brief">Build a brief</a></li>
+            <li><a href="#method">How it works</a></li>
+          </ul>
+        </div>
+        <aside class="page-aside di-facts reveal" aria-label="What the map contains">
+          <p class="aside-k">In the map</p>
+          <dl class="aside-facts">
+            <div><dt>{{ I.capabilities.size }}</dt><dd>capabilities, each with its evidence</dd></div>
+            <div><dt>{{ live_n }}</dt><dd>live client websites you can open</dd></div>
+            <div><dt>{{ site.data.education.degrees.size }}</dt><dd>degrees and an accepted master's project report</dd></div>
+            <div><dt>0</dt><dd>made-up metrics, testimonials or logos</dd></div>
+          </dl>
+          <p class="di-honest">Plain, transparent search over the facts on this site — no AI model, nothing invented.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ASK — what brings the visitor here, or their own words -->
+    <section class="section di-ask" id="ask" aria-labelledby="ask-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="kicker"><span>01</span> Ask</p>
+          <h2 class="section-title" id="ask-title">What brings <em>you here?</em></h2>
+        </header>
+        <div class="di-intents" role="group" aria-label="Choose what you are looking for">
+          {%- for t in I.intents %}
+          <button type="button" class="di-intent" data-intent="{{ t.id }}" aria-pressed="false">
+            <span class="di-intent-t">{{ t.label }}</span>
+            <span class="di-intent-b">{{ t.blurb }}</span>
+          </button>
+          {%- endfor %}
+        </div>
+        <form class="di-search" role="search" data-di-search>
+          <label for="di-q">Or say it in your own words</label>
+          <div class="di-search-row">
+            <input id="di-q" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="e.g. WordPress and CRM automation for a real estate business" maxlength="160">
+            <button type="submit" class="btn btn-lime">Show the evidence</button>
+          </div>
+        </form>
+        <div class="di-results" id="di-results" aria-live="polite" tabindex="-1"></div>
+      </div>
+    </section>
+
+    <!-- MAP — progressive graph; the list below is the same content without the graph -->
+    <section class="section di-map-sec" id="map" data-room="night" aria-labelledby="map-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="kicker"><span>02</span> Explore</p>
+          <h2 class="section-title" id="map-title">Follow any thread <em>to its evidence.</em></h2>
+          <p class="section-lede">Start anywhere. Selecting an item brings its connections forward; the panel shows what it is, how strong the evidence is, and where to check it.</p>
+        </header>
+        <div class="di-toolbar" hidden data-di-toolbar>
+          <ol class="di-trail" aria-label="Your path through the map" data-di-trail></ol>
+          <div class="di-view" role="group" aria-label="View">
+            <button type="button" class="di-view-btn" aria-pressed="true" data-di-view="graph">Map</button>
+            <button type="button" class="di-view-btn" aria-pressed="false" data-di-view="list">List</button>
+          </div>
+        </div>
+        <div class="di-explore" data-di-explore hidden>
+          <div class="di-stage" data-di-stage>
+            <svg class="di-edges" aria-hidden="true" focusable="false" data-di-edges></svg>
+            <div class="di-nodes" role="group" aria-label="Connected items — choose one to explore it" data-di-nodes></div>
+          </div>
+          <article class="di-panel" aria-live="polite" data-di-panel></article>
+        </div>
+
+        <!-- The same content as a list: shown without JavaScript, and on request ("List") -->
+        <div class="di-list" data-di-list>
+          {%- for c in I.capabilities %}
+          <article class="di-li" id="cap-{{ c.id }}">
+            <h3>{{ c.label }} <span class="di-lv di-lv-{{ c.level }}">{% case c.level %}{% when "live" %}Live projects{% when "record" %}Record{% when "role" %}Described on this site{% when "self" %}Self-described{% when "stated" %}Stated, not yet documented{% else %}Goal{% endcase %}</span></h3>
+            <p>{{ c.summary }}</p>
+            {%- if c.projects %}
+            <p class="di-li-k">Shown in</p>
+            <ul class="di-li-links">
+              {%- for pid in c.projects %}{% assign pr = P | where: "id", pid | first %}{% if pr %}
+              <li><a href="../portfolio/{{ pr.id }}/">{{ pr.title }}</a> <span>· {{ pr.industry }} · {{ pr.country | split: " · " | first }}</span></li>
+              {%- endif %}{% endfor %}
+            </ul>
+            {%- endif %}
+            {%- if c.pages %}
+            <p class="di-li-k">Read more</p>
+            <ul class="di-li-links">{% for pg in c.pages %}<li><a href="../{{ pg.url }}">{{ pg.label }}</a></li>{% endfor %}</ul>
+            {%- endif %}
+          </article>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- BRIEF — a structured report with sources, to copy, download or print -->
+    <section class="section di-brief-sec" id="brief" aria-labelledby="brief-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="kicker"><span>03</span> Brief</p>
+          <h2 class="section-title" id="brief-title">Take it with you, <em>sources included.</em></h2>
+          <p class="section-lede">Pick what you need. The brief is written from the same facts as the map, and every point links back to where you can check it.</p>
+        </header>
+        <div class="di-brief-pick" role="group" aria-label="Choose a brief" data-di-briefs>
+          <button type="button" class="di-chip" data-brief="technical" aria-pressed="false">Technical capability</button>
+          <button type="button" class="di-chip" data-brief="profile" aria-pressed="false">Professional profile</button>
+          <button type="button" class="di-chip" data-brief="projects" aria-pressed="false">Project experience</button>
+          <button type="button" class="di-chip" data-brief="leadership" aria-pressed="false">Leadership profile</button>
+          <button type="button" class="di-chip" data-brief="academic" aria-pressed="false">Academic profile</button>
+          <button type="button" class="di-chip" data-brief="search" aria-pressed="false" hidden>Matches for my search</button>
+        </div>
+        <div class="di-brief-out" data-di-brief hidden>
+          <div class="di-brief-acts">
+            <button type="button" class="btn btn-line btn-sm" data-di-copy>Copy</button>
+            <button type="button" class="btn btn-line btn-sm" data-di-dl>Download (.md)</button>
+            <button type="button" class="btn btn-line btn-sm" data-di-print>Print or save as PDF</button>
+            <span class="copy-status" role="status" aria-live="polite"></span>
+          </div>
+          <article class="di-doc" id="di-doc" tabindex="-1"></article>
+        </div>
+        <noscript><p class="di-noscript">The brief builder needs JavaScript. Everything it uses is on the <a href="../cv/">CV</a>, <a href="../experience/">Experience</a> and <a href="../education/">Education</a> pages.</p></noscript>
+      </div>
+    </section>
+
+    <!-- METHOD — evidence levels and what this is not -->
+    <section class="section di-method" id="method" aria-labelledby="method-title">
+      <div class="container di-method-grid">
+        <header class="section-head reveal">
+          <p class="kicker"><span>04</span> How it works</p>
+          <h2 class="section-title" id="method-title">Strongest evidence <em>first.</em></h2>
+          <p class="section-lede">Every item carries one of six labels, so a claim is never dressed up as a fact. The map reads the same data files as the rest of the site; when they change, it changes.</p>
+        </header>
+        <ul class="di-legend">
+          <li><span class="di-lv di-lv-live">Live project</span> A client website that is online — open it and look.</li>
+          <li><span class="di-lv di-lv-record">Record</span> A degree, an accepted report or a formal appointment.</li>
+          <li><span class="di-lv di-lv-role">Described on this site</span> A role, course or programme described on these pages.</li>
+          <li><span class="di-lv di-lv-self">Self-described</span> A skill I list myself — ask me for examples.</li>
+          <li><span class="di-lv di-lv-stated">Stated, not yet documented</span> True, but not yet written up here with dates or detail.</li>
+          <li><span class="di-lv di-lv-goal">Goal</span> A direction or work in progress — not an achievement.</li>
+        </ul>
+        <div class="di-not">
+          <h3>What this is not</h3>
+          <p>It is not a chatbot and it does not use an AI model. Your words are matched against the labels, tools, industries and places in the data, and it tells you which words matched. Nothing you type leaves your browser.</p>
+          <p>If something you need isn't here, <a href="../#contact">ask me directly</a>.</p>
+        </div>
+      </div>
+    </section>
+
+<script type="application/json" id="di-data">{"intel":{{ I | jsonify }},"projects":{{ P | jsonify }},"experience":{{ site.data.experience | jsonify }},"education":{{ site.data.education | jsonify }},"leadership":{{ site.data.leadership | jsonify }},"skills":{{ site.data.skills | jsonify }}}</script>

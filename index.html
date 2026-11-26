@@ -343,7 +343,7 @@ preload_portrait: cutout
           <h2 class="section-title" id="ms-title">The road so far, <em>dated and checkable.</em></h2>
         </header>
       </div>
-      <div class="ms-track-wrap">
+      <div class="ms-track-wrap" tabindex="0" role="region" aria-label="Milestones, scrolls sideways">
         <ol class="ms-track" data-draw>
           {%- for t in site.data.timeline reversed %}
           {%- unless t.published == false %}

@@ -157,11 +157,26 @@ export function initTwin() {
   };
 
   const setPeek = (on) => { peeking = on; guide.classList.toggle("is-peek", on); };
+  // the part of him that shows at the edge must not cover a button, field or text: try nearby heights first
+  const edgeClear = (y, left, s) => {
+    const xs = left ? [s * 0.08, s * 0.28, s * 0.48] : [vw() - s * 0.48, vw() - s * 0.28, vw() - s * 0.08];
+    for (const x of xs) for (const f of [0.12, 0.5, 0.88]) if (blockedAt(x, y + s * f)) return false;
+    return true;
+  };
   const peek = () => {   // half-hidden at the nearest edge
     const s = size(), left = compactMq.matches || pos.x + s / 2 < vw() / 2;
     const wa = waBox();
-    let y = clamp(pos.y, hdr() + 20, vh() - s - 20);
+    const lo = hdr() + 20, hi = vh() - s - 20;
+    let y = clamp(pos.y, lo, hi);
     if (!left && wa && y + s > wa.t) y = wa.t - s - 8;
+    if (!edgeClear(y, left, s)) {
+      for (let d = s * 0.5; d < vh(); d += s * 0.5) {
+        const up = y - d, down = y + d;
+        if (down <= hi && edgeClear(down, left, s) && !(wa && !left && down + s > wa.t)) { y = down; break; }
+        if (up >= lo && edgeClear(up, left, s)) { y = up; break; }
+        if (up < lo && down > hi) break;   // nowhere clear: keep the nearest height
+      }
+    }
     setPeek(true); hideChip();
     fly(left ? -s * 0.46 : vw() - s * 0.54, y, { dur: 520, then: () => { face(left); guide.classList.toggle("chip-left", !left); } });
   };
@@ -178,7 +193,10 @@ export function initTwin() {
   };
   const settle = () => {   // make sure he is on clear ground
     if (docked || away || store.hidden) return;
-    if (typing()) { if (!peeking) peek(); return; }   // someone is filling in a form: stay at the edge
+    if (typing()) {   // someone is filling in a form: stay at the edge, but never on top of a control
+      if (!peeking || !edgeClear(pos.y, pos.x < vw() / 2, size())) peek();
+      return;
+    }
     if (!peeking && clearAt(pos.x, pos.y)) return;
     const spot = firstClear(byDistance(pos.x, pos.y));
     if (!spot) { if (!peeking) peek(); return; }

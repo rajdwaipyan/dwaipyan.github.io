@@ -44,7 +44,7 @@
         {%- if l.requires == 'videos' %}{% assign nv = site.data.videos.videos | size %}{% if nv == 0 %}{% continue %}{% endif %}{% endif %}
                 <li><a href="{% if l.url contains ':' %}{{ l.url }}{% else %}{{ root }}{{ l.url }}{% endif %}"{% if l.nav and l.nav == page.nav %} aria-current="page"{% endif %}>
                   <span class="ml-no" aria-hidden="true">0{{ forloop.index }}</span>
-                  <span class="ml-label">{{ l.label }}</span>
+                  <span class="ml-label{% if l.wordmark %} nav-wm{% endif %}">{{ l.label }}</span>
                   <span class="ml-sub">{{ l.sub }}</span>
                   <svg class="ml-arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
                 </a></li>
@@ -85,7 +85,7 @@
       <ul class="mnav-list">
         {%- for l in g.links %}
         {%- if l.requires == 'videos' %}{% assign nv = site.data.videos.videos | size %}{% if nv == 0 %}{% continue %}{% endif %}{% endif %}
-        <li><a href="{% if l.url contains ':' %}{{ l.url }}{% else %}{{ root }}{{ l.url }}{% endif %}"{% if l.nav and l.nav == page.nav %} aria-current="page"{% endif %}>{{ l.label }}</a></li>
+        <li><a href="{% if l.url contains ':' %}{{ l.url }}{% else %}{{ root }}{{ l.url }}{% endif %}"{% if l.nav and l.nav == page.nav %} aria-current="page"{% endif %}{% if l.wordmark %} class="nav-wm"{% endif %}>{{ l.label }}</a></li>
         {%- endfor %}
       </ul>
     </div>

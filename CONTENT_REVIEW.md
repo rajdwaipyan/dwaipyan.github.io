@@ -244,3 +244,23 @@ Status key: **Hidden** = in the data file but not shown · **Cautious** = shown 
 - **Data kept:** what the visitor typed, the form, the time, delivery status, your status/notes — no IP address
   (only a salted hash for rate limits). Deleted after `retention_days` (365 by default). Consider adding a line about
   this to a privacy note on the site.
+
+## DWAIPYAN INTELLIGENCE, rights and security (27 November 2026)
+
+**Urgent (security):** `cv.pdf`, `Profile.png` and `assets/img/about.jpg` are in the public GitHub repository —
+see AUDIT.md, findings S1 and S2. Decide: make the repository private, or remove them from git history.
+
+Please confirm or correct:
+- **Pentangular IT** — shown in the knowledge map as "Founder & CEO", labelled *Stated, not yet documented*, with no
+  dates. Add a start year (and a line for the Experience page) when you're ready, or remove it from
+  `_data/intelligence.yml` (`roles`).
+- **Tech Maximus** — shown as "Web developer", *Stated*, no dates (it is still hidden on the Experience page until
+  the dates are confirmed).
+- **Capability wording** in `_data/intelligence.yml` — each `summary` speaks for you. "AI automation & prompt
+  engineering" and "Web apps, plugins & integrations" are marked *Self-described* because no public project shows them
+  yet; link a project when one exists and change `level`.
+- **NOTICE.md / Rights page** — limits the MIT licence to the code and reserves the content, photos and portrait,
+  including "using the content to train machine-learning models needs permission". It's your licensing choice: edit
+  or remove anything you don't want before merging.
+- **Footer** — "© [year] Dwaipyan Mandal. All rights reserved." The old "Hand-built with…" line was replaced by a
+  neutral colophon (built with Jekyll, last updated, source link).
