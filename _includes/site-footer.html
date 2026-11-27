@@ -22,7 +22,7 @@
         <ul>
           {%- for l in g.links %}
         {%- if l.requires == 'videos' %}{% assign nv = site.data.videos.videos | size %}{% if nv == 0 %}{% continue %}{% endif %}{% endif %}
-          <li><a href="{% if l.url contains ':' %}{{ l.url }}{% else %}{{ root }}{{ l.url }}{% endif %}">{{ l.label }}</a></li>
+          <li><a href="{% if l.url contains ':' %}{{ l.url }}{% else %}{{ root }}{{ l.url }}{% endif %}"{% if l.wordmark %} class="nav-wm"{% endif %}>{{ l.label }}</a></li>
           {%- endfor %}
         </ul>
       </div>
@@ -38,7 +38,15 @@
     </nav>
   </div>
   <div class="container footer-base">
-    <p>© <span id="year">2026</span> Dwaipyan Mandal · Hand-built with HTML, CSS and JavaScript on Jekyll — <a href="https://github.com/rajdwaipyan/dwaipyan.github.io" target="_blank" rel="noopener">read the source</a></p>
+    <div class="footer-legal">
+      <p class="footer-copy">© <span id="year">{{ site.time | date: "%Y" }}</span> Dwaipyan Mandal. All rights reserved.</p>
+      <p class="footer-colophon">
+        <a href="{{ root }}rights/">Rights &amp; credits</a><span aria-hidden="true">·</span>
+        <span>Updated <time datetime="{{ site.time | date: '%Y-%m-%d' }}">{{ site.time | date: "%-d %B %Y" }}</time></span><span aria-hidden="true">·</span>
+        <span>Built with Jekyll — <a href="https://github.com/rajdwaipyan/dwaipyan.github.io" target="_blank" rel="noopener noreferrer">source<span class="sr-only"> (opens in a new tab)</span></a></span><span aria-hidden="true">·</span>
+        <a href="#top" class="footer-top">Back to top <span aria-hidden="true">↑</span></a>
+      </p>
+    </div>
     <div class="footer-extras">
       <button class="extra-btn" id="xray-toggle" type="button" aria-pressed="false" title="See how this page is built (shortcut: X)"><span class="xray-icon" aria-hidden="true"></span>X-ray mode</button>
       {%- unless page.guide == false %}

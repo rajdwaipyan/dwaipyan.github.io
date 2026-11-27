@@ -92,6 +92,7 @@ places:
   - { id: projects, label: Projects, url: "portfolio/#projects", words: [projects, project, case studies, case study, work, portfolio projects] }
   - { id: portfolio, label: Portfolio, url: "portfolio/", words: [portfolio, websites, sites, showcase] }
   - { id: services, label: Services, url: "services/", words: [services, service, offer, offers, offering] }
+  - { id: intelligence, label: DWAIPYAN INTELLIGENCE, url: "intelligence/", words: [dwaipyan intelligence, intelligence, knowledge graph, skills map, evidence, map of skills] }
   - { id: solutions, label: Business Solutions, url: "solutions/", words: [business solutions, solutions, 360, ecosystem, lifecycle] }
   - { id: builder, label: the Business Builder, url: "solutions/#builder", words: [business builder, blueprint, builder, business plan] }
   - { id: inquiry, label: the project form, url: "solutions/#inquiry", words: [project form, inquiry, enquiry, project brief, start a project] }
@@ -286,6 +287,12 @@ topics:
     q: [photography, photos, photographer, pictures, albums, flickr, camera, wildlife, hobby, hobbies, interests outside work]
     a: "Photography is his creative side. The gallery on this site shows albums from his Flickr — wildlife, festivals and the Himalayas among them."
     links: [{ label: Photography, url: "photography/" }]
+
+  - id: intelligence
+    t: DWAIPYAN INTELLIGENCE — skills and evidence
+    q: [dwaipyan intelligence, intelligence, knowledge graph, skills map, evidence, proof, can he prove, show me evidence, verified, what can he do, capabilities, capability, skills and projects, brief, portfolio brief, report about him]
+    a: "DWAIPYAN INTELLIGENCE is a map of his capabilities, live projects, roles, degrees and research — each with a label for how strong its evidence is. You can tell it what you're looking for and it shows the matching work, then writes a brief with links to every source. It's plain search over the facts on this site, not an AI model."
+    links: [{ label: Open DWAIPYAN INTELLIGENCE, url: "intelligence/" }, { label: Build a brief, url: "intelligence/#brief" }]
 
   - id: solutions
     t: Business solutions

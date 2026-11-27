@@ -2,6 +2,7 @@
 # Every url must point at a page or anchor that exists. Urls are relative to the site root
 # (the layout adds "../" on inner pages). `nav` marks the link as current on that page.
 # `requires: videos` hides a link until _data/videos.yml lists at least one video.
+# `wordmark: true` sets the label as a small-caps wordmark (used for DWAIPYAN INTELLIGENCE).
 
 groups:
   - id: profile
@@ -9,6 +10,7 @@ groups:
     title: The record behind the work
     blurb: Career, leadership and education — dated, specific and checkable.
     links:
+      - { label: DWAIPYAN INTELLIGENCE, sub: "Skills, work and evidence — connected and searchable", url: intelligence/, nav: intelligence, wordmark: true }
       - { label: Experience, sub: "Organisations, business and freelance work", url: experience/, nav: experience }
       - { label: Leadership, sub: "CEO of Surjamukhi Sangstha and its programmes", url: leadership/, nav: leadership }
       - { label: Education, sub: "BSc in CSE, Professional Masters in IT", url: education/, nav: education }

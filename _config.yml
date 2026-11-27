@@ -5,6 +5,8 @@ exclude:
   - README.md
   - CONTENT_REVIEW.md
   - LICENSE
+  - NOTICE.md
+  - AUDIT.md
   - Profile.png
   - assets/img/about.jpg
   # cv.pdf contains private identity details (ID number, date of birth, family and referee contacts).

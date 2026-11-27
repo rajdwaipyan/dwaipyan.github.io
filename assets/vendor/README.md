@@ -10,3 +10,5 @@ They are loaded with `defer` before `assets/js/main.js`, so `window.gsap`, `wind
 and `window.Lenis` exist when the modules run. If any of them fails to load, the site still works:
 the motion layer simply stays off. To update, replace the files and change the version here and in
 the comment in `_layouts/default.html`.
+
+`lenis.min.js`: the trailing `//# sourceMappingURL` comment was removed (the map isn't shipped, so it only produced a 404 in developer tools). The code is unchanged.

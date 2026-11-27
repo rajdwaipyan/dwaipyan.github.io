@@ -98,7 +98,7 @@ schema: page
         <h2 class="ai-tools-k" id="tools-title">Prompts &amp; instructions written for</h2>
         <p class="ai-tools-note">Independent service — not affiliated with or endorsed by these companies.</p>
       </div>
-      <div class="mq mq-tools" data-marquee>
+      <div class="mq mq-tools" data-marquee tabindex="0" role="region" aria-label="Tools, scrolling list">
         <ul class="mq-track">
           {%- for t in ai.tools %}<li>{{ t }}</li>{% endfor -%}
         </ul>

@@ -1,0 +1,197 @@
+# DWAIPYAN INTELLIGENCE — the connections between capabilities and the evidence for them.
+#
+# Facts are NOT repeated here: projects, roles, degrees, training, research and programmes are read at build time
+# from projects.yml, experience.yml, education.yml and leadership.yml, and technologies from each project's
+# `built_with` and from skills.yml. This file only says how things connect, so the map stays true when those
+# files change. Every link must be backed by something a visitor can open.
+#
+# Evidence levels (shown on every item, strongest first):
+#   live      a live client website you can open
+#   record    an academic or organisational record (degree, accepted report, appointment)
+#   role      a role described on this site (Experience, Leadership)
+#   self      a capability Dwaipyan describes himself; ask for examples
+#   stated    stated by Dwaipyan, not yet documented on this site
+#   goal      a direction or something in progress — not an accomplishment
+#
+# Node ids: cap:<id> capability · proj:<id> project (projects.yml) · role:<id> · edu:<id> (education.yml degree id)
+#           report · train:<n> (1-based, education.yml training) · research:<n> · prog:<id> (leadership.yml)
+#           tech:<slug> (lower-case, every run of other characters → '-', e.g. "C# / ASP.NET MVC" → c-asp-net-mvc)
+#           goal:<id> · bscp:<n> (BSc projects)
+
+capabilities:
+  - id: wordpress
+    label: WordPress websites
+    level: live
+    summary: Business websites built on WordPress and Elementor — the core of the freelance and agency work.
+    skills_group: Websites & e-commerce
+    tech: [wordpress, elementor-pro, elementor, crocoblock, custom-themes, speed-responsive-optimisation]
+    projects: [eagle, arca, vtek, els, osea]
+    roles: [ed-shield, freelance, tech-maximus]
+    pages: [{ label: Web development service, url: services/web-development/ }, { label: Portfolio, url: portfolio/ }]
+
+  - id: ecommerce
+    label: Online stores & booking
+    level: live
+    summary: Stores and bookable products on WooCommerce and Shopify.
+    tech: [woocommerce, shopify]
+    projects: [osea]
+    roles: [ed-shield, freelance]
+    pages: [{ label: O-Sea Bora Bora case study, url: portfolio/osea/ }]
+
+  - id: crm
+    label: CRM & workflow automation
+    level: live
+    summary: Lead capture wired into a CRM pipeline with automatic routing and follow-up — GoHighLevel, n8n, webhooks.
+    skills_group: CRM & automation
+    tech: [gohighlevel, n8n, a2p-10dlc-sms, workflow-automation, webhooks, rest-apis]
+    projects: [eagle]
+    roles: [ed-shield, freelance]
+    pages: [{ label: CRM automation service, url: services/crm-automation/ }, { label: Eagle Premier case study, url: portfolio/eagle/ }]
+
+  - id: webapps
+    label: Web apps, plugins & integrations
+    level: self
+    summary: Custom WordPress plugins, dashboards and integrations between systems. The company's own attendance and expense tools are internal and not public.
+    skills_group: Web applications & integration
+    tech: [custom-wordpress-plugins, dashboards-client-portals, rest-apis, webhooks, databases, php]
+    projects: [edshield-tools]
+    roles: [ed-shield]
+    pages: [{ label: Portfolio — how it is built, url: "portfolio/#build" }]
+
+  - id: ai
+    label: AI automation & prompt engineering
+    level: self
+    summary: AI-assisted workflows and prompt systems offered as a service; ask for examples of delivered work.
+    tech: [ai-assisted-workflows, n8n]
+    roles: [ed-shield]
+    pages: [{ label: AI prompt engineering, url: ai-prompt-engineering/ }, { label: AI automation service, url: services/ai-automation/ }]
+
+  - id: security
+    label: Cybersecurity & research
+    level: record
+    summary: A master's project report on cyber resilience in Bangladesh's ISP ecosystem, security training, and ongoing research into home-network security.
+    skills_group: Security & research
+    tech: [wordpress-hardening, network-wi-fi-security-studying, research-design, technical-writing]
+    education: [report, pmit, train:1, train:2]
+    research: [1, 2, 3]
+    pages: [{ label: Cybersecurity service, url: services/cybersecurity/ }, { label: Research, url: "education/#research" }]
+
+  - id: it-leadership
+    label: IT & project management
+    level: role
+    summary: From January 2020 to October 2026, ran an NGO's IT and managed development-sector projects, including programme work with the ILO and Dhaka South City Corporation.
+    tech: [it-management, project-management, programme-coordination, stakeholder-reporting]
+    roles: [sms-it]
+    programmes: [ilo-dscc]
+    pages: [{ label: Leadership, url: leadership/ }]
+
+  - id: leadership
+    label: Organisational leadership
+    level: record
+    summary: Chief Executive Officer of Surjamukhi Sangstha since 26 October 2026; co-founder and operational CEO of ED Shield Solutions.
+    skills_group: Leadership & management
+    tech: [organisational-leadership]
+    roles: [sms-ceo, ed-shield, pentangular]
+    pages: [{ label: Leadership, url: leadership/ }, { label: Experience, url: experience/ }]
+
+  - id: academic
+    label: Education & academic work
+    level: record
+    summary: B.Sc. in Computer Science & Engineering and a Professional Masters in Information Technology, with project work in machine learning and software.
+    education: [pmit, bsc, report, bscp:1, bscp:2, bscp:3, train:3, train:4]
+    goals: [grad-study]
+    pages: [{ label: Education, url: education/ }, { label: CV, url: cv/ }]
+
+  - id: programming
+    label: Programming
+    level: self
+    summary: The languages behind the work — PHP and JavaScript day to day, Python and C#/.NET from study and earlier projects.
+    skills_group: Programming
+    tech: [php, javascript, html-css, python, c-asp-net-mvc]
+    education: [bscp:1, bscp:2, bscp:3, train:3]
+
+# Roles. `from` points at experience.yml (org name) so dates and points come from there. `short` is the map label.
+roles:
+  - { id: sms-ceo, from: "Surjamukhi Sangstha (SMS)", title: Chief Executive Officer, short: "CEO — Surjamukhi Sangstha", level: record, page: leadership/ }
+  - { id: sms-it, from: "Surjamukhi Sangstha (SMS)", title: "IT & project management", short: "IT & projects — Surjamukhi", level: role, page: "leadership/#journey" }
+  - { id: ed-shield, from: ED Shield Solutions, short: "Co-founder — ED Shield", level: role, page: "experience/#independent" }
+  - { id: freelance, from: Freelance web developer, short: "Freelance web developer", level: live, page: "experience/#independent" }
+  # Confirmed by Dwaipyan, not (yet) documented on the site — shown as "stated", with no dates.
+  - id: tech-maximus
+    label: Web Developer — Tech Maximus
+    short: "Web developer — Tech Maximus"
+    level: stated
+    summary: Worked as a web developer at Tech Maximus. Dates to be confirmed, so it is not on the Experience page yet.
+  - id: pentangular
+    label: Founder & CEO — Pentangular IT
+    short: "Founder — Pentangular IT"
+    level: stated
+    summary: Founder and CEO of Pentangular IT. Not yet described on this site.
+
+# Internal work that is real but not public.
+projects_extra:
+  - id: edshield-tools
+    label: ED Shield in-house tools
+    level: role
+    summary: WordPress tools for attendance and expense tracking, built for and used by ED Shield Solutions itself. Internal — no public link.
+    tech: [custom-wordpress-plugins, wordpress, php]
+    page: "experience/#independent"
+
+goals:
+  - id: grad-study
+    label: Graduate study in cybersecurity
+    level: goal
+    summary: Planning graduate study in cybersecurity. No admission or scholarship has been received yet.
+    page: "education/#research"
+
+# What visitors come for → which capabilities answer it, and where to go next.
+intents:
+  - id: partner
+    label: A technical development partner
+    blurb: Websites, stores and automation — what has been built and what it was built with.
+    caps: [wordpress, crm, ecommerce, webapps, ai]
+    brief: technical
+    next: [{ label: Start a project, url: "solutions/#inquiry" }, { label: Services, url: services/ }]
+  - id: evaluate
+    label: Evaluating a technology professional
+    blurb: Skills with the evidence behind each one, strongest first.
+    caps: [wordpress, crm, webapps, security, programming, it-leadership]
+    brief: profile
+    next: [{ label: CV, url: cv/ }, { label: Experience, url: experience/ }]
+  - id: it
+    label: IT leadership experience
+    blurb: Running an organisation's IT and managing development-sector projects.
+    caps: [it-leadership, leadership, security]
+    brief: leadership
+    next: [{ label: Leadership, url: leadership/ }, { label: Get in touch, url: "#contact" }]
+  - id: org
+    label: Organisational leadership
+    blurb: Chief executive of an NGO and co-founder of a company — roles and responsibilities.
+    caps: [leadership, it-leadership]
+    brief: leadership
+    next: [{ label: Leadership, url: leadership/ }]
+  - id: academic
+    label: Academic background
+    blurb: Degrees, the master's project report, training and research interests.
+    caps: [academic, security, programming]
+    brief: academic
+    next: [{ label: Education, url: education/ }, { label: CV, url: cv/ }]
+  - id: projects
+    label: Project experience
+    blurb: Live client work by region and industry, and what each was built with.
+    caps: [wordpress, crm, ecommerce]
+    brief: projects
+    next: [{ label: Portfolio, url: portfolio/ }, { label: Case studies, url: "portfolio/#cases" }]
+
+# Extra words that should find a capability in the explorer's search (besides its label, summary and tech).
+synonyms:
+  wordpress: [wp, website, websites, site, elementor, theme, landing page, business website]
+  ecommerce: [store, shop, online store, woocommerce, shopify, booking, tours, payments, ecommerce, e-commerce]
+  crm: [crm, gohighlevel, ghl, highlevel, automation, pipeline, leads, lead, follow-up, sms, n8n, zapier, funnel]
+  webapps: [plugin, plugins, dashboard, portal, api, integration, integrations, custom, web app, application]
+  ai: [ai, chatgpt, claude, prompt, prompts, llm, agent, agents, gpt]
+  security: [security, cyber, cybersecurity, isp, network, wifi, router, hardening, research, resilience, policy]
+  it-leadership: [it, it management, project management, projects, ngo, programme, ilo, government, dscc]
+  leadership: [ceo, leader, leadership, executive, management, founder, organisation, organization, ngo, director]
+  academic: [degree, masters, master, msc, bsc, university, education, academic, study, thesis, report, gpa, cgpa, graduate]
+  programming: [code, coding, programming, developer, php, javascript, python, c#, .net, asp.net, opencv, keras, machine learning, ml]

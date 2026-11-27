@@ -1,0 +1,9 @@
+# Keeps the GitHub Actions used by the build and deploy workflows up to date (security fixes included).
+# The site has no npm or Ruby dependencies of its own to watch.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 3

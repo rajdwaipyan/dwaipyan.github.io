@@ -17,6 +17,16 @@
 <html lang="en" class="no-js">
 <head>
   <meta charset="utf-8">
+  {%- comment -%}
+    Content Security Policy. GitHub Pages can't send HTTP headers, so it is set here; browsers honour it except
+    for frame-ancestors (not allowed in a meta tag). Inline scripts stay allowed because the import map that
+    versions the modules is inline and changes every build. The API hosts come from _data/forms.yml and twin.yml.
+  {%- endcomment -%}
+  {%- assign csp_connect = "" -%}
+  {%- if site.data.forms.endpoint and site.data.forms.endpoint != "" %}{% assign fe = site.data.forms.endpoint | split: "/" %}{% assign csp_connect = csp_connect | append: " " | append: fe[0] | append: "//" | append: fe[2] %}{% endif -%}
+  {%- if site.data.twin.endpoint and site.data.twin.endpoint != "" %}{% assign te = site.data.twin.endpoint | split: "/" %}{% assign csp_connect = csp_connect | append: " " | append: te[0] | append: "//" | append: te[2] %}{% endif %}
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self'{{ csp_connect }}; frame-src https://www.youtube-nocookie.com https://www.facebook.com https://challenges.cloudflare.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>document.documentElement.className = document.documentElement.className.replace("no-js", "js");</script>
   <title>{% if page.schema == "article" %}{{ page.title | escape }} — Journal | Dwaipyan Mandal{% else %}{{ page.title | escape }}{% endif %}</title>

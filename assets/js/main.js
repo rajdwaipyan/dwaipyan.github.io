@@ -40,3 +40,5 @@ run("contact", initContact);
 run("xray", initXray);
 run("twin", initTwin);
 run("fx", initFx);
+// DWAIPYAN INTELLIGENCE: loaded only on its own page
+if (document.getElementById("di-data")) import("./intelligence.js").then((m) => run("intelligence", m.initIntelligence), (e) => console.error("[intelligence]", e));
